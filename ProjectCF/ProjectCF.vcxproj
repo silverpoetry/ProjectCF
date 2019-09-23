@@ -114,6 +114,11 @@
   <ItemGroup>
     <ClInclude Include="__vm\.ProjectCF.vsarduino.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Framework\System_Time.cpp" />
+    <ClCompile Include="Modules\Moudule_WIFI.cpp" />
+    <ClCompile Include="Tasks\Task_RescuePeople.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
