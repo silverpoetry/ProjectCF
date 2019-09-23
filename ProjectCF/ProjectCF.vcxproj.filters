@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>xml;json;txt;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Task">
+      <UniqueIdentifier>{a8f44634-0cc7-49ab-a44b-e25148439a2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Moudules">
+      <UniqueIdentifier>{3c4b86ec-54a4-4b1a-803e-f61f4158d42d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework">
+      <UniqueIdentifier>{f47e5aee-0d36-45fb-9d86-180dfec34937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Moudules">
+      <UniqueIdentifier>{4e42282e-a23d-4f99-bdad-9f3141993a6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework">
+      <UniqueIdentifier>{16823de1-1a51-4795-8e92-72867cc4d60c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Task">
+      <UniqueIdentifier>{1faf988c-81d9-4b1c-9d01-fb3c79fc826c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ProjectCF.ino" />
@@ -23,14 +41,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Framework\System_Time.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\Moudule_WIFI.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Moudules</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\System_Time.cpp">
+      <Filter>Source Files\Framework</Filter>
     </ClCompile>
     <ClCompile Include="Tasks\Task_RescuePeople.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Task</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
