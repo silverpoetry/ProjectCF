@@ -1,6 +1,8 @@
 #include "Huidu.h"
 #include "IncludeList.h"
 int Huidu_LineValues[] = { 500,500,500,500,500 };
+
+
 void Huidu_Init() {
 	for  (int i =0; i<5; i++)
 	{
@@ -18,7 +20,7 @@ int Huidu_Read(char index)
 	int min = 9999, max = 0, ans = 0;
 	for (int i = 0; i < 12; i++)
 	{
-		Motor_Go();
+	
 		int temp = analogRead(Huidu_Pins[index - 1]);;
 		ans += temp;
 		if (temp < min)min = temp;

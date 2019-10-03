@@ -54,11 +54,11 @@
     <ClInclude Include="Huidu.h">
       <Filter>Header Files\Moudules</Filter>
     </ClInclude>
+    <ClInclude Include="Motor.h">
+      <Filter>Header Files\Moudules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Framework\System_Time.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Huidu.cpp">
       <Filter>Source Files\Moudules</Filter>
     </ClCompile>
@@ -66,6 +66,15 @@
       <Filter>Source Files\Moudules</Filter>
     </ClCompile>
     <ClCompile Include="Arm.cpp">
+      <Filter>Source Files\Moudules</Filter>
+    </ClCompile>
+    <ClCompile Include="Mpu.cpp">
+      <Filter>Source Files\Moudules</Filter>
+    </ClCompile>
+    <ClCompile Include="Distance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Motor.cpp">
       <Filter>Source Files\Moudules</Filter>
     </ClCompile>
   </ItemGroup>
