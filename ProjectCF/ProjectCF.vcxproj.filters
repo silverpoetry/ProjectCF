@@ -22,14 +22,14 @@
     <Filter Include="Source Files\Framework">
       <UniqueIdentifier>{f47e5aee-0d36-45fb-9d86-180dfec34937}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Moudules">
-      <UniqueIdentifier>{4e42282e-a23d-4f99-bdad-9f3141993a6f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Framework">
       <UniqueIdentifier>{16823de1-1a51-4795-8e92-72867cc4d60c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Task">
       <UniqueIdentifier>{1faf988c-81d9-4b1c-9d01-fb3c79fc826c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Moudules">
+      <UniqueIdentifier>{67eb01e2-4d1f-4b3c-a6f1-ef7de5b879ae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,16 +39,34 @@
     <ClInclude Include="__vm\.ProjectCF.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IncludeList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Arm.h">
+      <Filter>Header Files\Moudules</Filter>
+    </ClInclude>
+    <ClInclude Include="Mpu.h">
+      <Filter>Header Files\Moudules</Filter>
+    </ClInclude>
+    <ClInclude Include="Distance.h">
+      <Filter>Header Files\Moudules</Filter>
+    </ClInclude>
+    <ClInclude Include="Huidu.h">
+      <Filter>Header Files\Moudules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Modules\Moudule_WIFI.cpp">
-      <Filter>Source Files\Moudules</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\System_Time.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Tasks\Task_RescuePeople.cpp">
-      <Filter>Source Files\Task</Filter>
+    <ClCompile Include="Huidu.cpp">
+      <Filter>Source Files\Moudules</Filter>
+    </ClCompile>
+    <ClCompile Include="Moudule_WIFI.cpp">
+      <Filter>Source Files\Moudules</Filter>
+    </ClCompile>
+    <ClCompile Include="Arm.cpp">
+      <Filter>Source Files\Moudules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
