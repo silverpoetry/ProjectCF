@@ -71,10 +71,10 @@
     <ClCompile Include="Mpu.cpp">
       <Filter>Source Files\Moudules</Filter>
     </ClCompile>
-    <ClCompile Include="Distance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Motor.cpp">
+      <Filter>Source Files\Moudules</Filter>
+    </ClCompile>
+    <ClCompile Include="Distance.cpp">
       <Filter>Source Files\Moudules</Filter>
     </ClCompile>
   </ItemGroup>
