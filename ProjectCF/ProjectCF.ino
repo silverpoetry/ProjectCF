@@ -3,6 +3,7 @@
  Created:	2019/9/22 21:26:00
  Author:	The CFer
 */
+#include <Wire.h>
 #include <Arduino.h>
 
 #include "string.h"
