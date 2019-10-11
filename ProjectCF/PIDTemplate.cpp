@@ -1,4 +1,4 @@
-
+#include "IncludeList.h"
 double PID_SumError;
 double PID_LastError;
 double PID_KP;
@@ -17,4 +17,13 @@ void PID_Output(double newError)
 	
 	PID_LastTime = micros();
 	PID_LastError - newError;
+}
+void PID_Refresh()
+{
+	 PID_SumError=0;
+	 PID_LastError=0;
+	
+	int PID_LastTime=0;
+
+
 }

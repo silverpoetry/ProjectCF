@@ -117,6 +117,7 @@
     <ClInclude Include="Distance.h" />
     <ClInclude Include="Huidu.h" />
     <ClInclude Include="IncludeList.h" />
+    <ClInclude Include="Manager.h" />
     <ClInclude Include="Motor.h" />
     <ClInclude Include="Mpu.h" />
     <ClInclude Include="__vm\.ProjectCF.vsarduino.h" />
@@ -125,6 +126,7 @@
     <ClCompile Include="Arm.cpp" />
     <ClCompile Include="Distance.cpp" />
     <ClCompile Include="Huidu.cpp" />
+    <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Motor.cpp" />
     <ClCompile Include="Moudule_WIFI.cpp" />
     <ClCompile Include="Mpu.cpp" />
