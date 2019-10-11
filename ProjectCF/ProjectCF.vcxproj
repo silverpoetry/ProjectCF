@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arm.h" />
+    <ClInclude Include="BlueTooth.h" />
     <ClInclude Include="Distance.h" />
     <ClInclude Include="Huidu.h" />
     <ClInclude Include="IncludeList.h" />
@@ -124,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Arm.cpp" />
+    <ClCompile Include="BlueTooth.cpp" />
     <ClCompile Include="Distance.cpp" />
     <ClCompile Include="Huidu.cpp" />
     <ClCompile Include="Manager.cpp" />
