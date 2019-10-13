@@ -7,12 +7,12 @@ void BlueTooth_Init()
 }
 String  BlueTooth_ReceiveData()
 {
-	while (blSerial.available == 0);
+	while (blSerial.available() == 0);
 	return blSerial.readString();
 
 }
 bool BlueTooth_Available()
 {
-	return blSerial.available;
+	return blSerial.available();
 }
 

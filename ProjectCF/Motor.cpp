@@ -21,8 +21,8 @@ void Motor_Init()
 		pinMode(Motor_Pin2, OUTPUT);
 		pinMode(Motor_Pin3, OUTPUT);
 		pinMode(Motor_Pin4, OUTPUT);
-		pinMode(Motor_EN1, OUTPUT);
-		pinMode(Motor_EN2, OUTPUT);
+		//pinMode(Motor_EN1, OUTPUT);
+		//pinMode(Motor_EN2, OUTPUT);
 		attachInterrupt(digitalPinToInterrupt(Motor_EncodePin1),Motor_Encode1_Arrived , RISING);
 		attachInterrupt(digitalPinToInterrupt(Motor_EncodePin2),Motor_Encode2_Arrived , RISING);
 
@@ -76,9 +76,20 @@ void back(int id)
 
 void Motor_SetSpeed(int speed, int id)
 {
-	if (speed > 0)forward(id), analogWrite(Motor_EN1, speed);
-	if (speed < 0)back(id), analogWrite(Motor_EN2, abs(speed));
+	if(id==1)
+	{
+		Serial.println(speed);
+	if (speed > 0)forward(id), analogWrite(Motor_EN1, abs(speed));
+	if (speed < 0)back(id), analogWrite(Motor_EN1, abs(speed));
 	if (speed == 0)Motor_Stop(id);
+	}
+	else
+	{
+		speed *= 0.96;
+		if (speed > 0)forward(id), analogWrite(Motor_EN2, abs(speed));
+		if (speed < 0)back(id), analogWrite(Motor_EN2, abs(speed));
+		if (speed == 0)Motor_Stop(id);
+	}
 }
 //控制电机行进
 //speed1 :左侧车轮速度 范围：-255~255
@@ -87,6 +98,7 @@ void Motor_GoSpeed(int speed1, int speed2)
 {
 	Motor_SetSpeed(speed1, 1);
 	Motor_SetSpeed(speed2, 2);
+
 }
 
 

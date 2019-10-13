@@ -10,15 +10,15 @@ void Manager_Hardware_Init()
 }
 long long StartTime= 0 ;
 bool isstarted = false;
-bool Manager_Time_TakeTime(int num)
+bool Manager_Time_TakeTime(long num)
 {
 	if (!isstarted)
 	{
 		isstarted = true;
-		StartTime = micros();
+		StartTime = millis();
 		return false;
 	}
-	else if (micros() - StartTime >= num)
+	else if (millis() - StartTime >= num)
 	{
 		isstarted = false;
 		return  true;
