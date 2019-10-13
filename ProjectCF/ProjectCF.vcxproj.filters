@@ -57,11 +57,11 @@
     <ClInclude Include="Motor.h">
       <Filter>Header Files\Moudules</Filter>
     </ClInclude>
-    <ClInclude Include="Manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BlueTooth.h">
       <Filter>Header Files\Moudules</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -83,14 +83,14 @@
     <ClCompile Include="Distance.cpp">
       <Filter>Source Files\Moudules</Filter>
     </ClCompile>
-    <ClCompile Include="PIDTemplate.cpp">
-      <Filter>Source Files\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BlueTooth.cpp">
       <Filter>Source Files\Moudules</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="PIDTemplate.cpp">
+      <Filter>Source Files\Framework</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
