@@ -30,7 +30,7 @@ int Huidu_Read(char index)
 	}
 	int finalvalue =  (ans - min - max) / 10;
 	//¶ÔÖµÐÞÕý
-	if (index == 2)finalvalue -= 50;
+	
 	return finalvalue;
 
 }

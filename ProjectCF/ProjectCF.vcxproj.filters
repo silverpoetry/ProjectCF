@@ -57,6 +57,9 @@
     <ClInclude Include="Motor.h">
       <Filter>Header Files\Moudules</Filter>
     </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Huidu.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="PIDTemplate.cpp">
       <Filter>Source Files\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

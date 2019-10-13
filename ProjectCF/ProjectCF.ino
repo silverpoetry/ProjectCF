@@ -11,26 +11,27 @@
 #include <stdlib.h>
 #include "IncludeList.h"
 
-void setup()
+void setup ()
 {
-	Motor_Init();
-	Serial.begin(9600);
+	Motor_Init ();
+	Huidu_Init ();
+	Serial.begin (9600);
 
 
 }
-void loop()
+void loop ()
 {
 	/*if (Manager_Time_TakeTime(1000))
 	{
 		sh(The Motor 1 goes),pu((unsigned long)Motor_M1Cnt), sh(steps\n);
 		sh(The Motor 2 goes), pu((unsigned long)Motor_M2Cnt), sh(steps\n);
 	}*/
-	if (Serial.available() > 0)
+	/*if (Serial.available() > 0)
 	{
 		String s ;
 		s =Serial.readString();
 		sh(Motor),pu(s),sh(-   listening\n);
-		
+
 		if (atoi(s.c_str()) == 1)
 		{
 			while (Serial.available() == 0);
@@ -48,7 +49,7 @@ void loop()
 		}
 		else if (atoi(s.c_str()) == 3)
 		{
-			int a, b; 
+			int a, b;
 			while (Serial.available() == 0);
 			s = Serial.readString();
 			a = atoi(s.c_str());
@@ -60,5 +61,14 @@ void loop()
 			Motor_GoSpeed(a, b);
 		}
 	}
-
+	*/
+	long long ind = 0;
+	while (1)
+	{
+		Rep (i, 1, 4)
+		{
+			sh (HUIDU), pu (i), sh(" "), pu (Huidu_Read (i)), sh (\n);
+		}
+		delay (500);
+	}
 }
