@@ -60,6 +60,9 @@
     <ClInclude Include="Manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BlueTooth.h">
+      <Filter>Header Files\Moudules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Huidu.cpp">
@@ -85,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="Manager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueTooth.cpp">
+      <Filter>Source Files\Moudules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
