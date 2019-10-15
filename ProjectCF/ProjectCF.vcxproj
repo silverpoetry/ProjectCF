@@ -120,6 +120,7 @@
     <ClInclude Include="IncludeList.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Motor.h" />
+    <ClInclude Include="move.h" />
     <ClInclude Include="Mpu.h" />
     <ClInclude Include="__vm\.ProjectCF.vsarduino.h" />
   </ItemGroup>
@@ -131,6 +132,7 @@
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Motor.cpp" />
     <ClCompile Include="Moudule_WIFI.cpp" />
+    <ClCompile Include="move.cpp" />
     <ClCompile Include="Mpu.cpp" />
     <ClCompile Include="PIDTemplate.cpp" />
   </ItemGroup>
