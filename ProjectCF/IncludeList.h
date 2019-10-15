@@ -1,6 +1,8 @@
 #pragma once
 #define Rep(i,a,b) for(int i = a ;i<=b ;i++)
 #define Dwn(i,a,b) for(int i = a ;i >=b ;i--)
+#define pu(a) Serial.print((a))
+#define sh(a) Serial.print(#a)
 #include <Arduino.h>
 #include "Mpu.h"
 #include "Huidu.h"

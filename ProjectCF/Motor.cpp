@@ -4,6 +4,9 @@
 volatile unsigned long long  Motor_M1Cnt=0;
 volatile unsigned long long  Motor_M2Cnt=0;
 
+int Motor_M1Speed;
+int Motor_M2Speed;
+
 void Motor_Encode1_Arrived()
 {
 	Motor_M1Cnt++;
@@ -78,17 +81,20 @@ void Motor_SetSpeed(int speed, int id)
 {
 	if(id==1)
 	{
-		Serial.println(speed);
+		//Serial.println(speed);
 	if (speed > 0)forward(id), analogWrite(Motor_EN1, abs(speed));
 	if (speed < 0)back(id), analogWrite(Motor_EN1, abs(speed));
 	if (speed == 0)Motor_Stop(id);
+	Motor_M1Speed = speed;
 	}
 	else
 	{
-		speed *= 0.96;
+		
 		if (speed > 0)forward(id), analogWrite(Motor_EN2, abs(speed));
 		if (speed < 0)back(id), analogWrite(Motor_EN2, abs(speed));
 		if (speed == 0)Motor_Stop(id);
+		
+		Motor_M2Speed = speed;
 	}
 }
 //控制电机行进
