@@ -67,6 +67,7 @@ void Calibration()
 	//先求和
 	for (int i = 0; i < nCalibTimes; ++i) {
 		int mpuVals[Mpu_Valcnt];
+		
 		ReadAccGyr(mpuVals);
 		for (int j = 0; j < Mpu_Valcnt; ++j) {
 			valSums[j] += mpuVals[j];
@@ -76,7 +77,8 @@ void Calibration()
 	for (int i = 0; i < Mpu_Valcnt; ++i) {
 		calibData[i] = int(valSums[i] / nCalibTimes);
 	}
-	calibData[2] += 16384; //设芯片Z轴竖直向下，设定静态工作点。
+
+	//calibData[2] += 16384; //设芯片Z轴竖直向下，设定静态工作点。
 }
 
 //算得Roll角。算法见文档。 滚转角
@@ -118,10 +120,10 @@ void Rectify(int* pReadout, float* pRealVals) {
 void Mpu_Init()
 {
 	Wire.begin();
-	Wire.begin(); //初始化Wire库
+	
 	Mpu_WriteReg(0x6B, 0); //启动MPU6050设备
 
-	Calibration(); //执行校准
+	//Calibration(); //执行校准
 	Mpu_Lasttime = micros(); //记录当前时间
 }
 
@@ -159,7 +161,7 @@ void Mpu_GetValues() {
 		//跟据滤波值计算角度速
 		Mpu_RollRate = (fNewRoll - Mpu_Roll) / dt;
 		Mpu_PitchRate = (fNewPitch - Mpu_Pitch) / dt;
-		Mpu_YawRate = (fNewYaw - Mpu_Yaw) / dt;
+		Mpu_YawRate = -(fNewYaw - Mpu_Yaw) / dt;
 		//更新Roll角和Pitch角
 		Mpu_Roll = fNewRoll;
 		Mpu_Pitch = fNewPitch;

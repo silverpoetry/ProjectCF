@@ -8,19 +8,20 @@ void Manager_Hardware_Init()
 	Motor_Init();
 
 }
-long long StartTime= 0 ;
-bool isstarted = false;
-bool Manager_Time_TakeTime(long num)
+long long StartTime[200] ;
+bool isstarted[200] ;
+
+bool Manager_Time_TakeTime(long index,long num)
 {
-	if (!isstarted)
+	if (!isstarted[index])
 	{
-		isstarted = true;
-		StartTime = millis();
+		isstarted[index] = true;
+		StartTime[index] = millis();
 		return false;
 	}
-	else if (millis() - StartTime >= num)
+	else if (millis() - StartTime[index] >= num)
 	{
-		isstarted = false;
+		isstarted[index] = false;
 		return  true;
 	}
 
