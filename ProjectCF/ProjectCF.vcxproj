@@ -123,6 +123,7 @@
     <ClInclude Include="Motor.h" />
     <ClInclude Include="move.h" />
     <ClInclude Include="Mpu.h" />
+    <ClInclude Include="Patrol_Line.h" />
     <ClInclude Include="__vm\.ProjectCF.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +137,7 @@
     <ClCompile Include="Moudule_WIFI.cpp" />
     <ClCompile Include="move.cpp" />
     <ClCompile Include="Mpu.cpp" />
+    <ClCompile Include="Patrol_Line.cpp" />
     <ClCompile Include="PIDTemplate.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

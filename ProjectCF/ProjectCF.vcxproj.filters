@@ -69,6 +69,9 @@
     <ClInclude Include="Debugger.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Patrol_Line.h">
+      <Filter>Header Files\Task</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Huidu.cpp">
@@ -98,7 +101,11 @@
     <ClCompile Include="PIDTemplate.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Patrol_Line.cpp">
+      <Filter>Source Files\Task</Filter>
+    </ClCompile>
     <ClCompile Include="move.cpp">
+      <Filter>Source Files\Framework</Filter>
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
     <ClCompile Include="Debugger.cpp">
