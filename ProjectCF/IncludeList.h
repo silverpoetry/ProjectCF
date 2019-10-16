@@ -10,5 +10,6 @@
 #include "Motor.h"
 #include "Arm.h"
 #include "Manager.h"
+#include "Debugger.h"
 
 

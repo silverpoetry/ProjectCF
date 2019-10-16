@@ -31,7 +31,15 @@ void loop()
 		//Motor_GoSpeed(120, 120);
 	
 	
-	
+	while (true)
+	{
+		Debugger_DebugManagement();
+		if (Manager_Time_TakeTime(1,30))
+		{
+			
+			//Debugger_SetWatch("Time", millis());
+		}
+	}
 	
 	long long lastcnt11 = Motor_M1Cnt;
 	long long lastcnt12 = Motor_M2Cnt;
