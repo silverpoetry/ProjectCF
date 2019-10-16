@@ -1,10 +1,10 @@
 #include "Huidu.h"
 #include "IncludeList.h"
-int Huidu_LineValues[] = { 500,500,500,500,500 };
+int Huidu_LineValues[] = { 500,500,500,500 };
 
 
 void Huidu_Init() {
-	for  (int i =0; i<5; i++)
+	for  (int i =0; i<4; i++)
 	{
 		pinMode(Huidu_Pins[i], INPUT);
 	}
@@ -13,7 +13,7 @@ void Huidu_Init() {
 
 //读取灰度传感器值（0-1024）
 //index 灰度传感器编号(1-5)
-int Huidu_Read(char index)
+int Huidu_Read(int index)
 {
 	
 	int value;
@@ -36,21 +36,21 @@ int Huidu_Read(char index)
 }
 
 //判断传感器是否检测到线
-//index 灰度传感器编号(1-5)
-boolean Huidu_IsLine(char index) {
+//index 灰度传感器编号(1-4)
+boolean Huidu_IsLine(int index) {
 	int value = Huidu_Read(index);
 	return value < Huidu_LineValues[index - 1];
 
 }
 
 
-//调试时使用，打印五个灰度的值
+//调试时使用，打印四个灰度的值
 void Huidu_ShowValue()
 {
 	
 
 	char str[100];
-	sprintf(str, "123%%%%%d%%%%%d%%%%%d%%%%%d%%%%%d%%%%4", Huidu_Read(1), Huidu_Read(2), Huidu_Read(3), Huidu_Read(4), Huidu_Read(5));
+	sprintf(str, "123%%%%%d%%%%%d%%%%%d%%%%%d%%%%%d%%%%4", Huidu_Read(1), Huidu_Read(2), Huidu_Read(3), Huidu_Read(4));
 	//	sprintf(str,)
 	Serial.println(str);
 
