@@ -4,8 +4,8 @@
 #define Motor_EncodePin2 3
 const int  Motor_Pin2 = 35;
 const int  Motor_Pin1 = 37;
-const int  Motor_Pin4 = 39;
-const int  Motor_Pin3 = 41;
+const int  Motor_Pin3 = 39;
+const int  Motor_Pin4 = 41;
 const int  Motor_EN1 = 7;
 const int Motor_EN2 = 6;
 extern int Motor_M1Speed;

@@ -33,7 +33,7 @@ void loop()
 	long long lastcnt12 = Motor_M2Cnt;
 	long long lastcnt21 = Motor_M1Cnt;
 	long long lastcnt22 = Motor_M2Cnt;
-	Move_GoSpeed(120, 120);
+	Move_GoSpeed(200, 200);
 	Move_Refresh();
 	while (true)
 	{
@@ -46,6 +46,16 @@ void loop()
 		if (Manager_Time_TakeTime(2, 30))
 		{
 			Move_KeepRate();
+			
+		}
+		if (Manager_Time_TakeTime(3,1000))
+		{
+			
+				Debugger_SetWatch("Speed1",(Motor_M1Cnt - lastcnt11));
+				Debugger_SetWatch("Speed2",( Motor_M2Cnt - lastcnt12));
+				lastcnt11 = Motor_M1Cnt;
+				lastcnt12 = Motor_M2Cnt;
+		
 		}
 	}
 	
