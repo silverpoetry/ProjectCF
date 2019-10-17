@@ -18,8 +18,9 @@ void setup()
 
 	Motor_Init();
  	Huidu_Init();
+	Debugger_Init();
 	Serial.begin(9600);
-	Serial1.begin(9600);
+	//Serial1.begin(9600);
 	
 }
 void loop()
@@ -39,7 +40,7 @@ void loop()
 		Debugger_DebugManagement();
 		if (Manager_Time_TakeTime(1,300))
 		{
-			Debugger_SetWatch("Huidu1" ,Huidu_Read(1));
+			//Debugger_SetWatch("Huidu1" ,Huidu_Read(1));
 			//Debugger_SetWatch("Time", millis());
 		}
 		if (Manager_Time_TakeTime(2, 30))
