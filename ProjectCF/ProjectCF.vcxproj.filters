@@ -101,8 +101,5 @@
     <ClCompile Include="Patrol_Line.cpp">
       <Filter>Source Files\Task</Filter>
     </ClCompile>
-    <ClCompile Include="move.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

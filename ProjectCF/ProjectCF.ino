@@ -4,6 +4,8 @@
  Author:	The CFer
 */
 
+#include <Servo.h>
+#include <Esplora.h>
 #include "IncludeList.h"
 #include <Wire.h>
 #include <Arduino.h>

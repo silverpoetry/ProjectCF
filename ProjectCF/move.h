@@ -3,13 +3,13 @@
 #include "IncludeList.h"
 
 
-void Go_Straight (int speed, int time);
-void Go_Straight (int speed);//time = infinite
+void Move_GoStraight (int speed, int time);
+void Move_GoStraight (int speed);//time = infinite
 
-void Go_Back (int speed, int time);
+void Move_GoBack (int speed, int time);
 
-void Turn_Right (int time);
-void Turn_Left (int time);
+void Move_TurnRight (int time);
+void Move_TurnLeft (int time);
 
-void Rotate_Right (int time, int angle);
-void Rotate_Left (int time, int angle);
+void Move_RotateRight (int time, int angle);
+void Move_RotateLeft (int time, int angle);
