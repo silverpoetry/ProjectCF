@@ -135,7 +135,6 @@
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Motor.cpp" />
     <ClCompile Include="Moudule_WIFI.cpp" />
-    <ClCompile Include="move.cpp" />
     <ClCompile Include="Mpu.cpp" />
     <ClCompile Include="Patrol_Line.cpp" />
     <ClCompile Include="PIDTemplate.cpp" />
