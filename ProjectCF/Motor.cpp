@@ -105,7 +105,7 @@ void Motor_GoSpeed(int speed1, int speed2)
 {
 	Motor_SetSpeed(speed1, 1);
 	Motor_SetSpeed(speed2, 2);
-	Motor_Rate = speed1 / speed2;
+	
 }
 
 
