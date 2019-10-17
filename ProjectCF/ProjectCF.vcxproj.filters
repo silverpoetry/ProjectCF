@@ -66,6 +66,9 @@
     <ClInclude Include="move.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Debugger.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
     <ClInclude Include="Patrol_Line.h">
       <Filter>Header Files\Task</Filter>
     </ClInclude>
