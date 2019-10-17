@@ -1,5 +1,5 @@
 #include "Patrol_Line.h"
-#include <cmath>
+#include <math.h>
 
 #define SEP_EPS 10
 
