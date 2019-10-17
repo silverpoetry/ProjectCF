@@ -63,14 +63,14 @@
     <ClInclude Include="Manager.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="move.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Debugger.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Patrol_Line.h">
       <Filter>Header Files\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +103,12 @@
     </ClCompile>
     <ClCompile Include="Patrol_Line.cpp">
       <Filter>Source Files\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Source Files\Framework</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

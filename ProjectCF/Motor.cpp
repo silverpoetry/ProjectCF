@@ -7,6 +7,7 @@ volatile unsigned long long  Motor_M2Cnt=0;
 int Motor_M1Speed;
 int Motor_M2Speed;
 
+
 void Motor_Encode1_Arrived()
 {
 	Motor_M1Cnt++;
@@ -104,7 +105,7 @@ void Motor_GoSpeed(int speed1, int speed2)
 {
 	Motor_SetSpeed(speed1, 1);
 	Motor_SetSpeed(speed2, 2);
-
+	Motor_Rate = speed1 / speed2;
 }
 
 

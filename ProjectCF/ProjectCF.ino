@@ -14,16 +14,13 @@
 
 void setup()
 {
-	pinMode(23, OUTPUT);
-	pinMode(24, OUTPUT);
-	Serial1.begin(9600);
-	digitalWrite(23, HIGH);
-	digitalWrite(24, LOW);
+
+
 	Motor_Init();
  	Huidu_Init();
 	Serial.begin(9600);
-
-	Mpu_Init();
+	Serial1.begin(9600);
+	
 }
 void loop()
 {
@@ -31,22 +28,28 @@ void loop()
 	delay(3000);*/
 	
 		//Motor_GoSpeed(120, 120);
-	
-	
-	while (true)
-	{
-		Debugger_DebugManagement();
-		if (Manager_Time_TakeTime(1,30))
-		{
-			
-			//Debugger_SetWatch("Time", millis());
-		}
-	}
-	
 	long long lastcnt11 = Motor_M1Cnt;
 	long long lastcnt12 = Motor_M2Cnt;
 	long long lastcnt21 = Motor_M1Cnt;
 	long long lastcnt22 = Motor_M2Cnt;
+	Move_GoSpeed(120, 120);
+	Move_Refresh();
+	while (true)
+	{
+		Debugger_DebugManagement();
+		if (Manager_Time_TakeTime(1,300))
+		{
+			Debugger_SetWatch("Huidu1" ,Huidu_Read(1));
+			//Debugger_SetWatch("Time", millis());
+		}
+		if (Manager_Time_TakeTime(2, 30))
+		{
+			Move_KeepRate();
+		}
+	}
+	
+	Move_GoSpeed(120, 120);
+	Move_Refresh();
 	while (1)
 	{
 		if (Manager_Time_TakeTime(3, 40))
@@ -63,17 +66,10 @@ void loop()
 			lastcnt11 = Motor_M1Cnt;
 			lastcnt12 = Motor_M2Cnt;
 		}
-
+	
 		if (Manager_Time_TakeTime(2, 30))
 		{
-			int step1 = Motor_M1Cnt - lastcnt21;
-			int step2 = Motor_M2Cnt - lastcnt22;
-			if (step1 > step2)
-				Motor_GoSpeed(Motor_M1Speed-1 , Motor_M2Speed);
-			else if (step1 < step2)
-				Motor_GoSpeed(Motor_M1Speed+1 , Motor_M2Speed);
-			lastcnt21 = Motor_M1Cnt;
-			lastcnt22 = Motor_M2Cnt;
+			Move_KeepRate();
 		}
 	}
 
