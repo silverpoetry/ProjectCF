@@ -98,9 +98,6 @@
     <ClCompile Include="Manager.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="PIDTemplate.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Patrol_Line.cpp">
       <Filter>Source Files\Task</Filter>
     </ClCompile>

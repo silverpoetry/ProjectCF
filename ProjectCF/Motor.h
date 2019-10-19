@@ -1,5 +1,5 @@
 #pragma once
-#define Motor_NomorSpeed 120 
+#define Motor_NomorSpeed 150
 #define Motor_EncodePin1 2
 #define Motor_EncodePin2 3
 const int  Motor_Pin2 = 35;

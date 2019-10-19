@@ -33,33 +33,25 @@ void loop()
 	long long lastcnt12 = Motor_M2Cnt;
 	long long lastcnt21 = Motor_M1Cnt;
 	long long lastcnt22 = Motor_M2Cnt;
-	Move_GoSpeed(200, 200);
+	Move_GoSpeed(60, 60);
 	Move_Refresh();
 	while (true)
 	{
 		Debugger_DebugManagement();
-		if (Manager_Time_TakeTime(1,300))
+		/*if (Manager_Time_TakeTime(1,300))
 		{
 			//Debugger_SetWatch("Huidu1" ,Huidu_Read(1));
 			//Debugger_SetWatch("Time", millis());
-		}
-		if (Manager_Time_TakeTime(2, 30))
+		}*/
+		if (Manager_Time_TakeTime(2, 50))
 		{
 			Move_KeepRate();
-			
+			Move_Refresh ();
 		}
-		if (Manager_Time_TakeTime(3,1000))
-		{
-			
-				Debugger_SetWatch("Speed1",(Motor_M1Cnt - lastcnt11));
-				Debugger_SetWatch("Speed2",( Motor_M2Cnt - lastcnt12));
-				lastcnt11 = Motor_M1Cnt;
-				lastcnt12 = Motor_M2Cnt;
 		
-		}
 	}
 	
-	Move_GoSpeed(120, 120);
+	//Move_GoSpeed(120, 120);
 	Move_Refresh();
 	while (1)
 	{

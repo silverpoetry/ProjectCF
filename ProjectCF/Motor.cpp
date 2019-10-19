@@ -103,6 +103,14 @@ void Motor_SetSpeed(int speed, int id)
 //spped2 :ÓÒ²à³µÂÖËÙ¶È 
 void Motor_GoSpeed(int speed1, int speed2)
 {
+	if (speed1 > 255)
+		speed1 = 255;
+	if (speed2 > 255)
+		speed2 = 255;
+	if (speed1 < -255)
+		speed1 = -255;
+	if (speed2 < -255)
+		speed2 = -255;
 	Motor_SetSpeed(speed1, 1);
 	Motor_SetSpeed(speed2, 2);
 	
