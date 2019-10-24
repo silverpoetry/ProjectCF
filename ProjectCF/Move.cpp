@@ -5,7 +5,7 @@
 long long Move_LastCnt1;
 
 long long Move_LastCnt2;
-double Motor_Rate;
+double Motor_Rate=1;
 void Move_Refresh()
 {
 	Move_LastCnt1 = Motor_M1Cnt;
@@ -20,10 +20,12 @@ void Move_GoSpeed(int speed1, int speed2)
 void Move_KeepRate()
 {
 		int step1 = Motor_M1Cnt - Move_LastCnt1;
+		if (Motor_M1Speed < 0)step1 *= -1;
+		
 		int step2 = Motor_M2Cnt - Move_LastCnt2;
-
+		if (Motor_M2Speed < 0)step2 *= -1;
 		double KP = 1.5;
-		int err = (step2 - step1)  ;
+		int err = (step2*Motor_Rate - step1)  ;
 
 		//if (Manager_Time_TakeTime (3, 300))
 		//{

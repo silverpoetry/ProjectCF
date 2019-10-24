@@ -1,7 +1,7 @@
 #include "IncludeList.h"
 #include "Debugger.h"
 #include "Arduino.h"
-#define serialPort Serial3
+#define serialPort Serial1
 void Debugger_Init()
 {
 	serialPort.begin(9600);
@@ -35,6 +35,10 @@ void Debugger_DebugManagement()
 			Debugger_SetWatch("s2", s2);
 			Debugger_SetWatch("s3", s3);*/
 		if (s1 == "fuck")Debugger_SetWatch("fuck", s2 + " fucks " + s3);
+		else if (s1 == "fwd")Motor_GoSpeed(atoi(s2.c_str()), atoi(s3.c_str()));
+	
+	
+	
 	}
 	
 }

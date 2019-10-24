@@ -20,11 +20,26 @@ void setup()
  	Huidu_Init();
 	Debugger_Init();
 	Serial.begin(9600);
+	Distance_Init();
 	//Serial1.begin(9600);
 	
 }
 void loop()
 {
+
+	while (true)
+	{
+		Debugger_DebugManagement();
+		//Debugger_SetWatch("23", 333);
+		delay(100);
+		Debugger_SetWatch("dis", Distance_Get());
+		//Motor_Stop(1);
+		/*delay(2000);
+		Motor_Stop(1);
+		Motor_GoSpeed(2, 150);
+		delay(2000);
+		Motor_Stop(2);*/
+	}
 	/*Motor_GoSpeed(70, 200);
 	delay(3000);*/
 	

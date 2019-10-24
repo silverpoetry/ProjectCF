@@ -35,7 +35,8 @@ void Motor_Init()
 
 void Motor_Stop(int id)
 {
-	if (id==1)
+	Motor_SetSpeed(0, id);
+	/*if (id==1)
 	{
 
 	digitalWrite(Motor_Pin1, LOW);
@@ -48,7 +49,7 @@ void Motor_Stop(int id)
 	
 	digitalWrite(Motor_Pin3, LOW);
 	digitalWrite(Motor_Pin4, LOW);
-	}
+	}*/
 
 }
 void forward(int id)
@@ -83,19 +84,19 @@ void Motor_SetSpeed(int speed, int id)
 	if(id==1)
 	{
 		//Serial.println(speed);
-	if (speed > 0)forward(id), analogWrite(Motor_EN1, abs(speed));
+	if (speed >= 0)forward(id), analogWrite(Motor_EN1, abs(speed));
 	if (speed < 0)back(id), analogWrite(Motor_EN1, abs(speed));
-	if (speed == 0)Motor_Stop(id);
+	//if (speed == 0)Motor_Stop(id);
 	Motor_M1Speed = speed;
 	}
 	else
 	{
 		
-		if (speed > 0)forward(id), analogWrite(Motor_EN2, abs(speed));
+		if (speed >= 0)forward(id), analogWrite(Motor_EN2, abs(speed));
 		if (speed < 0)back(id), analogWrite(Motor_EN2, abs(speed));
-		if (speed == 0)Motor_Stop(id);
+	//	if (speed == 0)Motor_Stop(id);
 		
-		Motor_M2Speed = speed;
+		//Motor_M2Speed = speed;
 	}
 }
 //控制电机行进
