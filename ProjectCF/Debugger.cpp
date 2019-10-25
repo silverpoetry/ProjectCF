@@ -1,36 +1,36 @@
 #include "IncludeList.h"
 #include "Debugger.h"
 #include "Arduino.h"
-#define serialPort Serial3
+#define serial Serial3
 void Debugger_Init()
 {
-	serialPort.begin(9600);
+	serial.begin(9600);
 }
 
 void Debugger_SetWatch(String name, long  value)
 {
 	
-	serialPort.print("SetWatch("+name+",");
-	serialPort.print(value);
-	serialPort.print(")\n");
+	serial.print("SetWatch("+name+",");
+	serial.print(value);
+	serial.print(")\n");
 	
 }
 void Debugger_SetWatch(String name, String value)
 {
-	serialPort.print("SetWatch(" + name + ","+value+")\n");
+	serial.print("SetWatch(" + name + ","+value+")\n");
 	
 }
 void Debugger_DebugManagement()
 {
-	if (serialPort.available() > 0)
+	if (serial.available() > 0)
 	{
-		//serialPort.println(serialPort.readStringUntil('\n'));
+		//serial.println(serial.readStringUntil('\n'));
 		String s1, s2, s3;
-		s1 = serialPort.readStringUntil('(');
-		s2 = serialPort.readStringUntil(',');
-		s3 = serialPort.readStringUntil(')');
+		s1 = serial.readStringUntil('(');
+		s2 = serial.readStringUntil(',');
+		s3 = serial.readStringUntil(')');
 		//s1 s2 s3 分别为指令名 参数1 参数2 类似于 MyFunc(pm1,pm2)
-		serialPort.readStringUntil('\n');
+		serial.readStringUntil('\n');
 		/*	Debugger_SetWatch("s1", s1);
 			Debugger_SetWatch("s2", s2);
 			Debugger_SetWatch("s3", s3);*/
