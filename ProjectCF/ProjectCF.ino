@@ -24,6 +24,16 @@ void setup()
 	//Serial1.begin(9600);
 	
 }
+void goline(int basic1, int basic2)
+{
+	if (Huidu_IsLine(1) && Huidu_IsLine(2))Motor_GoSpeed(basic1,basic2);
+	
+	if (Huidu_IsLine(1))Motor_GoSpeed(basic1, basic2*1.2);
+	if (Huidu_IsLine(2))Motor_GoSpeed(basic1*1.4, basic2);
+	if (Huidu_IsLine(3))Motor_GoSpeed(-100, -100), delay(50), Motor_GoSpeed(0, 0), delay(2000);
+
+	
+}
 void loop()
 {
 
@@ -31,8 +41,13 @@ void loop()
 	{
 		Debugger_DebugManagement();
 		//Debugger_SetWatch("23", 333);
-		delay(100);
-		Debugger_SetWatch("dis", Distance_Get());
+		delay(30);
+		//Debugger_SetWatch("dis", Distance_Get());
+		goline(100,105);
+		Debugger_SetWatch("h1", Huidu_Read(1));
+		Debugger_SetWatch("h2", Huidu_Read(2));
+		Debugger_SetWatch("h3", Huidu_Read(3));
+		//Debugger_SetWatch("h4", Huidu_Read(4));
 		//Motor_Stop(1);
 		/*delay(2000);
 		Motor_Stop(1);

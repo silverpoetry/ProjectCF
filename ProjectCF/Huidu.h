@@ -2,7 +2,7 @@
 
 #include <Arduino.h>
 
-const int Huidu_Pins[] = {A5,A6,A7,A8,A9};
+const int Huidu_Pins[] = {A6,A8,A10,A8,A9};
 
 extern int Huidu_LineValues[] ;
 

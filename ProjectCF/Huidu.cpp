@@ -1,6 +1,6 @@
 #include "Huidu.h"
 #include "IncludeList.h"
-int Huidu_LineValues[] = { 150,150,150,150 };
+int Huidu_LineValues[] = { 300,300,300,300 };
 
 
 void Huidu_Init() {
@@ -39,7 +39,7 @@ int Huidu_Read(int index)
 //index »Ò¶È´«¸ÐÆ÷±àºÅ(1-4)
 boolean Huidu_IsLine(int index) {
 	int value = Huidu_Read(index);
-	return value < Huidu_LineValues[index - 1];
+	return value > Huidu_LineValues[index - 1];
 
 }
 
