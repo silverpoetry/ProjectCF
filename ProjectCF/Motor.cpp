@@ -35,19 +35,20 @@ void Motor_Init()
 
 void Motor_Stop(int id)
 {
+	
 	if (id==1)
 	{
-
-	digitalWrite(Motor_Pin1, LOW);
-	digitalWrite(Motor_Pin2, LOW);
+		analogWrite(Motor_EN2, 0);
+	digitalWrite(Motor_Pin1, HIGH);
+	digitalWrite(Motor_Pin2, HIGH);
 
 	}
 	else
 	{
 
-	
-	digitalWrite(Motor_Pin3, LOW);
-	digitalWrite(Motor_Pin4, LOW);
+		analogWrite(Motor_EN2, 0);
+	digitalWrite(Motor_Pin3, HIGH);
+	digitalWrite(Motor_Pin4, HIGH);
 	}
 
 }
@@ -91,7 +92,7 @@ void Motor_SetSpeed(int speed, int id)
 	else
 	{
 		
-		if (speed > 0)forward(id), analogWrite(Motor_EN2, abs(speed));
+		if (speed >= 0)forward(id), analogWrite(Motor_EN2, abs(speed));
 		if (speed < 0)back(id), analogWrite(Motor_EN2, abs(speed));
 		if (speed == 0)Motor_Stop(id);
 		

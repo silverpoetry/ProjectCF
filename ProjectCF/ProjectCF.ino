@@ -15,20 +15,46 @@
 void setup()
 {
 
-	/*
+
 	Motor_Init();
  	Huidu_Init();
-	Debugger_Init();*/
-	pinMode (A0, OUTPUT);
+	Debugger_Init();
 	Serial.begin(9600);
+	Distance_Init();
 	//Serial1.begin(9600);
+	
+}
+void goline(int basic1, int basic2)
+{
+	if (Huidu_IsLine(1) && Huidu_IsLine(2))Motor_GoSpeed(basic1,basic2);
+	
+	if (Huidu_IsLine(1))Motor_GoSpeed(basic1, basic2*1.2);
+	if (Huidu_IsLine(2))Motor_GoSpeed(basic1*1.4, basic2);
+	if (Huidu_IsLine(3))Motor_GoSpeed(-100, -100), delay(50), Motor_GoSpeed(0, 0), delay(2000);
+
 	
 }
 void loop()
 {
 
-	/**/
-
+	while (true)
+	{
+		Debugger_DebugManagement();
+		//Debugger_SetWatch("23", 333);
+		delay(30);
+		//Debugger_SetWatch("dis", Distance_Get());
+		goline(100,105);
+		Debugger_SetWatch("h1", Huidu_Read(1));
+		Debugger_SetWatch("h2", Huidu_Read(2));
+		Debugger_SetWatch("h3", Huidu_Read(3));
+		//Debugger_SetWatch("h4", Huidu_Read(4));
+		//Motor_Stop(1);
+		/*delay(2000);
+		Motor_Stop(1);
+		Motor_GoSpeed(2, 150);
+		delay(2000);
+		Motor_Stop(2);*/
+	}
 	/*Motor_GoSpeed(70, 200);
 	delay(3000);*/
 	
@@ -37,46 +63,20 @@ void loop()
 	long long lastcnt12 = Motor_M2Cnt;
 	long long lastcnt21 = Motor_M1Cnt;
 	long long lastcnt22 = Motor_M2Cnt;
-//	Move_GoSpeed (200, 200);
-	//Move_KeepRate;
-	/*while (1) {
-		Motor_GoSpeed (0, 0);
-		//Move_GoSpeed (120, 120);
-	}*/
-	//Move_GoSpeed (250, 250);
-	//delay (50);
-	//Move_Refresh();
-	int cnt = 0;
+	Move_GoSpeed(60, 60);
+	Move_Refresh();
 	while (true)
 	{
-		//Debugger_DebugManagement();
+		Debugger_DebugManagement();
 		/*if (Manager_Time_TakeTime(1,300))
 		{
-			Debugger_SetWatch("Huidu1" ,Huidu_Read(1));
-			Debugger_SetWatch ("Huidu2", Huidu_Read (2));
-			Debugger_SetWatch ("Huidu3", Huidu_Read (3));
-			Debugger_SetWatch ("Huidu4", Huidu_Read (4));
-
+			//Debugger_SetWatch("Huidu1" ,Huidu_Read(1));
 			//Debugger_SetWatch("Time", millis());
 		}*/
-		//analogRead (1);
-		if (Manager_Time_TakeTime(2, 300))
+		if (Manager_Time_TakeTime(2, 50))
 		{
-
-
-			int read_value = analogRead (A0);
-			sh(\n ),pu(++cnt),sh( analog1 = ), pu (read_value);
-			//while (true)
-			//{
-				//Move_KeepRate ();
-				//Move_Refresh ();
-				//delay (100);
-
-			//}
-			//27k black
-			//0.2k white
-			//0.17k straight light
-		
+			Move_KeepRate();
+			Move_Refresh ();
 		}
 		
 	}
@@ -85,7 +85,7 @@ void loop()
 	Move_Refresh();
 	while (1)
 	{
-		/*if (Manager_Time_TakeTime(3, 40))
+		if (Manager_Time_TakeTime(3, 40))
 		{
 
 			while (Serial1.available() > 0)
@@ -98,7 +98,7 @@ void loop()
 			sh(The Motor 2 goes), pu((unsigned long)(Motor_M2Cnt - lastcnt12)), sh(steps\n);
 			lastcnt11 = Motor_M1Cnt;
 			lastcnt12 = Motor_M2Cnt;
-		}*/
+		}
 	
 		if (Manager_Time_TakeTime(2, 30))
 		{

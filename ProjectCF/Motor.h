@@ -6,8 +6,8 @@ const int  Motor_Pin2 = 35;
 const int  Motor_Pin1 = 37;
 const int  Motor_Pin3 = 39;
 const int  Motor_Pin4 = 41;
-const int  Motor_EN1 = 7;
-const int Motor_EN2 = 6;
+const int  Motor_EN1 = 13;
+const int Motor_EN2 = 5;
 extern int Motor_M1Speed;
 extern int Motor_M2Speed;
 
@@ -17,7 +17,7 @@ extern volatile unsigned long long  Motor_M2Cnt;
 
 
 void Motor_Init();
-void Motor_Stop();
+void Motor_Stop(int id);
 //speed :³µÂÖËÙ¶È ·¶Î§ -255-255
 void Motor_SetSpeed(int speed, int id);
 
