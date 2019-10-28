@@ -39,10 +39,11 @@ void Move_KeepRate()
 			//Debugger_SetWatch ("err", (err));
 
 		//}
-		Motor_GoSpeed (60, min (255, max (Motor_M2Speed - int (KP * err), 0)));
+		Motor_GoSpeed (Motor_M1Speed, min (255, max (Motor_M2Speed - int (KP * err), -255)));
+		Move_Refresh();
 		//Motor_GoSpeed (min(255,max(Motor_M1Speed + int(KP * err),0)), 120);
 
-		sh (\n err is ); pu (err);
+		//sh (\n err is ); pu (err);
 /*
 		if (step1 > step2*Motor_Rate)
 			Motor_GoSpeed(Motor_M1Speed-1, Motor_M2Speed);

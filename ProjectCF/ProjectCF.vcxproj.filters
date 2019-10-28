@@ -72,6 +72,9 @@
     <ClInclude Include="Move.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Zigbee.h">
+      <Filter>Header Files\Moudules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Huidu.cpp">
@@ -101,10 +104,13 @@
     <ClCompile Include="Patrol_Line.cpp">
       <Filter>Source Files\Task</Filter>
     </ClCompile>
-    <ClCompile Include="Debugger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Move.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Zigbee.cpp">
+      <Filter>Source Files\Moudules</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugger.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
   </ItemGroup>
