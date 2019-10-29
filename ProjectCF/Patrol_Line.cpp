@@ -112,24 +112,24 @@ int PL_PIDCorrection (int opt)
 			sh (output is), pu (output); sh ("   ");
 			sh (Err is), pu (Err); sh ("   ");
 			sh (sensor is), pu (sensor_b_value); sh (\n);
-			
-			if (Manager_Time_TakeTime (2, 50)){
-				Move_GoSpeed (Motor_M1Speed - output, Motor_M2Speed + output);
-				Move_KeepRate ();
-				Move_Refresh ();
-			}
+
+
+			Move_GoSpeed (Motor_M1Speed - output, Motor_M2Speed + output);
+			delay (100);
+			Move_KeepRate ();
+			Move_Refresh ();
+
 			if (Manager_Time_TakeTime (5, 50)) {
 				Debugger_SetWatch ("Error", Err);
 				Debugger_SetWatch ("Output", output);
 				Debugger_SetWatch ("M1Speed1", (Motor_M1Speed));
 				Debugger_SetWatch ("M2Speed2", (Motor_M2Speed));
 			}
-			delay (100);
 			cnt++;
 		}
-			/*if (cnt > 50) {
-				return 0;
-			}*/
+		/*if (cnt > 50) {
+			return 0;
+		}*/
 		/*if (position_state == 4) {
 			return 1;//Óöµ½Â·¿Ú
 		}
@@ -158,7 +158,7 @@ int PL_PIDCorrection (int opt)
 
 		}
 		*/
-		
+
 
 	}
 	return 0;
