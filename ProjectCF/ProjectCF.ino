@@ -35,7 +35,16 @@ void loop()
 	long long lastcnt12 = Motor_M2Cnt;
 	long long lastcnt21 = Motor_M1Cnt;
 	long long lastcnt22 = Motor_M2Cnt;
-	Move_GoSpeed(SPEED, SPEED);
+	Debugger_DebugManagement ();
+	while (1) {
+		Move_GoSpeed (SPEED, SPEED);
+		Patrol ();
+		//Move_GoSpeed (SPEED, SPEED);
+		//Debugger_SetWatch ("M1speed", Motor_M1Speed);
+		//delay (100);
+		//Move_KeepRate ();
+		//Move_Refresh ();
+	}
 	Move_Refresh();
 	while (true)
 	{

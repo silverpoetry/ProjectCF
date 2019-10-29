@@ -1,6 +1,6 @@
 #include "Huidu.h"
 #include "IncludeList.h"
-int Huidu_LineValues[] = { 670, 670, 670, 670 };
+int Huidu_LineValues[] = { 0, 670, 720, 0};
 
 
 void Huidu_Init() {
