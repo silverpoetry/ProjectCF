@@ -15,3 +15,4 @@ int Move_RotateRight (void);
 void Move_Refresh();
 void Move_GoSpeed(int speed1 ,	int	 speed2);
 void Move_KeepRate();
+void Move_Gotime(int speed, int time);
