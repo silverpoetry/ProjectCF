@@ -38,12 +38,12 @@ void Motor_Stop(int id)
 	
 	if (id==1)
 	{
-		analogWrite(Motor_EN2, 0);
+		analogWrite(Motor_EN1, 0);
 	digitalWrite(Motor_Pin1, HIGH);
 	digitalWrite(Motor_Pin2, HIGH);
 
 	}
-	else
+	else if(id==2)
 	{
 
 		analogWrite(Motor_EN2, 0);
@@ -108,10 +108,10 @@ void Motor_GoSpeed(int speed1, int speed2)
 		speed1 = 255;
 	if (speed2 > 255)
 		speed2 = 255;
-	if (speed1 < 1)
+	/*if (speed1 < 1)
 		speed1 = 1;
 	if (speed2 < 1)
-		speed2 = 1;
+		speed2 = 1;*/
 	Motor_SetSpeed(speed1, 1);
 	Motor_SetSpeed(speed2, 2);
 	

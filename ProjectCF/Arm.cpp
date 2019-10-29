@@ -1,15 +1,15 @@
 #include "Arm.h"
 
 Servo servos[4];
-int angels[4] = {0,180,170,108 };
+int angels[4] = {0,180,170 };
 
 //初始化机械臂的舵机，并归位到初始角度
 void Arm_Init()
 {	
 	servos[0].attach(Arm_Pins[0],500,2500);
 	servos[1].attach(Arm_Pins[1], 500, 2500);
-	servos[2].attach(Arm_Pins[2], 500, 2500);
-	servos[3].attach(Arm_Pins[3], 500, 2500);
+	//servos[2].attach(Arm_Pins[2], 500, 2500);
+	//servos[3].attach(Arm_Pins[3], 500, 2500);
 	//servos[0].write(0);
 	//servos[1].write(0);
 	//servos[2].write(0);
@@ -23,12 +23,12 @@ void Arm_Reset()
 	Arm_Go(1, 0);
 	Arm_Go(2, 0);
 	delay(400);
-	Arm_Go(3, 105);
+	/*Arm_Go(3, 105);
 	delay(400);
 	Arm_Go(2, 35);
 	delay(400);
 	
-	Arm_Go(4, 108);
+	Arm_Go(4, 108);*/
 }
 
 //控制指定舵机旋转到指定角度
@@ -47,13 +47,13 @@ void Arm_Go(int n, int angel)
 		delaytime = 14;
 		angel +=8;
 		break;
-	case 3:
+	/*case 3:
 		angel += 16;//0-85
 		break;
 	case 4:
 		angel -= 18;
 		delaytime = 14;
-		break;
+		break;*/
 	default:
 		//4 0-140
 		break;
@@ -94,13 +94,13 @@ void Arm_Go(int n, int angel, int deltime)
 
 		angel += 8;
 		break;
-	case 3:
+	/*case 3:
 		angel += 16;//0-85
 		break;
 	case 4:
 		angel -= 18;
 
-		break;
+		break;*/
 	default:
 		//4 0-140
 		break;

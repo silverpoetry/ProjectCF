@@ -1,44 +1,44 @@
 #include "IncludeList.h"
 #include "Debugger.h"
 #include "Arduino.h"
-#define serialPort Serial1
-void Debugger_Init()
+#define serialPort Serial3
+void Debugger_Init ()
 {
-	serialPort.begin(9600);
+	serialPort.begin (9600);
 }
 
-void Debugger_SetWatch(String name, long  value)
+void Debugger_SetWatch (String name, long  value)
 {
-	
-	serialPort.print("SetWatch("+name+",");
-	serialPort.print(value);
-	serialPort.print(")\n");
-	
+
+	serialPort.print ("SetWatch(" + name + ",");
+	serialPort.print (value);
+	serialPort.print (")\n");
+
 }
-void Debugger_SetWatch(String name, String value)
+void Debugger_SetWatch (String name, String value)
 {
-	serialPort.print("SetWatch(" + name + ","+value+")\n");
-	
+	serialPort.print ("SetWatch(" + name + "," + value + ")\n");
+
 }
-void Debugger_DebugManagement()
+void Debugger_DebugManagement ()
 {
-	if (serialPort.available() > 0)
+	if (serialPort.available () > 0)
 	{
 		//serialPort.println(serialPort.readStringUntil('\n'));
 		String s1, s2, s3;
-		s1 = serialPort.readStringUntil('(');
-		s2 = serialPort.readStringUntil(',');
-		s3 = serialPort.readStringUntil(')');
+		s1 = serialPort.readStringUntil ('(');
+		s2 = serialPort.readStringUntil (',');
+		s3 = serialPort.readStringUntil (')');
 		//s1 s2 s3 分别为指令名 参数1 参数2 类似于 MyFunc(pm1,pm2)
-		serialPort.readStringUntil('\n');
+		serialPort.readStringUntil ('\n');
 		/*	Debugger_SetWatch("s1", s1);
 			Debugger_SetWatch("s2", s2);
 			Debugger_SetWatch("s3", s3);*/
-		if (s1 == "fuck")Debugger_SetWatch("fuck", s2 + " fucks " + s3);
-		else if (s1 == "fwd")Motor_GoSpeed(atoi(s2.c_str()), atoi(s3.c_str()));
-	
-	
-	
+		if (s1 == "fuck")Debugger_SetWatch ("fuck", s2 + " fucks " + s3);
+		else if (s1 == "fwd")Move_Refresh (), Motor_GoSpeed (atoi (s2.c_str ()), atoi (s3.c_str ()));
+		else if (s1 == "amg")Arm_Go (atoi (s2.c_str ()), atoi (s3.c_str ()));
+
+
 	}
-	
+
 }

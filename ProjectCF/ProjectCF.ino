@@ -12,6 +12,7 @@
 #include <stdlib.h>
 
 
+
 void setup()
 {
 
@@ -21,69 +22,44 @@ void setup()
 	Debugger_Init();
 	Serial.begin(9600);
 	Distance_Init();
-	//Serial1.begin(9600);
-	
-}
-void goline(int basic1, int basic2)
-{
-	if (Huidu_IsLine(1) && Huidu_IsLine(2))Motor_GoSpeed(basic1,basic2);
-	
-	if (Huidu_IsLine(1))Motor_GoSpeed(basic1, basic2*1.2);
-	if (Huidu_IsLine(2))Motor_GoSpeed(basic1*1.4, basic2);
-	if (Huidu_IsLine(3))Motor_GoSpeed(-100, -100), delay(50), Motor_GoSpeed(0, 0), delay(2000);
-
+	//Serial1.begin(115200);
 	
 }
 void loop()
 {
 
-	while (true)
-	{
-		Debugger_DebugManagement();
-		//Debugger_SetWatch("23", 333);
-		delay(30);
-		//Debugger_SetWatch("dis", Distance_Get());
-		goline(100,105);
-		Debugger_SetWatch("h1", Huidu_Read(1));
-		Debugger_SetWatch("h2", Huidu_Read(2));
-		Debugger_SetWatch("h3", Huidu_Read(3));
-		//Debugger_SetWatch("h4", Huidu_Read(4));
-		//Motor_Stop(1);
-		/*delay(2000);
-		Motor_Stop(1);
-		Motor_GoSpeed(2, 150);
-		delay(2000);
-		Motor_Stop(2);*/
-	}
-	/*Motor_GoSpeed(70, 200);
-	delay(3000);*/
+
 	
 		//Motor_GoSpeed(120, 120);
 	long long lastcnt11 = Motor_M1Cnt;
 	long long lastcnt12 = Motor_M2Cnt;
 	long long lastcnt21 = Motor_M1Cnt;
 	long long lastcnt22 = Motor_M2Cnt;
-	Move_GoSpeed(60, 60);
+	Move_GoSpeed(SPEED, SPEED);
 	Move_Refresh();
 	while (true)
 	{
 		Debugger_DebugManagement();
+		Patrol ();
+		Move_Stop ();
+		delay (10000000);
 		/*if (Manager_Time_TakeTime(1,300))
 		{
-			//Debugger_SetWatch("Huidu1" ,Huidu_Read(1));
+			//Debugger_SetWatch("Huidu1" ,Huidu_Read(1)); 
 			//Debugger_SetWatch("Time", millis());
 		}*/
 		if (Manager_Time_TakeTime(2, 50))
 		{
-			Move_KeepRate();
-			Move_Refresh ();
+			//PL_PIDCorrection ();
+			//Move_KeepRate();
+			//Move_Refresh ();
 		}
 		
 	}
 	
 	//Move_GoSpeed(120, 120);
 	Move_Refresh();
-	while (1)
+	/*while (1)
 	{
 		if (Manager_Time_TakeTime(3, 40))
 		{
@@ -102,10 +78,10 @@ void loop()
 	
 		if (Manager_Time_TakeTime(2, 30))
 		{
-			Move_KeepRate();
+			//Move_KeepRate();
 		}
 	}
-
+	*/
 	/*while (1)
 	{
 		if (Serial1.available() > 0)
@@ -162,7 +138,7 @@ void loop()
 }
 //#include "Wire.h"
 //void setup() {
-//	Serial.begin(9600); // Leonardo: wait for serial port to connect
+//	Serial.begin(115200); // Leonardo: wait for serial port to connect
 //	while (!Serial) {}
 //	Serial.println();
 //	Serial.println("I2C scanner. Scanning ...");

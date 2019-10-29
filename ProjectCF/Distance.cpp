@@ -43,4 +43,4 @@ long Distance_Get()
 	}
 	sum /= 20;
 	return sum;
-	}
+}

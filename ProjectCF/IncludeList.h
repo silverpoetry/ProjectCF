@@ -12,5 +12,7 @@
 #include "Manager.h"
 #include "Debugger.h"
 #include "Move.h"
+#include "Patrol_Line.h"
 
 
+#define SPEED 100
