@@ -8,6 +8,7 @@ int sensor_a_value, sensor_b_value;
 double PID_SumError = 0;
 double PID_LastError = 0;
 double PID_LastTime = 0;
+int PL_LastPosition = 0;
 //黑小白大
 //right: mid:765 black:670 gray:880
 //left: ...............665 .....960
@@ -17,10 +18,10 @@ slightly_left: 958/716 951/702
 ........right: 788/849 790/849 783/856
 
 largely_left:954/693 963/693 890/726
-.......right:710/883 734/880 717/890 700/883 
+.......right:710/883 734/880 717/890 700/883
 
-right: 724/878 686/884 692/889 
-left: 947/657 940/589 
+right: 724/878 686/884 692/889
+left: 947/657 940/589
 
 200
 
@@ -33,24 +34,24 @@ int PL_Position (int sensor_a, int sensor_b, int sensor_c, int sensor_d)
 {
 	sensor_a_value = Huidu_Read (sensor_a), sensor_b_value = Huidu_Read (sensor_b);
 
-	/*
-	if (Huidu_IsLine (sensor_a) && Huidu_IsLine (sensor_b) && Huidu_IsLine (sensor_c) && Huidu_IsLine (sensor_d)) {
+
+	if (Huidu_IsLine (sensor_a) && Huidu_IsLine (sensor_b)) {
 		return 4; //到路口了
 	}
-	*/
+
 	//在线上
 	if (abs (sensor_a_value - MID_LINE) < SEP_EPS / 2 && abs (sensor_b_value - MID_LINE) < SEP_EPS / 2) {
+		PL_LastPosition = 0;
 		return 1;
 	}
 	//完全偏离
 	if (abs (sensor_a_value - sensor_b_value < SEP_EPS)) {
 
 		//不在线上
-		if (sensor_a_value < Huidu_LineValues[sensor_a] && sensor_b_value < Huidu_LineValues[sensor_b]) {
+		if (sensor_a_value < MID_LINE - SEP_EPS && sensor_b_value < MID_LINE - SEP_EPS) {
 			return 0;
 		}
 
-		return 0;
 	}
 	/*
 	//偏右
@@ -64,11 +65,18 @@ int PL_Position (int sensor_a, int sensor_b, int sensor_c, int sensor_d)
 	}*/
 	//}
 }
-
-int PID_Output (double newError, double PID_KP, double PID_KI, double PID_KD,int& deltaerr)
+int PL_GoStop () {
+	int state = PL_PIDCorrection (1);
+	if (state == 4) {
+		Move_Stop ();
+		return 1;
+	}
+	return 0;
+}
+int PID_Output (double newError, int& deltaerr)
 {
-	double deltatime =( micros () - PID_LastTime)/100000;
-	
+	double deltatime = (micros () - PID_LastTime) / 100000;
+
 	PID_SumError += newError * deltatime;
 	double deltaError = (newError - PID_LastError) / deltatime;
 	Debugger_SetWatch ("dt", deltaError);
@@ -93,13 +101,13 @@ void PID_Refresh ()
 {
 	PID_SumError = 0;
 	PID_LastError = 0;
-	PID_LastTime = 0;
+	PID_LastTime = micros();
 
 }
 
-int PL_FindCenter (void) {
-	Move_GoSpeed (150, 150);
-	delay (500);
+int PL_FindCenter (int time) {
+	Move_GoSpeed (100, 100);
+	delay (time);
 	Move_Stop ();
 	return 1;
 }
@@ -110,7 +118,9 @@ int PL_CrossRoad (int opt) {
 		int cnt = 0;
 		while (1) {
 			delay (500);
-			if (abs (sensor_b_value - MID_LINE) < SEP_EPS) {
+			if (PL_Position (2, 3, 1, 4) == 1) {
+				Move_Stop ();
+				delay (1000);
 				Move_RotateLeft ();//这一步复位
 				return 1;
 			}
@@ -127,26 +137,33 @@ int PL_CrossRoad (int opt) {
 int PL_PIDCorrection (int opt)
 {
 	int cnt = 0;
-	while (1) {
+	int position_state = PL_Position (2, 3, 1, 4);
+	//while (1) {
 		//delay (100);
 		//sensor_b_value = analogRead(A5);
-		int position_state = PL_Position (2, 3, 1, 4);
-//单光感-左
-		if (opt == 2) {
+
+//单光感-右2左3
+	/*	if (opt == 2 || opt == 3) {
 			//PL_Position (2, 3, 1, 4);
-			int Err = sensor_b_value - MID_LINE;
+			int Err = (opt==2?sensor_b_value:sensor_a_value) - MID_LINE;
 			if (abs (Err) < SEP_EPS) {
 				PID_Refresh ();
-				continue;
+				return 1;
 			}
 
 			//output = PID_KP * newError + PID_KI * PID_SumError + PID_KD * deltaError;
 			int delerrrr;
-			int output = PID_Output (Err, 0.1, 1e-7, 0.2,delerrrr);
-		
+			PID_KP = 0.2, PID_KI = 1e-7, PID_KD = 0.3;
+			int output = PID_Output (Err,delerrrr);
+
 
 			//Motor_GoSpeed(Motor_Spee)
-			//Motor_GoSpeed (SPEED - output, SPEED + output);
+			if (opt == 2) {
+				Motor_GoSpeed (SPEED + output, SPEED - output);
+			}
+			else if (opt == 3) {
+				Motor_GoSpeed (SPEED - output, SPEED + output);
+			}
 		//	delay (100);
 			//Move_KeepRate ();
 			//Move_Refresh ();
@@ -159,69 +176,105 @@ int PL_PIDCorrection (int opt)
 				Debugger_SetWatch ("derr", delerrrr);
 			}
 			cnt++;
-		}
-		/*if (cnt > 50) {
-			return 0;
 		}*/
-		/*if (position_state == 4) {
-			return 1;//遇到路口
+	if (opt == 1) {
+		if (position_state == 1)
+			PID_SumClear ();
+		//continue;
+	//else if (position_state == 4) {
+	//	Move_Stop ();
+	//	return 4;
+		//delay (1000);
+
+	//}
+	/*else if (position_state == 0) {
+		if (PL_LastPosition == 2) {
+			PL_PIDCorrection (1);
 		}*/
-		if (opt == 1) {
-
-			if (position_state == 1) 
-				PID_SumClear ();
-				//continue;
-			
-
-			//Err为正，说明左地灰更白，车向左偏，应向右调，左轮加速，右轮减速
-			//黑的值小
-			int Err = (sensor_a_value - sensor_b_value);
-			if (abs(Err) < SEP_EPS) {
-				continue;
+		/*	else if (PL_LastPosition == 3) {
+				PL_PIDCorrection (3);
 			}
-			Err > 0 ? Err -= SEP_EPS : Err += SEP_EPS;
-			int s;
-			int output = PID_Output (Err, 0.2, 1e-8, 0,s);
-			Motor_GoSpeed (SPEED + output, SPEED - output);
-			delay (20);
-			if (Manager_Time_TakeTime (5, 100)) {
-				Debugger_SetWatch ("Error", Err);
-				Debugger_SetWatch ("derr", s);
-				Debugger_SetWatch ("Output", output);
-				Debugger_SetWatch ("M1Speed1", (Motor_M1Speed));
-				Debugger_SetWatch ("M2Speed2", (Motor_M2Speed));
-			}
-
+		}*/
+		//Err为正，说明左地灰更白，车向左偏，应向右调，左轮加速，右轮减速
+		//黑的值小
+		int Err = (sensor_a_value - sensor_b_value);
+		if (abs (Err) < SEP_EPS) {
+			Err = 0;
 		}
-		
-
+		if (Err > 0) {
+			//PL_LastPosition = 2;
+			Err = max (Err - SEP_EPS, 0);
+		}
+		else if (Err < 0) {
+			//	PL_LastPosition = 3;
+			Err = min (Err + SEP_EPS, 0);
+		}
+		/*if (PID_SumError > 0) {
+			PL_LastPosition = 2;
+		}
+		else if (PID_SumError < 0) {
+			PL_LastPosition = 3;
+		}*/
+		int s;
+		int output = PID_Output (Err, s);
+		Motor_GoSpeed (SPEED + output, SPEED - output);
+		//delay (20);
+		if (Manager_Time_TakeTime (5, 100)) {
+			Debugger_SetWatch ("Error", Err);
+			Debugger_SetWatch ("derr", s);
+			Debugger_SetWatch ("Output", output);
+			Debugger_SetWatch ("M1Speed1", (Motor_M1Speed));
+			Debugger_SetWatch ("M2Speed2", (Motor_M2Speed));
+		}
 
 	}
-	return 0;
-}
 
-void Patrol (void)
+}
+//return 0;
+//}
+int PL_GoStop () {
+	PID_Refresh ();
+	while (1)
+	{
+		if (PL_Position (2, 3, 1, 4) == 4) {
+			Move_Stop (); break;
+		}
+		else {
+			if (Manager_Time_TakeTime (20, 20)) {
+				//PID_KP = 0.2, PID_KI = 0.1, PID_KD = 0.3;
+				PL_PIDCorrection (1);
+			}
+		}
+	}
+}
+/*
+int Patrol (void)
 {
+	int state;
 	while (1) {
-		int state = PL_PIDCorrection (1);
-		if (state == 1) {
-			if (PL_FindCenter ()) {
+		int position_state = PL_Position (2, 3, 1, 4);
+		if (position_state == 4) {
+			state = PL_PIDCorrection (1);
+		}
+
+		if (state == 4) {
+			if (PL_FindCenter (500)) {
 				if (PL_CrossRoad (1)) {
-					continue;
+					return 1;
 				}
 				else {//转弯没有找到线
 					Move_Stop ();
-					break;
+					return 0;
+					//break;
 				}
 			}
 		}
-		else {
-			Move_Stop ();
-			return;
+		else if(state == 1){
+			return 1;
 		}
 	}
 }
-
+*/
 void PL_goline (int basic1, int basic2)
 {
 	if (Huidu_IsLine (1) && Huidu_IsLine (2))Motor_GoSpeed (basic1, basic2);
