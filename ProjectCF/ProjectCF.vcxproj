@@ -124,6 +124,7 @@
     <ClInclude Include="Move.h" />
     <ClInclude Include="Mpu.h" />
     <ClInclude Include="Patrol_Line.h" />
+    <ClInclude Include="Zigbee.h" />
     <ClInclude Include="__vm\.ProjectCF.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,7 @@
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Mpu.cpp" />
     <ClCompile Include="Patrol_Line.cpp" />
+    <ClCompile Include="Zigbee.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
