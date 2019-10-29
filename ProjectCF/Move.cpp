@@ -1,5 +1,6 @@
 #include "IncludeList.h"
 #include "Move.h"
+
 #include <math.h>
 
 long long Move_LastCnt1;
@@ -52,6 +53,14 @@ int Move_RotateRight (void) {
 }
 
 void Move_Stop (void) {
+	Motor_SetSpeed(-60, -60);
+	delay(50);
 	Motor_Stop (1);
 	Motor_Stop (2);
+}
+void Move_Gotime(int speed, int time)
+{
+	Motor_SetSpeed(speed, speed);
+	delay(time);
+	Move_Stop();
 }
