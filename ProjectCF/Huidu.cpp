@@ -44,7 +44,7 @@ int Huidu_Read(int index)
 //index »Ò¶È´«¸ÐÆ÷±àºÅ(1-4)
 boolean Huidu_IsLine(int index, int value) {
 	//int value = Huidu_Read(index);
-	return value < Huidu_LineValues[index - 1];
+	return (value-30) < Huidu_LineValues[index - 1];
 
 }
 

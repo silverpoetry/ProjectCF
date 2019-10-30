@@ -307,7 +307,7 @@ int Patrol (void)
 		}
 	}
 }
-*/
+*//*
 void PL_goline (int basic1, int basic2)
 {
 	if (Huidu_IsLine (1) && Huidu_IsLine (2))Motor_GoSpeed (basic1, basic2);
@@ -317,4 +317,4 @@ void PL_goline (int basic1, int basic2)
 	if (Huidu_IsLine (3))Motor_GoSpeed (-100, -100), delay (50), Motor_GoSpeed (0, 0), delay (2000);
 
 
-}
+}*/
