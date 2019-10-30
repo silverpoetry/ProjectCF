@@ -39,7 +39,7 @@ void Debugger_DebugManagement()
 		else if (s1 == "amg")Arm_Go(atoi(s2.c_str()), atoi(s3.c_str()));
 		else if (s1 == "stpi")PID_KP = atof(s2.c_str()), PID_KI = atof(s3.c_str());
 		else if (s1 == "stpd")PID_KD = atof(s2.c_str());
-		else if (s1 == "glfwd")PL_GoStop();
+		else if (s1 == "glfwd")PL_GoCrossTurnLeft();
 		else if(s1=="gtm")Move_Gotime(atoi(s2.c_str()), atoi(s3.c_str()));
 		else if (s1 == "gllft")PL_CrossRoad(1);
 
