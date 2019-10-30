@@ -42,12 +42,16 @@ int Huidu_Read(int index)
 
 //判断传感器是否检测到线
 //index 灰度传感器编号(1-4)
-boolean Huidu_IsLine(int index, int value) {
+bool Huidu_IsLine(int index, int value) {
 	//int value = Huidu_Read(index);
+	return (value-30) < Huidu_LineValues[index - 1];
+
+}
+bool Huidu_IsLine(int index) {
+	int value = Huidu_Read(index);
 	return value < Huidu_LineValues[index - 1];
 
 }
-
 
 //调试时使用，打印四个灰度的值
 void Huidu_ShowValue()

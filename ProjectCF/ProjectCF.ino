@@ -30,6 +30,9 @@ void loop()
 	while (true)
 	{
 		Debugger_DebugManagement();
+		Debugger_SetWatch("A", Huidu_Read(2));
+		Debugger_SetWatch("B", Huidu_Read(3));
+
 	}
 
 	
