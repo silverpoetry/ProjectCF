@@ -30,8 +30,11 @@ void loop()
 	while (true)
 	{
 		Debugger_DebugManagement();
-		Debugger_SetWatch("A", Huidu_Read(2));
-		Debugger_SetWatch("B", Huidu_Read(3));
+		for (int i = 1; i <= 6; i++)
+		{
+			String s = "huidu";
+			Debugger_SetWatch(s + i, Huidu_Read(i));
+		}
 
 	}
 
@@ -41,6 +44,7 @@ void loop()
 	long long lastcnt12 = Motor_M2Cnt;
 	long long lastcnt21 = Motor_M1Cnt;
 	long long lastcnt22 = Motor_M2Cnt;
+	
 	//Move_GoSpeed (SPEED, SPEED);
 	while (1) {
 		Debugger_DebugManagement ();
