@@ -8,6 +8,6 @@ extern int Huidu_LineValues[] ;
 
 void Huidu_Init();
 int Huidu_Read(int index);
-boolean Huidu_IsLine(int index);
+boolean Huidu_IsLine(int index, int value);
 
 void Huidu_ShowValue();

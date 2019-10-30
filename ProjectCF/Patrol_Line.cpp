@@ -43,7 +43,9 @@ int PL_Position (int sensor_a, int sensor_b, int sensor_c, int sensor_d)
 	Debugger_SetWatch ("A", sensor_a_value);
 	Debugger_SetWatch ("B", sensor_b_value);
 
-	if (Huidu_IsLine (sensor_a) && Huidu_IsLine (sensor_b)) {
+	//if()
+
+	if (Huidu_IsLine (sensor_a, sensor_a_value) && Huidu_IsLine (sensor_b, sensor_b_value)) {
 		return 4; //到路口了
 	}
 
