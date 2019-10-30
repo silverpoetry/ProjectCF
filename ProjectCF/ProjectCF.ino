@@ -27,7 +27,10 @@ void setup()
 }
 void loop()
 {
-
+	while (true)
+	{
+		Debugger_DebugManagement();
+	}
 
 	
 		//Motor_GoSpeed(120, 120);

@@ -1,7 +1,7 @@
 #include "IncludeList.h"
 #include "Debugger.h"
 #include "Arduino.h"
-#define serialPort Serial
+#define serialPort Serial3
 void Debugger_Init()
 {
 	serialPort.begin(9600);

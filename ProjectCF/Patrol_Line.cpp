@@ -81,7 +81,7 @@ int PID_Output (double newError, int& deltaerr)
 
 	PID_SumError += newError * deltatime;
 	double deltaError = (newError - PID_LastError) / deltatime;
-	Debugger_SetWatch ("dt", deltaError);
+	Debugger_SetWatch ("dt", deltatime);
 
 	int output = PID_KP * newError + PID_KI * PID_SumError + PID_KD * deltaError;
 	//Debugger_SetWatch ("Output", output);
