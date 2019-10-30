@@ -148,7 +148,24 @@ int PL_CrossRoad (int opt) {
 	}
 	return 0;
 }
+void PL_PIDCorrection()
+{
+	/*if (Huidu_IsLine(1)&&Huidu_IsLine(2)&&Huidu_IsLine(3)&&Huidu_IsLine(4£©)
+	{
 
+	}*/
+	bool is1 = Huidu_IsLine(2), is2 = Huidu_IsLine(3), is3 = Huidu_IsLine(4), is4 = Huidu_IsLine(5);
+	if (is2 && is3) {
+		Motor_GoSpeed(SPEED, SPEED); return;
+	}
+
+	if (is2)Motor_GoSpeed(SPEED*0.9, SPEED*1.1);
+	if (is3)Motor_GoSpeed(SPEED*1.1, SPEED*0.9);
+	if(is4)Motor_GoSpeed(SPEED*1.3, SPEED*0.7);
+	if (is1)Motor_GoSpeed(SPEED*0.7, SPEED*1.3);
+	
+
+}
 int PL_PIDCorrection (int opt)
 {
 	int cnt = 0;
@@ -255,29 +272,35 @@ int PL_PIDCorrection (int opt)
 //return 0;
 //}
 int PL_GoStop () {
-	PID_Refresh ();
+	//PID_Refresh ();
+	
 	//delay (2);
 	while (1)
 	{
-		Debugger_SetWatch ("kp", 1000*PID_KP);
-		Debugger_SetWatch ("ki", 1000*PID_KI);
-		Debugger_SetWatch ("kd", 1000*PID_KD);
-		int position_state = PL_Position (2, 3, 1, 4);
-		if (position_state == 4) {
+		if (Huidu_IsLine(1) ) { Move_Stop(); return; }
+		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
+		
 
-			Debugger_SetWatch ("state", "stop");
-			Move_Stop (); break;
-		}
-		else {
+	//			  
+	//	Debugger_SetWatch ("kp", 1000*PID_KP);
+	//	Debugger_SetWatch ("ki", 1000*PID_KI);
+	//	Debugger_SetWatch ("kd", 1000*PID_KD);
+	//	int position_state = PL_Position (2, 3, 1, 4);
+	//	if (position_state == 4) {
 
-			if (position_state == 1)
-				PID_SumClear ();
-			if (Manager_Time_TakeTime (20, 10)) {
-				//Debugger_SetWatch ("state", "go");
-				//PID_KP = 0.2, PID_KI = 0.1, PID_KD = 0.3;
-				PL_PIDCorrection (1);
-			}
-		}
+	//		Debugger_SetWatch ("state", "stop");
+	//		Move_Stop (); break;
+	//	}
+	//	else {
+
+	//		if (position_state == 1)
+	//			PID_SumClear ();
+	//		if (Manager_Time_TakeTime (20, 10)) {
+	//			//Debugger_SetWatch ("state", "go");
+	//			//PID_KP = 0.2, PID_KI = 0.1, PID_KD = 0.3;
+	//			PL_PIDCorrection (1);
+	//		}
+	//	}
 	}
 }
 /*
