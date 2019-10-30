@@ -44,7 +44,7 @@ void Move_KeepRate ()
 }
 int Move_RotateLeft (void) {
 
-	Move_GoSpeed (-90, 90);
+	Move_GoSpeed (-150, 150);
 }
 
 int Move_RotateRight (void) {
@@ -60,7 +60,7 @@ void Move_Stop (void) {
 }
 void Move_Gotime(int speed, int time)
 {
-	Motor_GoSpeed(speed, speed);
+	Motor_GoSpeed(speed+10, speed);
 	delay(time);
 	Move_Stop();
 }

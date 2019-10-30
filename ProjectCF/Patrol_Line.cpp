@@ -130,10 +130,11 @@ int PL_FindCenter (int time) {
 int PL_CrossRoad (int opt) {
 	if (opt == 1) {
 		Move_RotateLeft ();
+		delay(400);
 		int cnt = 0;
 		while (1) {
 			//delay (500);
-			if (PL_Position (2, 3, 1, 4) == 1) {
+			if (Huidu_IsLine(3)) {
 				Move_Stop ();
 				delay (1000);
 				//Move_RotateLeft ();//这一步复位
@@ -154,6 +155,7 @@ void PL_PIDCorrection()
 	{
 
 	}*/
+	
 	bool is1 = Huidu_IsLine(2), is2 = Huidu_IsLine(3), is3 = Huidu_IsLine(4), is4 = Huidu_IsLine(5);
 	if (is2 && is3) {
 		Motor_GoSpeed(SPEED, SPEED); return;
@@ -271,9 +273,37 @@ int PL_PIDCorrection (int opt)
 }
 //return 0;
 //}
+void PL_GoLineTime(int time)
+{
+	while (!Manager_Time_TakeTime(31,time))
+	{
+		if (Huidu_IsLine(1)) { return; }
+		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
+	}
+}
+void PL_GoCrossTurnLeft()
+{
+	while (true)
+	{
+		PL_GoWithoutStop();
+		Move_Gotime(150, 170);
+		PL_GoLineTime(280);
+		PL_CrossRoad(1);
+	}
+	
+}
+void PL_GoWithoutStop()
+{
+	Motor_GoSpeed(SPEED, SPEED);
+	while (1)
+	{
+		if (Huidu_IsLine(1)) {  return; }
+		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
+	}
+}
 int PL_GoStop () {
 	//PID_Refresh ();
-	
+	Motor_GoSpeed(SPEED, SPEED);
 	//delay (2);
 	while (1)
 	{
