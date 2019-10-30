@@ -1,8 +1,8 @@
 #include "Patrol_Line.h"
 #include <math.h>
 #ifndef Xiancchang
-#define SEP_EPS 50
-#define MID_LINE 520
+#define SEP_EPS 100
+#define MID_LINE 650
 #else
 #define SEP_EPS 100
 #define MID_LINE 640
@@ -19,7 +19,7 @@ int PL_LastPosition = 0;
 //right: mid:765 black:670 gray:880
 //left: ...............665 .....960
 /*
-middle-range: 914/886 ~ 872/794 900/860 886/887
+middle-range: 551/477  
 slightly_left: 958/716 951/702
 ........right: 788/849 790/849 783/856
 
