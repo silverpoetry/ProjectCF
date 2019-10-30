@@ -1,7 +1,12 @@
 #include "Huidu.h"
 #include "IncludeList.h"
-int Huidu_LineValues[] = { 0, 670, 720, 0};
 
+
+#ifndef Xiancchang
+int Huidu_LineValues[] = { 0, 370, 370, 0 };
+#else
+int Huidu_LineValues[] = { 0, 290, 300, 0 };
+#endif 
 
 void Huidu_Init() {
 	for  (int i =0; i<4; i++)
@@ -39,7 +44,7 @@ int Huidu_Read(int index)
 //index »Ò¶È´«¸ÐÆ÷±àºÅ(1-4)
 boolean Huidu_IsLine(int index) {
 	int value = Huidu_Read(index);
-	return value > Huidu_LineValues[index - 1];
+	return value < Huidu_LineValues[index - 1];
 
 }
 

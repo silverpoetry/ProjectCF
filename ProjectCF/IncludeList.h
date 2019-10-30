@@ -15,4 +15,4 @@
 #include "Zigbee.h"
 #include "Patrol_Line.h"
 
-#define SPEED 160
+#define SPEED 120

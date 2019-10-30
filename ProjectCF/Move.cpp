@@ -53,14 +53,14 @@ int Move_RotateRight (void) {
 }
 
 void Move_Stop (void) {
-	Motor_SetSpeed(-60, -60);
+	Motor_GoSpeed(-60, -60);
 	delay(50);
 	Motor_Stop (1);
 	Motor_Stop (2);
 }
 void Move_Gotime(int speed, int time)
 {
-	Motor_SetSpeed(speed, speed);
+	Motor_GoSpeed(speed, speed);
 	delay(time);
 	Move_Stop();
 }

@@ -1,9 +1,15 @@
 #include "Patrol_Line.h"
 #include <math.h>
-
+#ifndef Xiancchang
+#define SEP_EPS 50
+#define MID_LINE 520
+#else
 #define SEP_EPS 100
-#define MID_LINE 860
+#define MID_LINE 640
+#endif // !Xiancchang
 
+
+double PID_KP = 0.2, PID_KI = 0.1, PID_KD = 0.3;
 int sensor_a_value, sensor_b_value;
 double PID_SumError = 0;
 double PID_LastError = 0;
@@ -34,6 +40,8 @@ int PL_Position (int sensor_a, int sensor_b, int sensor_c, int sensor_d)
 {
 	sensor_a_value = Huidu_Read (sensor_a), sensor_b_value = Huidu_Read (sensor_b);
 
+	Debugger_SetWatch ("A", sensor_a_value);
+	Debugger_SetWatch ("B", sensor_b_value);
 
 	if (Huidu_IsLine (sensor_a) && Huidu_IsLine (sensor_b)) {
 		return 4; //到路口了
@@ -65,14 +73,6 @@ int PL_Position (int sensor_a, int sensor_b, int sensor_c, int sensor_d)
 	}*/
 	//}
 }
-int PL_GoStop () {
-	int state = PL_PIDCorrection (1);
-	if (state == 4) {
-		Move_Stop ();
-		return 1;
-	}
-	return 0;
-}
 int PID_Output (double newError, int& deltaerr)
 {
 	double deltatime = (micros () - PID_LastTime) / 100000;
@@ -99,8 +99,21 @@ void PID_SumClear ()
 }
 void PID_Refresh ()
 {
+	PL_Position (2, 3, 1, 4);
+	int Err = (sensor_a_value - sensor_b_value);
+	if (abs (Err) < SEP_EPS) {
+		Err = 0;
+	}
+	if (Err > 0) {
+		//PL_LastPosition = 2;
+		Err = max (Err - SEP_EPS, 0);
+	}
+	else if (Err < 0) {
+		//	PL_LastPosition = 3;
+		Err = min (Err + SEP_EPS, 0);
+	}
 	PID_SumError = 0;
-	PID_LastError = 0;
+	PID_LastError = Err;
 	PID_LastTime = micros();
 
 }
@@ -117,18 +130,18 @@ int PL_CrossRoad (int opt) {
 		Move_RotateLeft ();
 		int cnt = 0;
 		while (1) {
-			delay (500);
+			//delay (500);
 			if (PL_Position (2, 3, 1, 4) == 1) {
 				Move_Stop ();
 				delay (1000);
-				Move_RotateLeft ();//这一步复位
+				//Move_RotateLeft ();//这一步复位
 				return 1;
 			}
-
+			/*
 			cnt++;
 			if (cnt > 100) {
 				break;
-			}
+			}*/
 		}
 	}
 	return 0;
@@ -178,8 +191,8 @@ int PL_PIDCorrection (int opt)
 			cnt++;
 		}*/
 	if (opt == 1) {
-		if (position_state == 1)
-			PID_SumClear ();
+		//if (position_state == 1)
+			//PID_SumClear ();
 		//continue;
 	//else if (position_state == 4) {
 	//	Move_Stop ();
@@ -209,6 +222,11 @@ int PL_PIDCorrection (int opt)
 			//	PL_LastPosition = 3;
 			Err = min (Err + SEP_EPS, 0);
 		}
+
+		if (Err * PID_LastError <= 0) {
+			PID_SumClear ();
+		}
+
 		/*if (PID_SumError > 0) {
 			PL_LastPosition = 2;
 		}
@@ -217,15 +235,17 @@ int PL_PIDCorrection (int opt)
 		}*/
 		int s;
 		int output = PID_Output (Err, s);
+		Debugger_SetWatch ("sumerr", PID_SumError);
+
 		Motor_GoSpeed (SPEED + output, SPEED - output);
 		//delay (20);
-		if (Manager_Time_TakeTime (5, 100)) {
+		//if (Manager_Time_TakeTime (5, 100)) {
 			Debugger_SetWatch ("Error", Err);
-			Debugger_SetWatch ("derr", s);
+			//Debugger_SetWatch ("derr", s);
 			Debugger_SetWatch ("Output", output);
-			Debugger_SetWatch ("M1Speed1", (Motor_M1Speed));
-			Debugger_SetWatch ("M2Speed2", (Motor_M2Speed));
-		}
+			////Debugger_SetWatch ("M1Speed1", (Motor_M1Speed));
+			//Debugger_SetWatch ("M2Speed2", (Motor_M2Speed));
+		//}
 
 	}
 
@@ -234,13 +254,24 @@ int PL_PIDCorrection (int opt)
 //}
 int PL_GoStop () {
 	PID_Refresh ();
+	//delay (2);
 	while (1)
 	{
-		if (PL_Position (2, 3, 1, 4) == 4) {
+		Debugger_SetWatch ("kp", 1000*PID_KP);
+		Debugger_SetWatch ("ki", 1000*PID_KI);
+		Debugger_SetWatch ("kd", 1000*PID_KD);
+		int position_state = PL_Position (2, 3, 1, 4);
+		if (position_state == 4) {
+
+			Debugger_SetWatch ("state", "stop");
 			Move_Stop (); break;
 		}
 		else {
-			if (Manager_Time_TakeTime (20, 20)) {
+
+			if (position_state == 1)
+				PID_SumClear ();
+			if (Manager_Time_TakeTime (20, 10)) {
+				//Debugger_SetWatch ("state", "go");
 				//PID_KP = 0.2, PID_KI = 0.1, PID_KD = 0.3;
 				PL_PIDCorrection (1);
 			}

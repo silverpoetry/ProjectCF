@@ -37,8 +37,8 @@ void Debugger_DebugManagement()
 		if (s1 == "fuck")Debugger_SetWatch("fuck", s2 + " fucks " + s3);
 		else if (s1 == "fwd")Move_Refresh(), Motor_GoSpeed(atoi(s2.c_str()), atoi(s3.c_str()));
 		else if (s1 == "amg")Arm_Go(atoi(s2.c_str()), atoi(s3.c_str()));
-		else if (s1 == "stpi")PLD_KP = atof(s2.c_str()), PID_KI = atof(s2.c_str);
-		else if (s1 == "stpd")PLD_KD = atof(s2.c_str());
+		else if (s1 == "stpi")PID_KP = atof(s2.c_str()), PID_KI = atof(s3.c_str());
+		else if (s1 == "stpd")PID_KD = atof(s2.c_str());
 		else if (s1 == "glfwd")PL_GoStop();
 		else if(s1=="gtm")Move_Gotime(atoi(s2.c_str()), atoi(s3.c_str()));
 		else if (s1 == "gllft")PL_CrossRoad(1);
