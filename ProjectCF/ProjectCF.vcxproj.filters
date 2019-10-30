@@ -75,6 +75,9 @@
     <ClInclude Include="Zigbee.h">
       <Filter>Header Files\Moudules</Filter>
     </ClInclude>
+    <ClInclude Include="Catch_Ball.h">
+      <Filter>Header Files\Task</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Huidu.cpp">
@@ -112,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="Debugger.cpp">
       <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Catch_Ball.cpp">
+      <Filter>Source Files\Task</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
