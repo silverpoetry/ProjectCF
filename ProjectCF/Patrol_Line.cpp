@@ -10,15 +10,16 @@
 
 void PL_CrossRoad (int opt) {
 	
-	if (opt == CrossRoad_Left) {
+	if (opt == 1) {
 		Move_RotateLeft ();
 		delay(400);
 		int cnt = 0;
 		while (1) {
 			//delay (500);
-			if (Huidu_IsLine(3)) {
+			if (Huidu_IsLine(2)) {
 				Move_Stop ();
-				delay (1000);
+				return;
+
 				//Move_RotateLeft ();//这一步复位
 			\
 			}
@@ -27,7 +28,7 @@ void PL_CrossRoad (int opt) {
 	}
 	return ;
 }
-#define SPEED2 170
+#define SPEED2 150
 void PL_PIDCorrection()
 {
 	
@@ -58,7 +59,7 @@ void PL_GoCrossTurnLeft()
 	while (true)
 	{
 		PL_GoWithoutStop();
-		Move_Gotime(150, 170);
+		Move_Gotime(150, 150);
 		PL_GoLineTime(280);
 		PL_CrossRoad(1);
 	}

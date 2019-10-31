@@ -70,7 +70,7 @@ void Move_Stop (void) {
 }
 void Move_Gotime(int speed, int time)
 {
-	Motor_GoSpeed(speed, speed+20);
+	Motor_GoSpeed(speed, speed);
 	delay(time);
 	Move_Stop();
 }
