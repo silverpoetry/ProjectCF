@@ -16,3 +16,4 @@ void Move_Refresh();
 void Move_GoSpeed(int speed1 ,	int	 speed2);
 void Move_KeepRate();
 void Move_Gotime(int speed, int time);
+void Move_Fucker();

@@ -1,5 +1,5 @@
 #include "Zigbee.h"
-#define serialPort Serial3
+#define serialPort Serial2
 
 
  uint8_t zigbeeReceive[Zigbee_Message_Length];	//实时记录收到的信息
@@ -97,11 +97,12 @@ void DecodeAll()
 	DecodePassenger1();
 }
 
-
+int fuck = 0;
 
 bool  Zigbee_MessageRecord()
 {
 	if (!serialPort.available())return false;
+	Debugger_SetWatch("asd", fuck);
 	serialPort.readBytes(zigbeeReceive, Zigbee_Message_Length);
 	while (serialPort.available())serialPort.read();
 	if (zigbeeMessage[Zigbee_Message_Length - 1] == 0x0a && zigbeeMessage[Zigbee_Message_Length - 2] == 0x0D)

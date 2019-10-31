@@ -17,6 +17,16 @@ void Move_GoSpeed(int speed1, int speed2)
 	Motor_GoSpeed(speed1, speed2);
 	Motor_Rate = double(speed1) / double(speed2);
 }
+void Move_Fucker()
+{
+	Move_Refresh();
+	while (true)
+	{
+		if (Serial.available() > 0)return;
+		delay(20);
+		Move_KeepRate();
+	}
+}
 void Move_KeepRate ()
 {
 	int step1 = Motor_M1Cnt - Move_LastCnt1;
