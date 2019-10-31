@@ -97,12 +97,11 @@ void DecodeAll()
 	DecodePassenger1();
 }
 
-int fuck = 0;
 
 bool  Zigbee_MessageRecord()
 {
 	if (!serialPort.available())return false;
-	Debugger_SetWatch("asd", fuck);
+
 	serialPort.readBytes(zigbeeMessage, Zigbee_Message_Length);
 	for (int i = 0; i <= 32; i++)Serial.print(zigbeeMessage[i]), Serial.print(" ");
 	Serial.println("");
