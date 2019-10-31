@@ -147,6 +147,26 @@ int PL_CrossRoad (int opt) {
 			}*/
 		}
 	}
+
+	else if (opt == 2) {
+		Move_RotateRight ();
+		delay (400);
+		int cnt = 0;
+		while (1) {
+			//delay (500);
+			if (Huidu_IsLine (4)) {
+				Move_Stop ();
+				delay (1000);
+				//Move_RotateLeft ();//这一步复位
+				return 1;
+			}
+			/*
+			cnt++;
+			if (cnt > 100) {
+				break;
+			}*/
+		}
+	}
 	return 0;
 }
 void PL_PIDCorrection()

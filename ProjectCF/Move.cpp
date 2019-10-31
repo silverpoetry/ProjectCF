@@ -49,7 +49,7 @@ int Move_RotateLeft (void) {
 
 int Move_RotateRight (void) {
 
-	Move_GoSpeed (90, -90);
+	Move_GoSpeed (150, -150);
 }
 
 void Move_Stop (void) {

@@ -14,5 +14,6 @@
 #include "Move.h"
 #include "Zigbee.h"
 #include "Patrol_Line.h"
+#include "Pretest.h"
 
 #define SPEED 150

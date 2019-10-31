@@ -30,9 +30,9 @@ void loop()
 	while (true)
 	{
 		
-		/*
+		
 		Debugger_DebugManagement();
-		for (int i = 1; i <= 6; i++)
+		/*for (int i = 1; i <= 6; i++)
 		{
 			String s = "huidu";
 			Debugger_SetWatch(s + i, Huidu_Read(i));

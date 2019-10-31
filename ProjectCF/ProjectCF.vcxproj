@@ -115,7 +115,6 @@
   <ItemGroup>
     <ClInclude Include="Arm.h" />
     <ClInclude Include="BlueTooth.h" />
-    <ClInclude Include="Catch_Ball.h" />
     <ClInclude Include="Debugger.h" />
     <ClInclude Include="Distance.h" />
     <ClInclude Include="Huidu.h" />
@@ -125,22 +124,22 @@
     <ClInclude Include="Move.h" />
     <ClInclude Include="Mpu.h" />
     <ClInclude Include="Patrol_Line.h" />
+    <ClInclude Include="Pretest.h" />
     <ClInclude Include="Zigbee.h" />
     <ClInclude Include="__vm\.ProjectCF.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Arm.cpp" />
     <ClCompile Include="BlueTooth.cpp" />
-    <ClCompile Include="Catch_Ball.cpp" />
     <ClCompile Include="Debugger.cpp" />
     <ClCompile Include="Distance.cpp" />
     <ClCompile Include="Huidu.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Motor.cpp" />
-    <ClCompile Include="Moudule_WIFI.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Mpu.cpp" />
     <ClCompile Include="Patrol_Line.cpp" />
+    <ClCompile Include="Pretest.cpp" />
     <ClCompile Include="Zigbee.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

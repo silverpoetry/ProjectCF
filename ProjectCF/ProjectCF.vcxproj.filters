@@ -75,15 +75,12 @@
     <ClInclude Include="Zigbee.h">
       <Filter>Header Files\Moudules</Filter>
     </ClInclude>
-    <ClInclude Include="Catch_Ball.h">
+    <ClInclude Include="Pretest.h">
       <Filter>Header Files\Task</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Huidu.cpp">
-      <Filter>Source Files\Moudules</Filter>
-    </ClCompile>
-    <ClCompile Include="Moudule_WIFI.cpp">
       <Filter>Source Files\Moudules</Filter>
     </ClCompile>
     <ClCompile Include="Arm.cpp">
@@ -116,7 +113,7 @@
     <ClCompile Include="Debugger.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Catch_Ball.cpp">
+    <ClCompile Include="Pretest.cpp">
       <Filter>Source Files\Task</Filter>
     </ClCompile>
   </ItemGroup>
