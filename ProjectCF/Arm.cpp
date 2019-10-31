@@ -10,15 +10,16 @@ void Arm_Init()
 	servos[1].attach(Arm_Pins[1], 500, 2500);
 	
 	
-	Arm_Reset();
+	Arm_Reset(1);
+	Arm_Reset (2);
 	delay(500);
 }
 //复位机械臂到默认位置
-void Arm_Reset()
+void Arm_Reset(int opt)
 {
-	Arm_Go(1, angels[1]);
+	Arm_Go(opt, angels[opt]);
 	delay(300);
-	Arm_Go(2, angels[2]);
+	//Arm_Go(2, angels[2]);
 }
 
 //控制指定舵机旋转到指定角度

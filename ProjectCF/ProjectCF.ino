@@ -33,6 +33,7 @@ void loop()
 	{
 		
 		Debugger_DebugManagement();
+		//ExploreMaze ();
 
 		if (Zigbee_MessageRecord())
 		{
