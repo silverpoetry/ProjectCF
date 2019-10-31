@@ -22,6 +22,8 @@ void setup()
 	Debugger_Init();
 	Serial.begin(9600);
 	Distance_Init();
+	Arm_Init();
+	Zigbee_Init();
 	//Serial1.begin(115200);
 	
 }
@@ -29,15 +31,17 @@ void loop()
 {
 	while (true)
 	{
-		
-		
+			
 		Debugger_DebugManagement();
-		/*for (int i = 1; i <= 6; i++)
+
+		if (Zigbee_MessageRecord())
 		{
-			String s = "huidu";
-			Debugger_SetWatch(s + i, Huidu_Read(i));
+			Debugger_SetWatch("Time", Game.Time);
+			Debugger_SetWatch("State", Game.GameState);
+			//Debugger_SetWatch("", Game.);
+			//Debugger_SetWatch("", Game.Time);
+
 		}
-		*/
 	}
 
 	
