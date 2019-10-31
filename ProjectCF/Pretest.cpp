@@ -3,16 +3,16 @@
 
 int ExploreMaze () {
 	int cnt = 0;
-	while (cnt <= 6) {
+	while (cnt <= 5) {
 		PL_GoStop ();
 		delay (500);
 		cnt++;
 		Move_Gotime (150, 170);
-		delay (500);
+		//delay (500);
 	}
 	PL_GoLineTime (270);
-	Move_Stop ();
-	delay (500);
+	//Move_Stop ();
+	//delay (500);
 	PL_CrossRoad (1);
 
 	cnt = 0;
@@ -21,11 +21,11 @@ int ExploreMaze () {
 		delay (500);
 		cnt++;
 		Move_Gotime (150, 170);
-		delay (500);
+		//delay (500);
 	}
 	PL_GoLineTime (270);
 	Move_Stop ();
-	delay (500);
+	//delay (500);
 	PL_CrossRoad (2);
 
 	Move_Gotime (SPEED,1000);
