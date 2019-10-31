@@ -31,7 +31,7 @@ void loop()
 {
 	while (true)
 	{
-			
+		Motor_GoSpeed(150, 150);
 		Debugger_DebugManagement();
 		//ExploreMaze ();
 
