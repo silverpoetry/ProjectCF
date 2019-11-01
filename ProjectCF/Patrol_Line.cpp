@@ -12,18 +12,30 @@ void PL_CrossRoad (int opt) {
 	
 	if (opt == 1) {
 		Move_RotateLeft ();
-		delay(400);
+		//delay(400);
 		int cnt = 0;
 		while (1) {
 			//delay (500);
 			if (Huidu_IsLine(2)) {
 				Move_Stop ();
 				return;
-
 				//Move_RotateLeft ();//这一步复位
-			\
 			}
 			
+		}
+	}
+	else if (opt == 2) {
+		Move_RotateRight ();
+		//delay (400);
+		int cnt = 0;
+		while (1) {
+			//delay (500);
+			if (Huidu_IsLine (6)) {
+				Move_Stop ();
+				return;
+				//Move_RotateLeft ();//这一步复位
+			}
+
 		}
 	}
 	return ;
@@ -56,14 +68,23 @@ void PL_GoLineTime(int time)
 }
 void PL_GoCrossTurnLeft()
 {
-	while (true)
-	{
+	
 		PL_GoWithoutStop();
 		Move_Gotime(150, 150);
 		PL_GoLineTime(280);
 		PL_CrossRoad(1);
-	}
 	
+	
+}
+void PL_GoCrossTurnRight ()
+{
+	
+		PL_GoWithoutStop ();
+		Move_Gotime (150, 150);
+		PL_GoLineTime (280);
+		PL_CrossRoad (2);
+	
+
 }
 void PL_GoWithoutStop()
 {
@@ -86,7 +107,15 @@ int PL_GoStop () {
 
 	}
 }
+void PL_GoBlind ()
+{
+	while (!Serial3.available())
+	{
+		if (MicroMove_IsPushed ())Motor_GoSpeed (155, 140);
+		else Motor_GoSpeed (140, 150);
 
+	}
+}
 void PL_goline (int basic1, int basic2)
 {
 	if (Huidu_IsLine (1) && Huidu_IsLine (2))Motor_GoSpeed (basic1, basic2);
