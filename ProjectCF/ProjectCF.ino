@@ -15,15 +15,11 @@
 
 void setup()
 {
-
-
-	Motor_Init();
- 	Huidu_Init();
+	Manager_Hardware_Init();
 	Debugger_Init();
 	Serial.begin(9600);
-	Distance_Init();
-	Arm_Init();
-	Zigbee_Init();
+	
+	
 	//Serial1.begin(115200);
 	
 }
@@ -35,13 +31,10 @@ void loop()
 		Debugger_DebugManagement();
 		//ExploreMaze ();
 
-		if (Zigbee_MessageRecord())
+		if (Manager_Time_TakeTime(1,100))
 		{
-			Debugger_SetWatch("Time", Game.Time);
-			Debugger_SetWatch("State", Game.GameState);
-			//Debugger_SetWatch("", Game.);
-			//Debugger_SetWatch("", Game.Time);
-
+			Debugger_SetWatch ("switch", MicroMove_IsPushed ());
+		
 		}
 	}
 

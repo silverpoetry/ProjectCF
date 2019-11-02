@@ -39,7 +39,7 @@ void Debugger_DebugManagement()
 		else if (s1 == "amg1")Arm_Go(1, atoi(s2.c_str()));
 		else if (s1 == "amg2")Arm_Go(2, atoi(s2.c_str()));
 		
-		else if (s1 == "glfwd")ExploreMaze();
+		else if (s1 == "glfwd")PL_GoCrossTurnRight();
 		else if(s1=="gtm")Move_Gotime(atoi(s2.c_str()), atoi(s3.c_str()));
 		else if (s1 == "gllft")PL_CrossRoad(1);
 		else if (s1 == "bmpspeed")Move_GoSpeed(atoi(s2.c_str()), atoi(s3.c_str()));

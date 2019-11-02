@@ -12,38 +12,48 @@ void PL_CrossRoad (int opt) {
 	
 	if (opt == 1) {
 		Move_RotateLeft ();
-		delay(400);
+		//delay(400);
 		int cnt = 0;
 		while (1) {
 			//delay (500);
 			if (Huidu_IsLine(2)) {
 				Move_Stop ();
 				return;
-
-				
-			
+				//Move_RotateLeft ();//这一步复位
 			}
 			
 		}
 	}
+	else if (opt == 2) {
+		Move_RotateRight ();
+		//delay (400);
+		int cnt = 0;
+		while (1) {
+			//delay (500);
+			if (Huidu_IsLine (6)) {
+				Move_Stop ();
+				return;
+				//Move_RotateLeft ();//这一步复位
+			}
+
+		}
+	}
 	return ;
 }
-
-#define PL_Speed2 150
-#define PL_Speed1 150
-void PL_GolineCorrect()
+#define SPEED2 150
+void PL_PIDCorrection()
 {
 	
 	
 	bool is1 = Huidu_IsLine(2), is2 = Huidu_IsLine(3), is3 = Huidu_IsLine(4), is4 = Huidu_IsLine(5);
 	if (is2 && is3) {
-		Motor_GoSpeed(PL_Speed1, PL_Speed2); return;
+		Motor_GoSpeed(SPEED, SPEED2); return;
 	}
 
-	if (is2)Motor_GoSpeed(PL_Speed1*0.9, PL_Speed2*1.1);
-	if (is3)Motor_GoSpeed(PL_Speed1*1.1, PL_Speed2*0.9);
-	if(is4)Motor_GoSpeed(PL_Speed1*1.3, PL_Speed2*0.7);
-	if (is1)Motor_GoSpeed(PL_Speed1*0.7, PL_Speed2*1.3);
+	if (is2)Motor_GoSpeed(SPEED*0.9, SPEED2*1.1);
+	if (is3)Motor_GoSpeed(SPEED*1.1, SPEED2*0.9);
+	if(is4)Motor_GoSpeed(SPEED*1.3, SPEED2*0.7);
+	if (is1)Motor_GoSpeed(SPEED*0.7, SPEED2*1.3);
 	
 
 }
@@ -53,37 +63,66 @@ void PL_GoLineTime(int time)
 	while (!Manager_Time_TakeTime(31,time))
 	{
 		if (Huidu_IsLine(1)) { return; }
-		if (Manager_Time_TakeTime(21, 20))PL_GolineCorrect();
+		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
 	}
 }
 void PL_GoCrossTurnLeft()
 {
+	
 		PL_GoWithoutStop();
 		Move_Gotime(150, 150);
 		PL_GoLineTime(280);
 		PL_CrossRoad(1);
 	
+	
+}
+void PL_GoCrossTurnRight ()
+{
+	
+		PL_GoWithoutStop ();
+		Move_Gotime (150, 150);
+		PL_GoLineTime (280);
+		PL_CrossRoad (2);
+	
+
 }
 void PL_GoWithoutStop()
 {
-	Motor_GoSpeed(PL_Speed1, PL_Speed2);
+	Motor_GoSpeed(SPEED, SPEED);
 	while (1)
 	{
 		if (Huidu_IsLine(1)) {  return; }
-		if (Manager_Time_TakeTime(21, 20))PL_GolineCorrect();
+		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
 	}
 }
 int PL_GoStop () {
 	//PID_Refresh ();
-	Motor_GoSpeed(PL_Speed1, PL_Speed2);
+	Motor_GoSpeed(SPEED, SPEED);
 	//delay (2);
 	while (1)
 	{
 		if (Huidu_IsLine(1) ) { Move_Stop(); return; }
-		if (Manager_Time_TakeTime(21, 20))PL_GolineCorrect();
+		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
 		
 
 	}
 }
+void PL_GoBlind ()
+{
+	while (!Serial3.available())
+	{
+		if (MicroMove_IsPushed ())Motor_GoSpeed (155, 140);
+		else Motor_GoSpeed (140, 150);
+
+	}
+}
+void PL_goline (int basic1, int basic2)
+{
+	if (Huidu_IsLine (1) && Huidu_IsLine (2))Motor_GoSpeed (basic1, basic2);
+
+	if (Huidu_IsLine (1))Motor_GoSpeed (basic1, basic2 * 1.2);
+	if (Huidu_IsLine (2))Motor_GoSpeed (basic1 * 1.4, basic2);
+	if (Huidu_IsLine (3))Motor_GoSpeed (-100, -100), delay (50), Motor_GoSpeed (0, 0), delay (2000);
 
 
+}

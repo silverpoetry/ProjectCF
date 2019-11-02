@@ -1,11 +1,13 @@
 #include "IncludeList.h"
 void Manager_Hardware_Init()
 {
-	Distance_Init();
-	Mpu_Init();
-	Arm_Init();
-	Huidu_Init();
-	Motor_Init();
+	Motor_Init ();
+	Huidu_Init ();
+	Distance_Init ();
+	//Arm_Init ();
+	Zigbee_Init (); 
+	MicroMove_Init ();
+	
 
 }
 long long StartTime[200] ;
