@@ -1,4 +1,5 @@
 #pragma once
+#define Motor_SpeedBalance 10 //B轮增加的补偿速度
 #define Motor_NomorSpeed 150
 #define Motor_EncodePin1 2
 #define Motor_EncodePin2 3

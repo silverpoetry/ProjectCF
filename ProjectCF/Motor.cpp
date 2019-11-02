@@ -91,7 +91,11 @@ void Motor_SetSpeed(int speed, int id)
 	}
 	else
 	{
-		
+		if(abs(speed)<245&&abs(speed)>10)
+		{ 
+			int fuhao = speed / abs(speed);
+			speed = fuhao * (abs(speed) + Motor_SpeedBalance);
+		}
 		if (speed >= 0)forward(id), analogWrite(Motor_EN2, abs(speed));
 		if (speed < 0)back(id), analogWrite(Motor_EN2, abs(speed));
 		if (speed == 0)Motor_Stop(id);

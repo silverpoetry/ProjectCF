@@ -109,12 +109,11 @@ int PL_GoStop () {
 }
 void PL_GoBlind ()
 {
-	while (!Serial3.available())
-	{
+	
 		if (MicroMove_IsPushed ())Motor_GoSpeed (155, 140);
-		else Motor_GoSpeed (140, 150);
+		else Motor_GoSpeed (140, 155);
 
-	}
+	
 }
 void PL_goline (int basic1, int basic2)
 {

@@ -42,6 +42,26 @@ int ExploreMaze () {
 	
 }
 
+int GetBall()
+{
+	int cnt = 0;
+	while (cnt<2)
+	{
+		if (Huidu_IsLine(1) || Huidu_IsLine(2) || Huidu_IsLine(5)||Huidu_IsLine(3))Move_Stop(), delay(3000),cnt++;
+		if (Manager_Time_TakeTime(123, 20))
+		{
+			PL_GoBlind();
+		}
+
+	}
+	while (!Manager_Time_TakeTime(123, 100))
+		PL_GoBlind();
+
+	Motor_SetSpeed(-200, -200);
+	delay(2000);
+	Move_Stop();
+	
+}
 int CollectGoods () {
 
 }

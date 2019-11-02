@@ -34,7 +34,12 @@ void loop()
 		if (Manager_Time_TakeTime(1,100))
 		{
 			Debugger_SetWatch ("switch", MicroMove_IsPushed ());
-		
+			for (int  i = 1; i < 7; i++)
+			{
+				String s = "huidu";
+
+				Debugger_SetWatch(s + i, Huidu_Read(i));
+			}
 		}
 	}
 

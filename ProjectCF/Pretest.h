@@ -4,3 +4,4 @@
 
 int ExploreMaze ();
 int CollectGoods ();
+int GetBall();
