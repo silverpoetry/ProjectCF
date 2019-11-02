@@ -74,3 +74,9 @@ void Move_Gotime(int speed, int time)
 	delay(time);
 	Move_Stop();
 }
+void Move_GotimeWithoutStop(int speed, int time)
+{
+	Motor_GoSpeed(speed, speed);
+	delay(time);
+	Move_Stop();
+}

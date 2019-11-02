@@ -5,3 +5,4 @@
 int ExploreMaze ();
 int CollectGoods ();
 int GetBall();
+void GetBall2();

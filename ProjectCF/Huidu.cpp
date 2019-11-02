@@ -3,7 +3,7 @@
 
 
 #ifndef Xiancchang
-int Huidu_LineValues[] = { 100, 100, 200, 200,100,100,500 };
+int Huidu_LineValues[] = { 100, 100, 100, 100,100,100,500 };
 #else
 int Huidu_LineValues[] = { 0, 290, 300, 0 };
 #endif 

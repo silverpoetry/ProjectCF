@@ -3,6 +3,7 @@
 #include "IncludeList.h"
 
 
+void Move_GotimeWithoutStop(int speed, int time);
 void Move_GoSpeed (int speed1, int speed2);
 
 void Move_GoBack (int speed, int time);
