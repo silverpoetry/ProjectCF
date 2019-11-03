@@ -103,12 +103,13 @@ bool  Zigbee_MessageRecord()
 	if (!serialPort.available())return false;
 
 	serialPort.readBytes(zigbeeMessage, Zigbee_Message_Length);
-	//r (int i = 0; i <= 32; i++)Serial.print(zigbeeMessage[i]), Serial.print(" ");
-//erial.println("");
+	
 	while (serialPort.available())serialPort.read();
 
 	if (zigbeeMessage[Zigbee_Message_Length - 1] == 0x0a && zigbeeMessage[Zigbee_Message_Length - 2] == 0x0D)
 	{
+		for (int i = 0; i <= 32; i++)Serial.print (zigbeeMessage[i]), Serial.print (" ");
+		Serial.println ("");
 		DecodeAll(); return true;
 	}
 	return false;
