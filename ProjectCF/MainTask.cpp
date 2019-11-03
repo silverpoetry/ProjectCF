@@ -1,5 +1,9 @@
 #include "MainTask.h"
 
+int Graph[30][30][6];
+
+int Road = 0;
+
 int MT_GraphInit () {
 
 	for (int i = 1; i <= 6; i++) {
@@ -25,26 +29,30 @@ int MT_FindExit (int x, int y) {
 
 int MT_FindEntrance (int road) {
 	while (1) {
-		if (Zigbee_MessageRecord ()) {
-			int x = Car[0].pos.X, y = Car[0].pos.Y;
-			Move_GoSpeed (SPEED, SPEED);
-			if (x <= 82) {
-				Move_Stop ();
-				delay (500);
-				while (1) {
-					if (Manager_Time_TakeTime (30, 30)) {
-						Move_TurnLeft (150);
-						if (Huidu_IsLine (2)) {
-							Move_Stop ();
-							delay (500);
-							return;
-						}
-					}
-				}
+		//if (Zigbee_MessageRecord ()) {
+		Zigbee_MessageRecord ();
+		int x = Car[1].pos.X, y = Car[1].pos.Y;
+		Debugger_SetWatch ("x", x);
+		Debugger_SetWatch ("y", y);
+		Move_GoSpeed (SPEED, SPEED);
+		if (x <= 82) {
+			Move_Stop ();
+			delay (500);
+			Move_TurnLeft (150);
+			while (1) {
+				//if (Manager_Time_TakeTime (30, 30)) {
 
+				if (Huidu_IsLine (2)) {
+					Move_Stop ();
+					delay (500);
+					return;
+				}
+				//}
 			}
-			//MT_Pos2Node (x, y);
+
 		}
+		//MT_Pos2Node (x, y);
+	//}
 	}
 	//MT_FindExit (2, 0);
 }

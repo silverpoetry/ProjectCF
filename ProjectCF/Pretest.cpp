@@ -33,7 +33,7 @@ int ExploreMaze (int opt) {
 	//PL_CrossRoad (1);
 	
 }
-
+//15/25 15/22
 int GetBall()
 {
 	int cnt = 0;

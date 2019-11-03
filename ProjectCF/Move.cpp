@@ -83,5 +83,5 @@ void Move_GotimeWithoutStop(int speed, int time)
 
 void Move_TurnLeft (int speed) {
 		
-	Motor_GoSpeed (speed, 0);
+	Motor_GoSpeed (1, speed);
 }
