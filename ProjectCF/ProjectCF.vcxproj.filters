@@ -81,6 +81,9 @@
     <ClInclude Include="MicroMove.h">
       <Filter>Header Files\Moudules</Filter>
     </ClInclude>
+    <ClInclude Include="MainTask.h">
+      <Filter>Header Files\Task</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Huidu.cpp">
@@ -121,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="MicroMove.cpp">
       <Filter>Source Files\Moudules</Filter>
+    </ClCompile>
+    <ClCompile Include="MainTask.cpp">
+      <Filter>Source Files\Task</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

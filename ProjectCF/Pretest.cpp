@@ -1,7 +1,7 @@
 #pragma once
 #include "IncludeList.h"
 #include "Pretest.h"
-int ExploreMaze () {
+int ExploreMaze (int opt) {
 	int cnt = 0;
 	while (cnt < 5) {
 		PL_GoWithoutStop ();
@@ -13,7 +13,7 @@ int ExploreMaze () {
 	PL_GoLineTime (270);
 	//Move_Stop ();
 	//delay (500);
-	PL_CrossRoad (1);
+	PL_CrossRoad (opt);
 
 	cnt = 0;
 	while (cnt < 4) {

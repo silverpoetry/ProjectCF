@@ -119,6 +119,7 @@
     <ClInclude Include="Distance.h" />
     <ClInclude Include="Huidu.h" />
     <ClInclude Include="IncludeList.h" />
+    <ClInclude Include="MainTask.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="MicroMove.h" />
     <ClInclude Include="Motor.h" />
@@ -135,6 +136,7 @@
     <ClCompile Include="Debugger.cpp" />
     <ClCompile Include="Distance.cpp" />
     <ClCompile Include="Huidu.cpp" />
+    <ClCompile Include="MainTask.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="MicroMove.cpp" />
     <ClCompile Include="Motor.cpp" />
