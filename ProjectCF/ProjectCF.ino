@@ -30,16 +30,24 @@ void loop()
 		
 		Debugger_DebugManagement();
 		//ExploreMaze ();
+		long long i = 0;
+		if (Zigbee_MessageRecord ()) {
+			Debugger_SetWatch ("arrive", ++i);
+		}
 
 		if (Manager_Time_TakeTime(1,100))
 		{
 			Debugger_SetWatch ("switch", MicroMove_IsPushed ());
-			Rep(i, 1, 6)
+
+			/*Rep(i, 1, 6)
 			{
 				String s = "huidu";
 				Debugger_SetWatch(s + i, Huidu_Read(i));
-			}
-			
+			}*/
+			Debugger_SetWatch ("X1", Car[0].pos.X);
+			Debugger_SetWatch ("Y1", Car[0].pos.Y);
+			Debugger_SetWatch ("X2", Car[1].pos.X);
+			Debugger_SetWatch ("Y2", Car[1].pos.Y);
 		}
 	}
 
