@@ -12,3 +12,4 @@ bool Huidu_IsLine(int index, int value);
 bool Huidu_IsLine(int index);
 
 void Huidu_ShowValue();
+bool Huidu_IsCrossRoad (void);

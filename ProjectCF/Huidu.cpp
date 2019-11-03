@@ -53,14 +53,15 @@ bool Huidu_IsLine(int index) {
 
 }
 
-//调试时使用，打印四个灰度的值
-void Huidu_ShowValue()
-{
-	
-
-	char str[100];
-	sprintf(str, "123%%%%%d%%%%%d%%%%%d%%%%%d%%%%%d%%%%4", Huidu_Read(1), Huidu_Read(2), Huidu_Read(3), Huidu_Read(4));
-	//	sprintf(str,)
-	Serial.println(str);
-
+bool Huidu_IsCrossRoad (void) {
+	int cnt = 0;
+	for (int i = 1; i <= 6; i++) {
+		if (Huidu_IsLine (i)) {
+			cnt++;
+		}
+	}
+	if (cnt > 3) {
+		return 1;
+	}
+	return 0;
 }

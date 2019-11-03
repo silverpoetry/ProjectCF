@@ -2,24 +2,16 @@
 #include <math.h>
 
 
-
-
-
-
-
-
 void PL_CrossRoad (int opt) {
 	
 	if (opt == 1) {
 		Move_RotateLeft ();
 		delay(400);
-		int cnt = 0;
 		while (1) {
 			//delay (500);
 			if (Huidu_IsLine(2)) {
 				Move_Stop ();
 				return;
-				//Move_RotateLeft ();//这一步复位
 			}
 			
 		}
@@ -27,13 +19,11 @@ void PL_CrossRoad (int opt) {
 	else if (opt == 2) {
 		Move_RotateRight ();
 		delay (400);
-		int cnt = 0;
 		while (1) {
 			//delay (500);
 			if (Huidu_IsLine (6)) {
 				Move_Stop ();
 				return;
-				//Move_RotateLeft ();//这一步复位
 			}
 
 		}
@@ -43,8 +33,6 @@ void PL_CrossRoad (int opt) {
 #define SPEED2 150
 void PL_PIDCorrection()
 {
-	
-	
 	bool is1 = Huidu_IsLine(2), is2 = Huidu_IsLine(3), is3 = Huidu_IsLine(4), is4 = Huidu_IsLine(5);
 	if (is2 && is3) {
 		Motor_GoSpeed(SPEED, SPEED2); return;
@@ -55,7 +43,6 @@ void PL_PIDCorrection()
 	if(is4)Motor_GoSpeed(SPEED*1.3, SPEED2*0.7);
 	if (is1)Motor_GoSpeed(SPEED*0.7, SPEED2*1.3);
 	
-
 }
 
 void PL_GoLineTime(int time)
@@ -91,7 +78,8 @@ void PL_GoWithoutStop()
 	Motor_GoSpeed(SPEED, SPEED);
 	while (1)
 	{
-		if (Huidu_IsLine(1)) {  return; }
+		//if (Huidu_IsLine(1)) {  return; }
+		if (Huidu_IsCrossRoad ()) { return; }
 		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
 	}
 }
@@ -101,7 +89,8 @@ int PL_GoStop () {
 	//delay (2);
 	while (1)
 	{
-		if (Huidu_IsLine(1) ) { Move_Stop(); return; }
+		//if (Huidu_IsLine(1) )
+		if(Huidu_IsCrossRoad()){ Move_Stop(); return; }
 		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
 
 	}
@@ -113,7 +102,7 @@ void PL_GoBlind ()
 		else Motor_GoSpeed (140, 155);
 
 	
-}
+}/*
 void PL_goline (int basic1, int basic2)
 {
 	if (Huidu_IsLine (1) && Huidu_IsLine (2))Motor_GoSpeed (basic1, basic2);
@@ -123,4 +112,4 @@ void PL_goline (int basic1, int basic2)
 	if (Huidu_IsLine (3))Motor_GoSpeed (-100, -100), delay (50), Motor_GoSpeed (0, 0), delay (2000);
 
 
-}
+}*/

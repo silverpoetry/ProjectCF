@@ -25,7 +25,7 @@ int ExploreMaze () {
 		//delay (500);
 	}
 	//PL_GoLineTime (270);
-	Move_GotimeWithoutStop(150, 1000);
+	Move_GotimeWithoutStop(150, 1300);
 	//delay (500);
 	
 
@@ -45,15 +45,15 @@ int GetBall()
 	
 
 	}
-	while (!Manager_Time_TakeTime(123, 450))
+	while (!Manager_Time_TakeTime(123, 600))
 		Move_GoSpeed(150,160);
 	//¹°
 	//Move_GotimeWithoutStop()
 	Move_Stop();
 	delay(1000);
 	//while(!Manager_Time_TakeTime(123,300)) Move_GoSpeed(-250, -240);
-	while (!Manager_Time_TakeTime(123, 1000)) Move_GoSpeed(-250, -245);
-	while (!Manager_Time_TakeTime(123, 1000)) Move_GoSpeed(-250, -250);
+	while (!Manager_Time_TakeTime(123, 800)) Move_GoSpeed(-250, -247);
+	while (!Manager_Time_TakeTime(123, 800)) Move_GoSpeed(-250, -250);
 	//Move_GotimeWithoutStop(-200, 2000);
 	Move_Stop();
 	
@@ -72,7 +72,7 @@ void GetBall2()
 	while (!Manager_Time_TakeTime(123, 1000))
 
 		PL_GoBlind();
-	while (!Manager_Time_TakeTime(123, 450))
+	while (!Manager_Time_TakeTime(123, 700))
 		Move_GoSpeed(150, 160);
 	
 	//¹°
@@ -82,13 +82,9 @@ void GetBall2()
 	//while (!Manager_Time_TakeTime(123, 300)) Move_GoSpeed(-250, -240);
 	//while (!Manager_Time_TakeTime(123, 100)) Move_GoSpeed(-240, -250);
 
-	while (!Manager_Time_TakeTime(123, 1000)) Move_GoSpeed(-250, -245);
-	while (!Manager_Time_TakeTime(123, 1000)) Move_GoSpeed(-250, -250);
+	while (!Manager_Time_TakeTime(123, 800)) Move_GoSpeed(-250, -247);
+	while (!Manager_Time_TakeTime(123, 800)) Move_GoSpeed(-250, -250);
 
 	Move_Stop();
-
-}
-
-int CollectGoods () {
 
 }
