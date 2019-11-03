@@ -97,15 +97,27 @@ void DecodeAll()
 	DecodePassenger1();
 }
 
-
+uint8_t zReceive[Zigbee_Message_Length];//经过整理顺序后得到的信息
+long  sum = 0;
 bool  Zigbee_MessageRecord()
 {
 	if (!serialPort.available())return false;
 
-	serialPort.readBytes(zigbeeMessage, Zigbee_Message_Length);
-	
+	serialPort.readBytes(zReceive, Zigbee_Message_Length);
 	while (serialPort.available())serialPort.read();
+	if (!Manager_Time_TakeTime(33,500))
+	{
 
+	
+		sum = 0;
+		for (int i = 0; i < Zigbee_Message_Length; i++)
+		{
+		sum += abs(zigbeeMessage[i] - zReceive[i]);
+		}
+		if (sum > 300)return false;
+	}
+	
+	memcpy(zigbeeMessage, zReceive, sizeof(uint16_t)*Zigbee_Message_Length);
 	if (zigbeeMessage[Zigbee_Message_Length - 1] == 0x0a && zigbeeMessage[Zigbee_Message_Length - 2] == 0x0D)
 	{
 		for (int i = 0; i <= 32; i++)Serial.print (zigbeeMessage[i]), Serial.print (" ");
