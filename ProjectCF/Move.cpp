@@ -42,7 +42,7 @@ void Move_KeepRate ()
 	
 	Debugger_SetWatch ("M1Speed1", (Motor_M1Speed));
 	Debugger_SetWatch ("M2Speed2", (Motor_M2Speed));
-	//Debugger_SetWatch ("err", (err));
+	Debugger_SetWatch ("err", (err));
 
 //}
 	Motor_GoSpeed (Motor_M1Speed, min (255, max (Motor_M2Speed - int (KP * err), -255)));
