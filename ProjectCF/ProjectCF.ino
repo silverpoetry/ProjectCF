@@ -28,6 +28,28 @@ void loop()
 	while (true)
 	{
 		
+		while (!Manager_Time_TakeTime(12,1000))
+		Zigbee_MessageRecord();
+		delay(3000);
+		while (1)
+		{
+			Zigbee_MessageRecord();
+			if (Car[1].pos.Y <= 24)break;
+			PL_GoBlind();
+
+		}
+		Move_Stop();
+		delay(1000);
+		//while(!Manager_Time_TakeTime(123,300)) Move_GoSpeed(-250, -240);
+		while (!Manager_Time_TakeTime(123, 800)) Move_GoSpeed(-250, -247);
+		while (!Manager_Time_TakeTime(123, 800)) Move_GoSpeed(-250, -250);
+		//Move_GotimeWithoutStop(-200, 2000);
+		Move_Stop();
+		delay(20000);
+	}
+	while (true)
+	{
+		
 		Debugger_DebugManagement();
 		//ExploreMaze ();
 		long long i = 0;
