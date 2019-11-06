@@ -27,8 +27,8 @@ void Motor_Init()
 		pinMode(Motor_Pin4, OUTPUT);
 		pinMode(Motor_EN1, OUTPUT);
 		pinMode(Motor_EN2, OUTPUT);
-		attachInterrupt(digitalPinToInterrupt(Motor_EncodePin1),Motor_Encode1_Arrived , RISING);
-		attachInterrupt(digitalPinToInterrupt(Motor_EncodePin2),Motor_Encode2_Arrived , RISING);
+		attachInterrupt(digitalPinToInterrupt(Motor_EncodePin2),Motor_Encode1_Arrived , RISING);
+		attachInterrupt(digitalPinToInterrupt(Motor_EncodePin1),Motor_Encode2_Arrived , RISING);
 
 }
 
@@ -91,6 +91,7 @@ void Motor_SetSpeed(int speed, int id)
 	}
 	else
 	{
+		Motor_M2Speed = speed;
 		if(abs(speed)<245&&abs(speed)>10)
 		{ 
 			int fuhao = speed / abs(speed);
@@ -100,7 +101,7 @@ void Motor_SetSpeed(int speed, int id)
 		if (speed < 0)back(id), analogWrite(Motor_EN2, abs(speed));
 		if (speed == 0)Motor_Stop(id);
 		
-		Motor_M2Speed = speed;
+
 	}
 }
 //控制电机行进

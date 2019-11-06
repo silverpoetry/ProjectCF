@@ -108,7 +108,7 @@ void Rectify(int* pReadout, float* pRealVals) {
 	for (int i = 0; i < 3; ++i) {
 		pRealVals[i] = (float)(pReadout[i] - calibData[i]) / 16384.0f;
 	}
-	pRealVals[3] = pReadout[3] / 340.0f + 36.53;
+//	pRealVals[3] = pReadout[3] / 340.0f + 36.53;
 	for (int i = 4; i < 7; ++i) {
 		pRealVals[i] = (float)(pReadout[i] - calibData[i]) / 131.0f;
 	}
@@ -138,8 +138,7 @@ void Mpu_GetValues() {
 
 	//计算加速度向量的模长，均以g为单位
 	float fNorm = sqrt(realVals[0] * realVals[0] + realVals[1] * realVals[1] + realVals[2] * realVals[2]);
-	float fRoll =
-		GetRoll(realVals, fNorm); //计算Roll角
+	float fRoll =	GetRoll(realVals, fNorm); //计算Roll角
 	if (realVals[1] > 0) {
 		fRoll = -fRoll;
 	}
@@ -171,6 +170,31 @@ void Mpu_GetValues() {
 
 
 	}
+void Mpu_ShowValueInTestMode ()
+{
+	int fuck[9];
+	long hack[9];
+	for (size_t i = 0; i < 30; i++)
+	{
+		ReadAccGyr (fuck); //读出测量值
+		for (size_t j = 0; j < 7; j++)
+		{
+			hack[j] += fuck[j];
+		}
+	}
+	for (size_t j = 0; j < 7; j++)
+	{
+		readouts[j] = hack[j] / 30;
+	}
+//	ReadAccGyr (readouts); //读出测量值
+	Debugger_SetWatch ("ANGEL1", readouts[0]);
+	Debugger_SetWatch ("ANGEL2", readouts[1]);
+	Debugger_SetWatch ("ANGEL3", readouts[2]);
+	Debugger_SetWatch ("delta1", readouts[4]);
+	Debugger_SetWatch ("delta2", readouts[5]);
+	Debugger_SetWatch ("delta3", readouts[6]);
+
+}
 
 	void Mpu_ShowValuesOnSerial()
 	{

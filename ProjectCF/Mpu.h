@@ -9,5 +9,5 @@ extern float Mpu_Yaw ;
 extern float Mpu_YawRate;
 void Mpu_Init();
 void Mpu_GetValues();
-
+void Mpu_ShowValueInTestMode ();
 

@@ -7,7 +7,7 @@ void Manager_Hardware_Init()
 	//Arm_Init ();
 	Zigbee_Init (); 
 	MicroMove_Init ();
-	
+	Mpu_Init ();
 
 }
 long long StartTime[200] ;
@@ -15,6 +15,7 @@ bool isstarted[200] ;
 
 bool Manager_Time_TakeTime(long index,long num)
 {
+	
 	if (!isstarted[index])
 	{
 		isstarted[index] = true;

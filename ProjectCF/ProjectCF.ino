@@ -13,64 +13,62 @@
 
 
 
-void setup()
+void setup ()
 {
-	Manager_Hardware_Init();
-	Debugger_Init();
-	Serial.begin(9600);
-	
-	
+	Serial.begin (9600);
+	Serial.println ("123");
+	Manager_Hardware_Init ();
+	Debugger_Init ();
+	Serial.println ("1243");
+
+
 	//Serial1.begin(115200);
-	
+
 }
-void loop()
+void loop ()
 {
-	while (true)
-	{
-		
-		Debugger_DebugManagement();
-	}
-	while (true)
-	{
-		
-		Debugger_DebugManagement();
-		//MT_Main ();
-		//ExploreMaze ();
-		long long i = 0;
-		if (Zigbee_MessageRecord ()) {
-			Debugger_SetWatch ("arrive", ++i);
-		}
-
-		if (Manager_Time_TakeTime(1,100))
-		{
-			Debugger_SetWatch ("switch", MicroMove_IsPushed ());
-
-			/*Rep(i, 1, 6)
-			{
-				String s = "huidu";
-				Debugger_SetWatch(s + i, Huidu_Read(i));
-			}*/
-			Debugger_SetWatch ("X1", Car[0].pos.X);
-			Debugger_SetWatch ("Y1", Car[0].pos.Y);
-			Debugger_SetWatch ("X2", Car[1].pos.X);
-			Debugger_SetWatch ("Y2", Car[1].pos.Y);
-		}
-	}
-
-	
-		//Motor_GoSpeed(120, 120);
+//	Move_GoSpeed (100, 100);
+	Move_Refresh ();
 	long long lastcnt11 = Motor_M1Cnt;
 	long long lastcnt12 = Motor_M2Cnt;
-	long long lastcnt21 = Motor_M1Cnt;
-	long long lastcnt22 = Motor_M2Cnt;
-	
-	//Move_GoSpeed (SPEED, SPEED);
+	while (true)
+	{
+	//	Serial.println ("123");
+		Debugger_DebugManagement ();
+		Debugger_SetWatch ("asd", "as");
+		if (Manager_Time_TakeTime(23,20))
+		{
+			Move_KeepRate ();
+		}
+		//MT_Main ();
+		//ExploreMaze ();
+	//	long long i = 0;
+	//	Mpu_ShowValueInTestMode ();
+	//	Debugger_SetWatch
+	//	delay (1000);
+		
+
+	/*	if (Manager_Time_TakeTime (5, 100)) {
+			Move_KeepRate ();
+		}
+		if (Manager_Time_TakeTime(6,1000))
+		{
+			Debugger_SetWatch ("ActualSpeed1", Motor_M1Cnt - lastcnt11);
+			Debugger_SetWatch ("ActualSpeed2", Motor_M2Cnt - lastcnt12);
+			 lastcnt11 = Motor_M1Cnt;
+			 lastcnt12 = Motor_M2Cnt;
+		}
+		*/
+	}
+
+
+	//Motor_GoSpeed(120, 120);	//Move_GoSpeed (SPEED, SPEED);
 	while (1) {
 		Debugger_DebugManagement ();
 		//PL_GoStop ();
 		//PL_GoStop
 	}
-	
+
 
 }
 
