@@ -80,3 +80,8 @@ void Move_GotimeWithoutStop(int speed, int time)
 	delay(time);
 	Move_Stop();
 }
+
+void Move_TurnLeft (int speed) {
+		
+	Motor_GoSpeed (1, speed);
+}

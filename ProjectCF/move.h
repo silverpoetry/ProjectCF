@@ -18,3 +18,5 @@ void Move_GoSpeed(int speed1 ,	int	 speed2);
 void Move_KeepRate();
 void Move_Gotime(int speed, int time);
 void Move_Fucker();
+
+void Move_TurnLeft (int speed);

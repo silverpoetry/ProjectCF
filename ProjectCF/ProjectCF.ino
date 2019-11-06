@@ -51,6 +51,7 @@ void loop()
 	{
 		
 		Debugger_DebugManagement();
+		//MT_Main ();
 		//ExploreMaze ();
 		long long i = 0;
 		if (Zigbee_MessageRecord ()) {
