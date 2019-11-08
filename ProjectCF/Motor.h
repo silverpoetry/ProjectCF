@@ -8,10 +8,10 @@ const int  Motor_Pin1 = 37;
 const int  Motor_Pin4 = 39;
 const int  Motor_Pin3 = 41;
 const int  Motor_EN1 = 10;
-const int Motor_EN2 = 6;
+const int Motor_EN2 = 6; 
 extern int Motor_M1Speed;
 extern int Motor_M2Speed;
-
+//123
 extern volatile unsigned  long long  Motor_M1Cnt;
 extern volatile unsigned long long  Motor_M2Cnt;
 
