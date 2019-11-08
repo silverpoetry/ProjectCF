@@ -11,7 +11,7 @@ const int  Motor_EN1 = 10;
 const int Motor_EN2 = 6; 
 extern int Motor_M1Speed;
 extern int Motor_M2Speed;
-//123
+//123456
 extern volatile unsigned  long long  Motor_M1Cnt;
 extern volatile unsigned long long  Motor_M2Cnt;
 
