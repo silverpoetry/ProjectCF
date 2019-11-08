@@ -3,12 +3,12 @@
 #define Motor_NomorSpeed 150
 #define Motor_EncodePin1 3
 #define Motor_EncodePin2 2
-const int  Motor_Pin3 = 35;
-const int  Motor_Pin4 = 37;
-const int  Motor_Pin1 = 39;
-const int  Motor_Pin2 = 41;
+const int  Motor_Pin2 = 35;
+const int  Motor_Pin1 = 37;
+const int  Motor_Pin4 = 39;
+const int  Motor_Pin3 = 41;
 const int  Motor_EN1 = 10;
-const int Motor_EN2 = 7;
+const int Motor_EN2 = 6;
 extern int Motor_M1Speed;
 extern int Motor_M2Speed;
 
