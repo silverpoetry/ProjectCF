@@ -8,7 +8,7 @@
   - 拉格朗日中值定理
 
  <div id="domover">
-    <div id="divcircle" class="divcircle" ></div>
+    <div id="divcircle" style="width:100%;hegiht:100%;background-color:red" ></div>
     <div class="divback"> </div>
     <div id="divCircleContent">Z</div>
     <div id="divzhezhao" ></div>
