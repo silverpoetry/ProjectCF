@@ -14,7 +14,7 @@ bool arrived;
 
 //获取距离
 //单位 毫米
-long Distance_Get()
+long Distance_Get(int opt)
 
 {
 	long  sum = 0;
