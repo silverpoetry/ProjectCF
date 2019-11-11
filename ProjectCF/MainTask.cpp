@@ -2,7 +2,7 @@
 
 int Graph[10][10][6];
 //0, 1, 2, 3 for front, back, left, right
-int Road = 0;
+int MainTask_Road = 0;
 bool checked_list[8][8];
 
 myCar car;
@@ -16,7 +16,7 @@ public:
 		Array[++back] = elm;
 	}
 	void pop () {
-		--front0;
+		++front0;
 	}
 	Pos front () {
 		return Array[front0];
@@ -29,7 +29,7 @@ public:
 		return front0 == back;
 	}
 };
-void MT_GraphInit () {
+void MainTask_GraphInit () {
 
 	for (int i = 0; i <= 7; i++) {
 		for (int j = 0; j <= 7; j++) {
@@ -65,25 +65,25 @@ void MT_GraphInit () {
 	Graph[7][5][3] = 1;
 }
 int MT_CntManhattanDist (Pos from, Pos to) {
-	return abs (from.x - to.x) + abs (from.y - to.y);
+	return abs (from.X - to.X) + abs (from.Y - to.Y);
 }
-void MT_ProbeObstacle (Pos now) {
-	if (Graph[now.x][now.y][1] == 0) {
+void MainTask_ProbeObstacle (Pos now) {
+	if (Graph[now.X][now.Y][1] == 0) {
 		int distance = Distance_Get (1);
 		if (distance < OBSTACLE_DISTANCE) {
-			Graph[now.x][now.y][car.orientation] = -1;
+			Graph[now.X][now.Y][car.Orientation] = -1;
 		}
 		else {
-			Graph[now.x][now.y][car.orientation] = 1;
+			Graph[now.X][now.Y][car.Orientation] = 1;
 			if (distance < 2 * OBSTACLE_DISTANCE) {
-				if (car.orientation == 0)
-					Graph[now.x][now.y + 1][car.orientation] = 0;
-				else if (car.orientation == 1)
-					Graph[now.x][now.y - 1][car.orientation] = 0;
-				else if (car.orientation == 2)
-					Graph[now.x - 1][now.y][car.orientation] = 0;
-				else if (car.orientation == 3)
-					Graph[now.x + 1][now.y][car.orientation] = 0;
+				if (car.Orientation == 0)
+					Graph[now.X][now.Y + 1][car.Orientation] = 0;
+				else if (car.Orientation == 1)
+					Graph[now.X][now.Y - 1][car.Orientation] = 0;
+				else if (car.Orientation == 2)
+					Graph[now.X - 1][now.Y][car.Orientation] = 0;
+				else if (car.Orientation == 3)
+					Graph[now.X + 1][now.Y][car.Orientation] = 0;
 
 			}
 			//else if()
@@ -91,18 +91,18 @@ void MT_ProbeObstacle (Pos now) {
 	}
 
 	//0-2, 1-3, 2-1, 3-0
-	if (Graph[now.x][now.y][2] == 0) {
+	if (Graph[now.X][now.Y][2] == 0) {
 		int distance = Distance_Get (2);
 		bool flag = (distance >= OBSTACLE_DISTANCE);
 
-		if (car.orientation == 0)
-			Graph[now.x][now.y][2] = flag;
-		else if (car.orientation == 1)
-			Graph[now.x][now.y][3] = flag;
-		else if (car.orientation == 2)
-			Graph[now.x][now.y][1] = flag;
-		else if (car.orientation == 3)
-			Graph[now.x][now.y][0] = flag;
+		if (car.Orientation == 0)
+			Graph[now.X][now.Y][2] = flag;
+		else if (car.Orientation == 1)
+			Graph[now.X][now.Y][3] = flag;
+		else if (car.Orientation == 2)
+			Graph[now.X][now.Y][1] = flag;
+		else if (car.Orientation == 3)
+			Graph[now.X][now.Y][0] = flag;
 		/*
 				if (flag == 1) {
 					flag = (distance >= 2 * OBSTACLE_DISTANCE);
@@ -118,18 +118,18 @@ void MT_ProbeObstacle (Pos now) {
 	}
 
 	//0-3, 1-2, 2-0, 3-1
-	if (Graph[now.x][now.y][3] == 0) {
+	if (Graph[now.X][now.Y][3] == 0) {
 		int distance = Distance_Get (3);
 		bool flag = (distance >= OBSTACLE_DISTANCE);
 
-		if (car.orientation == 0)
-			Graph[now.x][now.y][3] = flag;
-		else if (car.orientation == 1)
-			Graph[now.x][now.y][2] = flag;
-		else if (car.orientation == 2)
-			Graph[now.x][now.y][0] = flag;
-		else if (car.orientation == 3)
-			Graph[now.x][now.y][1] = flag;
+		if (car.Orientation == 0)
+			Graph[now.X][now.Y][3] = flag;
+		else if (car.Orientation == 1)
+			Graph[now.X][now.Y][2] = flag;
+		else if (car.Orientation == 2)
+			Graph[now.X][now.Y][0] = flag;
+		else if (car.Orientation == 3)
+			Graph[now.X][now.Y][1] = flag;
 		/*		if (flag == 1) {
 					flag = (distance >= 2 * OBSTACLE_DISTANCE);
 					if (car.orientation == 0)
@@ -152,41 +152,41 @@ bool BFS (Pos from, Pos to) {
 
 	Queue q;
 	q.push (from);
-	checked_list[from.x][from.y] = 1;
+	checked_list[from.X][from.Y] = 1;
 	while (!q.empty ()) {
 		Pos now = q.front ();
 		q.pop ();
-		checked_list[now.x][now.y] = 1;
+		checked_list[now.X][now.Y] = 1;
 		Pos tmp;
-		if ((!checked_list[now.x][now.y + 1]) && (Graph[now.x][now.y][0] == 1)) {
-			tmp.x = now.x;
-			tmp.y = now.y + 1;
+		if ((!checked_list[now.X][now.Y + 1]) && (Graph[now.X][now.Y][0] == 1)) {
+			tmp.X = now.X;
+			tmp.Y = now.Y + 1;
 			q.push (tmp);
 		}
-		if ((!checked_list[now.x][now.y - 1]) && (Graph[now.x][now.y][1] == 1)) {
-			tmp.x = now.x;
-			tmp.y = now.y - 1;
+		if ((!checked_list[now.X][now.Y - 1]) && (Graph[now.X][now.Y][1] == 1)) {
+			tmp.X = now.X;
+			tmp.Y = now.Y - 1;
 			q.push (tmp);
 		}
-		if ((!checked_list[now.x + 1][now.y]) && (Graph[now.x][now.y][2] == 1)) {
-			tmp.x = now.x + 1;
-			tmp.y = now.y;
+		if ((!checked_list[now.X + 1][now.Y]) && (Graph[now.X][now.Y][2] == 1)) {
+			tmp.X = now.X + 1;
+			tmp.Y = now.Y;
 			q.push (tmp);
 		}
-		if ((!checked_list[now.x - 1][now.y]) && (Graph[now.x][now.y][3] == 1)) {
-			tmp.x = now.x - 1;
-			tmp.y = now.y;
+		if ((!checked_list[now.X - 1][now.Y]) && (Graph[now.X][now.Y][3] == 1)) {
+			tmp.X = now.X - 1;
+			tmp.Y = now.Y;
 			q.push (tmp);
 		}
 	}
-	if (!checked_list[to.x][to.y])
+	if (!checked_list[to.X][to.Y])
 		return 0;
 	return 1;
 }
-void MT_ExploreMaze (Pos org, Pos def) {
+void MainTask_ExploreMaze (Pos org, Pos def) {
 	Queue q;
 	q.push (org);
-	checked_list[org.x][org.y] = 1;
+	checked_list[org.X][org.Y] = 1;
 	while (!q.empty ()) {
 		Pos now = q.front ();
 		q.pop ();

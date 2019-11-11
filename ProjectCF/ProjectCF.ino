@@ -13,8 +13,12 @@
 
 
 
+
 void setup ()
 {
+	
+	
+	
 	Serial.begin (9600);
 	Serial.println ("123");
 	Manager_Hardware_Init ();
