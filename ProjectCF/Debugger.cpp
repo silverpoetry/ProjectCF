@@ -44,9 +44,9 @@ void Debugger_DebugManagement()
 		else if (s1 == "gllft")PL_CrossRoad(1);
 		else if (s1 == "glrt")PL_GoCrossTurnRight();
 		else if (s1 == "bmpspeed")Move_GoSpeed(atoi(s2.c_str()), atoi(s3.c_str()));
-		else if (s1 == "getball")GetBall();
-		else if (s1 == "exmaze")MT_Main();
-		else if (s1 == "getball2")GetBall2();
+	//	else if (s1 == "getball")GetBall();
+		//else if (s1 == "exmaze")MT_Main();
+		//else if (s1 == "getball2")GetBall2();
 
 	}
 	

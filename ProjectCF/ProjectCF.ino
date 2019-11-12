@@ -32,17 +32,52 @@ void setup ()
 void loop ()
 {
 //	Move_GoSpeed (100, 100);
-	Move_Refresh ();
+//	Move_Refresh ();
 	long long lastcnt11 = Motor_M1Cnt;
 	long long lastcnt12 = Motor_M2Cnt;
+//	Motor_GoSpeed (180, 180);
+	Move_Refresh ();
 	while (true)
 	{
+	//	Motor_GoSpeed (150, 255);
 	//	Serial.println ("123");
 		Debugger_DebugManagement ();
-		Debugger_SetWatch ("asd", "as");
-		if (Manager_Time_TakeTime(23,20))
-		{
+		if (MicroMove_IsPushed (1)) {
+			Serial.println (1);
+		}
+
+		if (MicroMove_IsPushed (2)) {
+			Serial.println (2);
+
+		}
+
+		if (MicroMove_IsPushed (3)) {
+			Serial.println (3);
+
+		}
+
+		if (MicroMove_IsPushed (4)) {
+			Serial.println (4);
+
+		}
+		if (Manager_Time_TakeTime (14, 50)) {
 			Move_KeepRate ();
+		}
+		//Debugger_SetWatch ("asd", "as");
+		if (Manager_Time_TakeTime(23,300))
+		{/*
+		//	Move_KeepRate ();
+			Debugger_SetWatch ("h1", Huidu_Read (1));
+			Debugger_SetWatch ("h2", Huidu_Read (2));
+			Debugger_SetWatch ("h3", Huidu_Read (3));
+			Debugger_SetWatch ("h4", Huidu_Read (4));
+			Debugger_SetWatch ("h5", Huidu_Read (5));
+			Debugger_SetWatch ("h6", Huidu_Read (6));
+
+			Debugger_SetWatch ("us1", Distance_Get (1));
+			Debugger_SetWatch ("us2", Distance_Get (2));
+*/
+
 		}
 		//MT_Main ();
 		//ExploreMaze ();

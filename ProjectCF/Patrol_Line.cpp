@@ -98,7 +98,7 @@ int PL_GoStop () {
 void PL_GoBlind ()
 {
 	
-		if (MicroMove_IsPushed ())Motor_GoSpeed (155, 140);
+		if (MicroMove_IsPushed (3))Motor_GoSpeed (155, 140);
 		else Motor_GoSpeed (140, 155);
 
 	

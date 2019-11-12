@@ -34,7 +34,7 @@ void Move_KeepRate ()
 
 	int step2 = Motor_M2Cnt - Move_LastCnt2;
 	if (Motor_M2Speed < 0)step2 *= -1;
-	double KP = 1.5;
+	double KP = 1;
 	int err = (step2 * Motor_Rate - step1);
 
 	Debugger_SetWatch ("ActualSpeed1", step1);
