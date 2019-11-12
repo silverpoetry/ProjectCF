@@ -153,6 +153,15 @@ public:
 		return front0 == back;
 	}
 };
+
+Pos min_dist_pos = { 1, 1 };
+int min_dist = 1000;
+void MT_UpdateMinDistPos (Pos tmp, Pos to) {
+	if (MainTask_CntManhattanDist (tmp, to) < min_dist) {
+		min_dist_pos = tmp;
+		min_dist = MainTask_CntManhattanDist (tmp, to);
+	}
+}
 bool BFS(Pos from, Pos to) {
 
 	for (int i = 0; i <= 7; i++)
@@ -162,6 +171,9 @@ bool BFS(Pos from, Pos to) {
 
 	BFSQueue q;
 	q.push({ from,from });
+
+	min_dist_pos = from;
+	min_dist = MainTask_CntManhattanDist (min_dist_pos, to);
 	checked_list[from.X][from.Y] = 1;
 	while (!q.empty()) {
 		Pos now = q.front().to;
@@ -177,6 +189,7 @@ bool BFS(Pos from, Pos to) {
 			tmp.X = now.X;
 			tmp.Y = now.Y + 1;
 			q.push({ tmp,now });
+
 		}
 		if ((!checked_list[now.X][now.Y - 1]) && (Graph[now.X][now.Y][2] == 1)) {
 			tmp.X = now.X;

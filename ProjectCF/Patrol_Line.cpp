@@ -98,11 +98,18 @@ int PL_GoStop () {
 void PL_GoBlind ()
 {
 	
-		if (MicroMove_IsPushed (3))Motor_GoSpeed (155, 140);
-		else Motor_GoSpeed (140, 155);
+		if (MicroMove_IsPushed (1))Motor_GoSpeed (155, 140);
+		else Motor_GoSpeed (150, 155);
 
 	
-}/*
+}
+void PL_GoBackBlind () {
+	if (MicroMove_IsPushed (3)) { Motor_GoSpeed (-150, -140); 
+	Debugger_SetWatch ("m3", 1);
+	}
+	else { Motor_GoSpeed (-150, -175); Debugger_SetWatch ("m3", 0); }
+}
+/*
 void PL_goline (int basic1, int basic2)
 {
 	if (Huidu_IsLine (1) && Huidu_IsLine (2))Motor_GoSpeed (basic1, basic2);

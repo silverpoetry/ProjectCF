@@ -36,13 +36,18 @@ void loop ()
 	long long lastcnt11 = Motor_M1Cnt;
 	long long lastcnt12 = Motor_M2Cnt;
 //	Motor_GoSpeed (180, 180);
-	Move_Refresh ();
+//	Move_Refresh ();
+//	Debugger_Init
 	while (true)
 	{
+	//	PL_GoBackBlind ();
+		
 	//	Motor_GoSpeed (150, 255);
 	//	Serial.println ("123");
 		Debugger_DebugManagement ();
-		if (MicroMove_IsPushed (1)) {
+		PL_GoBlind ();
+	//	Move_KeepRate ();
+		/*if (MicroMove_IsPushed (1)) {
 			Serial.println (1);
 		}
 
@@ -62,10 +67,12 @@ void loop ()
 		}
 		if (Manager_Time_TakeTime (14, 50)) {
 			Move_KeepRate ();
-		}
+		}*/
 		//Debugger_SetWatch ("asd", "as");
-		if (Manager_Time_TakeTime(23,300))
-		{/*
+		if (Manager_Time_TakeTime(23,10))
+		{
+		//	if()
+			/*
 		//	Move_KeepRate ();
 			Debugger_SetWatch ("h1", Huidu_Read (1));
 			Debugger_SetWatch ("h2", Huidu_Read (2));

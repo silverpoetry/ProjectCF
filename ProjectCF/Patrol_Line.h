@@ -8,6 +8,8 @@ void PL_CrossRoad(int opt);
 int PL_GoStop (void);
 //void PL_goline (int basic1, int basic2);
 void PL_GoBlind ();
+void PL_GoBackBlind ();
+
 void PL_GoCrossTurnRight ();
 extern double PID_KP , PID_KI , PID_KD ;
 enum CorssRoad
