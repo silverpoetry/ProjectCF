@@ -285,7 +285,7 @@ void MainTask_ExploreMaze (Pos org, Pos def, int depth) {
 		if_possibile = BFS (org, def);
 	}
 	if (if_possibile) {
-		MainTask_Goto (path[depth]);
+		MainTask_Goto (path[depth+1]);
 	}
 	else {
 		MainTask_Goto (path[2]);
