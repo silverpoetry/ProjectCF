@@ -2,7 +2,7 @@
 
 #include "IncludeList.h"
 #define OBSTACLE_DISTANCE 10
-extern int Graph[10][10][6];
+extern int Graph[8][8][6];
 struct Pos {
 	int X = -1, Y = -1;
 	Pos (int x = 0, int y = 0) {
