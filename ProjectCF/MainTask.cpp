@@ -1,6 +1,6 @@
 #include "MainTask.h"
 
-int Graph[8][8][6];d
+int Graph[8][8][6];
 //0, 1, 2, 3 for front, right, back, left
 int MainTask_Road = 0;
 bool checked_list[8][8];
@@ -288,7 +288,7 @@ bool BFS (Pos from, Pos to) {
 	}
 	
 	
-	
+	/*
 	path[++pathlength] = p; 
 	while (!(link_last[p.X][p.Y] == p))
 	{
@@ -302,17 +302,96 @@ bool BFS (Pos from, Pos to) {
 		path[i] = path[pathlength - i + 1];
 		path[pathlength - i + 1] = tmp;
 	}
-	return flag;
+//	return flag;*/
 
 }
-void MainTask_Goto (Pos p) {
-	//转弯并走到下一个点
-}
-
 bool if_possibile = 0;
-
+Pos MovePos (int dir) {
+	Pos tmp = car.Position;
+	if (dir == 0) {
+		tmp.Y += 1;
+	}
+	else if (dir == 1) {
+		tmp.X -= 1;
+	}
+	else if (dir == 2) {
+		tmp.Y -= 1;
+	}
+	else if (dir == 3) {
+		tmp.X += 1;
+	}
+	return tmp;
+}
+void UpdateCarOrient (int o) {
+	if (o == 1) {
+		car.Orientation += 1;
+	}
+	else if (o == 3) {
+		car.Orientation -= 1;
+	}
+	car.Orientation += 4;
+	car.Orientation %= 4;
+}
+void UpdateCarPos (Pos p) {
+	car.Position = p;
+}
 void MainTask_GoPath()
 {
+	//0, 1, 2, 3 for front, right, back, left
+	for (int i = 2; i <= pathlength; i++) {
+
+		for (int j = 0; j <= 3; j++) {
+			int dir = getPosition (j);
+			if (MovePos (dir) == path[i]) {
+				if (j == 0) {
+					PL_GoStop ();
+				//	UpdateCarPos (path[i]);
+					//UpdateCar (0);
+				}
+				else if (j == 2) {
+					PL_GoBackStop ();
+				//	UpdateCarPos
+				}
+				else if (j == 1) {
+					PL_CrossRoad (5);
+					PL_GoStop ();
+					UpdateCarOrient (1);
+				}
+				else if (j == 3) {
+					PL_CrossRoad (1);
+					PL_GoStop ();
+					UpdateCarOrient (3);
+				}
+
+				UpdateCarPos (path[i]);
+			}
+/*
+			int back_dir = getPosition (dir);
+			if (back_dir == 0 && Pos (car.Position.X, car.Position.Y + 1) == path[i]) {
+				PL_GoBackStop ();
+				UpdatePosandOrient (0, 2);
+				continue;
+			}
+			else if (back_dir == 1 && Pos (car.Position.X - 1, car.Position.Y) == path[i]) {
+				PL_GoBackStop ();
+				UpdatePosandOrient (1, 2);
+				continue;
+			}
+			else if (back_dir == 2 && Pos (car.Position.X, car.Position.Y - 1) == path[i]) {
+				PL_GoBackStop ();
+				UpdatePosandOrient (2, 2);
+				continue;
+			}
+			else if (back_dir == 3 && Pos (car.Position.X + 1, car.Position.Y) == path[i]) {
+				PL_GoBackStop ();
+				UpdatePosandOrient (3, 2);
+				continue;
+			}
+		}*/
+
+	//	int stright_dir = getPosition (0);
+		//if()
+	}
 
 }
 void MainTask_Go(Pos from, Pos to)

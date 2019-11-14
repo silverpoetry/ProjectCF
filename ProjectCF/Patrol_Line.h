@@ -12,6 +12,7 @@ void PL_GoBackBlind (int opt);
 
 void PL_GoCrossTurnRight ();
 extern double PID_KP , PID_KI , PID_KD ;
+void PL_GoBackStop ();
 enum CorssRoad
 {
 	CrossRoad_Left ,
