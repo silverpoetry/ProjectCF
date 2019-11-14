@@ -1,6 +1,6 @@
 #include "MainTask.h"
 
-int Graph[8][8][6];d
+int Graph[8][8][6];
 //0, 1, 2, 3 for front, right, back, left
 int MainTask_Road = 0;
 bool checked_list[8][8];
@@ -63,6 +63,7 @@ public:
 		return front0 == back;
 	}
 };
+
 void MainTask_GraphInit () {
 
 	for (int i = 0; i <= 7; i++) {
@@ -109,6 +110,23 @@ void MainTask_GraphInit () {
 	Graph[7][5][0] = -1;
 	Graph[7][5][2] = -1;
 	Graph[7][5][3] = -1;
+}
+void Maintask_Init2()
+{
+	for (int i = 0; i <= 7; i++) {
+		for (int j = 0; j <= 7; j++) {
+			Graph[i][j][0] = Graph[i][j][1] = Graph[i][j][2] = Graph[i][j][3] = 1;
+		}
+	}
+	MainTask_GraphInit();
+
+
+}
+void Maintask_Init()
+{
+	
+	MainTask_GraphInit();
+
 }
 int MainTask_CntManhattonDist (Pos from, Pos to) {
 	return abs (from.X - to.X) + abs (from.Y - to.Y);

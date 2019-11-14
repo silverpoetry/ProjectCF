@@ -29,8 +29,11 @@ extern int MainTask_Road;
 void MainTask_GraphInit ();
 
 int MT_Main ();
+void Maintask_Init2();
+void Maintask_Init();
+void MainTask_GraphInit();
 void MainTask_ProbeObstacle ();
-void MainTask_ExploreMaze (Pos rog, Pos def);
+
 /* 
 1-left 2-right 3-left_front 4-front
 */
