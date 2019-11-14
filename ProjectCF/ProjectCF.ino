@@ -18,7 +18,7 @@ void Action()
 {
 	while (!Manager_Time_TakeTime(12,500))
 	{
-		PL_GoBlind();
+		PL_GoBlind(1);
 	}
 	Move_Stop();
 	while (!MicroMove_IsPushed(1))
@@ -39,7 +39,7 @@ void Action()
 	{
 		Motor_GoSpeed(150, 150);
 	}
-	PL_GoBlind();
+	PL_GoBlind(1);
 	/*while (true)
 	{
 		if (MicroMove_IsPushed(1)) { Motor_GoSpeed(150, -20); delay(50); }
@@ -74,6 +74,8 @@ void loop ()
 //	Motor_GoSpeed (180, 180);
 //	Move_Refresh ();
 //	Debugger_Init
+	Debugger_DebugManagement ();
+//	GetballBack ();
 	while (true)
 	{
 	//	PL_GoBackBlind ();
@@ -81,7 +83,7 @@ void loop ()
 	//	Motor_GoSpeed (150, 255);
 	//	Serial.println ("123");
 		Debugger_DebugManagement ();
-		Huidu_ShowValues();
+	//	Huidu_ShowValues();
 
 		//PL_GoBlind ();
 	//	Move_KeepRate ();
