@@ -19,3 +19,5 @@
 #include "MainTask.h"
 
 #define SPEED 150
+#define OurCar Car[0]
+#define OurCarIndex 0

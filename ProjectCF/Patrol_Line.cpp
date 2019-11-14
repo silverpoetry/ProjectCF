@@ -76,7 +76,7 @@ void PL_GoCrossTurnLeft ()
 
 	PL_GoWithoutStop ();
 	//Move_GotimeWithoutStop(150, 100);
-	PL_GoLineTime (180);
+	PL_GoLineTime (110);
 	Move_Stop ();
 	PL_CrossRoad (1);
 
@@ -87,7 +87,7 @@ void PL_GoCrossTurnRight ()
 
 	PL_GoWithoutStop ();
 	//Move_GotimeWithoutStop(150, 200);
-	PL_GoLineTime (180);
+	PL_GoLineTime(110);
 	Move_Stop ();
 	PL_CrossRoad (5);
 

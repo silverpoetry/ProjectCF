@@ -1,7 +1,7 @@
 #include "Arm.h"
 #include "IncludeList.h"
 Servo servos[4];
-int angels[4] = {0,30,100};
+int angels[4] = {0,55,100};
 
 //初始化机械臂的舵机，并归位到初始角度
 void Arm_Init()
