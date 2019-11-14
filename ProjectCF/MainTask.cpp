@@ -6,13 +6,13 @@ int MainTask_Road = 0;
 bool checked_list[8][8];
 
 myCar car;
-int getPosition(int dir)
+int getPosition (int dir)
 {
 	return (car.Orientation + dir) % 4;
 }
-int SetVal(int dir, int step, int val)
+int SetVal (int dir, int step, int val)
 {
-	int pos = getPosition(dir), backpos = (pos + 2) % 4;
+	int pos = getPosition (dir), backpos = (pos + 2) % 4;
 
 	if (pos == 0)Graph[car.Position.X][car.Position.Y + step + 1][backpos] = Graph[car.Position.X][car.Position.Y + step][pos] = val;
 	if (pos == 1)Graph[car.Position.X - step - 1][car.Position.Y][backpos] = Graph[car.Position.X - step][car.Position.Y][pos] = val;
@@ -20,9 +20,9 @@ int SetVal(int dir, int step, int val)
 	if (pos == 3)Graph[car.Position.X + step + 1][car.Position.Y][backpos] = Graph[car.Position.X + step][car.Position.Y][pos] = val;
 
 }
-int GetVal(int dir, int step)
+int GetVal (int dir, int step)
 {
-	int pos = getPosition(dir);
+	int pos = getPosition (dir);
 
 	if (pos == 0)return  Graph[car.Position.X][car.Position.Y + step][pos];
 	if (pos == 1)return  Graph[car.Position.X - step][car.Position.Y][pos];
@@ -30,14 +30,14 @@ int GetVal(int dir, int step)
 	if (pos == 3)return Graph[car.Position.X + step][car.Position.Y][pos];
 
 }
-int SetDisabled(int dir, int step)
+int SetDisabled (int dir, int step)
 {
-	SetVal(dir, step, -1);
+	SetVal (dir, step, -1);
 }
 
 int SetDisabled (int dir)
 {
-	SetDisabled(dir, 0);
+	SetDisabled (dir, 0);
 }
 
 
@@ -111,21 +111,21 @@ void MainTask_GraphInit () {
 	Graph[7][5][2] = -1;
 	Graph[7][5][3] = -1;
 }
-void Maintask_Init2()
+void Maintask_Init2 ()
 {
 	for (int i = 0; i <= 7; i++) {
 		for (int j = 0; j <= 7; j++) {
 			Graph[i][j][0] = Graph[i][j][1] = Graph[i][j][2] = Graph[i][j][3] = 1;
 		}
 	}
-	MainTask_GraphInit();
+	MainTask_GraphInit ();
 
 
 }
-void Maintask_Init()
+void Maintask_Init ()
 {
-	
-	MainTask_GraphInit();
+
+	MainTask_GraphInit ();
 
 }
 int MainTask_CntManhattonDist (Pos from, Pos to) {
@@ -134,7 +134,7 @@ int MainTask_CntManhattonDist (Pos from, Pos to) {
 int map_sensor[4] = { 1,3,0,2 };
 void MainTask_ProbeObstacle ()
 {
-	
+
 	//k代表方向的循环
 	for (int k = 0; k <= 3; k++)
 	{
@@ -143,25 +143,25 @@ void MainTask_ProbeObstacle ()
 		//n代表距离的循环
 		for (int n = 1; n <= 2; n++)
 		{
-			
+
 			//已探测直接滚蛋
-			if (GetVal(k, n - 1) != 0)break;
-			
-			
+			if (GetVal (k, n - 1) != 0)break;
+
+
 			int d = n * OBSTACLE_DISTANCE;
-	
-				int distance = Distance_Get (map_sensor[k]);
-				if (distance == 0)distance = 30000;
-				
-				if ((n-1)*d <distance&& distance < d)
-				{
-					SetDisabled(k, n - 1);
-				}
-				else if(distance>d)
-				{
-					SetVal(k, n - 1, 1);
-				}
-			
+
+			int distance = Distance_Get (map_sensor[k]);
+			if (distance == 0)distance = 30000;
+
+			if ((n - 1) * d < distance && distance < d)
+			{
+				SetDisabled (k, n - 1);
+			}
+			else if (distance > d)
+			{
+				SetVal (k, n - 1, 1);
+			}
+
 		}
 	}
 
@@ -207,17 +207,17 @@ void MT_UpdateMinDistPos (Pos tmp, Pos to) {
 		min_dist = MainTask_CntManhattonDist (tmp, to);
 	}
 }
-void makepath(Pos p)
+void makepath (Pos p)
 {
 	pathlength = 0;
 	path[++pathlength] = p;
 	while (!(link_last[p.X][p.Y] == p))
 	{
-		
+
 		path[++pathlength] = p;
 		p = link_last[p.X][p.Y];
 	}
-	Rep(i, 1, pathlength / 2)
+	Rep (i, 1, pathlength / 2)
 	{
 		Pos tmp = path[i];
 		path[i] = path[pathlength - i + 1];
@@ -230,7 +230,7 @@ bool BFS (Pos from, Pos to) {
 	for (int i = 0; i <= 7; i++)
 		for (int j = 0; j <= 7; j++)
 			checked_list[i][j] = 0, link_last[i][j] = { i,j };
-	
+
 	pathlength = 0;
 	min_dist_pos = { 1,1 };
 	min_dist = 1000;
@@ -238,52 +238,52 @@ bool BFS (Pos from, Pos to) {
 	BFSQueue q;
 	q.push ({ from,from });
 
-	
-//	checked_list[from.X][from.Y] = 1;
 
-	
-	while (!q.empty()) {
+	//	checked_list[from.X][from.Y] = 1;
 
-		Pos now = q.front().to;
-					
+
+	while (!q.empty ()) {
+
+		Pos now = q.front ().to;
+
 		if (checked_list[now.X][now.Y]) { q.pop ();  continue; }
 
 		checked_list[now.X][now.Y] = 1;
 		q.pop ();
 		//记录来路
-		link_last[now.X][now.Y] = q.front().from;
+		link_last[now.X][now.Y] = q.front ().from;
 		//如果存在为探索点，将其加入搜索
 		bool b = false;
 		for (int i = 0; i < 3; i++)b = b || (Graph[now.X][now.Y][i] == 0);
-		if (b)MT_UpdateMinDistPos(now, to);
+		if (b)MT_UpdateMinDistPos (now, to);
 		//找到
 		if (now.X == to.X && now.Y == to.Y)break;
 
 		Pos tmp; int dist = 0;
 		// 0, 1, 2, 3 for front, right, back, left
 		if ((now.Y < 7) && (!checked_list[now.X][now.Y + 1]) && (Graph[now.X][now.Y][0] == 1)) {
-			
+
 			tmp.X = now.X;
 			tmp.Y = now.Y + 1;
 			q.push ({ tmp,now });
 			MT_UpdateMinDistPos (tmp, to);
 		}
 		if ((now.Y > 0) && (!checked_list[now.X][now.Y - 1]) && (Graph[now.X][now.Y][2] == 1)) {
-			
+
 			tmp.X = now.X;
 			tmp.Y = now.Y - 1;
 			q.push ({ tmp,now });
 			MT_UpdateMinDistPos (tmp, to);
 		}
 		if ((now.X < 7) && (!checked_list[now.X + 1][now.Y]) && (Graph[now.X][now.Y][3] == 1)) {
-			
+
 			tmp.X = now.X + 1;
 			tmp.Y = now.Y;
 			q.push ({ tmp,now });
 			MT_UpdateMinDistPos (tmp, to);
 		}
 		if ((now.X > 0) && (!checked_list[now.X - 1][now.Y]) && (Graph[now.X][now.Y][1] == 1)) {
-			
+
 			tmp.X = now.X - 1;
 			tmp.Y = now.Y;
 			q.push ({ tmp,now });
@@ -294,20 +294,20 @@ bool BFS (Pos from, Pos to) {
 	{
 		//不曾到达终点
 		//前往最佳位置
-		makepath(min_dist_pos);
+		makepath (min_dist_pos);
 		return 0;
 
 	}
 
 	if (checked_list[to.X][to.Y]) {
-		
-		makepath(to);
+
+		makepath (to);
 		return 1;
 	}
-	
-	
+
+
 	/*
-	path[++pathlength] = p; 
+	path[++pathlength] = p;
 	while (!(link_last[p.X][p.Y] == p))
 	{
 		pathlength++;
@@ -353,7 +353,7 @@ void UpdateCarOrient (int o) {
 void UpdateCarPos (Pos p) {
 	car.Position = p;
 }
-void MainTask_GoPath()
+void MainTask_GoPath ()
 {
 	//0, 1, 2, 3 for front, right, back, left
 	for (int i = 1; i <= pathlength; i++) {
@@ -383,49 +383,23 @@ void MainTask_GoPath()
 
 				UpdateCarPos (path[i]);
 			}
-			/*
-						int back_dir = getPosition (dir);
-						if (back_dir == 0 && Pos (car.Position.X, car.Position.Y + 1) == path[i]) {
-							PL_GoBackStop ();
-							UpdatePosandOrient (0, 2);
-							continue;
-						}
-						else if (back_dir == 1 && Pos (car.Position.X - 1, car.Position.Y) == path[i]) {
-							PL_GoBackStop ();
-							UpdatePosandOrient (1, 2);
-							continue;
-						}
-						else if (back_dir == 2 && Pos (car.Position.X, car.Position.Y - 1) == path[i]) {
-							PL_GoBackStop ();
-							UpdatePosandOrient (2, 2);
-							continue;
-						}
-						else if (back_dir == 3 && Pos (car.Position.X + 1, car.Position.Y) == path[i]) {
-							PL_GoBackStop ();
-							UpdatePosandOrient (3, 2);
-							continue;
-						}
-					}*/
-
-					//	int stright_dir = getPosition (0);
-						//if()
 		}
 
 	}
 }
-void MainTask_Go(Pos from, Pos to)
+void MainTask_Go (Pos from, Pos to)
 {
-	if (BFS(from,to))
+	if (BFS (from, to))
 	{
 		//找到路
-		MainTask_GoPath();
+		MainTask_GoPath ();
 		return;
 	}
 	else
 	{
-		MainTask_GoPath();
-		MainTask_ProbeObstacle();
-		MainTask_Go(min_dist_pos, to);
+		MainTask_GoPath ();
+		MainTask_ProbeObstacle ();
+		MainTask_Go (min_dist_pos, to);
 	}
 }
 
@@ -440,61 +414,132 @@ int MT_Pos2Node (int& x, int& y) {
 	}
 
 }
-int MainTask(){
-	Pos org = { 2, 0 }, def = { 7, 5 };
-//	MainTask_ExploreMaze (org, def, 1);
-}
-/*
-int MT_FindEntrance (int road) {
-	while (1) {
-		//if (Zigbee_MessageRecord ()) {
-		Zigbee_MessageRecord ();
-		int x = Car[1].pos.X, y = Car[1].pos.Y;
-		Debugger_SetWatch ("x", x);
-		Debugger_SetWatch ("y", y);
-		Move_GoSpeed (SPEED, SPEED);
-		if (x <= 82) {
-			Move_Stop ();
-			delay (500);
-			Move_TurnLeft (150);
-			while (1) {
-				//if (Manager_Time_TakeTime (30, 30)) {
 
-				if (Huidu_IsLine (2)) {
-					Move_Stop ();
-					delay (500);
-					return;
-				}
-				//}
-			}
-
-		}
-		//MT_Pos2Node (x, y);
-	//}
+bool SavePeopleReadyforEntrance () {
+	const int standard_x = 185, standard_y = 0;
+	const int eps_x = 2, eps_y = 5;
+	while (!Zigbee_MessageRecord ());
+	if (abs (Car[0].pos.X - standard_x) < eps_x) {
+		return 1;
 	}
-	//MT_FindExit (2, 0);
+	return 0;
+}
+bool SavePeopleBackReadytoGoBlind () {
+	const int standard_x = 185, standard_y = 0;
+	const int eps_x = 2, eps_y = 5;
+	while (!Zigbee_MessageRecord ());
+	if (abs (Car[0].pos.X - standard_x) < eps_x) {
+		return 1;
+	}
+	return 0;
 }
 
-int MT_Pos2Node (int& x, int& y) {
-	/*
-	2,0: 106,15贴左边   85,15贴左开始拐（左轮刚过）78,24正好进入 81,14 开始拐（在入口中央）
-	0,2:
+bool SavePeopleReturnHome () {
+	const int standard_x = 185, standard_y = 0;
+	const int eps_x = 2, eps_y = 5;
+	while (!Zigbee_MessageRecord ());
+	if (abs (Car[0].pos.X - standard_x) < eps_x) {
+		return 1;
+	}
+	return 0;
+}
 
-
-	if ((x >= 65 && x <= 80) && (y >= 17 && y <= 20)) {
-		x = 2, y = 0;
+void MainTask_GotoGoods () {
+	while (!Manager_Time_TakeTime (12, 500))
+	{
+		PL_GoBlind (1);
+	}
+	Move_Stop ();
+	while (!MicroMove_IsPushed (1))
+	{
+		Motor_GoSpeed (0, 150);
 	}
 
-}
-int MT_FreeMaze (void) {
-	if (Zigbee_MessageRecord ()) {
-		int x = Car[0].pos.X, y = Car[0].pos.Y;
-		MT_Pos2Node (x, y);
+	Move_Stop ();
+	Motor_GoSpeed (150, 0);
+	delay (150);
+	while (!MicroMove_IsPushed (1))
+	{
+		Motor_GoSpeed (150, 150);
 	}
+	Motor_GoSpeed (100, -50);
+	delay (600);
+	while (!MicroMove_IsPushed (1))
+	{
+		Motor_GoSpeed (150, 150);
+	}
+	PL_GoBlind (1);
 }
 
-int MT_Main () {
-	MT_FindEntrance (1);
-	MT_FindExit (2, 0);
-	return 1;
-}*/
+void MainTask_CollectGoods ()
+{
+	MainTask_GotoGoods ();
+	//以下代码位于Pretest.cpp, 目前没有上位机
+	GetballBack ();
+	/*while (true)
+	{
+		if (MicroMove_IsPushed(1)) { Motor_GoSpeed(150, -20); delay(50); }
+
+		else Motor_GoSpeed(150, 155);
+	}*/
+
+
+}
+
+
+void MainTask_GotoPeopleEntrance () {
+	while (!Manager_Time_TakeTime (12, 500))
+	{
+		PL_GoBlind (2);
+	}
+	Move_Stop ();
+	while (!MicroMove_IsPushed (2))
+	{
+		Motor_GoSpeed (150, 0);
+	}
+
+	Move_Stop ();
+	Motor_GoSpeed (0, 150);
+	delay (150);
+	while (!MicroMove_IsPushed (2))
+	{
+		Motor_GoSpeed (150, 150);
+	}
+	Motor_GoSpeed (-50, 100);
+	delay (600);
+	while (!MicroMove_IsPushed (2))
+	{
+		Motor_GoSpeed (150, 150);
+	}
+
+	while (!SavePeopleReadyforEntrance ()) {
+		PL_GoBlind (1);
+	}
+	Move_Gotime (SPEED, SPEED, 300);
+	PL_CrossRoad (1);
+}
+
+void MainTask_SavePeopleBackHome () {
+	while (!MicroMove_IsPushed (2)) {
+		Motor_GoSpeed (100, 0);
+	}
+	while (!SavePeopleBackReadytoGoBlind ()) {
+		PL_GoBlind (2);
+	}
+	Move_Gotime (SPEED, SPEED, 400);
+	Move_Gotime (0, SPEED, 1000);
+	while (!SavePeopleReturnHome ()) {
+		PL_GoBlind (2);
+	}
+	
+}
+void MainTask_SavePeople () {
+	MainTask_GotoPeopleEntrance ();
+	int i = 1;
+	while (i <= 3) {
+		Pos org = { 5, 7 }, def = { 0, 2 };
+		MainTask_Go (org, def);
+		i++;
+	}
+	MainTask_SavePeopleBackHome ();
+}
