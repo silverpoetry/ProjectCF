@@ -18,7 +18,7 @@ void Action()
 {
 	while (!Manager_Time_TakeTime(12,500))
 	{
-		PL_GoBlind(1);
+		PL_GoBlind();
 	}
 	Move_Stop();
 	while (!MicroMove_IsPushed(1))
@@ -39,7 +39,7 @@ void Action()
 	{
 		Motor_GoSpeed(150, 150);
 	}
-	PL_GoBlind(1);
+	PL_GoBlind();
 	/*while (true)
 	{
 		if (MicroMove_IsPushed(1)) { Motor_GoSpeed(150, -20); delay(50); }
@@ -74,8 +74,6 @@ void loop ()
 //	Motor_GoSpeed (180, 180);
 //	Move_Refresh ();
 //	Debugger_Init
-	Debugger_DebugManagement ();
-//	GetballBack ();
 	while (true)
 	{
 	//	PL_GoBackBlind ();
@@ -83,8 +81,14 @@ void loop ()
 	//	Motor_GoSpeed (150, 255);
 	//	Serial.println ("123");
 		Debugger_DebugManagement ();
-	//	Huidu_ShowValues();
-
+		//Huidu_ShowValues();
+		Zigbee_MessageRecord();
+		Debugger_SetWatch("BallX", Game.BallPos.X);
+		Debugger_SetWatch("BallY", Game.BallPos.Y);
+		Debugger_SetWatch("Car1X", Car[0].pos.X);
+		Debugger_SetWatch("car1Y", Car[0].pos.Y);
+		Debugger_SetWatch("Car2X", Car[1].pos.X);
+		Debugger_SetWatch("CAR2Y", Car[1].pos.Y);
 		//PL_GoBlind ();
 	//	Move_KeepRate ();
 		/*if (MicroMove_IsPushed (1)) {
