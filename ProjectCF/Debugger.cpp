@@ -2,6 +2,7 @@
 #include "Debugger.h"
 #include "Arduino.h"
 #define serialPort Serial3
+void Action();
 void Debugger_Init()
 {
 	serialPort.begin(9600);
@@ -20,6 +21,7 @@ void Debugger_SetWatch(String name, String value)
 	serialPort.print("SetWatch(" + name + ","+value+")\n");
 	
 }
+int Debug_lspeed=150, Debug_rspeed=150;
 void Debugger_DebugManagement()
 {
 	if (serialPort.available() > 0)
@@ -38,13 +40,13 @@ void Debugger_DebugManagement()
 		else if (s1 == "fwd")Move_Refresh(), Motor_GoSpeed(atoi(s2.c_str()), atoi(s3.c_str()));
 		else if (s1 == "amg1")Arm_Go(1, atoi(s2.c_str()));
 		else if (s1 == "amg2")Arm_Go(2, atoi(s2.c_str()));	
-		else if (s1 == "glfwd")PL_GoCrossTurnLeft();
-
-		else if(s1=="gtm")Move_Gotime(atoi(s2.c_str()), atoi(s3.c_str()));
+		else if (s1 == "glfwd")PL_GoStop();
+		else if (s1 == "sspeed")Debug_lspeed = atoi(s2.c_str()), Debug_rspeed = atoi(s3.c_str());
+		else if(s1=="gtm")Move_Gotime(Debug_lspeed, Debug_rspeed, atoi(s3.c_str()));
 		else if (s1 == "gllft")PL_CrossRoad(1);
-		else if (s1 == "glrt")PL_GoCrossTurnRight();
+		else if (s1 == "glrt")PL_GoCrossTurnLeft();
 		else if (s1 == "bmpspeed")Move_GoSpeed(atoi(s2.c_str()), atoi(s3.c_str()));
-	//	else if (s1 == "getball")GetBall();
+		else if (s1 == "getball")Action();
 		//else if (s1 == "exmaze")MT_Main();
 		//else if (s1 == "getball2")GetBall2();
 

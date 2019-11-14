@@ -1,12 +1,12 @@
 #include "Patrol_Line.h"
 #include <math.h>
-
+#define PL_NormalSpeed 120
 
 void PL_CrossRoad (int opt) {
 	
 	if (opt == 1) {
 		Move_RotateLeft ();
-		delay(400);
+		delay(300);
 		while (1) {
 			//delay (500);
 			if (Huidu_IsLine(2)) {
@@ -16,9 +16,9 @@ void PL_CrossRoad (int opt) {
 			
 		}
 	}
-	else if (opt == 2) {
+	else if (opt == 5) {
 		Move_RotateRight ();
-		delay (400);
+		delay (300);
 		while (1) {
 			//delay (500);
 			if (Huidu_IsLine (6)) {
@@ -33,16 +33,18 @@ void PL_CrossRoad (int opt) {
 #define SPEED2 150
 void PL_PIDCorrection()
 {
-	bool is1 = Huidu_IsLine(2), is2 = Huidu_IsLine(3), is3 = Huidu_IsLine(4), is4 = Huidu_IsLine(5);
+	bool is0=Huidu_IsLine(1),is6=Huidu_IsLine(6), is1 = Huidu_IsLine(2), is2 = Huidu_IsLine(3), is3 = Huidu_IsLine(4), is4 = Huidu_IsLine(5);
 	if (is2 && is3) {
 		Motor_GoSpeed(SPEED, SPEED2); return;
 	}
 
-	if (is2)Motor_GoSpeed(SPEED*0.9, SPEED2*1.1);
-	if (is3)Motor_GoSpeed(SPEED*1.1, SPEED2*0.9);
+	if (is2)Motor_GoSpeed(SPEED*0.93, SPEED2*1.07);
+	if (is3)Motor_GoSpeed(SPEED*1.07, SPEED2*0.93);
 	if(is4)Motor_GoSpeed(SPEED*1.3, SPEED2*0.7);
 	if (is1)Motor_GoSpeed(SPEED*0.7, SPEED2*1.3);
+	if (is0)Motor_GoSpeed(SPEED*1.4, SPEED2*0.6);
 	
+	if (is6)Motor_GoSpeed(SPEED*0.6, SPEED2*1.4);
 }
 
 void PL_GoLineTime(int time)
@@ -50,15 +52,16 @@ void PL_GoLineTime(int time)
 	while (!Manager_Time_TakeTime(31,time))
 	{
 		
-		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
+		if (Manager_Time_TakeTime(21, 10))PL_PIDCorrection();
 	}
 }
 void PL_GoCrossTurnLeft()
 {
 	
 		PL_GoWithoutStop();
-		Move_GotimeWithoutStop(150, 200);
-		PL_GoLineTime(280);
+		//Move_GotimeWithoutStop(150, 100);
+		PL_GoLineTime(180);
+		Move_Stop();
 		PL_CrossRoad(1);
 	
 	
@@ -67,8 +70,9 @@ void PL_GoCrossTurnRight ()
 {
 	
 		PL_GoWithoutStop ();
-		Move_GotimeWithoutStop(150, 200);
-		PL_GoLineTime (230);
+		//Move_GotimeWithoutStop(150, 200);
+		PL_GoLineTime (180);
+		Move_Stop();
 		PL_CrossRoad (2);
 	
 
@@ -80,9 +84,10 @@ void PL_GoWithoutStop()
 	{
 		//if (Huidu_IsLine(1)) {  return; }
 		if (Huidu_IsCrossRoad ()) { return; }
-		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
+		if (Manager_Time_TakeTime(21, 10))PL_PIDCorrection();
 	}
 }
+
 int PL_GoStop () {
 	//PID_Refresh ();
 	Motor_GoSpeed(SPEED, SPEED);
@@ -91,13 +96,14 @@ int PL_GoStop () {
 	{
 		//if (Huidu_IsLine(1) )
 		if(Huidu_IsCrossRoad()){ Move_Stop(); return; }
-		if (Manager_Time_TakeTime(21, 20))PL_PIDCorrection();
+		if (Manager_Time_TakeTime(21, 10))PL_PIDCorrection();
 
 	}
 }
 void PL_GoBlind ()
 {
 	
+
 		if (MicroMove_IsPushed (1))Motor_GoSpeed (155, 140);
 		else Motor_GoSpeed (150, 155);
 

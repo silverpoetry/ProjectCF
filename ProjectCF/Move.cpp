@@ -54,23 +54,23 @@ void Move_KeepRate ()
 }
 int Move_RotateLeft (void) {
 
-	Move_GoSpeed (-150, 150);
+	Move_GoSpeed (-120, 120);
 }
 
 int Move_RotateRight (void) {
 
-	Move_GoSpeed (150, -150);
+	Move_GoSpeed (120, -120);
 }
 
 void Move_Stop (void) {
-	Motor_GoSpeed(-60, -60);
+	Motor_GoSpeed(-Motor_M1Speed, -Motor_M2Speed);
 	delay(50);
 	Motor_Stop (1);
 	Motor_Stop (2);
 }
-void Move_Gotime(int speed, int time)
+void Move_Gotime(int speed1,int speed2, int time)
 {
-	Motor_GoSpeed(speed, speed);
+	Motor_GoSpeed(speed1, speed2);
 	delay(time);
 	Move_Stop();
 }

@@ -9,12 +9,12 @@ void MicroMove_Init ()
 	pinMode (MicroMove_Pin4, INPUT);
 
 }
-bool MicroMove_IsPushed (int opt)
+bool MicroMove_IsPushed (int id)
 {
-	if(opt == 1)return !digitalRead (MicroMove_Pin);
-	if (opt == 2)return !digitalRead (MicroMove_Pin2);
-	if (opt == 3)return !digitalRead (MicroMove_Pin3);
-	if (opt == 4)return !digitalRead (MicroMove_Pin4);
+	if(id == 1)return !digitalRead (MicroMove_Pin);
+	if (id == 2)return !digitalRead (MicroMove_Pin2);
+	if (id == 3)return !digitalRead (MicroMove_Pin3);
+	if (id == 4)return !digitalRead (MicroMove_Pin4);
 
 
 }

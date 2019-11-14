@@ -3,7 +3,7 @@
 
 
 #ifndef Xiancchang
-int Huidu_LineValues[] = { 100, 100, 100, 100,100,100,500 };
+int Huidu_LineValues[] = { 100, 100, 90, 100,100,100,100 };
 #else
 int Huidu_LineValues[] = { 0, 290, 300, 0 };
 #endif 
@@ -64,4 +64,12 @@ bool Huidu_IsCrossRoad (void) {
 		return 1;
 	}
 	return 0;
+}
+void Huidu_ShowValues()
+{
+	for (int i = 1; i < 6; i++)
+	{
+		String s = "Huidu";
+		Debugger_SetWatch(s + i, Huidu_Read(i));
+	}
 }
