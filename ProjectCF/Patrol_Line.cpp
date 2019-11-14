@@ -3,17 +3,17 @@
 #define PL_NormalSpeed 120
 
 void PL_CrossRoad (int opt) {
-	
+
 	if (opt == 1) {
 		Move_RotateLeft ();
-		delay(300);
+		delay (300);
 		while (1) {
 			//delay (500);
-			if (Huidu_IsLine(2)) {
+			if (Huidu_IsLine (2)) {
 				Move_Stop ();
 				return;
 			}
-			
+
 		}
 	}
 	else if (opt == 5) {
@@ -21,99 +21,118 @@ void PL_CrossRoad (int opt) {
 		delay (300);
 		while (1) {
 			//delay (500);
-			if (Huidu_IsLine (6)) {
+			if (Huidu_IsLine (5)) {
 				Move_Stop ();
 				return;
 			}
 
 		}
 	}
-	return ;
+	return;
 }
 #define SPEED2 150
-void PL_PIDCorrection()
+void PL_PIDCorrection ()
 {
-	bool is0=Huidu_IsLine(1),is6=Huidu_IsLine(6), is1 = Huidu_IsLine(2), is2 = Huidu_IsLine(3), is3 = Huidu_IsLine(4), is4 = Huidu_IsLine(5);
+	bool is0 = Huidu_IsLine (1), is6 = Huidu_IsLine (6), is1 = Huidu_IsLine (2), is2 = Huidu_IsLine (3), is3 = Huidu_IsLine (4), is4 = Huidu_IsLine (5);
 	if (is2 && is3) {
-		Motor_GoSpeed(SPEED, SPEED2); return;
+		Motor_GoSpeed (SPEED, SPEED2); return;
 	}
 
-	if (is2)Motor_GoSpeed(SPEED*0.93, SPEED2*1.07);
-	if (is3)Motor_GoSpeed(SPEED*1.07, SPEED2*0.93);
-	if(is4)Motor_GoSpeed(SPEED*1.3, SPEED2*0.7);
-	if (is1)Motor_GoSpeed(SPEED*0.7, SPEED2*1.3);
-	if (is0)Motor_GoSpeed(SPEED*1.4, SPEED2*0.6);
-	
-	if (is6)Motor_GoSpeed(SPEED*0.6, SPEED2*1.4);
+	if (is2)Motor_GoSpeed (SPEED * 0.93, SPEED2 * 1.07);
+	if (is3)Motor_GoSpeed (SPEED * 1.07, SPEED2 * 0.93);
+	if (is4)Motor_GoSpeed (SPEED * 1.3, SPEED2 * 0.7);
+	if (is1)Motor_GoSpeed (SPEED * 0.7, SPEED2 * 1.3);
+	if (is0)Motor_GoSpeed (SPEED * 1.4, SPEED2 * 0.6);
+
+	if (is6)Motor_GoSpeed (SPEED * 0.6, SPEED2 * 1.4);
 }
 
-void PL_GoLineTime(int time)
+void PL_GoLineTime (int time)
 {
-	while (!Manager_Time_TakeTime(31,time))
+	while (!Manager_Time_TakeTime (31, time))
 	{
-		
-		if (Manager_Time_TakeTime(21, 10))PL_PIDCorrection();
+
+		if (Manager_Time_TakeTime (21, 10))PL_PIDCorrection ();
 	}
 }
-void PL_GoCrossTurnLeft()
+void PL_GoCrossTurnLeft ()
 {
-	
-		PL_GoWithoutStop();
-		//Move_GotimeWithoutStop(150, 100);
-		PL_GoLineTime(180);
-		Move_Stop();
-		PL_CrossRoad(1);
-	
-	
+
+	PL_GoWithoutStop ();
+	//Move_GotimeWithoutStop(150, 100);
+	PL_GoLineTime (180);
+	Move_Stop ();
+	PL_CrossRoad (1);
+
+
 }
 void PL_GoCrossTurnRight ()
 {
-	
-		PL_GoWithoutStop ();
-		//Move_GotimeWithoutStop(150, 200);
-		PL_GoLineTime (180);
-		Move_Stop();
-		PL_CrossRoad (2);
-	
+
+	PL_GoWithoutStop ();
+	//Move_GotimeWithoutStop(150, 200);
+	PL_GoLineTime (180);
+	Move_Stop ();
+	PL_CrossRoad (5);
+
 
 }
-void PL_GoWithoutStop()
+void PL_GoWithoutStop ()
 {
-	Motor_GoSpeed(SPEED, SPEED);
+	Motor_GoSpeed (SPEED, SPEED);
 	while (1)
 	{
 		//if (Huidu_IsLine(1)) {  return; }
 		if (Huidu_IsCrossRoad ()) { return; }
-		if (Manager_Time_TakeTime(21, 10))PL_PIDCorrection();
+		if (Manager_Time_TakeTime (21, 10))PL_PIDCorrection ();
 	}
 }
 
 int PL_GoStop () {
 	//PID_Refresh ();
-	Motor_GoSpeed(SPEED, SPEED);
+	Motor_GoSpeed (SPEED, SPEED);
 	//delay (2);
 	while (1)
 	{
 		//if (Huidu_IsLine(1) )
-		if(Huidu_IsCrossRoad()){ Move_Stop(); return; }
-		if (Manager_Time_TakeTime(21, 10))PL_PIDCorrection();
+		if (Huidu_IsCrossRoad ()) { Move_Stop (); return; }
+		if (Manager_Time_TakeTime (21, 10))PL_PIDCorrection ();
 
 	}
 }
-void PL_GoBlind ()
-{
-	
 
+void PL_GoBlind (int opt)
+{
+
+	if (opt == 1) {
 		if (MicroMove_IsPushed (1))Motor_GoSpeed (155, 140);
 		else Motor_GoSpeed (150, 155);
-
-	
-}
-void PL_GoBackBlind () {
-	if (MicroMove_IsPushed (3)) { Motor_GoSpeed (-150, -140); 
-	Debugger_SetWatch ("m3", 1);
 	}
-	else { Motor_GoSpeed (-150, -175); Debugger_SetWatch ("m3", 0); }
+	else if (opt == 2) {
+		if (MicroMove_IsPushed (2))Motor_GoSpeed (140, 160);
+		else Motor_GoSpeed (140, 155);
+	}
+}
+void PL_GoBackBlind (int opt) {
+	if (opt == 3) {
+		if (MicroMove_IsPushed (3)) {
+			Motor_GoSpeed (-150, -140);
+			//Debugger_SetWatch ("m3", 1);
+		}
+		else {
+			Motor_GoSpeed (-150, -175);
+			//	Debugger_SetWatch ("m3", 0);
+		}
+	}
+	else if (opt == 4) {
+		if (MicroMove_IsPushed (4)) {
+			Motor_GoSpeed (-140, -150);
+		//	Debugger_SetWatch ("m3", 1);
+		}
+		else { 
+			Motor_GoSpeed (-165, -150); //Debugger_SetWatch ("m3", 0); 
+		}
+	}
 }
 /*
 void PL_goline (int basic1, int basic2)
