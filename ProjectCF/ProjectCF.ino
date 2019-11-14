@@ -81,8 +81,14 @@ void loop ()
 	//	Motor_GoSpeed (150, 255);
 	//	Serial.println ("123");
 		Debugger_DebugManagement ();
-		Huidu_ShowValues();
-
+		//Huidu_ShowValues();
+		Zigbee_MessageRecord();
+		Debugger_SetWatch("BallX", Game.BallPos.X);
+		Debugger_SetWatch("BallY", Game.BallPos.Y);
+		Debugger_SetWatch("Car1X", Car[0].pos.X);
+		Debugger_SetWatch("car1Y", Car[0].pos.Y);
+		Debugger_SetWatch("Car2X", Car[1].pos.X);
+		Debugger_SetWatch("CAR2Y", Car[1].pos.Y);
 		//PL_GoBlind ();
 	//	Move_KeepRate ();
 		/*if (MicroMove_IsPushed (1)) {
