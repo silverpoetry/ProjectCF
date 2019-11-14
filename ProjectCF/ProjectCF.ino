@@ -18,7 +18,7 @@ void Action()
 {
 	while (!Manager_Time_TakeTime(12,500))
 	{
-		PL_GoBlind();
+		PL_GoBlind(1);
 	}
 	Move_Stop();
 	while (!MicroMove_IsPushed(1))
@@ -39,7 +39,7 @@ void Action()
 	{
 		Motor_GoSpeed(150, 150);
 	}
-	PL_GoBlind();
+	PL_GoBlind(1);
 	/*while (true)
 	{
 		if (MicroMove_IsPushed(1)) { Motor_GoSpeed(150, -20); delay(50); }

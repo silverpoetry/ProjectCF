@@ -9,7 +9,7 @@ int PL_GoStop (void);
 //void PL_goline (int basic1, int basic2);
 void PL_GoBlind (int opt);
 void PL_GoBackBlind (int opt);
-
+void PL_GoBackStop ();
 void PL_GoCrossTurnRight ();
 extern double PID_KP , PID_KI , PID_KD ;
 void PL_GoBackStop ();
