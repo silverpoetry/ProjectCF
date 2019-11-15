@@ -75,9 +75,6 @@
     <ClInclude Include="Zigbee.h">
       <Filter>Header Files\Moudules</Filter>
     </ClInclude>
-    <ClInclude Include="Pretest.h">
-      <Filter>Header Files\Task</Filter>
-    </ClInclude>
     <ClInclude Include="MicroMove.h">
       <Filter>Header Files\Moudules</Filter>
     </ClInclude>
@@ -97,6 +94,9 @@
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Missions.h">
+      <Filter>Header Files\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="PreContest.h">
       <Filter>Header Files\Task</Filter>
     </ClInclude>
   </ItemGroup>
@@ -131,9 +131,6 @@
     <ClCompile Include="Debugger.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Pretest.cpp">
-      <Filter>Source Files\Task</Filter>
-    </ClCompile>
     <ClCompile Include="MicroMove.cpp">
       <Filter>Source Files\Moudules</Filter>
     </ClCompile>
@@ -147,6 +144,9 @@
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
     <ClCompile Include="Missions.cpp">
+      <Filter>Source Files\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="PreContest.cpp">
       <Filter>Source Files\Task</Filter>
     </ClCompile>
   </ItemGroup>
