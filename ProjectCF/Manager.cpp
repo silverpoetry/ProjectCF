@@ -1,4 +1,6 @@
 #include "IncludeList.h"
+#include "Manager.h"
+#include "MainTask.h"
 void Manager_Hardware_Init()
 {
 	Motor_Init ();
@@ -29,21 +31,6 @@ bool Manager_Time_TakeTime(long index,long num)
 	}
 
 	return false;
-
-}
-Pos PsitionConverter(Pos p)
-{
-	Pos startpoint = { 30,30 };
-	int blockwidth = 30;
-	p.X -= startpoint.X;
-	p.Y -= startpoint.Y;
-	Pos ret ;
-	p.X = (int)(((float)(p.X)) / blockwidth + 0.5)+1;
-	p.Y= (int)(((float)(p.Y)) / blockwidth + 0.5)+1;
-	ret.Y = p.X;
-	ret.X = 7 - p.Y;
-	return ret;
-
 
 }
 

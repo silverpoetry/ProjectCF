@@ -4,6 +4,7 @@
  Author:	The CFer
 */
 
+
 #include <Servo.h>
 #include <Esplora.h>
 #include "IncludeList.h"
@@ -43,7 +44,8 @@ void loop ()
 	while (true)
 	{
 	//	PL_GoBackBlind ();
-	
+		//Arm_PickBall();
+		//delay(3000);
 	//	Motor_GoSpeed (150, 255);
 	//	Serial.println ("123");
 		Debugger_DebugManagement ();
@@ -55,7 +57,10 @@ void loop ()
 		Debugger_SetWatch("car1Y", Car[0].pos.Y);
 		Debugger_SetWatch("Car2X", Car[1].pos.X);
 		Debugger_SetWatch("CAR2Y", Car[1].pos.Y);
-		//PL_GoBlind ();
+		//Debugger_SetWatch("dis1", Distance_Get(1));
+		//Debugger_SetWatch("dis2", Distance_Get(2));
+		//Debugger_SetWatch("dis3", Distance_Get(3));
+		////PL_GoBlind ();
 	//	Move_KeepRate ();
 		/*if (MicroMove_IsPushed (1)) {
 			Serial.println (1);
