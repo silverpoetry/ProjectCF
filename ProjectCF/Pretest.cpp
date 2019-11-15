@@ -91,82 +91,81 @@ int GetBall()
 
 }
 */
-
-bool GetballBackReadytoTurnLeft () {
+bool GetballBackReadytoTurnLeft() {
 	const int standard_x = 6, standard_y = 210;
 	const int eps_x = 5, eps_y = 2;
-	while (!Zigbee_MessageRecord ());
+	while (!Zigbee_MessageRecord());
 
-	if (abs (Car[0].pos.Y - standard_y) < eps_y){
+	if (abs(Car[0].pos.Y - standard_y) < eps_y) {
 		return 1;
 	}
 	return 0;
 }
-bool GetballBackReadyforAvoidEntrance () {
+bool GetballBackReadyforAvoidEntrance() {
 	const int standard_x = 149, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
-	while (!Zigbee_MessageRecord ());
+	while (!Zigbee_MessageRecord());
 
-	if (abs (Car[0].pos.X - standard_x) < eps_x) {
+	if (abs(Car[0].pos.X - standard_x) < eps_x) {
 		return 1;
 	}
 	return 0;
 
 }
-bool GetballBackReadytoGoLeft () {
+bool GetballBackReadytoGoLeft() {
 	const int standard_x = 249, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
-	while (!Zigbee_MessageRecord ());
+	while (!Zigbee_MessageRecord());
 
-	if (abs (Car[0].pos.X - standard_x) < eps_x) {
+	if (abs(Car[0].pos.X - standard_x) < eps_x) {
 		return 1;
 	}
 	return 0;
 }
 
-bool GetballBackReadytoGobackBlind () {
+bool GetballBackReadytoGobackBlind() {
 	const int standard_x = 218, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
-	while (!Zigbee_MessageRecord ());
+	while (!Zigbee_MessageRecord());
 
-	if (abs (Car[0].pos.X - standard_x) < eps_x) {
+	if (abs(Car[0].pos.X - standard_x) < eps_x) {
 		return 1;
 	}
 	return 0;
 }
 
 
-bool GetballBackReadytoGobackBlind11 () {
+bool GetballBackReadytoGobackBlind11() {
 	const int standard_x = 185, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
-	while (!Zigbee_MessageRecord ());
-	if (abs (Car[0].pos.X - standard_x) < eps_x) {
+	while (!Zigbee_MessageRecord());
+	if (abs(Car[0].pos.X - standard_x) < eps_x) {
 		return 1;
 	}
 	return 0;
 }
-bool GetballReturnHome () {
+bool GetballReturnHome() {
 	const int standard_x = 10, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
-	while (!Zigbee_MessageRecord ());
-	if (abs (Car[0].pos.X - standard_x) < eps_x) {
+	while (!Zigbee_MessageRecord());
+	if (abs(Car[0].pos.X - standard_x) < eps_x) {
 		return 1;
 	}
 	return 0;
 }
 
 
-void GetballBackTurnLeft () {
-	if (!Manager_Time_TakeTime (17, 200)) {
-		Move_GoSpeed (150, 150);
+void GetballBackTurnLeft() {
+	if (!Manager_Time_TakeTime(17, 200)) {
+		Move_GoSpeed(150, 150);
 	}
-	Move_Stop ();
-	Motor_GoSpeed (-225, -80);
-	delay (1400);
-	Move_Stop ();
+	Move_Stop();
+	Motor_GoSpeed(-225, -80);
+	delay(1400);
+	Move_Stop();
 }
 
-void GetballBack (void) {
+void GetballBack(void) {
 	/*	if (!Manager_Time_TakeTime (40, 200)) {
 			PL_GoBackBlind ();
 		}
@@ -174,28 +173,28 @@ void GetballBack (void) {
 			Motor_GoSpeed (150, -150);
 		}
 		Move_Stop ();*/
-	while (!GetballBackReadytoTurnLeft ()) {
-		PL_GoBackBlind (3);
+	while (!GetballBackReadytoTurnLeft()) {
+		PL_GoBackBlind(3);
 	}
 	//Move_Stop ();
-	GetballBackTurnLeft ();
-	while (!GetballBackReadyforAvoidEntrance ()) { 
-		PL_GoBackBlind (4); 
+	GetballBackTurnLeft();
+	while (!GetballBackReadyforAvoidEntrance()) {
+		PL_GoBackBlind(4);
 	}
-//	Move_Stop ();
-	while(!GetballBackReadytoGobackBlind11()) {
+	//	Move_Stop ();
+	while (!GetballBackReadytoGobackBlind11()) {
 		//185
-		Move_GoSpeed (-150, -160);
+		Move_GoSpeed(-150, -160);
 	}
 	while (!GetballBackReadytoGobackBlind()) {
-		PL_GoBackBlind (4);
+		PL_GoBackBlind(4);
 	}
-	while (!GetballBackReadytoGoLeft ()) {
-		Move_GoSpeed (-150, -150);
+	while (!GetballBackReadytoGoLeft()) {
+		Move_GoSpeed(-150, -150);
 	}
-	while (!GetballReturnHome ()) {
-		PL_GoBlind (1);
+	while (!GetballReturnHome()) {
+		PL_GoBlind(1);
 	}
-	Move_Stop ();
+	Move_Stop();
 	return;
 }

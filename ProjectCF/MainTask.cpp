@@ -382,7 +382,9 @@ int MT_Pos2Node(int& x, int& y) {
 
 }
 
+
 bool SavePeopleReadyforEntrance() {
+	//x:112, 90
 	const int standard_x = 185, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
 	while (!Zigbee_MessageRecord());
@@ -392,6 +394,7 @@ bool SavePeopleReadyforEntrance() {
 	return 0;
 }
 bool SavePeopleBackReadytoGoBlind() {
+	//x:255
 	const int standard_x = 185, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
 	while (!Zigbee_MessageRecord());
@@ -400,8 +403,8 @@ bool SavePeopleBackReadytoGoBlind() {
 	}
 	return 0;
 }
-
 bool SavePeopleReturnHome() {
+	//x260, y1
 	const int standard_x = 185, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
 	while (!Zigbee_MessageRecord());
@@ -409,104 +412,4 @@ bool SavePeopleReturnHome() {
 		return 1;
 	}
 	return 0;
-}
-
-void MainTask_GotoGoods() {
-	while (!Manager_Time_TakeTime(12, 500))
-	{
-		PL_GoBlind(1);
-	}
-	Move_Stop();
-	while (!MicroMove_IsPushed(1))
-	{
-		Motor_GoSpeed(0, 150);
-	}
-
-	Move_Stop();
-	Motor_GoSpeed(150, 0);
-	delay(150);
-	while (!MicroMove_IsPushed(1))
-	{
-		Motor_GoSpeed(150, 150);
-	}
-	Motor_GoSpeed(100, -50);
-	delay(600);
-	while (!MicroMove_IsPushed(1))
-	{
-		Motor_GoSpeed(150, 150);
-	}
-	PL_GoBlind(1);
-}
-
-void MainTask_CollectGoods()
-{
-	MainTask_GotoGoods();
-	//以下代码位于Pretest.cpp, 目前没有上位机
-	GetballBack();
-	/*while (true)
-	{
-		if (MicroMove_IsPushed(1)) { Motor_GoSpeed(150, -20); delay(50); }
-
-		else Motor_GoSpeed(150, 155);
-	}*/
-
-
-}
-
-
-void MainTask_GotoPeopleEntrance() {
-	while (!Manager_Time_TakeTime(12, 500))
-	{
-		PL_GoBlind(2);
-	}
-	Move_Stop();
-	while (!MicroMove_IsPushed(2))
-	{
-		Motor_GoSpeed(150, 0);
-	}
-
-	Move_Stop();
-	Motor_GoSpeed(0, 150);
-	delay(150);
-	while (!MicroMove_IsPushed(2))
-	{
-		Motor_GoSpeed(150, 150);
-	}
-	Motor_GoSpeed(-50, 100);
-	delay(600);
-	while (!MicroMove_IsPushed(2))
-	{
-		Motor_GoSpeed(150, 150);
-	}
-
-	while (!SavePeopleReadyforEntrance()) {
-		PL_GoBlind(1);
-	}
-	Move_Gotime(SPEED, SPEED, 300);
-	PL_CrossRoad(1);
-}
-
-void MainTask_SavePeopleBackHome() {
-	while (!MicroMove_IsPushed(2)) {
-		Motor_GoSpeed(100, 0);
-	}
-	while (!SavePeopleBackReadytoGoBlind()) {
-		PL_GoBlind(2);
-	}
-	Move_Gotime(SPEED, SPEED, 400);
-	Move_Gotime(0, SPEED, 1000);
-	while (!SavePeopleReturnHome()) {
-		PL_GoBlind(2);
-	}
-
-}
-void MainTask_SavePeople() {
-	MainTask_GotoPeopleEntrance();
-	int i = 1;
-	while (i <= 3) {
-		Pos org = { 5, 7 }, def = { 0, 2 };
-		MainTask_Go(org, def);
-		i++;
-	}
-	MainTask_SavePeopleBackHome();
 }

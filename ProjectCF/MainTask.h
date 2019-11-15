@@ -58,6 +58,11 @@ Pos MainTask_PositionConverter(Pos p);
 
 
 
+bool SavePeopleReadyforEntrance();
+bool SavePeopleBackReadytoGoBlind();
+bool SavePeopleReturnHome();
+
+
 const int map_sensor[4] = { 1,3,0,2 };
 
 //各侧障碍物的距离与格数对应法则
