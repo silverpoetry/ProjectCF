@@ -414,8 +414,9 @@ int MT_Pos2Node (int& x, int& y) {
 	}
 
 }
-
+///////////////////////////////////////////////////////////////
 bool SavePeopleReadyforEntrance () {
+	//x:112, 90
 	const int standard_x = 185, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
 	while (!Zigbee_MessageRecord ());
@@ -425,6 +426,7 @@ bool SavePeopleReadyforEntrance () {
 	return 0;
 }
 bool SavePeopleBackReadytoGoBlind () {
+	//x:255
 	const int standard_x = 185, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
 	while (!Zigbee_MessageRecord ());
@@ -434,6 +436,7 @@ bool SavePeopleBackReadytoGoBlind () {
 	return 0;
 }
 bool SavePeopleReturnHome () {
+	//x260, y1
 	const int standard_x = 185, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
 	while (!Zigbee_MessageRecord ());
@@ -444,6 +447,7 @@ bool SavePeopleReturnHome () {
 }
 
 bool EasyMazeReadyforEntrance () {
+	//y:109£¬ 88
 	const int standard_x = 185, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
 	while (!Zigbee_MessageRecord ());
@@ -452,6 +456,7 @@ bool EasyMazeReadyforEntrance () {
 	}
 }
 bool EasyMazeReadyforTurnRight () {
+	//x:216
 	const int standard_x = 185, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
 	while (!Zigbee_MessageRecord ());
@@ -460,7 +465,8 @@ bool EasyMazeReadyforTurnRight () {
 	}
 }
 bool EasyMazeGetHome () {
-	const int standard_x = 185, standard_y = 0;
+	//x1, y260
+	const int standard_x = 10, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
 	while (!Zigbee_MessageRecord ());
 	if (abs (Car[0].pos.X - standard_x) < eps_x) {
@@ -469,10 +475,11 @@ bool EasyMazeGetHome () {
 }
 
 bool GetballReadytoCatch () {
-	const int standard_x = 185, standard_y = 0;
+	//y:20
+	const int standard_x = 185, standard_y = 20;
 	const int eps_x = 2, eps_y = 5;
 	while (!Zigbee_MessageRecord ());
-	if (abs (Car[0].pos.X - standard_x) < eps_x) {
+	if (abs (Car[0].pos.Y - standard_y) < eps_y) {
 		return 1;
 	}
 }
@@ -503,7 +510,7 @@ void MainTask_GotoGoods () {
 	}
 	//PL_GoBlind (1);
 }
-void MainTask_CatchBall ();
+void MainTask_CatchBall (){}
 void MainTask_CollectGoods ()
 {
 	MainTask_GotoGoods ();
@@ -589,8 +596,10 @@ void EasyMazeReturnHome () {
 	}
 	Move_Stop ();
 	while (!EasyMazeReadyforTurnRight ()) {
-		Motor_GoSpeed (100, 100);
+		PL_GoBlind (1);
+		//Motor_GoSpeed (100, 100);
 	}
+	Move_Gotime (100, 100, 300);
 	Move_Gotime (120, 0, 2000);
 	while (!EasyMazeGetHome ()) {
 		PL_GoBlind (2);
@@ -618,7 +627,7 @@ void MainTask_SavePeople () {
 	car.Orientation = 1;
 	while (i <= 3) {
 		while (!Zigbee_MessageRecord ());
-		Pos person1 = PsitionConverter (Passenger[0]), person2 = PsitionConverter(Passenger[1]);
+		Pos person1, person2;// PsitionConverter (Passenger[0]), person2 = PsitionConverter(Passenger[1]);
 		if (MainTask_CntManhattonDist (car.Position, person1) < MainTask_CntManhattonDist (car.Position, person2)) {
 			MainTask_Go (car.Position, person1);
 		}

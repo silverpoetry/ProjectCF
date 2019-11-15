@@ -33,6 +33,7 @@ void Maintask_Init2();
 void Maintask_Init();
 void MainTask_GraphInit();
 void MainTask_ProbeObstacle ();
+void MainTask_CollectGoods ();
 
 /* 
 1-left 2-right 3-left_front 4-front
