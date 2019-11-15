@@ -8,7 +8,7 @@ const int  Motor_Pin1 = 29;
 const int  Motor_Pin4 = 27;
 const int  Motor_Pin3 = 26;
 const int  Motor_EN1 = 9;
-const int Motor_EN2 = 7; 
+const int Motor_EN2 = 10; 
 extern int Motor_M1Speed;
 extern int Motor_M2Speed;
 

@@ -46,7 +46,7 @@ void Debugger_DebugManagement()
 		else if (s1 == "gllft")PL_GoCrossTurnLeft ();
 		else if (s1 == "glrt")PL_GoBackBlind (4);
 		else if (s1 == "bmpspeed")Move_GoSpeed (atoi (s2.c_str ()), atoi (s3.c_str ()));
-		else if (s1 == "getball")MainTask_CollectGoods ();
+//		else if (s1 == "getball")MainTask_CollectGoods ();
 		else if (s1 == "getball2")PL_GoBlind (2);
 		else if (s1 == "exmaze")PL_GoBackBlind (3);
 		else if (s1 == "setpoint")Debug_ptx = atoi(s2.c_str()), Debug_ptY = atoi(s3.c_str());
