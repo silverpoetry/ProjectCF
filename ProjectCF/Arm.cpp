@@ -97,12 +97,19 @@ void Arm_PickBall()
 	delay(500);
 	Arm_Go(2, 155);
 	delay(1000);
-	Arm_Go(2, 80);
-	delay(500);
-	Arm_Go(1, 100);
-	delay(500);
-	Arm_Go(2, 120);
 
 
+
+
+
+
+}
+void Arm_DropBall () {
+
+	Arm_Go (2, 80);
+	delay (500);
+	Arm_Go (1, 100);
+	delay (500);
+	Arm_Go (2, 120);
 
 }

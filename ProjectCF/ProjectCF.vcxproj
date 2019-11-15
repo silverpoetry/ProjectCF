@@ -82,7 +82,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)..\ProjectCF;E:\Program Files (x86)\Arduino\libraries\Servo\src;E:\Program Files (x86)\Arduino\libraries\Esplora\src;E:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src;$(ProjectDir)..\Libraries\Kalman_Filter_Library\1.0.2\Kalman_Filter_Library;E:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\utility;$(ProjectDir)..\Libraries\Adafruit_VL53L0X\1.0.5\Adafruit_VL53L0X\src;E:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;E:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;E:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include;E:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr;E:\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.2\include;E:\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.2\include;E:\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ProjectDir)__vm\.ProjectCF.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
-      <PreprocessorDefinitions>__AVR_atmega2560__;__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=108010;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__AVR_atmega2560__;__AVR_ATmega2560__;_VMDEBUG=1;F_CPU=16000000L;ARDUINO=108010;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -133,7 +133,7 @@
     <ClInclude Include="Mpu.h" />
     <ClInclude Include="Outer.h" />
     <ClInclude Include="Patrol_Line.h" />
-    <ClInclude Include="Pretest.h" />
+    <ClInclude Include="PreContest.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Zigbee.h" />
     <ClInclude Include="__vm\.ProjectCF.vsarduino.h" />
@@ -153,7 +153,7 @@
     <ClCompile Include="Mpu.cpp" />
     <ClCompile Include="Outer.cpp" />
     <ClCompile Include="Patrol_Line.cpp" />
-    <ClCompile Include="Pretest.cpp" />
+    <ClCompile Include="PreContest.cpp" />
     <ClCompile Include="Zigbee.cpp" />
   </ItemGroup>
   <ItemGroup>
