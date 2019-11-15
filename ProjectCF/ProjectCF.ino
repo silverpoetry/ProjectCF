@@ -43,20 +43,29 @@ void loop ()
 //	Debugger_Init
 	while (true)
 	{
+		
 	//	PL_GoBackBlind ();
 		//Arm_PickBall();
 		//delay(3000);
 	//	Motor_GoSpeed (150, 255);
 	//	Serial.println ("123");
 		Debugger_DebugManagement ();
+	//	while (1) {
+			if (Manager_Time_TakeTime (19, 100)) {
+				Debugger_SetWatch ("ActualSpeed1", Motor_M1Cnt - lastcnt11);
+				Debugger_SetWatch ("ActualSpeed2", Motor_M2Cnt - lastcnt12);
+				lastcnt11 = Motor_M1Cnt;
+				lastcnt12 = Motor_M2Cnt;
+			}
+	//	}
 		//Huidu_ShowValues();
-		Zigbee_MessageRecord();
-		Debugger_SetWatch("BallX", Game.BallPos.X);
+		//Zigbee_MessageRecord();
+	/*	Debugger_SetWatch("BallX", Game.BallPos.X);
 		Debugger_SetWatch("BallY", Game.BallPos.Y);
 		Debugger_SetWatch("Car1X", Car[0].pos.X);
 		Debugger_SetWatch("car1Y", Car[0].pos.Y);
 		Debugger_SetWatch("Car2X", Car[1].pos.X);
-		Debugger_SetWatch("CAR2Y", Car[1].pos.Y);
+		Debugger_SetWatch("CAR2Y", Car[1].pos.Y);*/
 		//Debugger_SetWatch("dis1", Distance_Get(1));
 		//Debugger_SetWatch("dis2", Distance_Get(2));
 		//Debugger_SetWatch("dis3", Distance_Get(3));
