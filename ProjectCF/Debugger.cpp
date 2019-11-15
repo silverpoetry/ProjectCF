@@ -21,7 +21,7 @@ void Debugger_SetWatch(String name, String value)
 	serialPort.print("SetWatch(" + name + ","+value+")\n");
 	
 }
-int Debug_lspeed=150, Debug_rspeed=150;
+int Debug_lspeed = 150, Debug_rspeed = 150, Debug_ptx = 0, Debug_ptY = 0; int n = 0;
 void Debugger_DebugManagement()
 {
 	if (serialPort.available() > 0)
@@ -49,6 +49,12 @@ void Debugger_DebugManagement()
 		else if (s1 == "getball")MainTask_CollectGoods ();
 		else if (s1 == "getball2")PL_GoBlind (2);
 		else if (s1 == "exmaze")PL_GoBackBlind (3);
+		else if (s1 == "setpoint")Debug_ptx = atoi(s2.c_str()), Debug_ptY = atoi(s3.c_str());
+		else if (s1 == "setdir")Graph[Debug_ptx][Debug_ptY][atoi(s2.c_str())] = -1,Debugger_SetWatch("n",++n);
+		else if (s1 == "grinit")Maintask_Init2(),Debugger_SetWatch("init2","true");
+		else if (s1 == "grclear")Maintask_Init(), Debugger_SetWatch("init1", "true");
+		
+	
 		//else if (s1 == "exmaze")MT_Main();
 		//else if (s1 == "getball2")GetBall2();
 

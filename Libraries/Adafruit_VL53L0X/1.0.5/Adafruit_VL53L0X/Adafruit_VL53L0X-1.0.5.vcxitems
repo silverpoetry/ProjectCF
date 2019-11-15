@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding ="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <PropertyGroup Label="Globals" >
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{a7cb0f25-8dfb-4f4a-baa7-1fc0ced21336}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Adafruit_VL53L0X.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\core\src\vl53l0x_api.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\core\src\vl53l0x_api_calibration.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\core\src\vl53l0x_api_core.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\core\src\vl53l0x_api_ranging.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\core\src\vl53l0x_api_strings.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\platform\src\vl53l0x_i2c_comms.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\platform\src\vl53l0x_platform.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\Adafruit_VL53L0X.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_api.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_api_calibration.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_api_core.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_api_ranging.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_api_strings.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_def.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_device.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_i2c_platform.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_interrupt_threshold_settings.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_platform.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_platform_log.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_tuning.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\vl53l0x_types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)library.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)doxyfile" />
+<None Include="$(MSBuildThisFileDirectory)README.md" />
+  </ItemGroup>
+</Project>

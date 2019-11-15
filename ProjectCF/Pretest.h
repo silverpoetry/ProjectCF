@@ -7,4 +7,9 @@
 //void GetBall2();
 //bool GetballBackReadytoTurnLeft ();
 //void GetballBackTurnLeft ();
-void GetballBack (void);
+void GetballBack ();
+
+void GetballBackTurnLeft();
+
+void GetballBack();
+

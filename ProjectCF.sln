@@ -1,15 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29025.244
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProjectCF", "ProjectCF\ProjectCF.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Kalman_Filter_Library-1.0.2", "Libraries\Kalman_Filter_Library\1.0.2\Kalman_Filter_Library\Kalman_Filter_Library-1.0.2.vcxitems", "{3B8AFAE6-BE42-4D53-84B5-313F3572698B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adafruit_VL53L0X-1.0.5", "Libraries\Adafruit_VL53L0X\1.0.5\Adafruit_VL53L0X\Adafruit_VL53L0X-1.0.5.vcxitems", "{A7CB0F25-8DFB-4F4A-BAA7-1FC0CED21336}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Libraries\Kalman_Filter_Library\1.0.2\Kalman_Filter_Library\Kalman_Filter_Library-1.0.2.vcxitems*{3b8afae6-be42-4d53-84b5-313f3572698b}*SharedItemsImports = 9
+		Libraries\Adafruit_VL53L0X\1.0.5\Adafruit_VL53L0X\Adafruit_VL53L0X-1.0.5.vcxitems*{a7cb0f25-8dfb-4f4a-baa7-1fc0ced21336}*SharedItemsImports = 9
+		Libraries\Adafruit_VL53L0X\1.0.5\Adafruit_VL53L0X\Adafruit_VL53L0X-1.0.5.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
 		Libraries\Kalman_Filter_Library\1.0.2\Kalman_Filter_Library\Kalman_Filter_Library-1.0.2.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

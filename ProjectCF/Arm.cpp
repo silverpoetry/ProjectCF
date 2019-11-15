@@ -1,7 +1,7 @@
 #include "Arm.h"
 #include "IncludeList.h"
 Servo servos[4];
-int angels[4] = {0,55,100};
+int angels[4] = {0,55,120};
 
 //初始化机械臂的舵机，并归位到初始角度
 void Arm_Init()
@@ -89,5 +89,20 @@ void Arm_Go(int n, int angel, int deltime)
 		}
 
 	angels[n - 1] = angel;
+
+}
+void Arm_PickBall()
+{
+	Arm_Go(2, 84);
+	delay(500);
+	Arm_Go(2, 155);
+	delay(1000);
+	Arm_Go(2, 80);
+	delay(500);
+	Arm_Go(1, 100);
+	delay(500);
+	Arm_Go(2, 120);
+
+
 
 }
