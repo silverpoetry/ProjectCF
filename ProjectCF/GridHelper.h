@@ -16,10 +16,10 @@ struct queueitem
 	Pos from;
 };
 struct Queue {
-private:
-	queueitem Array[1000];
+
+	queueitem Array[64];
 	int front0 = 0, back = 0;
-public:
+
 	void push(queueitem elm) {
 		Array[back++] = elm;
 	}

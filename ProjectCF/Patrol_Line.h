@@ -3,7 +3,7 @@
 void PL_GoWithoutStop();
 void PL_GoLineTime(int time);
 void PL_GoCrossTurnLeft();
-
+void PL_PIDCorrection(int opt);
 void PL_CrossRoad(int opt);
 int PL_GoStop (void);
 //void PL_goline (int basic1, int basic2);

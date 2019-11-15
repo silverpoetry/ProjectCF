@@ -78,7 +78,7 @@ void Move_GotimeWithoutStop(int speed, int time)
 {
 	Motor_GoSpeed(speed, speed);
 	delay(time);
-	Move_Stop();
+	
 }
 
 void Move_TurnLeft (int speed) {

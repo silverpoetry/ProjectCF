@@ -425,3 +425,8 @@ void MainTask_SavePeople() {
 	MainTask_SavePeopleBackHome();
 
 }
+
+bool isposeq(Pos p1, Pos p2)
+{
+	return p1.X == p2.X&&p1.Y == p2.Y;
+}

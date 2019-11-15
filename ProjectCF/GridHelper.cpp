@@ -99,7 +99,7 @@ void GridHelper_InitGraph() {
 					Graph[i][j][k] = -1;
 				}
 				else {}
-					
+
 			}
 		}
 	}
@@ -144,6 +144,24 @@ void GridHelper_Init2()
 		}
 	}
 	GridHelper_InitGraph();
+	Graph[1][4][3] = -1;
+	Graph[2][3][0] = -1;
+	Graph[2][4][0] = -1;
+	Graph[2][4][1] = -1;
+	Graph[2][4][2] = -1;
+	Graph[2][5][2] = -1;
+	Graph[2][5][3] = -1;
+	Graph[3][3][0] = -1;
+	Graph[3][4][2] = -1;
+	Graph[3][5][1] = -1;
+	Graph[3][5][3] = -1;
+	Graph[4][4][0] = -1;
+	Graph[4][5][0] = -1;
+	Graph[4][5][1] = -1;
+	Graph[4][5][2] = -1;
+	Graph[4][6][2] = -1;
+	Graph[4][6][3] = -1;
+	Graph[5][6][1] = -1;
 
 
 }
@@ -153,7 +171,7 @@ void GridHelper_Init2()
 int GridHelper_GetDistanceLevel(int dir)
 {
 	int dis = Distance_Get(map_sensor[dir]);
-	if (obstacle_range[dir][0][0]< dis&&dis< obstacle_range[dir][0][1] )
+	if (obstacle_range[dir][0][0] < dis&&dis < obstacle_range[dir][0][1])
 	{
 		//近在眼前
 		return 1;
@@ -184,13 +202,13 @@ void GridHelper_Detect()
 			//已探测直接滚蛋
 			if (GetVal(k, n - 1) != 0)break;
 
-			if (n<dislevel)SetVal(k, n - 1, 1);
+			if (n < dislevel)SetVal(k, n - 1, 1);
 			else
 			{
 				SetDisabled(k, n - 1);
 				break;
-			}		
-		
+			}
+
 
 		}
 	}
@@ -200,7 +218,7 @@ void GridHelper_Detect()
 
 
 //寻路模块
-Pos path[100]; int pathlength;
+Pos path[100]; int pathlength = 0;
 Pos link_last[9][9];
 int maplength[9][9];
 Pos min_dist_pos = { 1, 1 };
@@ -216,44 +234,51 @@ void UpdateMinDistPos(Pos tmp, Pos to) {
 void GridHelper_MakePath(Pos p)
 {
 	pathlength = maplength[p.X][p.Y];
-	
+
 	Dwn(i, pathlength, 1)
 	{
 		path[i] = p;
 		p = link_last[p.X][p.Y];
-	}	
+	}
 }
 bool GridHelper_SearchRoad(Pos from, Pos to) {
-
+	
 	for (int i = 0; i <= 7; i++)
 		for (int j = 0; j <= 7; j++)
-			checked_list[i][j] = 0, link_last[i][j] = { i,j },maplength[i][j]=0;
+			checked_list[i][j] = 0, link_last[i][j] = { i,j }, maplength[i][j] = 0;
 	pathlength = 0;
-	
+
 	min_dist_pos = { 1,1 };
 	min_dist = 1000;
-
+	/*Serial.println(from.X);
+	Serial.println(from.Y);	*/
 	Queue q;
 	q.push({ from,from });
-
+	
 
 	while (!q.empty()) {
-
+		
 		Pos now = q.front().to;
 		Pos last = q.front().from;
+		/*Serial.println(now.X);
+		Serial.println(now.Y);*/
+		
 		if (checked_list[now.X][now.Y]) { q.pop();  continue; }
-
+		
+		
 		checked_list[now.X][now.Y] = 1;
+		
 		//记录来路
-		link_last[now.X][now.Y] = last;
-		maplength[now.X][now.Y] = maplength[last.X][last.Y]+1;
+		link_last[now.X][now.Y].X = last.X;
+		link_last[now.X][now.Y].Y = last.Y ;
+		maplength[now.X][now.Y] = maplength[last.X][last.Y] + 1;
 		
 		q.pop();
 		
 		
 		//如果存在未探索点，将其加入搜索
 		bool b = false;
-		for (int i = 0; i <= 3; i++)b =( b || (Graph[now.X][now.Y][i] == 0));
+		for (int i = 0; i <= 3; i++)b = (b || (Graph[now.X][now.Y][i] == 0));
 		if (b)UpdateMinDistPos(now, to);
 		//找到
 		if (now.X == to.X && now.Y == to.Y)break;
@@ -265,28 +290,28 @@ bool GridHelper_SearchRoad(Pos from, Pos to) {
 			tmp.X = now.X;
 			tmp.Y = now.Y + 1;
 			q.push({ tmp,now });
-			
+
 		}
 		if ((now.Y > 0) && (!checked_list[now.X][now.Y - 1]) && (Graph[now.X][now.Y][2] == 1)) {
 
 			tmp.X = now.X;
 			tmp.Y = now.Y - 1;
 			q.push({ tmp,now });
-			
+
 		}
 		if ((now.X < 7) && (!checked_list[now.X + 1][now.Y]) && (Graph[now.X][now.Y][3] == 1)) {
 
 			tmp.X = now.X + 1;
 			tmp.Y = now.Y;
 			q.push({ tmp,now });
-			
+
 		}
 		if ((now.X > 0) && (!checked_list[now.X - 1][now.Y]) && (Graph[now.X][now.Y][1] == 1)) {
 
 			tmp.X = now.X - 1;
 			tmp.Y = now.Y;
 			q.push({ tmp,now });
-			
+
 		}
 	}
 	if (!checked_list[to.X][to.Y])
@@ -317,6 +342,10 @@ void UpdateCarOrient(int o) {
 	else if (o == 3) {
 		car.Orientation -= 1;
 	}
+	else if(o==4)
+	{
+		car.Orientation += 2;
+	}
 	car.Orientation += 4;
 	car.Orientation %= 4;
 }
@@ -325,31 +354,53 @@ void UpdateCarPos(Pos p) {
 }
 void GridHelper_GoPath()
 {
+	Debugger_SetWatch("PLEN", pathlength);
 	//0, 1, 2, 3 for front, right, back, left
 	for (int i = 1; i <= pathlength; i++) {
-
 		for (int j = 0; j <= 3; j++) {
+
 			int dir = getPosition(j);
-			if (MovePos(dir) == path[i]) {
+			if (isposeq(MovePos(dir), path[i])) {
+	//		Serial.print(path[i].X), Serial.print(","), Serial.print(path[i].Y), Serial.print("\n");
+
+				//Serial.println(i);
 				UpdateCarPos(path[i]);
 				if (j == 0) {
+					PL_GoLineTime(100);
 					PL_GoStop();
+					
+					Debugger_SetWatch("Action", "Forward");
 				}
 				else if (j == 2) {
-					PL_GoBackStop();
+					Move_Gotime(150, 150, 200);
+					Move_GoSpeed(150, -150);
+					
+					delay(400);
+					PL_CrossRoad(5);
+					PL_GoStop();
+					UpdateCarOrient(4);
+					Debugger_SetWatch("Action", "Back");
 				}
 				else if (j == 1) {
+
+					PL_GoLineTime(300);
+					Move_Stop();
 					PL_CrossRoad(5);
 					PL_GoStop();
 					UpdateCarOrient(1);
+					Debugger_SetWatch("Action", "RT");
 				}
 				else if (j == 3) {
+					//	Move_GotimeWithoutStop(150, 50);
+					Debugger_SetWatch("Action", "LT");
+					PL_GoLineTime(300);
+					Move_Stop();
 					PL_CrossRoad(1);
 					PL_GoStop();
 					UpdateCarOrient(3);
 				}
 
-				
+
 				break;
 			}
 		}
@@ -359,8 +410,10 @@ void GridHelper_GoPath()
 
 void GridHelper_Go(Pos from, Pos to)
 {
+	
 	if (GridHelper_SearchRoad(from, to))
 	{
+		
 		//找到路
 		GridHelper_GoPath();
 		return;

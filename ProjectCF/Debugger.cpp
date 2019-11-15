@@ -2,7 +2,23 @@
 #include "Debugger.h"
 #include "Arduino.h"
 #define serialPort Serial3
-void Action();
+
+void left()
+{
+	//Move_GotimeWithoutStop(150, 50);
+	
+	PL_GoLineTime(300);
+	Move_Stop();
+	PL_CrossRoad(5);
+}
+void rt()
+{
+	//Move_GotimeWithoutStop(150, 50);
+
+	PL_GoLineTime(300);
+	Move_Stop();
+	PL_CrossRoad(1);
+}
 void Debugger_Init()
 {
 	serialPort.begin(9600);
@@ -53,8 +69,8 @@ void Debugger_DebugManagement()
 		else if (s1 == "setdir")Graph[Debug_ptx][Debug_ptY][atoi(s2.c_str())] = -1,Debugger_SetWatch("n",++n);
 		else if (s1 == "grinit")GridHelper_Init2(),Debugger_SetWatch("init2","true");
 		else if (s1 == "grclear")GridHelper_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction0")GridHelper_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction1")GridHelper_Init(), Debugger_SetWatch("init1", "true");
+		else if (s1 == "fuction0")left();
+		else if (s1 == "fuction1")rt();
 		else if (s1 == "fuction2")GridHelper_Init(), Debugger_SetWatch("init1", "true");
 		else if (s1 == "fuction3")GridHelper_Init(), Debugger_SetWatch("init1", "true");
 		else if (s1 == "fuction4")GridHelper_Init(), Debugger_SetWatch("init1", "true");
@@ -67,3 +83,4 @@ void Debugger_DebugManagement()
 	}
 	
 }
+

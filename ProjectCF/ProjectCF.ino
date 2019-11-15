@@ -17,38 +17,65 @@
 
 
 
-void setup ()
+void setup()
 {
-	
-	
-	
-	Serial.begin (9600);
-	Serial.println ("123");
-	Manager_Hardware_Init ();
-	Debugger_Init ();
-	Serial.println ("1243");
 
+
+
+	Serial.begin(9600);
+	Serial.println("123");
+	Manager_Hardware_Init();
+	Debugger_Init();
+	Serial.println("1243");
+	//Debugger_SetWatch("123", 123);
+	GridHelper_Init2();
+	Serial.println("124343");
 
 	//Serial1.begin(115200);
 
 }
-void loop ()
+void loop()
 {
-//	Move_GoSpeed (100, 100);
-//	Move_Refresh ();
+	
+
+	
+	Serial.print("2323");
+	
+	while (1)
+	{
+		//PL_GoBlind(2);
+		/*
+		delay(3000);
+		
+		car.Position = { 1,6 };
+
+		car.Orientation = 3;
+		
+		
+		GridHelper_Go({ 1,6 }, { 1,4 });
+		GridHelper_Go({ 1,4 }, { 1,4 });
+		GridHelper_Go({ 1,4 }, { 1,3 });
+		GridHelper_Go({ 1,3 }, { 3,3 });
+		GridHelper_Go({3,3 }, { 4,6 });*/
+		Debugger_DebugManagement();
+		
+	}
+
+	//	Move_GoSpeed (100, 100);
+	//	Move_Refresh ();
 	long long lastcnt11 = Motor_M1Cnt;
 	long long lastcnt12 = Motor_M2Cnt;
-//	Motor_GoSpeed (180, 180);
-//	Move_Refresh ();
-//	Debugger_Init
+	//	Motor_GoSpeed (180, 180);
+	//	Move_Refresh ();
+	//	Debugger_Init
 	while (true)
 	{
-	//	PL_GoBackBlind ();
-		//Arm_PickBall();
-		//delay(3000);
-	//	Motor_GoSpeed (150, 255);
-	//	Serial.println ("123");
-		Debugger_DebugManagement ();
+		//	PL_GoBackBlind ();
+			//Arm_PickBall();
+			//delay(3000);
+		//	Motor_GoSpeed (150, 255);
+		//	Serial.println ("123");
+		Debugger_DebugManagement();
 		//Huidu_ShowValues();
 		Zigbee_MessageRecord();
 		Debugger_SetWatch("BallX", Game.BallPos.X);
@@ -84,21 +111,21 @@ void loop ()
 			Move_KeepRate ();
 		}*/
 		//Debugger_SetWatch ("asd", "as");
-		if (Manager_Time_TakeTime(23,10))
+		if (Manager_Time_TakeTime(23, 10))
 		{
-		//	if()
-			/*
-		//	Move_KeepRate ();
-			Debugger_SetWatch ("h1", Huidu_Read (1));
-			Debugger_SetWatch ("h2", Huidu_Read (2));
-			Debugger_SetWatch ("h3", Huidu_Read (3));
-			Debugger_SetWatch ("h4", Huidu_Read (4));
-			Debugger_SetWatch ("h5", Huidu_Read (5));
-			Debugger_SetWatch ("h6", Huidu_Read (6));
+			//	if()
+				/*
+			//	Move_KeepRate ();
+				Debugger_SetWatch ("h1", Huidu_Read (1));
+				Debugger_SetWatch ("h2", Huidu_Read (2));
+				Debugger_SetWatch ("h3", Huidu_Read (3));
+				Debugger_SetWatch ("h4", Huidu_Read (4));
+				Debugger_SetWatch ("h5", Huidu_Read (5));
+				Debugger_SetWatch ("h6", Huidu_Read (6));
 
-			Debugger_SetWatch ("us1", Distance_Get (1));
-			Debugger_SetWatch ("us2", Distance_Get (2));
-*/
+				Debugger_SetWatch ("us1", Distance_Get (1));
+				Debugger_SetWatch ("us2", Distance_Get (2));
+	*/
 
 		}
 		//MT_Main ();
@@ -107,7 +134,7 @@ void loop ()
 	//	Mpu_ShowValueInTestMode ();
 	//	Debugger_SetWatch
 	//	delay (1000);
-		
+
 
 	/*	if (Manager_Time_TakeTime (5, 100)) {
 			Move_KeepRate ();
@@ -125,7 +152,7 @@ void loop ()
 
 	//Motor_GoSpeed(120, 120);	//Move_GoSpeed (SPEED, SPEED);
 	while (1) {
-		Debugger_DebugManagement ();
+		Debugger_DebugManagement();
 		//PL_GoStop ();
 		//PL_GoStop
 	}
