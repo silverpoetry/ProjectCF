@@ -1,8 +1,7 @@
-#include "MainTask.h"
-
+#include "GridHelper.h"
+#include "IncludeList.h"
 int Graph[8][8][6];
 //0, 1, 2, 3 for front, right, back, left
-int MainTask_Road = 0;
 bool checked_list[8][8];
 
 myCar car;
@@ -38,9 +37,24 @@ void SetDisabled(int dir)
 {
 	SetDisabled(dir, 0);
 }
+Pos MovePos(int dir) {
+	Pos tmp = car.Position;
+	if (dir == 0) {
+		tmp.Y += 1;
+	}
+	else if (dir == 1) {
+		tmp.X -= 1;
+	}
+	else if (dir == 2) {
+		tmp.Y -= 1;
+	}
+	else if (dir == 3) {
+		tmp.X += 1;
+	}
+	return tmp;
+}
 
-
-Pos MainTask_PositionConverter(Pos p)
+Pos GridHelper_PositionConverter(Pos p)
 {
 	Pos startpoint = { 30,30 };
 	int blockwidth = 30;
@@ -55,13 +69,13 @@ Pos MainTask_PositionConverter(Pos p)
 
 
 }
-int MainTask_CntManhattonDist(Pos from, Pos to) {
+int GridHelper_CntManhattonDist(Pos from, Pos to) {
 	return abs(from.X - to.X) + abs(from.Y - to.Y);
 }
 
 
 
-void MainTask_GraphInit() {
+void GridHelper_InitGraph() {
 
 	for (int i = 0; i <= 7; i++) {
 		for (int j = 0; j <= 7; j++) {
@@ -112,38 +126,39 @@ void MainTask_GraphInit() {
 	Graph[7][5][2] = -1;
 	Graph[7][5][3] = -1;
 }
-void Maintask_Init2()
-{
-	for (int i = 0; i <= 7; i++) {
-		for (int j = 0; j <= 7; j++) {
-			Graph[i][j][0] = Graph[i][j][1] = Graph[i][j][2] = Graph[i][j][3] = 1;
-		}
-	}
-	MainTask_GraphInit();
-
-
-}
-void Maintask_Init()
+void GridHelper_Init()
 {
 	for (int i = 0; i <= 7; i++) {
 		for (int j = 0; j <= 7; j++) {
 			Graph[i][j][0] = Graph[i][j][1] = Graph[i][j][2] = Graph[i][j][3] = 0;
 		}
 	}
-	MainTask_GraphInit();
+	GridHelper_InitGraph();
+
+}
+void GridHelper_Init2()
+{
+	for (int i = 0; i <= 7; i++) {
+		for (int j = 0; j <= 7; j++) {
+			Graph[i][j][0] = Graph[i][j][1] = Graph[i][j][2] = Graph[i][j][3] = 1;
+		}
+	}
+	GridHelper_InitGraph();
+
 
 }
 
 
-int MainTask_GetDistanceLevel(int dir)
+//获取障碍物距离
+int GridHelper_GetDistanceLevel(int dir)
 {
 	int dis = Distance_Get(map_sensor[dir]);
-	if (obstacle_range[dir][0][0]< dis&dis< obstacle_range[dir][0][1] )
+	if (obstacle_range[dir][0][0]< dis&&dis< obstacle_range[dir][0][1] )
 	{
 		//近在眼前
 		return 1;
 	}
-	else if (obstacle_range[dir][1][0] < dis&dis < obstacle_range[dir][1][1])
+	else if (obstacle_range[dir][1][0] < dis&&dis < obstacle_range[dir][1][1])
 	{
 		return 2;
 	}
@@ -152,7 +167,8 @@ int MainTask_GetDistanceLevel(int dir)
 		return 3;
 	}
 }
-void MainTask_ProbeObstacle()
+//侦查障碍物
+void GridHelper_Detect()
 {
 
 	//k代表方向的循环
@@ -160,7 +176,7 @@ void MainTask_ProbeObstacle()
 	{
 		//后面不用探测
 		if (k == 2)continue;
-		int dislevel = MainTask_GetDistanceLevel(k);
+		int dislevel = GridHelper_GetDistanceLevel(k);
 		//n代表距离的循环
 		for (int n = 1; n <= 2; n++)
 		{
@@ -182,21 +198,22 @@ void MainTask_ProbeObstacle()
 
 }
 
+
+//寻路模块
+Pos path[100]; int pathlength;
 Pos link_last[9][9];
-Pos path[100];
 int maplength[9][9];
-int pathlength;
 Pos min_dist_pos = { 1, 1 };
 int min_dist = 1000;
-void MT_UpdateMinDistPos(Pos tmp, Pos to) {
-	//内部路线长度权值0.5
-	int length = MainTask_CntManhattonDist(tmp, to) + maplength[tmp.X][tmp.Y];
+void UpdateMinDistPos(Pos tmp, Pos to) {
+	//内部路线长度权值1
+	int length = GridHelper_CntManhattonDist(tmp, to) + maplength[tmp.X][tmp.Y];
 	if (length < min_dist) {
 		min_dist_pos = tmp;
 		min_dist = length;
 	}
 }
-void MainTask_MakePath(Pos p)
+void GridHelper_MakePath(Pos p)
 {
 	pathlength = maplength[p.X][p.Y];
 	
@@ -206,7 +223,7 @@ void MainTask_MakePath(Pos p)
 		p = link_last[p.X][p.Y];
 	}	
 }
-bool MainTask_SearchRoad(Pos from, Pos to) {
+bool GridHelper_SearchRoad(Pos from, Pos to) {
 
 	for (int i = 0; i <= 7; i++)
 		for (int j = 0; j <= 7; j++)
@@ -237,7 +254,7 @@ bool MainTask_SearchRoad(Pos from, Pos to) {
 		//如果存在未探索点，将其加入搜索
 		bool b = false;
 		for (int i = 0; i <= 3; i++)b =( b || (Graph[now.X][now.Y][i] == 0));
-		if (b)MT_UpdateMinDistPos(now, to);
+		if (b)UpdateMinDistPos(now, to);
 		//找到
 		if (now.X == to.X && now.Y == to.Y)break;
 
@@ -276,14 +293,14 @@ bool MainTask_SearchRoad(Pos from, Pos to) {
 	{
 		//不曾到达终点
 		//前往最佳位置
-		MainTask_MakePath(min_dist_pos);
+		GridHelper_MakePath(min_dist_pos);
 		return 0;
 
 	}
 
 	if (checked_list[to.X][to.Y]) {
 		//直接走到
-		MainTask_MakePath(to);
+		GridHelper_MakePath(to);
 		return 1;
 	}
 
@@ -291,23 +308,8 @@ bool MainTask_SearchRoad(Pos from, Pos to) {
 
 }
 
-bool if_possibile = 0;
-Pos MovePos(int dir) {
-	Pos tmp = car.Position;
-	if (dir == 0) {
-		tmp.Y += 1;
-	}
-	else if (dir == 1) {
-		tmp.X -= 1;
-	}
-	else if (dir == 2) {
-		tmp.Y -= 1;
-	}
-	else if (dir == 3) {
-		tmp.X += 1;
-	}
-	return tmp;
-}
+
+
 void UpdateCarOrient(int o) {
 	if (o == 1) {
 		car.Orientation += 1;
@@ -321,7 +323,7 @@ void UpdateCarOrient(int o) {
 void UpdateCarPos(Pos p) {
 	car.Position = p;
 }
-void MainTask_GoPath()
+void GridHelper_GoPath()
 {
 	//0, 1, 2, 3 for front, right, back, left
 	for (int i = 1; i <= pathlength; i++) {
@@ -354,62 +356,20 @@ void MainTask_GoPath()
 
 	}
 }
-void MainTask_Go(Pos from, Pos to)
+
+void GridHelper_Go(Pos from, Pos to)
 {
-	if (MainTask_SearchRoad(from, to))
+	if (GridHelper_SearchRoad(from, to))
 	{
 		//找到路
-		MainTask_GoPath();
+		GridHelper_GoPath();
 		return;
 	}
 	else
 	{
-		MainTask_GoPath();
-		MainTask_ProbeObstacle();
-		MainTask_Go(min_dist_pos, to);
+		GridHelper_GoPath();
+		GridHelper_Detect();
+		GridHelper_Go(min_dist_pos, to);
 	}
 }
 
-int MT_Pos2Node(int& x, int& y) {
-	/*
-	2,0: 106,15贴左边   85,15贴左开始拐（左轮刚过）78,24正好进入 81,14 开始拐（在入口中央）
-	0,2:
-*/
-
-	if ((x >= 65 && x <= 80) && (y >= 17 && y <= 20)) {
-		x = 2, y = 0;
-	}
-
-}
-
-
-bool SavePeopleReadyforEntrance() {
-	//x:112, 90
-	const int standard_x = 185, standard_y = 0;
-	const int eps_x = 2, eps_y = 5;
-	while (!Zigbee_MessageRecord());
-	if (abs(Car[0].pos.X - standard_x) < eps_x) {
-		return 1;
-	}
-	return 0;
-}
-bool SavePeopleBackReadytoGoBlind() {
-	//x:255
-	const int standard_x = 185, standard_y = 0;
-	const int eps_x = 2, eps_y = 5;
-	while (!Zigbee_MessageRecord());
-	if (abs(Car[0].pos.X - standard_x) < eps_x) {
-		return 1;
-	}
-	return 0;
-}
-bool SavePeopleReturnHome() {
-	//x260, y1
-	const int standard_x = 185, standard_y = 0;
-	const int eps_x = 2, eps_y = 5;
-	while (!Zigbee_MessageRecord());
-	if (abs(Car[0].pos.X - standard_x) < eps_x) {
-		return 1;
-	}
-	return 0;
-}
