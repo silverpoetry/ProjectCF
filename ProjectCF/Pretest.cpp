@@ -113,16 +113,6 @@ bool GetballBackReadyforAvoidEntrance () {
 	return 0;
 
 }
-void GetballBackTurnLeft () {
-	if (!Manager_Time_TakeTime (17, 200)) {
-		Move_GoSpeed (150, 150);
-	}
-	Move_Stop ();
-	Motor_GoSpeed (-225, -80);
-	delay (1400);
-	Move_Stop ();
-}
-
 bool GetballBackReadytoGoLeft () {
 	const int standard_x = 249, standard_y = 0;
 	const int eps_x = 2, eps_y = 5;
@@ -133,7 +123,6 @@ bool GetballBackReadytoGoLeft () {
 	}
 	return 0;
 }
-
 
 bool GetballBackReadytoGobackBlind () {
 	const int standard_x = 218, standard_y = 0;
@@ -166,6 +155,17 @@ bool GetballReturnHome () {
 	return 0;
 }
 
+
+void GetballBackTurnLeft () {
+	if (!Manager_Time_TakeTime (17, 200)) {
+		Move_GoSpeed (150, 150);
+	}
+	Move_Stop ();
+	Motor_GoSpeed (-225, -80);
+	delay (1400);
+	Move_Stop ();
+}
+
 void GetballBack (void) {
 	/*	if (!Manager_Time_TakeTime (40, 200)) {
 			PL_GoBackBlind ();
@@ -174,28 +174,28 @@ void GetballBack (void) {
 			Motor_GoSpeed (150, -150);
 		}
 		Move_Stop ();*/
-//	while (!GetballBackReadytoTurnLeft ()) {
+	while (!GetballBackReadytoTurnLeft ()) {
 		PL_GoBackBlind (3);
-	//}
+	}
 	//Move_Stop ();
 	GetballBackTurnLeft ();
-//	while (!GetballBackReadyforAvoidEntrance ()) { 
+	while (!GetballBackReadyforAvoidEntrance ()) { 
 		PL_GoBackBlind (4); 
-	//}
+	}
 //	Move_Stop ();
-//	while(!GetballBackReadytoGobackBlind11()) {
+	while(!GetballBackReadytoGobackBlind11()) {
 		//185
 		Move_GoSpeed (-150, -160);
-	//}
-//	while (!GetballBackReadytoGobackBlind()) {
+	}
+	while (!GetballBackReadytoGobackBlind()) {
 		PL_GoBackBlind (4);
-	//}
-//	while (!GetballBackReadytoGoLeft ()) {
+	}
+	while (!GetballBackReadytoGoLeft ()) {
 		Move_GoSpeed (-150, -150);
-	//}
-//	while (!GetballReturnHome ()) {
+	}
+	while (!GetballReturnHome ()) {
 		PL_GoBlind (1);
-	//}
+	}
 	Move_Stop ();
 	return;
 }
