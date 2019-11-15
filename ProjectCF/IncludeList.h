@@ -4,7 +4,6 @@
 #define pu(a) Serial.print((a))
 #define sh(a) Serial.print(#a)
 #include <Arduino.h>
-#include "MainTask.h"
 #include "Mpu.h"
 #include "Huidu.h"
 #include "Distance.h"
@@ -17,6 +16,8 @@
 #include "Patrol_Line.h"
 #include "Pretest.h"
 #include "MicroMove.h"
+#include "GridHelper.h"
+#include "Outer.h"
 
 
 #define SPEED 150

@@ -14,24 +14,19 @@ zigbee.h
 
 #pragma once
 #include "IncludeList.h"
+#include "Types.h"
 #include <Arduino.h>
 #define INVALID_ARG -1
 #define Zigbee_Message_Length 32
 
 
 
-struct Zigbee_Position						//单位cm
-{
-	unsigned int X;
-	unsigned int Y;
-};
-
 struct Zigbee_BasicInfo
 {
 	uint8_t GameState;			//游戏状态：00未开始，01进行中，10暂停，11结束
 	uint16_t Time;					//比赛时间，以0.1s为单位
 	uint8_t PassengerNum;		//乘客数，当前为2
-	struct Zigbee_Position BallPos;//物资收集点小球信息
+	struct Pos BallPos;//物资收集点小球信息
 	uint16_t BallExist;			//存在有效的小球,0表示不存在
 };
 
@@ -39,7 +34,7 @@ struct Zigbee_CarInfo
 {
 	uint8_t No;							//车辆编号，A为0， B为1
 	uint8_t Area;						//车辆区域：0在道路上（不在迷宫里），1在迷宫里
-	struct Zigbee_Position pos;		//小车位置
+	struct Pos pos;		//小车位置
 	uint16_t Score;					//得分
 	uint8_t PickPsgNum;			//接到的人员数
 	uint8_t GetBallNum;			//成功获取小球数
@@ -50,7 +45,7 @@ struct Zigbee_CarInfo
 struct Zibee_PassengerInfo
 {
 	uint8_t No; 						//乘客编号，只有0和1
-	struct Zigbee_Position pos;
+	struct Pos pos;
 };
 
 enum Zigbee_GameStateEnum

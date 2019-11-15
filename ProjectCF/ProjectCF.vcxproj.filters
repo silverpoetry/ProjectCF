@@ -31,6 +31,9 @@
     <Filter Include="Header Files\Moudules">
       <UniqueIdentifier>{67eb01e2-4d1f-4b3c-a6f1-ef7de5b879ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Picture">
+      <UniqueIdentifier>{d25f7776-cb6b-491a-ac9a-bb0758281eb1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ProjectCF.ino" />
@@ -66,9 +69,6 @@
     <ClInclude Include="Debugger.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Patrol_Line.h">
-      <Filter>Header Files\Task</Filter>
-    </ClInclude>
     <ClInclude Include="Move.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
@@ -81,7 +81,22 @@
     <ClInclude Include="MicroMove.h">
       <Filter>Header Files\Moudules</Filter>
     </ClInclude>
-    <ClInclude Include="MainTask.h">
+    <ClInclude Include="Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="maintask.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="GridHelper.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Patrol_Line.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Outer.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Missions.h">
       <Filter>Header Files\Task</Filter>
     </ClInclude>
   </ItemGroup>
@@ -107,9 +122,6 @@
     <ClCompile Include="Manager.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Patrol_Line.cpp">
-      <Filter>Source Files\Task</Filter>
-    </ClCompile>
     <ClCompile Include="Move.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
@@ -125,8 +137,22 @@
     <ClCompile Include="MicroMove.cpp">
       <Filter>Source Files\Moudules</Filter>
     </ClCompile>
-    <ClCompile Include="MainTask.cpp">
+    <ClCompile Include="GridHelper.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Patrol_Line.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Outer.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Missions.cpp">
       <Filter>Source Files\Task</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="578b654769b3399c40e113sddefff31a1.jpg">
+      <Filter>Picture</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -34,4 +34,8 @@ bool Manager_Time_TakeTime(long index,long num)
 
 }
 
+int Manager_Signal(long x)
+{
+	return x / abs(x);
+}
 

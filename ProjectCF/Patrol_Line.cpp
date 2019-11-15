@@ -156,6 +156,25 @@ void PL_GoBlind (int opt)
 		if (MicroMove_IsPushed (2))Motor_GoSpeed (140, 160);
 		else Motor_GoSpeed (140, 155);
 	}
+	else if (opt == 3) {
+		if (MicroMove_IsPushed(3)) {
+			Motor_GoSpeed(-150, -140);
+			//Debugger_SetWatch ("m3", 1);
+		}
+		else {
+			Motor_GoSpeed(-150, -175);
+			//	Debugger_SetWatch ("m3", 0);
+		}
+	}
+	else if (opt == 4) {
+		if (MicroMove_IsPushed(4)) {
+			Motor_GoSpeed(-140, -150);
+			//	Debugger_SetWatch ("m3", 1);
+		}
+		else {
+			Motor_GoSpeed(-165, -150); //Debugger_SetWatch ("m3", 0); 
+		}
+	}
 }
 void PL_GoBackBlind (int opt) {
 	if (opt == 3) {

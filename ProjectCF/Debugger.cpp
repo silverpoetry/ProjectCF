@@ -51,13 +51,13 @@ void Debugger_DebugManagement()
 		else if (s1 == "exmaze")PL_GoBackBlind (3);
 		else if (s1 == "setpoint")Debug_ptx = atoi(s2.c_str()), Debug_ptY = atoi(s3.c_str());
 		else if (s1 == "setdir")Graph[Debug_ptx][Debug_ptY][atoi(s2.c_str())] = -1,Debugger_SetWatch("n",++n);
-		else if (s1 == "grinit")Maintask_Init2(),Debugger_SetWatch("init2","true");
-		else if (s1 == "grclear")Maintask_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction0")Maintask_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction1")Maintask_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction2")Maintask_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction3")Maintask_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction4")Maintask_Init(), Debugger_SetWatch("init1", "true");
+		else if (s1 == "grinit")GridHelper_Init2(),Debugger_SetWatch("init2","true");
+		else if (s1 == "grclear")GridHelper_Init(), Debugger_SetWatch("init1", "true");
+		else if (s1 == "fuction0")GridHelper_Init(), Debugger_SetWatch("init1", "true");
+		else if (s1 == "fuction1")GridHelper_Init(), Debugger_SetWatch("init1", "true");
+		else if (s1 == "fuction2")GridHelper_Init(), Debugger_SetWatch("init1", "true");
+		else if (s1 == "fuction3")GridHelper_Init(), Debugger_SetWatch("init1", "true");
+		else if (s1 == "fuction4")GridHelper_Init(), Debugger_SetWatch("init1", "true");
 		
 
 
