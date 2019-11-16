@@ -364,6 +364,7 @@ void GridHelper_GoPath()
 	//		Serial.print(path[i].X), Serial.print(","), Serial.print(path[i].Y), Serial.print("\n");
 
 				//Serial.println(i);
+				delay(300);
 				UpdateCarPos(path[i]);
 				if (j == 0) {
 					PL_GoLineTime(100);

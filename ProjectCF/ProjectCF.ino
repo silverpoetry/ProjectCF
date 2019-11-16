@@ -12,8 +12,21 @@
 #include <Arduino.h>
 #include <stdlib.h>
 
+void distance_show()
+{
+	Debugger_SetWatch("dis1", Distance_Get(1));
+	Debugger_SetWatch("dis2", Distance_Get(2));
+	Debugger_SetWatch("dis3", Distance_Get(3));
+}
+void zigbee_show()
+{
+	Debugger_SetWatch("car", OurCar.pos.X+","+OurCar.pos.Y);
+	Debugger_SetWatch("psg1",Passenger[0].pos.X +","+Passenger[0].pos.Y );
+	Debugger_SetWatch("psg2", Passenger[1].pos.X+","+Passenger[1].pos.Y);
+	Debugger_SetWatch("GAME", Game.GameState);
+	Debugger_SetWatch("BALL", Game.BallPos.X+","+ Game.BallPos.Y);
 
-
+}
 
 
 
@@ -28,7 +41,7 @@ void setup()
 	Debugger_Init();
 	Serial.println("1243");
 	//Debugger_SetWatch("123", 123);
-	GridHelper_Init2();
+	GridHelper_Init();
 	Serial.println("124343");
 
 	//Serial1.begin(115200);
@@ -44,7 +57,7 @@ void loop()
 	while (1)
 	{
 		//PL_GoBlind(2);
-		/*
+		
 		delay(3000);
 		
 		car.Position = { 1,6 };
@@ -52,13 +65,10 @@ void loop()
 		car.Orientation = 3;
 		
 		
-		GridHelper_Go({ 1,6 }, { 1,4 });
-		GridHelper_Go({ 1,4 }, { 1,4 });
-		GridHelper_Go({ 1,4 }, { 1,3 });
-		GridHelper_Go({ 1,3 }, { 3,3 });
-		GridHelper_Go({3,3 }, { 4,6 });*/
-		Debugger_DebugManagement();
-		
+		GridHelper_Go({ 1,6 }, { 3,3 });
+	
+		/*Debugger_DebugManagement();
+		distance_show();*/
 	}
 
 	//	Move_GoSpeed (100, 100);

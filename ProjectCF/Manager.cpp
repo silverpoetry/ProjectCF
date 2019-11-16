@@ -39,3 +39,7 @@ int Manager_Signal(long x)
 	return x / abs(x);
 }
 
+bool isposeq(Pos p1, Pos p2)
+{
+	return p1.X == p2.X&&p1.Y == p2.Y;
+}
