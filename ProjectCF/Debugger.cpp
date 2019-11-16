@@ -69,11 +69,12 @@ void Debugger_DebugManagement()
 		else if (s1 == "setdir")Graph[Debug_ptx][Debug_ptY][atoi(s2.c_str())] = -1,Debugger_SetWatch("n",++n);
 		else if (s1 == "grinit")GridHelper_Init2(),Debugger_SetWatch("init2","true");
 		else if (s1 == "grclear")GridHelper_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction0")left();
-		else if (s1 == "fuction1")rt();
-		else if (s1 == "fuction2")GridHelper_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction3")GridHelper_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction4")GridHelper_Init(), Debugger_SetWatch("init1", "true");
+		else if (s1 == "fuction0")PreContest_CollectGoods();
+		else if (s1 == "fuction1")PreContest_EasyMaze();
+		else if (s1 == "fuction2")PreContest_GoStraight(1);
+		else if (s1 == "fuction3")PreContest_GoStraight(2);
+		else if (s1 == "fuction4")PreContest_ReceiveSignal();
+		else if (s1 == "fuction5")PreContest_SavePeople();
 		
 
 

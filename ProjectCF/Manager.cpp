@@ -6,7 +6,7 @@ void Manager_Hardware_Init()
 	Motor_Init ();
 	Huidu_Init ();
 	Distance_Init ();
-	//Arm_Init ();
+	Arm_Init ();
 	Zigbee_Init (); 
 	MicroMove_Init ();
 	Mpu_Init ();

@@ -107,6 +107,7 @@ void EasyMaze_ReturnHome () {
 	delay (500);
 	return;
 }
+
 void MainTask_EasyMaze () {
 
 	//从出发点前往迷宫入口
@@ -152,6 +153,7 @@ void SavePeople_GotoEntrance() {
 	Outer_GoPointByXWithoutMicroMove (Ms_Pos_H, 1);
 	return;
 }
+
 void SavePeople_BackHome() {
 	
 	//!!!!!
@@ -167,6 +169,7 @@ void SavePeople_BackHome() {
 	delay (500);
 	return;
 }
+
 void MainTask_SavePeople() {
 
 	SavePeople_GotoEntrance ();
