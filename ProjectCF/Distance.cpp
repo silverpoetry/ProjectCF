@@ -1,7 +1,6 @@
 #include "Distance.h"
 
-#include <Adafruit_VL53L0X.h>
-Adafruit_VL53L0X lox = Adafruit_VL53L0X();
+
 void Distance_Init()
 {
 
@@ -10,7 +9,8 @@ void Distance_Init()
 	pinMode(Distance_OutPutPin, OUTPUT);
 	pinMode(Distance_InputPin2, INPUT);
 	pinMode(Distance_OutPutPin2, OUTPUT);
-	lox.begin();
+	pinMode(Distance_InputPin0, INPUT);
+	pinMode(Distance_OutPutPin0, OUTPUT);
 
 
 }
@@ -32,15 +32,14 @@ long Distance_Get(int opt)
 		long distance = 0;
 		if (opt == 1)
 		{
-			VL53L0X_RangingMeasurementData_t measure;
-			lox.rangingTest(&measure, false); 
-			if (measure.RangeStatus != 4)
-			{  
-			 return measure.RangeMilliMeter;
-			}
-			else {
-				return 0;
-			}
+			digitalWrite(Distance_OutPutPin0, LOW); // 使发出发出超声波信号接口低电平2μs
+			delayMicroseconds(2);
+			digitalWrite(Distance_OutPutPin0, HIGH); // 使发出发出超声波信号接口高电平10μs，这里是至少10μs
+			delayMicroseconds(10);
+			digitalWrite(Distance_OutPutPin0, LOW); // 保持发出超声波信号接口低电平
+				//attachInterrupt(2,,)
+			distance = pulseIn(Distance_InputPin0, HIGH, 20000); // 读出脉冲时间
+
 		}
 		else if (opt == 2) {
 			digitalWrite(Distance_OutPutPin, LOW); // 使发出发出超声波信号接口低电平2μs

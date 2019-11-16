@@ -3,7 +3,7 @@
 
 
 #include "Types.h"
-#define OBSTACLE_DISTANCE 35
+
 extern int Graph[8][8][6];
 
 struct myCar {
@@ -58,10 +58,10 @@ const int map_sensor[4] = { 1,3,0,2 };
 
 //各侧障碍物的距离与格数对应法则
 const int obstacle_range[4][2][2] = {
+   {{20,120},{121,270}},
+   {{5,90},{90,230}},
    {{3,45},{45,75}},
-   {{3,45},{45,75}},
-   {{3,45},{45,75}},
-   {{3,45},{45,75}}
+   {{3,90},{90,230}}
 
 };
 extern myCar car;
