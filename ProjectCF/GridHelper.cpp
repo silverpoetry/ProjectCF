@@ -56,7 +56,7 @@ Pos MovePos(int dir) {
 
 Pos GridHelper_PositionConverter(Pos p)
 {
-	Pos startpoint = { 30,30 };
+	Pos startpoint = { 52,52 };
 	int blockwidth = 30;
 	p.X -= startpoint.X;
 	p.Y -= startpoint.Y;
@@ -354,7 +354,7 @@ void UpdateCarPos(Pos p) {
 }
 void GridHelper_GoPath()
 {
-	Debugger_SetWatch("PLEN", pathlength);
+	//Debugger_SetWatch("PLEN", pathlength);
 	//0, 1, 2, 3 for front, right, back, left
 	for (int i = 1; i <= pathlength; i++) {
 		for (int j = 0; j <= 3; j++) {
@@ -369,7 +369,7 @@ void GridHelper_GoPath()
 					PL_GoLineTime(100);
 					PL_GoStop();
 					
-					Debugger_SetWatch("Action", "Forward");
+			//		Debugger_SetWatch("Action", "Forward");
 				}
 				else if (j == 2) {
 					Move_Gotime(150, 150, 200);
@@ -379,7 +379,7 @@ void GridHelper_GoPath()
 					PL_CrossRoad(5);
 					PL_GoStop();
 					UpdateCarOrient(4);
-					Debugger_SetWatch("Action", "Back");
+				//	Debugger_SetWatch("Action", "Back");
 				}
 				else if (j == 1) {
 
@@ -388,7 +388,7 @@ void GridHelper_GoPath()
 					PL_CrossRoad(5);
 					PL_GoStop();
 					UpdateCarOrient(1);
-					Debugger_SetWatch("Action", "RT");
+				//	Debugger_SetWatch("Action", "RT");
 				}
 				else if (j == 3) {
 					//	Move_GotimeWithoutStop(150, 50);

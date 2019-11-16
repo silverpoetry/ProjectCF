@@ -5,10 +5,10 @@
 
 void PreContest_GoStraight (int opt) {
 	if (opt == 1) { 
-		Outer_GoPointByX (Ms_Pos_E, 2);
+		Outer_GoPointByY (Ms_Pos_E, 2);
 	}
 	else if (opt == 2) {
-		Outer_GoPointByY (Ms_Pos_I, 2);
+		Outer_GoPointByX (Ms_Pos_I, 2);
 	}
 	Move_Stop ();
 	delay (500);
@@ -32,35 +32,36 @@ void PreContest_ReceiveSignal () {
 }
 void PreContest_OuterRoadMove () {
 	CollectGoods_GotoGoods ();
-	Outer_GoPointByY (Ms_Pos_L, 1);
+	Outer_GoPointByX (Ms_Pos_L, 1);
 	Move_Stop ();
 	return;
 }
 void PreContest_CollectGoods () {
-	Outer_GoPointByY (Ms_Pos_A, 1);
+	Outer_GoPointByX (Ms_Pos_A, 1);
 	Move_Stop ();
 	delay (500);
 	CollectGoods_CatchBall ();
-	Outer_GoPointByY (Ms_Pos_G, 3);
+	Outer_GoPointByX (Ms_Pos_G, 3);
 	Move_Stop ();
 	CollectGoods_DropBall ();
 	//CollectGoods_GetballBack ();
 }
 void PreContest_EasyMaze () {
-	car.Position = { 0, 5 };
-	Pos exit = { 5, 0 };
-	car.Orientation = 3;
+	car.Position = { 7, 5 };
+	Pos exit = { 2, 0 };
+	car.Orientation = 1;
 	GridHelper_Go (car.Position, exit);
 	Move_Stop ();
 }
 void PreContest_SavePeople () {
 	int i = 1;
-	car.Position = { 7, 2 };
-	Pos exit = { 2, 7 };
-	car.Orientation = 1;
+	car.Position = { 5, 7 };
+	Pos exit = { 0, 2 };
+	car.Orientation = 2;
 
 	while (i <= 3) {
-		while (!Zigbee_MessageRecord ());
+		while (Manager_Time_TakeTime(35,500))Zigbee_MessageRecord();
+		
 		Pos person1 = GridHelper_PositionConverter ({ Passenger[0].pos.X ,Passenger[0].pos.Y }), person2 = GridHelper_PositionConverter ({ Passenger[1].pos.X ,Passenger[1].pos.Y });
 
 		if (GridHelper_CntManhattonDist (car.Position, person1) < GridHelper_CntManhattonDist (car.Position, person2)) {
