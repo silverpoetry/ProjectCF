@@ -93,10 +93,9 @@ void Arm_Go(int n, int angel, int deltime)
 }
 void Arm_PickBall()
 {
-	Arm_Go(2, 84);
-	delay(500);
+	
 	Arm_Go(2, 155);
-	delay(1000);
+	delay(500);
 
 
 
@@ -106,7 +105,7 @@ void Arm_PickBall()
 }
 void Arm_DropBall () {
 
-	Arm_Go (2, 80);
+	Arm_Go (2, 50);
 	delay (500);
 	Arm_Go (1, 100);
 	delay (500);

@@ -18,17 +18,48 @@ void distance_show()
 	Debugger_SetWatch("dis2", Distance_Get(2));
 	Debugger_SetWatch("dis3", Distance_Get(3));
 }
-void zigbee_show()
+String makepoint(int a,int b)
 {
-	Debugger_SetWatch("car", OurCar.pos.X+","+OurCar.pos.Y);
-	Debugger_SetWatch("psg1",Passenger[0].pos.X +","+Passenger[0].pos.Y );
-	Debugger_SetWatch("psg2", Passenger[1].pos.X+","+Passenger[1].pos.Y);
+	String s="";
+	s = s + a;
+	s = s + "|";
+	s = s + b;
+	return s;
+}
+
+String makepoint(Pos p)
+{
+	String s = "";
+	s = s + p.X;
+	s = s + "|";
+	s = s + p.Y;
+	return s;
+}
+void mpu_show()
+{
+	
+		Mpu_ReadData();
+		
+	
+	Debugger_SetWatch("mpu", Mpu_Angles[2]);
+}
+void zigbee_show()
+
+{   Zigbee_MessageRecord();
+	Debugger_SetWatch("car",makepoint( OurCar.pos.X,OurCar.pos.Y));
+	Debugger_SetWatch("psg1",makepoint(Passenger[0].pos.X ,Passenger[0].pos.Y) );
+	Debugger_SetWatch("psg2", makepoint(Passenger[1].pos.X,Passenger[1].pos.Y));
+	Debugger_SetWatch("psg1nd", makepoint(GridHelper_PositionConverter(Passenger[0].pos)));
+	Debugger_SetWatch("psg2nd", makepoint(GridHelper_PositionConverter(Passenger[1].pos)));
 	Debugger_SetWatch("GAME", Game.GameState);
-	Debugger_SetWatch("BALL", Game.BallPos.X+","+ Game.BallPos.Y);
+	Debugger_SetWatch("BALL",makepoint( Game.BallPos.X, Game.BallPos.Y));
 
 }
 
-
+void gopointY(int x)
+{
+	Outer_GoPointByY(x, 1);
+}
 
 void setup()
 {
@@ -42,11 +73,15 @@ void setup()
 	Serial.println("1243");
 	//Debugger_SetWatch("123", 123);
 	GridHelper_Init();
+
 	Serial.println("124343");
+	
 
 	//Serial1.begin(115200);
 
 }
+
+
 void loop()
 {
 	
@@ -58,17 +93,21 @@ void loop()
 	{
 		//PL_GoBlind(2);
 		
-		delay(3000);
-		
-		car.Position = { 1,6 };
-
-		car.Orientation = 3;
 		
 		
-		GridHelper_Go({ 1,6 }, { 3,3 });
-	
-		/*Debugger_DebugManagement();
-		distance_show();*/
+		
+	//	delay(3000);
+		//GridHelper_Go({ 2,1 }, { 7,5 });
+		
+		Debugger_DebugManagement();
+		Zigbee_MessageRecord();
+		zigbee_show();
+		Serial.print("2323");
+		//distance_show();
+		//Debugger_SetWatch("12312", 123123);
+		//Serial.println("123");
+		//zigbee_show();
+		mpu_show();
 	}
 
 	//	Move_GoSpeed (100, 100);
@@ -87,7 +126,7 @@ void loop()
 		//	Serial.println ("123");
 		Debugger_DebugManagement();
 		//Huidu_ShowValues();
-		Zigbee_MessageRecord();
+		//Zigbee_MessageRecord();
 		Debugger_SetWatch("BallX", Game.BallPos.X);
 		Debugger_SetWatch("BallY", Game.BallPos.Y);
 		Debugger_SetWatch("Car1X", Car[0].pos.X);

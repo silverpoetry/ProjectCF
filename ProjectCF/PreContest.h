@@ -6,3 +6,4 @@ void PreContest_OuterRoadMove ();
 void PreContest_CollectGoods ();
 void PreContest_EasyMaze ();
 void PreContest_SavePeople ();
+void Precontest_GoPlace();

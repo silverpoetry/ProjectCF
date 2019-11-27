@@ -1,6 +1,8 @@
 #include "IncludeList.h"
 #include "Manager.h"
 #include "MainTask.h"
+
+
 void Manager_Hardware_Init()
 {
 	Motor_Init ();
@@ -37,6 +39,7 @@ bool Manager_Time_TakeTime(long index,long num)
 int Manager_Signal(long x)
 {
 	return x / abs(x);
+	
 }
 
 bool isposeq(Pos p1, Pos p2)
