@@ -53,7 +53,7 @@ void CollectGoods_GetballBack () {
 
 	//∂„”“œ¬√‘π¨»Îø⁄
 	Outer_GoPointByX (Ms_Pos_C, 4);
-	Outer_GoPointByXWithoutMicroMove (Ms_Pos_D, -1);
+	Outer_GoStraightPointByX (Ms_Pos_D);
 	
 	Outer_GoPointByX (Ms_Pos_E, 4);
 
@@ -96,7 +96,7 @@ void EasyMaze_ReturnHome () {
 	}
 
 	Outer_GoPointByX (Ms_Pos_E, 1);
-	Outer_GoPointByXWithoutMicroMove (Ms_Pos_K, 1);
+	Outer_GoStraightPointByX(Ms_Pos_K);
 
 	//!!!!!
 	while (!Manager_Time_TakeTime (52, 2000)) {
@@ -151,7 +151,7 @@ void SavePeople_GotoEntrance() {
 		Motor_GoSpeed(150, 150);
 	}
 	
-	Outer_GoPointByXWithoutMicroMove (Ms_Pos_H, 1);
+	Outer_GoStraightPointByX( Ms_Pos_H);
 	return;
 }
 

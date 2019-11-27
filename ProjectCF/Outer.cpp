@@ -27,27 +27,34 @@ void Outer_GoPointByY(int finalposition, int switchid)
 		Zigbee_MessageRecord();
 		PL_GoBlind(switchid);
 		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
-		if ((sig*(OurCar.pos.Y - finalposition) < (Outer_eps)) )return;
-	}Move_Stop();
+		if ((sig*(OurCar.pos.Y - finalposition) < (Outer_eps)) )break;
+	}
+	Move_Stop();
 }
 
-void Outer_GoPointByYWithoutMicroMove (int finalposition, int dir) {
+void Outer_GoStraightPointByY (int finalposition) {
 	int sig = Manager_Signal (OurCar.pos.Y - finalposition);
+	Mpu_RecordAngle();
 	while (1)
 	{
 		Zigbee_MessageRecord ();
-		Move_GoSpeed (dir * 100, dir * 100);
-		if ((sig * (OurCar.pos.Y - finalposition) < (Outer_eps)) && sig * (OurCar.pos.Y - finalposition) > (-30))break;
+		
+		Mpu_AdjustStraight(150);
+		if ((sig*(OurCar.pos.Y - finalposition) < (Outer_eps)))break;
 	}
+	Move_Stop();
 }
 
 
-void Outer_GoPointByXWithoutMicroMove (int finalposition, int dir) {
+void Outer_GoStraightPointByX (int finalposition) {
 	int sig = Manager_Signal (OurCar.pos.Y - finalposition);
+	Mpu_RecordAngle();
 	while (1)
 	{
 		Zigbee_MessageRecord ();
-		Move_GoSpeed (dir * 100, dir * 100);
-		if ((sig * (OurCar.pos.X - finalposition) < (Outer_eps)) && sig * (OurCar.pos.X - finalposition) > (-30))break;
+		
+		Mpu_AdjustStraight(150);
+		if ((sig*(OurCar.pos.X - finalposition) < (Outer_eps)))break;
 	}
+	Move_Stop();
 }

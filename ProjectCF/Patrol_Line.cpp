@@ -5,28 +5,28 @@
 void PL_CrossRoad (int opt) {
 
 	if (opt == 1) {
-		Move_RotateLeft ();
-		delay (300);
-		while (1) {
-			//delay (500);
-			if (Huidu_IsLine (2)) {
-				Move_Stop ();
-				return;
-			}
-
-		}
+		//Move_RotateLeft ();
+		//delay (300);
+		//while (1) {
+		//	//delay (500);
+		//	if (Huidu_IsLine (2)) {
+		//		Move_Stop ();
+		//		return;
+		//	}
+		Mpu_GoRelativeAngle(-80);
+	//	}
 	}
 	else if (opt == 5) {
-		Move_RotateRight ();
-		delay (300);
-		while (1) {
-			//delay (500);
-			if (Huidu_IsLine (5)) {
-				Move_Stop ();
-				return;
-			}
-
-		}
+		//Move_RotateRight ();
+		//delay (300);
+		//while (1) {
+		//	//delay (500);
+		//	if (Huidu_IsLine (5)) {
+		//		Move_Stop ();
+		//		return;
+		//	}
+		Mpu_GoRelativeAngle(-80);
+		//}
 	}
 	return;
 }
