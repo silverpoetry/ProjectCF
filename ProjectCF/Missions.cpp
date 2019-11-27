@@ -6,7 +6,7 @@ void CollectGoods_GotoGoods () {
 	//!!!!!
 
 	//贴墙走出出发点
-	while (!Manager_Time_TakeTime (12, 500))
+	while (!Manager_Time_TakeTime (12, 550))
 		PL_GoBlind (2);
 	Move_Stop ();
 
@@ -16,23 +16,24 @@ void CollectGoods_GotoGoods () {
 	Move_Stop ();
 
 	//反向微调
-	Motor_GoSpeed (150, 0); delay (150);
+	Motor_GoSpeed (150, 0); delay (330);
 
 	//再次前进至边
 	while (!MicroMove_IsPushed (1))
 		Motor_GoSpeed (150, 150);
 
 	//继续反向调整
-	Motor_GoSpeed (100, -50);
-	delay (600);
+	Motor_GoSpeed (100, -80);
+	delay (330);
 
 	//前进至再次到边界
 	while (!MicroMove_IsPushed (1))
 		Motor_GoSpeed (150, 150);
 
 	//至此来到下面的路上
-	//PL_GoBlind (1);
-
+	
+	
+	Move_Stop();
 }
 void CollectGoods_CatchBall () {
 	//!!!!!

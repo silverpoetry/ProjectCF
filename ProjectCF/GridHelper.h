@@ -15,18 +15,24 @@ struct queueitem
 	Pos to;
 	Pos from;
 };
+
+
+
+template<class T>
 struct Queue {
 
-	queueitem Array[64];
+	T Array[40];
 	int front0 = 0, back = 0;
 
-	void push(queueitem elm) {
-		Array[back++] = elm;
+	void push(T elm) {
+		Array[back] = elm;
+		back = (back + 1) % 39;
 	}
 	void pop() {
 		++front0;
+		front0 = front0  % 39;
 	}
-	queueitem front() {
+	T front() {
 		return Array[front0];
 	}
 	void clear() {
@@ -47,7 +53,7 @@ void GridHelper_InitGraph();
 void GridHelper_Detect ();
 Pos GridHelper_PositionConverter(Pos p);
 
-
+void gh_exit(Pos p);
 
 bool SavePeopleReadyforEntrance();
 bool SavePeopleBackReadytoGoBlind();

@@ -60,24 +60,28 @@ void Debugger_DebugManagement()
 		else if (s1 == "sspeed")Debug_lspeed = atoi (s2.c_str ()), Debug_rspeed = atoi (s3.c_str ());
 		else if (s1 == "gtm")Move_Gotime (Debug_lspeed, Debug_rspeed, atoi (s3.c_str ()));
 		else if (s1 == "gllft")PL_GoCrossTurnLeft ();
-		else if (s1 == "glrt")PL_GoBackBlind (4);
+		else if (s1 == "glrt")GridHelper_Go({ 2,1 }, { 7,5 });
 		else if (s1 == "bmpspeed")Move_GoSpeed (atoi (s2.c_str ()), atoi (s3.c_str ()));
 //		else if (s1 == "getball")MainTask_CollectGoods ();
-		else if (s1 == "getball2")PL_GoBlind (2);
-		else if (s1 == "exmaze")PL_GoBackBlind (3);
+		else if (s1 == "getball2")PL_GoBlind (1);
+		else if (s1 == "exmaze")CollectGoods_GotoGoods();
 		else if (s1 == "setpoint")Debug_ptx = atoi(s2.c_str()), Debug_ptY = atoi(s3.c_str());
 		else if (s1 == "setdir")Graph[Debug_ptx][Debug_ptY][atoi(s2.c_str())] = -1,Debugger_SetWatch("n",++n);
 		else if (s1 == "grinit")GridHelper_Init2(),Debugger_SetWatch("init2","true");
 		else if (s1 == "grclear")GridHelper_Init(), Debugger_SetWatch("init1", "true");
-		else if (s1 == "fuction0")PreContest_CollectGoods();
-		else if (s1 == "fuction1")PreContest_EasyMaze();
-		else if (s1 == "fuction2")PreContest_GoStraight(1);
-		else if (s1 == "fuction3")PreContest_GoStraight(2);
+		else if (s1 == "fuction0")CollectGoods_GotoGoods();
+		else if (s1 == "fuction1")Outer_GoPointByY(150,2),Move_Stop();
+		else if (s1 == "fuction2")PreContest_CollectGoods();
+		else if (s1 == "fuction3")Precontest_GoPlace();
 		else if (s1 == "fuction4")PreContest_ReceiveSignal();
+		else if (s1 == "relat")Mpu_GoRelativeAngle(atoi(s2.c_str()));
+		else if (s1 == "abt")Mpu_GoAngle(atoi(s2.c_str()),Mpu_dir::Left);
+		else if (s1 == "setz")Mpu_ResetZ();
 		else if (s1 == "fuction5")PreContest_SavePeople();
-		
-
-
+		else if (s1 == "zxx")Outer_GoPointByX(atoi(s2.c_str()), 1);
+		else if (s1 == "zxy")Outer_GoPointByX(atoi(s2.c_str()), 2);
+		else if (s1 == "zxy")Outer_GoPointByY(atoi(s2.c_str()), 1);
+		else if (s1 == "yxy")Outer_GoPointByY(atoi(s2.c_str()), 2);
 		//else if (s1 == "exmaze")MT_Main();
 		//else if (s1 == "getball2")GetBall2();
 

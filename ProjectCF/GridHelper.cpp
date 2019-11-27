@@ -63,8 +63,8 @@ Pos GridHelper_PositionConverter(Pos p)
 	Pos ret;
 	p.X = (int)(((float)(p.X)) / blockwidth + 0.5) + 1;
 	p.Y = (int)(((float)(p.Y)) / blockwidth + 0.5) + 1;
-	ret.Y = p.X;
-	ret.X = 7 - p.Y;
+	ret.Y = 7-p.Y;
+	ret.X = 7 - p.X;
 	return ret;
 
 
@@ -144,25 +144,7 @@ void GridHelper_Init2()
 		}
 	}
 	GridHelper_InitGraph();
-	Graph[1][4][3] = -1;
-	Graph[2][3][0] = -1;
-	Graph[2][4][0] = -1;
-	Graph[2][4][1] = -1;
-	Graph[2][4][2] = -1;
-	Graph[2][5][2] = -1;
-	Graph[2][5][3] = -1;
-	Graph[3][3][0] = -1;
-	Graph[3][4][2] = -1;
-	Graph[3][5][1] = -1;
-	Graph[3][5][3] = -1;
-	Graph[4][4][0] = -1;
-	Graph[4][5][0] = -1;
-	Graph[4][5][1] = -1;
-	Graph[4][5][2] = -1;
-	Graph[4][6][2] = -1;
-	Graph[4][6][3] = -1;
-	Graph[5][6][1] = -1;
-
+	
 
 }
 
@@ -252,7 +234,7 @@ bool GridHelper_SearchRoad(Pos from, Pos to) {
 	min_dist = 1000;
 	/*Serial.println(from.X);
 	Serial.println(from.Y);	*/
-	Queue q;
+	Queue<queueitem> q;
 	q.push({ from,from });
 	
 
@@ -364,7 +346,7 @@ void GridHelper_GoPath()
 	//		Serial.print(path[i].X), Serial.print(","), Serial.print(path[i].Y), Serial.print("\n");
 
 				//Serial.println(i);
-				delay(300);
+				delay(150);
 				UpdateCarPos(path[i]);
 				if (j == 0) {
 					PL_GoLineTime(100);
@@ -408,10 +390,58 @@ void GridHelper_GoPath()
 
 	}
 }
+void gh_exit(Pos p)
+{
+	for (int j = 0; j <= 3; j++) {
 
+		int dir = getPosition(j);
+		if (isposeq(MovePos(dir),p)) {
+			//		Serial.print(path[i].X), Serial.print(","), Serial.print(path[i].Y), Serial.print("\n");
+
+						//Serial.println(i);
+			delay(300);
+			
+			if (j == 0) {
+				Move_Gotime(150, 150, 600);
+
+				//		Debugger_SetWatch("Action", "Forward");
+			}
+			else if (j == 2) {
+				Move_Gotime(150, 150, 200);
+				Move_GoSpeed(150, -150);
+
+				delay(400);
+				PL_CrossRoad(5);
+				Move_Gotime(150, 150, 600);
+				//	Debugger_SetWatch("Action", "Back");
+			}
+			else if (j == 1) {
+
+				PL_GoLineTime(300);
+				Move_Stop();
+				Move_Gotime(150, -150, 500);
+				Move_Stop();
+				Move_Gotime(150, 150, 600);
+				//	Debugger_SetWatch("Action", "RT");
+			}
+			else if (j == 3) {
+				//	Move_GotimeWithoutStop(150, 50);
+				Debugger_SetWatch("Action", "LT");
+				PL_GoLineTime(300);
+				Move_Stop();
+				Move_Gotime(-150, 150, 500);
+				Move_Stop();
+				Move_Gotime(150, 150, 600);
+			}
+
+
+			break;
+		}
+	}
+}
 void GridHelper_Go(Pos from, Pos to)
 {
-	
+	GridHelper_Detect();
 	if (GridHelper_SearchRoad(from, to))
 	{
 		
