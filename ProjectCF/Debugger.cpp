@@ -79,7 +79,7 @@ void Debugger_DebugManagement()
 		else if (s1 == "setz")Mpu_ResetZ();
 		else if (s1 == "fuction5")PreContest_SavePeople();
 		else if (s1 == "zxx")Outer_GoPointByX(atoi(s2.c_str()), 1);
-		else if (s1 == "zxy")Outer_GoPointByX(atoi(s2.c_str()), 2);
+		else if (s1 == "yxx")Outer_GoPointByX(atoi(s2.c_str()), 2);
 		else if (s1 == "zxy")Outer_GoPointByY(atoi(s2.c_str()), 1);
 		else if (s1 == "yxy")Outer_GoPointByY(atoi(s2.c_str()), 2);
 		//else if (s1 == "exmaze")MT_Main();

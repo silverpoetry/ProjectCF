@@ -12,6 +12,7 @@ void Outer_GoPointByX(int finalposition, int switchid)
 		PL_GoBlind(switchid);
 		if ((sig*(OurCar.pos.X - finalposition) < (Outer_eps)) )break;
 	}
+	Move_Stop();
 }
 
 void Outer_GoPointByY(int finalposition, int switchid)
@@ -27,7 +28,7 @@ void Outer_GoPointByY(int finalposition, int switchid)
 		PL_GoBlind(switchid);
 		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
 		if ((sig*(OurCar.pos.Y - finalposition) < (Outer_eps)) )return;
-	}
+	}Move_Stop();
 }
 
 void Outer_GoPointByYWithoutMicroMove (int finalposition, int dir) {
