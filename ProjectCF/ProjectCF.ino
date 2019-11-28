@@ -88,7 +88,9 @@ void loop()
 
 	
 	Serial.print("2323");
-	
+
+	long long lastcnt11 = Motor_M1Cnt;
+	long long lastcnt12 = Motor_M2Cnt;
 	while (1)
 	{
 		//PL_GoBlind(2);
@@ -103,17 +105,24 @@ void loop()
 		Zigbee_MessageRecord();
 		zigbee_show();
 		Serial.print("2323");
+
 		//distance_show();
 		//Debugger_SetWatch("12312", 123123);
 		//Serial.println("123");
 		//zigbee_show();
 		mpu_show();
+
+		if (Manager_Time_TakeTime(6, 100))
+		{
+			Debugger_SetWatch("ActualSpeed1", Motor_M1Cnt - lastcnt11);
+			Debugger_SetWatch("ActualSpeed2", Motor_M2Cnt - lastcnt12);
+			lastcnt11 = Motor_M1Cnt;
+			lastcnt12 = Motor_M2Cnt;
+		}
 	}
 
 	//	Move_GoSpeed (100, 100);
 	//	Move_Refresh ();
-	long long lastcnt11 = Motor_M1Cnt;
-	long long lastcnt12 = Motor_M2Cnt;
 	//	Motor_GoSpeed (180, 180);
 	//	Move_Refresh ();
 	//	Debugger_Init
@@ -187,15 +196,9 @@ void loop()
 
 	/*	if (Manager_Time_TakeTime (5, 100)) {
 			Move_KeepRate ();
-		}
-		if (Manager_Time_TakeTime(6,1000))
-		{
-			Debugger_SetWatch ("ActualSpeed1", Motor_M1Cnt - lastcnt11);
-			Debugger_SetWatch ("ActualSpeed2", Motor_M2Cnt - lastcnt12);
-			 lastcnt11 = Motor_M1Cnt;
-			 lastcnt12 = Motor_M2Cnt;
-		}
-		*/
+		}*/
+		
+		
 	}
 
 

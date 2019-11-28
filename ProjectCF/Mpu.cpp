@@ -170,7 +170,7 @@ float getreladis(float ang1, float ang2)
 {
 	if (ang1 < 0)ang1 += 360;
 	if (ang2 < 0)ang2 += 360;
-	float v = ang1 - ang2;
+	float v = ang2 - ang1;
 	float v2 = 360.0 - abs(v);
 	v2 *= (-1 * Manager_Signal(v));
 	return abs(v)<abs(v2) ? v : v2;
@@ -180,15 +180,17 @@ void Mpu_AdjustStraight(int speed)
 {
 	Mpu_ReadData();
 	float angle = Mpu_Angles[2];
+	
 	int level = getreladis(angle , _tmpangle) / 5;
-	if (angle == 0)Move_GoSpeed(speed, speed);
-	else if (angle == -1)Move_GoSpeed(speed*1.1, speed*0.9);
-	else if (angle == 1)Move_GoSpeed(speed*0.9, speed*1.1);
-	else if (angle == -2)Move_GoSpeed(speed*1.2, speed*0.8);
-	else if (angle == 2)Move_GoSpeed(speed*0.8, speed*1.2);
-	else if (angle == -3)Move_GoSpeed(speed*1.3, speed*0.7);
-	else if (angle == 3)Move_GoSpeed(speed*0.7, speed*1.3);
-	else if (angle > 0)Move_GoSpeed(speed*0.6, speed*1.4);
+	Debugger_SetWatch("level", level);
+	if (level == 0)Move_GoSpeed(speed, speed);
+	else if (level == -1)Move_GoSpeed(speed*1.1, speed*0.9);
+	else if (level == 1)Move_GoSpeed(speed*0.9, speed*1.1);
+	else if (level == -2)Move_GoSpeed(speed*1.2, speed*0.8);
+	else if (level == 2)Move_GoSpeed(speed*0.8, speed*1.2);
+	else if (level == -3)Move_GoSpeed(speed*1.3, speed*0.7);
+	else if (level == 3)Move_GoSpeed(speed*0.7, speed*1.3);
+	else if (level > 0)Move_GoSpeed(speed*0.6, speed*1.4);
 	else Move_GoSpeed(speed*1.4, speed*0.6);
 	
 
