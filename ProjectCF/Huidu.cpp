@@ -64,7 +64,7 @@ bool Huidu_IsCrossRoad (void) {
 }
 void Huidu_ShowValues()
 {
-	for (int i = 1; i < 6; i++)
+	for (int i = 1; i <= 6; i++)
 	{
 		String s = "Huidu";
 		Debugger_SetWatch(s + i, Huidu_Read(i));

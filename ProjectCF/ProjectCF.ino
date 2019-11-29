@@ -11,7 +11,11 @@
 #include <Wire.h>
 #include <Arduino.h>
 #include <stdlib.h>
-
+void micromove_show()
+{
+	Debugger_SetWatch("switch1", MicroMove_IsPushed(1));
+	Debugger_SetWatch("switch2", MicroMove_IsPushed(2));
+}
 void distance_show()
 {
 	Debugger_SetWatch("dis1", Distance_Get(1));
@@ -71,6 +75,7 @@ void setup()
 	Manager_Hardware_Init();
 	Debugger_Init();
 	Serial.println("1243");
+	
 	//Debugger_SetWatch("123", 123);
 	GridHelper_Init();
 
@@ -105,8 +110,10 @@ void loop()
 		Zigbee_MessageRecord();
 		zigbee_show();
 		mpu_show();
-
+		distance_show();
+		micromove_show();
 		Serial.print("2323");
+		Huidu_ShowValues();
 
 		//distance_show();
 		//Debugger_SetWatch("12312", 123123);

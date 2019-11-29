@@ -27,7 +27,7 @@ long Distance_Get(int opt)
 	long  sum = 0;
 	//循环20次取平均值
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		long distance = 0;
 		if (opt == 1)
@@ -57,7 +57,7 @@ long Distance_Get(int opt)
 			delayMicroseconds(10);
 			digitalWrite(Distance_OutPutPin2, LOW); // 保持发出超声波信号接口低电平
 				//attachInterrupt(2,,)
-			distance = pulseIn(Distance_InputPin2, HIGH, 20000); // 读出脉冲时间
+			distance = pulseIn(Distance_InputPin2, HIGH, 10000); // 读出脉冲时间
 		}
 		if (distance == 0)return 0;
 		distance = distance * 10 / 58; // 将脉冲时间转化为距离（单位：厘米）
@@ -69,6 +69,6 @@ long Distance_Get(int opt)
 		delay(5);
 
 	}
-	sum /= 20;
+	sum /= 8;
 	return sum;
 }
