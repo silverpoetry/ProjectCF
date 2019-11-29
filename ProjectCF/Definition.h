@@ -2,8 +2,8 @@
 //--------------------------参考量----------------------------------------
 
 //巡线的左右轮子参考速度
-#define SPEED 150
-#define SPEED2 150
+#define SPEED 100
+#define SPEED2 100
 //外围上位机走点偏移量
 #define Outer_eps 5
 

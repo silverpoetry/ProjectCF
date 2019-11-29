@@ -35,16 +35,16 @@ void PL_PIDCorrection (int opt)
 {
 	bool isone = Huidu_IsLine (1), issix = Huidu_IsLine (6), istwo = Huidu_IsLine (2), isthree = Huidu_IsLine (3), isfour = Huidu_IsLine (4), isfive = Huidu_IsLine (5);
 	if (opt == 1) {
-		if (isthree && isfour) {
+		/*if (isthree && isfour) {
 			Motor_GoSpeed (SPEED, SPEED2); return;
-		}
+		}*/
 
-		if (issix)Motor_GoSpeed(SPEED * 1.4, SPEED2 * 0.6);
-		else  if (isone)Motor_GoSpeed(SPEED * 0.6, SPEED2 * 1.4);
-		 else if (istwo)Motor_GoSpeed(SPEED * 0.7, SPEED2 * 1.3);
-		 else if (isfive)Motor_GoSpeed(SPEED * 1.3, SPEED2 * 0.7);
-		else if (isthree)Motor_GoSpeed (SPEED * 0.9, SPEED2 * 1.1);
-		else if (isfour)Motor_GoSpeed (SPEED * 1.1, SPEED2 * 0.9);
+		if (issix)Motor_GoSpeed(SPEED * 1.5, SPEED2 * 0.5);
+		else  if (isone)Motor_GoSpeed(SPEED * 0.5, SPEED2 * 1.5);
+		 else if (istwo)Motor_GoSpeed(SPEED * 0.5, SPEED2 * 1.5);
+		 else if (isfive)Motor_GoSpeed(SPEED * 1.5, SPEED2 * 0.5);
+		else if (isthree)Motor_GoSpeed (SPEED * 0.5, SPEED2 * 1.5);
+		else if (isfour)Motor_GoSpeed(SPEED * 1.5, SPEED2 * 0.5);
 		
 		
 		
