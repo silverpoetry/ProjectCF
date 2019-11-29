@@ -14,6 +14,7 @@ void Move_Refresh()
 }
 void Move_GoSpeed(int speed1, int speed2)
 {
+	//if(speed2*speed1 < )
 	Motor_GoSpeed(speed1, speed2);
 	Motor_Rate = double(speed1) / double(speed2);
 }
