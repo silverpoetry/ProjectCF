@@ -104,13 +104,14 @@ void loop()
 		Debugger_DebugManagement();
 		Zigbee_MessageRecord();
 		zigbee_show();
+		mpu_show();
+
 		Serial.print("2323");
 
 		//distance_show();
 		//Debugger_SetWatch("12312", 123123);
 		//Serial.println("123");
 		//zigbee_show();
-		mpu_show();
 
 		if (Manager_Time_TakeTime(6, 100))
 		{
