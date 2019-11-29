@@ -3,7 +3,7 @@
 //
 volatile unsigned long long  Motor_M1Cnt=0;
 volatile unsigned long long  Motor_M2Cnt=0;
-int Motor_SpeedBalance = -30;
+ int Motor_SpeedBalance = 0;
 int Motor_M1Speed;
 int Motor_M2Speed;
 
