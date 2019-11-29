@@ -73,14 +73,15 @@ int cmpfunc(const void * a, const void * b)
 {
 	return (*(float*)a - *(float*)b);
 }
-float values[11];
+
 void Mpu_ReadData()
 {
 	for (int i = 0; i < 3; i++)
 	{
 		Mpu_ReadData2();
-		values[i] = Mpu_Angles[2];
+		//values[i] = Mpu_Angles[2];
 	}
+	Mpu_Angles[2] *= -1;
 	/*qsort(values, 5, sizeof(float), cmpfunc);
 	
 	Mpu_Angles[2]= values[2];*/
