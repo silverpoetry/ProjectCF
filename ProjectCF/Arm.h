@@ -5,7 +5,7 @@
 #include <Servo.h>
 
 
-const int Arm_Pins[] = { 4,5,2,46 };
+
 
 
 void Arm_Init();

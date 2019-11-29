@@ -1,17 +1,8 @@
 #pragma once
-//#define Motor_SpeedBalance 0 //B轮增加的补偿速度
-#define Motor_NomorSpeed 150
-#define Motor_EncodePin1 3
-#define Motor_EncodePin2 2
-const int  Motor_Pin2 = 38;
-const int  Motor_Pin1 = 39;
-const int  Motor_Pin4 = 40;
-const int  Motor_Pin3 = 41;
-const int  Motor_EN1 = 7;
-const int Motor_EN2 = 9; 
+
+
 extern int Motor_M1Speed;
 extern int Motor_M2Speed;
-
 extern volatile unsigned  long long  Motor_M1Cnt;
 extern volatile unsigned long long  Motor_M2Cnt;
 

@@ -73,14 +73,15 @@ int cmpfunc(const void * a, const void * b)
 {
 	return (*(float*)a - *(float*)b);
 }
-float values[11];
+
 void Mpu_ReadData()
 {
 	for (int i = 0; i < 3; i++)
 	{
 		Mpu_ReadData2();
-		values[i] = Mpu_Angles[2];
+		//values[i] = Mpu_Angles[2];
 	}
+	Mpu_Angles[2] *= -1;
 	/*qsort(values, 5, sizeof(float), cmpfunc);
 	
 	Mpu_Angles[2]= values[2];*/
@@ -108,7 +109,7 @@ void Mpu_GoAngle(float angle,Mpu_dir dir)
 		
 	
 }
-void Mpu_GoRelativeAngleAAA(int angel)
+void Mpu_GoRelativeAngle(int angel)
 {
 	Mpu_ReadData();
 	float nowangle = Mpu_Angles[2];
@@ -116,7 +117,7 @@ void Mpu_GoRelativeAngleAAA(int angel)
 	{
 		
 		
-		Move_GoSpeed(Manager_Signal(angel) * 150, -Manager_Signal(angel) * 150);
+		Move_GoSpeed(Manager_Signal(angel) * 100, -Manager_Signal(angel) * 100);
 		Mpu_ReadData();
 	}
 	Debugger_SetWatch("err", getdis(nowangle));
@@ -139,21 +140,7 @@ void Mpu_GoRelativeAngleSetSpeed (int angel,int speed1 ,int speed2)
 	Debugger_SetWatch ("ang", Mpu_Angles[2]);
 }
 
-void Mpu_GoRelativeAngle (int angel)
-{
-	Mpu_ReadData ();
-	float nowangle = Mpu_Angles[2];
-	while (getdis (nowangle) < abs (angel))
-	{
 
-
-		Move_GoSpeed (Manager_Signal (angel) * 150, -Manager_Signal (angel) * 150);
-		Mpu_ReadData ();
-	}
-	Debugger_SetWatch ("err", getdis (nowangle));
-	Move_Stop ();
-	Debugger_SetWatch ("ang", Mpu_Angles[2]);
-}
 void Mpu_ResetZ()
 {
 	SerialPort.print(0xFF);

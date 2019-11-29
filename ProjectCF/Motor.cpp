@@ -3,7 +3,7 @@
 //
 volatile unsigned long long  Motor_M1Cnt=0;
 volatile unsigned long long  Motor_M2Cnt=0;
- int Motor_SpeedBalance = 0;
+int Motor_SpeedBalance ;
 int Motor_M1Speed;
 int Motor_M2Speed;
 
@@ -27,8 +27,8 @@ void Motor_Init()
 		pinMode(Motor_Pin4, OUTPUT);
 		pinMode(Motor_EN1, OUTPUT);
 		pinMode(Motor_EN2, OUTPUT);
-		attachInterrupt(digitalPinToInterrupt(Motor_EncodePin2),Motor_Encode1_Arrived , RISING);
-		attachInterrupt(digitalPinToInterrupt(Motor_EncodePin1),Motor_Encode2_Arrived , RISING);
+		//attachInterrupt(digitalPinToInterrupt(Motor_EncodePin2),Motor_Encode1_Arrived , RISING);
+		//attachInterrupt(digitalPinToInterrupt(Motor_EncodePin1),Motor_Encode2_Arrived , RISING);
 
 }
 

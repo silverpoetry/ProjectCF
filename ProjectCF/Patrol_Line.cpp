@@ -30,7 +30,7 @@ void PL_CrossRoad (int opt) {
 	}
 	return;
 }
-#define SPEED2 150
+
 void PL_PIDCorrection (int opt)
 {
 	bool is0 = Huidu_IsLine (1), is6 = Huidu_IsLine (6), is1 = Huidu_IsLine (2), is2 = Huidu_IsLine (3), is3 = Huidu_IsLine (4), is4 = Huidu_IsLine (5);

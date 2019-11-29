@@ -19,8 +19,8 @@
 #include "GridHelper.h"
 #include "Outer.h"
 #include "Missions.h"
+#include "Definition.h"
 
 
-#define SPEED 150
 #define OurCar Car[0]
 #define OurCarIndex 0
