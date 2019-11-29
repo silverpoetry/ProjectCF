@@ -2,11 +2,8 @@
 #include "IncludeList.h"
 
 
-#ifndef Xiancchang
-int Huidu_LineValues[] = { 150, 150, 150, 150,150,150,100 };
-#else
-int Huidu_LineValues[] = { 0, 290, 300, 0 };
-#endif 
+
+
 
 void Huidu_Init() {
 	for  (int i =0; i<6; i++)

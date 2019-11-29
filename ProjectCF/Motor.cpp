@@ -27,8 +27,8 @@ void Motor_Init()
 		pinMode(Motor_Pin4, OUTPUT);
 		pinMode(Motor_EN1, OUTPUT);
 		pinMode(Motor_EN2, OUTPUT);
-		attachInterrupt(digitalPinToInterrupt(Motor_EncodePin2),Motor_Encode1_Arrived , RISING);
-		attachInterrupt(digitalPinToInterrupt(Motor_EncodePin1),Motor_Encode2_Arrived , RISING);
+		//attachInterrupt(digitalPinToInterrupt(Motor_EncodePin2),Motor_Encode1_Arrived , RISING);
+		//attachInterrupt(digitalPinToInterrupt(Motor_EncodePin1),Motor_Encode2_Arrived , RISING);
 
 }
 

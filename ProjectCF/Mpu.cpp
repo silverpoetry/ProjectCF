@@ -139,21 +139,7 @@ void Mpu_GoRelativeAngleSetSpeed (int angel,int speed1 ,int speed2)
 	Debugger_SetWatch ("ang", Mpu_Angles[2]);
 }
 
-void Mpu_GoRelativeAngle (int angel)
-{
-	Mpu_ReadData ();
-	float nowangle = Mpu_Angles[2];
-	while (getdis (nowangle) < abs (angel))
-	{
 
-
-		Move_GoSpeed (Manager_Signal (angel) * 100, -Manager_Signal (angel) * 100);
-		Mpu_ReadData ();
-	}
-	Debugger_SetWatch ("err", getdis (nowangle));
-	Move_Stop ();
-	Debugger_SetWatch ("ang", Mpu_Angles[2]);
-}
 void Mpu_ResetZ()
 {
 	SerialPort.print(0xFF);

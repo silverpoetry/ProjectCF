@@ -81,9 +81,6 @@
     <ClInclude Include="Types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="maintask.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
     <ClInclude Include="GridHelper.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
@@ -98,6 +95,9 @@
     </ClInclude>
     <ClInclude Include="PreContest.h">
       <Filter>Header Files\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="Definition.h">
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
