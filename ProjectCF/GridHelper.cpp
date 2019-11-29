@@ -346,40 +346,40 @@ void GridHelper_GoPath()
 	//		Serial.print(path[i].X), Serial.print(","), Serial.print(path[i].Y), Serial.print("\n");
 
 				//Serial.println(i);
-				delay(150);
+				//delay(150);
 				UpdateCarPos(path[i]);
 				if (j == 0) {
 					PL_GoLineTime(100);
-					PL_GoStop();
+					PL_GoWithoutStop();
 					
 			//		Debugger_SetWatch("Action", "Forward");
 				}
 				else if (j == 2) {
-					Move_Gotime(150, 150, 200);
+					Move_Gotime(150, 150, 140);
 					Move_GoSpeed(150, -150);
 					
-					delay(400);
+					delay(260);
 					PL_CrossRoad(5);
-					PL_GoStop();
+					PL_GoWithoutStop();
 					UpdateCarOrient(4);
 				//	Debugger_SetWatch("Action", "Back");
 				}
 				else if (j == 1) {
 
-					PL_GoLineTime(300);
+					PL_GoLineTime(200);
 					Move_Stop();
 					PL_CrossRoad(5);
-					PL_GoStop();
+					PL_GoWithoutStop();
 					UpdateCarOrient(1);
 				//	Debugger_SetWatch("Action", "RT");
 				}
 				else if (j == 3) {
 					//	Move_GotimeWithoutStop(150, 50);
 					Debugger_SetWatch("Action", "LT");
-					PL_GoLineTime(300);
+					PL_GoLineTime(170);
 					Move_Stop();
 					PL_CrossRoad(1);
-					PL_GoStop();
+					PL_GoWithoutStop();
 					UpdateCarOrient(3);
 				}
 
@@ -389,6 +389,7 @@ void GridHelper_GoPath()
 		}
 
 	}
+	Move_Stop();
 }
 void gh_exit(Pos p)
 {
@@ -399,7 +400,7 @@ void gh_exit(Pos p)
 			//		Serial.print(path[i].X), Serial.print(","), Serial.print(path[i].Y), Serial.print("\n");
 
 						//Serial.println(i);
-			delay(300);
+			//delay(300);
 			
 			if (j == 0) {
 				Move_Gotime(150, 150, 600);
@@ -407,7 +408,7 @@ void gh_exit(Pos p)
 				//		Debugger_SetWatch("Action", "Forward");
 			}
 			else if (j == 2) {
-				Move_Gotime(150, 150, 200);
+				Move_Gotime(150, 150, 140);
 				Move_GoSpeed(150, -150);
 
 				delay(400);
@@ -417,20 +418,19 @@ void gh_exit(Pos p)
 			}
 			else if (j == 1) {
 
-				PL_GoLineTime(300);
-				Move_Stop();
-				Move_Gotime(150, -150, 500);
-				Move_Stop();
+				PL_GoLineTime(200);
+				//Move_Stop();
+				Mpu_GoRelativeAngle(79);
+				//Move_Stop();
 				Move_Gotime(150, 150, 600);
 				//	Debugger_SetWatch("Action", "RT");
 			}
 			else if (j == 3) {
 				//	Move_GotimeWithoutStop(150, 50);
-				Debugger_SetWatch("Action", "LT");
-				PL_GoLineTime(300);
-				Move_Stop();
-				Move_Gotime(-150, 150, 500);
-				Move_Stop();
+				PL_GoLineTime(200);
+				//Move_Stop();
+				Mpu_GoRelativeAngle(-79);
+				//Move_Stop();
 				Move_Gotime(150, 150, 600);
 			}
 

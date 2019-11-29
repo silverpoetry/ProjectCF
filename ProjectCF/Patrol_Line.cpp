@@ -9,11 +9,11 @@ void PL_CrossRoad (int opt) {
 		delay (300);
 		while (1) {
 			//delay (500);
-			if (Huidu_IsLine (2)) {
+			if (Huidu_IsLine (3)) {
 				Move_Stop ();
 				return;
 			}
-
+			
 		}
 	}
 	else if (opt == 5) {
@@ -21,7 +21,7 @@ void PL_CrossRoad (int opt) {
 		delay (300);
 		while (1) {
 			//delay (500);
-			if (Huidu_IsLine (5)) {
+			if (Huidu_IsLine (4)) {
 				Move_Stop ();
 				return;
 			}
@@ -33,33 +33,37 @@ void PL_CrossRoad (int opt) {
 
 void PL_PIDCorrection (int opt)
 {
-	bool is0 = Huidu_IsLine (1), is6 = Huidu_IsLine (6), is1 = Huidu_IsLine (2), is2 = Huidu_IsLine (3), is3 = Huidu_IsLine (4), is4 = Huidu_IsLine (5);
+	bool isone = Huidu_IsLine (1), issix = Huidu_IsLine (6), istwo = Huidu_IsLine (2), isthree = Huidu_IsLine (3), isfour = Huidu_IsLine (4), isfive = Huidu_IsLine (5);
 	if (opt == 1) {
-		if (is2 && is3) {
+		/*if (isthree && isfour) {
 			Motor_GoSpeed (SPEED, SPEED2); return;
-		}
+		}*/
 
-		if (is2)Motor_GoSpeed (SPEED * 0.93, SPEED2 * 1.07);
-		if (is3)Motor_GoSpeed (SPEED * 1.07, SPEED2 * 0.93);
-		if (is4)Motor_GoSpeed (SPEED * 1.3, SPEED2 * 0.7);
-		if (is1)Motor_GoSpeed (SPEED * 0.7, SPEED2 * 1.3);
-		if (is0)Motor_GoSpeed (SPEED * 1.4, SPEED2 * 0.6);
+		if (issix)Motor_GoSpeed(SPEED * 1.5, SPEED2 * 0.5);
+		else  if (isone)Motor_GoSpeed(SPEED * 0.5, SPEED2 * 1.5);
+		 else if (istwo)Motor_GoSpeed(SPEED * 0.5, SPEED2 * 1.5);
+		 else if (isfive)Motor_GoSpeed(SPEED * 1.5, SPEED2 * 0.5);
+		else if (isthree)Motor_GoSpeed (SPEED * 0.5, SPEED2 * 1.5);
+		else if (isfour)Motor_GoSpeed(SPEED * 1.5, SPEED2 * 0.5);
+		
+		
+		
 
-		if (is6)Motor_GoSpeed (SPEED * 0.6, SPEED2 * 1.4);
+		
 	}
 #define SPEEDx 100
 	else if (opt == 2) {
-		if (is2 && is3) {
+		if (isthree && isfour) {
 			Motor_GoSpeed (-SPEEDx, -SPEEDx); return;
 		}
 
-		if (is3)Motor_GoSpeed (-SPEEDx * 1.1, -SPEEDx * 0.9);
-		if (is2)Motor_GoSpeed (-SPEEDx * 0.9, -SPEEDx * 1.1);
-		if (is1)Motor_GoSpeed (-SPEEDx * 0.7, -SPEEDx * 1.3);
-		if (is4)Motor_GoSpeed (-SPEEDx * 1.3, -SPEEDx * 0.7);
-		if (is6)Motor_GoSpeed (-SPEEDx * 0.6, -SPEEDx * 1.4);
+		if (isfour)Motor_GoSpeed (-SPEEDx * 1.1, -SPEEDx * 0.9);
+		if (isthree)Motor_GoSpeed (-SPEEDx * 0.9, -SPEEDx * 1.1);
+		if (istwo)Motor_GoSpeed (-SPEEDx * 0.7, -SPEEDx * 1.3);
+		if (isfive)Motor_GoSpeed (-SPEEDx * 1.3, -SPEEDx * 0.7);
+		if (issix)Motor_GoSpeed (-SPEEDx * 0.6, -SPEEDx * 1.4);
 
-		if (is0)Motor_GoSpeed (-SPEEDx * 1.4, -SPEEDx * 0.6);
+		if (isone)Motor_GoSpeed (-SPEEDx * 1.4, -SPEEDx * 0.6);
 	}
 }
 
@@ -77,7 +81,7 @@ void PL_GoCrossTurnLeft ()
 
 	PL_GoWithoutStop ();
 	//Move_GotimeWithoutStop(150, 100);
-	PL_GoLineTime (140);
+	PL_GoLineTime (100);
 	Move_Stop ();
 	PL_CrossRoad (1);
 
@@ -88,7 +92,7 @@ void PL_GoCrossTurnRight ()
 
 	PL_GoWithoutStop ();
 	//Move_GotimeWithoutStop(150, 200);
-	PL_GoLineTime(140);
+	PL_GoLineTime(100);
 	Move_Stop ();
 	PL_CrossRoad (5);
 
@@ -156,12 +160,12 @@ void PL_GoBlind (int opt)
 {
 
 	if (opt == 1) {
-		if (MicroMove_IsPushed (1))Motor_GoSpeed (155, 140);
-		else Motor_GoSpeed (150, 155);
+		if (MicroMove_IsPushed (1))Motor_GoSpeed (160, 140);
+		else Motor_GoSpeed (150, 170);
 	}
 	else if (opt == 2) {
 		if (MicroMove_IsPushed (2))Motor_GoSpeed (140, 160);
-		else Motor_GoSpeed (155, 140);
+		else Motor_GoSpeed (170, 150);
 	}
 	else if (opt == 3) {
 		if (MicroMove_IsPushed(3)) {

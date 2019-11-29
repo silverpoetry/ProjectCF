@@ -59,15 +59,9 @@ void PreContest_EasyMaze () {
 	PL_GoStop();
 	
 	GridHelper_Go (car.Position, exit);
-	PL_GoLineTime(300);
-	Move_Stop();
-	Move_RotateRight();
-	delay(500);
-	Move_Stop();
+	gh_exit({ 2,0 });
 	
-		
-	Move_Gotime(150, 150, 600);
-	Move_Stop ();
+	
 }
 void PreContest_SavePeople () {
 	int i = 1;

@@ -2,18 +2,18 @@
 //--------------------------参考量----------------------------------------
 
 //巡线的左右轮子参考速度
-#define SPEED 150
-#define SPEED2 150
+#define SPEED 100
+#define SPEED2 100
 //外围上位机走点偏移量
 #define Outer_eps 5
 
 //---------------------------模块-----------------------------------------
 //超声波
 
-#define Distance_InputPin  49 // 定义超声波信号接收接口
-#define Distance_OutPutPin  48// 定义超声波信号发出接口
-#define Distance_InputPin2  44 // 定义超声波信号接收接口
-#define Distance_OutPutPin2  45// 定义超声波信号发出接口
+#define Distance_InputPin  23 // 定义超声波信号接收接口
+#define Distance_OutPutPin  22// 定义超声波信号发出接口
+#define Distance_InputPin2  A15 // 定义超声波信号接收接口
+#define Distance_OutPutPin2  A14// 定义超声波信号发出接口
 #define Distance_InputPin0  36 // 定义超声波信号接收接口
 #define Distance_OutPutPin0  35// 定义超声波信号发出接口
 
@@ -26,8 +26,8 @@ const int Huidu_LineValues[] = { 150, 150, 150, 150,150,150,100 };
 const int Arm_Pins[] = { 4,5,2,46 };
 
 //微动开关
-#define MicroMove_Pin A12 //left_front
-#define MicroMove_Pin2 48 //right_front
+#define MicroMove_Pin 11 //left_front
+#define MicroMove_Pin2 10 //right_front
 #define MicroMove_Pin3 45 //left_back
 #define MicroMove_Pin4 49 //right_back
 
