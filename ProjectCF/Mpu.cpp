@@ -108,7 +108,7 @@ void Mpu_GoAngle(float angle,Mpu_dir dir)
 		
 	
 }
-void Mpu_GoRelativeAngle(int angel)
+void Mpu_GoRelativeAngleAAA(int angel)
 {
 	Mpu_ReadData();
 	float nowangle = Mpu_Angles[2];
@@ -116,7 +116,7 @@ void Mpu_GoRelativeAngle(int angel)
 	{
 		
 		
-		Move_GoSpeed(Manager_Signal(angel) * 100, -Manager_Signal(angel) * 100);
+		Move_GoSpeed(Manager_Signal(angel) * 150, -Manager_Signal(angel) * 150);
 		Mpu_ReadData();
 	}
 	Debugger_SetWatch("err", getdis(nowangle));
@@ -147,7 +147,7 @@ void Mpu_GoRelativeAngle (int angel)
 	{
 
 
-		Move_GoSpeed (Manager_Signal (angel) * 100, -Manager_Signal (angel) * 100);
+		Move_GoSpeed (Manager_Signal (angel) * 150, -Manager_Signal (angel) * 150);
 		Mpu_ReadData ();
 	}
 	Debugger_SetWatch ("err", getdis (nowangle));

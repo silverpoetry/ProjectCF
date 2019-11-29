@@ -14,3 +14,4 @@ void Mpu_ResetZ();
 void Mpu_RecordAngle();
 void Mpu_AdjustStraight(int speed);
 void Mpu_GoRelativeAngleSetSpeed (int angel, int speed1, int speed2);
+void Mpu_GoRelativeAngleAAA (int angel);
