@@ -15,7 +15,7 @@ because arduino download and mpu6050 are using the same serial port, you need to
  http://item.taobao.com/item.htm?id=19785706431
  */
 #include "IncludeList.h"
-#define SerialPort Serial3
+#define SerialPort Serial1
 unsigned char Re_buf[11], counter = 0;
 unsigned char sign = 0;
 float a[3], w[3], Mpu_Angles[3], T;
