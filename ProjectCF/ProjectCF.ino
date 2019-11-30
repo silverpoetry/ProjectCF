@@ -110,10 +110,10 @@ void loop()
 		Zigbee_MessageRecord();
 		zigbee_show();
 		mpu_show();
-		distance_show();
-		micromove_show();
-		Serial.print("2323");
-		Huidu_ShowValues();
+		/*distance_show();
+		micromove_show();*/
+	/*	Serial.print("2323");
+		Huidu_ShowValues();*/
 
 		//distance_show();
 		//Debugger_SetWatch("12312", 123123);

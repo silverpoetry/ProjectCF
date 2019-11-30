@@ -62,12 +62,19 @@ int Move_RotateRight (void) {
 
 	Move_GoSpeed (120, -120);
 }
-
+int i = 0;
 void Move_Stop (void) {
 	Motor_GoSpeed(-Motor_M1Speed, -Motor_M2Speed);
 	delay(50);
 	Motor_Stop (1);
 	Motor_Stop (2);
+	Motor_Stop(1);
+	Motor_Stop(2);
+	Motor_Stop(1);
+	Motor_Stop(2);
+	Motor_Stop(1);
+	Motor_Stop(2);
+	Debugger_SetWatch("stop",i++);
 }
 void Move_Gotime(int speed1,int speed2, int time)
 {

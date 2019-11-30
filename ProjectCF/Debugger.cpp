@@ -75,7 +75,8 @@ void Debugger_DebugManagement()
 		else if (s1 == "fuction2")PL_GoBlind(2);
 		else if (s1 == "fuction3")Precontest_GoPlace();
 		else if (s1 == "fuction4")Move_GoStraightTime(150, 3000);
-		else if (s1 == "relat")Mpu_GoRelativeAngleAAA(atoi(s2.c_str()));
+		else if (s1 == "relat")Mpu_GoRelativeAngle(atoi(s2.c_str()));
+		else if (s1 == "relata")Mpu_GoRelativeAngleAAA(atoi(s2.c_str()));
 		else if (s1 == "abt")Mpu_GoAngle(atoi(s2.c_str()),Mpu_dir::Left);
 		else if (s1 == "setz")Mpu_ResetZ();
 		else if (s1 == "fuction5")PreContest_SavePeople();
