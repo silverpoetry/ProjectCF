@@ -124,6 +124,30 @@ void Mpu_GoRelativeAngle(int angel)
 	Move_Stop();
 	Debugger_SetWatch("ang", Mpu_Angles[2]);
 }
+
+void Mpu_GoRelativeAngleAAA (int angel)
+{
+	Mpu_ReadData ();
+	float nowangle = Mpu_Angles[2];
+	while (getdis (nowangle) < abs (angel))
+	{
+		if (Manager_Signal (angel)>0)
+		{
+			Move_GoSpeed (120, 0);
+		}
+		else
+		{
+			Move_GoSpeed (0, 120);
+		}
+
+
+	
+		Mpu_ReadData ();
+	}
+	//Debugger_SetWatch ("err", getdis (nowangle));
+	Move_Stop ();
+//	Debugger_SetWatch ("ang", Mpu_Angles[2]);
+}
 void Mpu_GoRelativeAngleSetSpeed (int angel,int speed1 ,int speed2)
 {
 	Mpu_ReadData ();

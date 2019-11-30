@@ -20,7 +20,7 @@ int Huidu_Read(int index)
 	
 	int value;
 	int min = 9999, max = 0, ans = 0;
-	for (int i = 0; i < 12; i++)
+	for (int i = 0; i < 4; i++)
 	{
 	
 		int temp = analogRead(Huidu_Pins[index - 1]);;
@@ -30,7 +30,7 @@ int Huidu_Read(int index)
 		
 
 	}
-	int finalvalue =  (ans - min - max) / 10;
+	int finalvalue =  (ans - min - max) / 3.06;
 	//¶ÔÖµĞŞÕı
 	
 	return finalvalue;

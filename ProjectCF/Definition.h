@@ -2,8 +2,8 @@
 //--------------------------参考量----------------------------------------
 
 //巡线的左右轮子参考速度
-#define SPEED 100
-#define SPEED2 100
+#define SPEED 150
+#define SPEED2 150
 //外围上位机走点偏移量
 #define Outer_eps 5
 
@@ -19,7 +19,7 @@
 
 //灰度
 const int Huidu_Pins[] = { A0,A1,A2,A9,A8,A3 };
-const int Huidu_LineValues[] = { 150, 150, 150, 150,150,150,100 };
+const int Huidu_LineValues[] = { 100,100, 100, 100,100,100,100 };
 
 
 //机械臂
