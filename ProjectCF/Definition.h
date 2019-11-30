@@ -12,13 +12,13 @@
 
 #define Distance_InputPin  23 // 定义超声波信号接收接口
 #define Distance_OutPutPin  22// 定义超声波信号发出接口
-#define Distance_InputPin2  A15 // 定义超声波信号接收接口
-#define Distance_OutPutPin2  A14// 定义超声波信号发出接口
-#define Distance_InputPin0  36 // 定义超声波信号接收接口
-#define Distance_OutPutPin0  35// 定义超声波信号发出接口
+#define Distance_InputPin2  17 // 定义超声波信号接收接口
+#define Distance_OutPutPin2  16// 定义超声波信号发出接口
+#define Distance_InputPin0  19 // 定义超声波信号接收接口
+#define Distance_OutPutPin0  18// 定义超声波信号发出接口
 
 //灰度
-const int Huidu_Pins[] = { A0,A1,A2,A9,A8,A3 };
+const int Huidu_Pins[] = { A0,A1,A11,A10,A9,A8 };
 const int Huidu_LineValues[] = { 100,100, 100, 100,100,100,100 };
 
 
@@ -40,5 +40,5 @@ const int  Motor_Pin2 = 42;
 const int  Motor_Pin1 = 43;
 const int  Motor_Pin4 = 44;
 const int  Motor_Pin3 = 45;
-const int  Motor_EN1 = 9;
-const int Motor_EN2 = 7;
+const int  Motor_EN1 = 44;
+const int Motor_EN2 = 45;
