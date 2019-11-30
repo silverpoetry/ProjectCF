@@ -25,7 +25,7 @@ void CollectGoods_CatchBall () {
 void CollectGoods_GetballBack () {
 	Mpu_GoRelativeAngleAAA (40);
 	Outer_GoPointByY (Ms_Pos_B, 2);
-	//MainTask_EasyMaze ();
+	MainTask_EasyMaze ();
 
 	return;
 }
@@ -57,11 +57,17 @@ void EasyMaze_ReturnHome () {
 void MainTask_EasyMaze () {
 
 	//从出发点前往迷宫入口
+
 	Move_GoStraightTime (150, 400);
-	car.Position = { 0, 5 };
-	Pos exit = { 5, 0 };
-	car.Orientation = 3;
+	GridHelper_Init ();
+	car.Position = { 6, 5 };
+	Pos exit = { 2, 1 };
+	car.Orientation = 1;
+	PL_GoStop ();
+
 	GridHelper_Go (car.Position, exit);
+	gh_exit ({ 2,0 });
+
 	EasyMaze_ReturnHome ();
 }
 
