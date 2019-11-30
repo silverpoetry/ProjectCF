@@ -10,6 +10,7 @@ void Outer_GoPointByX(int finalposition, int switchid)
 
 		Zigbee_MessageRecord();
 		PL_GoBlind(switchid);
+		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
 		if ((sig*(OurCar.pos.X - finalposition) < (Outer_eps)) )break;
 	}
 	Move_Stop();
@@ -40,6 +41,7 @@ void Outer_GoStraightPointByY (int finalposition) {
 		Zigbee_MessageRecord ();
 		
 		Mpu_AdjustStraight(150);
+		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
 		if ((sig*(OurCar.pos.Y - finalposition) < (Outer_eps)))break;
 	}
 	Move_Stop();
@@ -54,6 +56,7 @@ void Outer_GoStraightPointByX (int finalposition) {
 		Zigbee_MessageRecord ();
 		
 		Mpu_AdjustStraight(150);
+		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
 		if ((sig*(OurCar.pos.X - finalposition) < (Outer_eps)))break;
 	}
 	Move_Stop();
