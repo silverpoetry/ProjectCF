@@ -7,86 +7,27 @@ void CollectGoods_GotoGoods () {
 
 	//贴墙走出出发点
 	Outer_GoPointByX (AAA, 2);
-//	while (!Manager_Time_TakeTime (12, 550))
-//		PL_GoBlind (2);
-//	Move_Stop ();
 
 	//以左轮为轴旋转至碰边
-	Mpu_GoRelativeAngle (-125);
+	Mpu_GoRelativeAngleAAA (-125);
 	Move_GoStraightTime (150, 800);
-	Mpu_GoRelativeAngle (25);
-	/*
-
-/*	while (!MicroMove_IsPushed (1))
-		Motor_GoSpeed (0, 150);
-	Move_Stop ();
-	
-	//反向微调
-	Motor_GoSpeed (150, 0); delay (330);
-
-	//再次前进至边
-	while (!MicroMove_IsPushed (1))
-		Motor_GoSpeed (150, 150);
-
-	//继续反向调整
-	Motor_GoSpeed (100, -80);
-	delay (330);
-
-	//前进至再次到边界
-	while (!MicroMove_IsPushed (1))
-		Motor_GoSpeed (150, 150);
+	Mpu_GoRelativeAngleAAA (25);
 
 	//至此来到下面的路上
 	
 	
-	Move_Stop();*/
 }
 void CollectGoods_CatchBall () {
 	Mpu_GoRelativeAngleAAA (145);
 	Move_GoStraightTime (-150, 550);
 	delay (300);
-	//!!!!!
-//	Arm_PickBall ();
 }
 void CollectGoods_GetballBack () {
-	Mpu_GoRelativeAngle (40);
+	Mpu_GoRelativeAngleAAA (40);
 	Outer_GoPointByY (Ms_Pos_B, 2);
 	MainTask_EasyMaze ();
 
-	//拐左下大弯
-//	Mpu_GoRelativeAngle (-15);
-	//Move_GoStraightTime (150,300);
-	//Mpu_GoRelativeAngle (-40);
-	
-/*
-
-	while (!Manager_Time_TakeTime (50, 200)) {
-		Move_GoSpeed (150, 150);
-	}
-	Move_Stop ();
-	Motor_GoSpeed (-225, -80);
-	delay (1400);
-	Move_Stop ();
-*/
-	//躲右下迷宫入口
-//	Outer_GoPointByX (Ms_Pos_C, 1);
-	//Outer_GoStraightPointByX (Ms_Pos_D);
-	
-	//Outer_GoPointByX (Ms_Pos_E, 1);
-
-	//!!!!!
-	//Mpu_GoRelativeAngleSetSpeed (179, 150, 0);
-/*	while (!Manager_Time_TakeTime (51, 1000)) {
-		Motor_GoSpeed (0, -150);
-	}*/
-	//Outer_GoPointByX (Ms_Pos_F, 1);
-//	Move_Stop ();
-	//delay (500);
 	return;
-}
-void CollectGoods_DropBall () {
-	//!!!!!
-	Arm_DropBall ();
 }
 void MainTask_CollectGoods()
 {
@@ -95,80 +36,45 @@ void MainTask_CollectGoods()
 	Move_Stop();
 	CollectGoods_CatchBall();
 	CollectGoods_GetballBack();
-//	CollectGoods_DropBall ();
+	Mpu_GoRelativeAngleAAA (-80);
+	MainTask_EasyMaze ();
 }
 
-
-//0 front, 1 right, 2 back, 3 left
-/*void EasyMaze_GoEntrance () {
-	//从出发点前往迷宫入口
-
-	//拐左下大弯
-
-	Outer_GoPointByX (AAA, 3);
-	Mpu_GoRelativeAngle (60);
-	Move_GoStraightTime (150, 300);
-	Mpu_GoRelativeAngle (15);
-
-
-
-//	CollectGoods_GotoGoods ();
-	
-	Outer_GoPointByY (Ms_Pos_G, 2);
-	Mpu_GoRelativeAngle (90);
-	Move_GoStraightTime (150, 200);
-
-
-
-}*/
 void EasyMaze_ReturnHome () {
 	//!!!!!
-	Mpu_GoRelativeAngle (-80);
-/*	while (!MicroMove_IsPushed (1)) {
-		Motor_GoSpeed (0, 100);
-	}
-*/
+	Mpu_GoRelativeAngleAAA (-80);
 	Outer_GoPointByX (Ms_Pos_E, 1);
 
 
 	//!!!!
 	Mpu_GoRelativeAngleAAA (170);
-	//(179, 150, 0);
-	/*	while (!Manager_Time_TakeTime (51, 1000)) {
-			Motor_GoSpeed (0, -150);
-		}*/
 	Outer_GoPointByX (Ms_Pos_F, 1);
 	Move_Stop ();
 	delay (500);
 	return;
-	//!!!!!
-/*	while (!Manager_Time_TakeTime (52, 2000)) {
-		Motor_GoSpeed (100, 0);
-	}
-
-	Outer_GoPointByX (Ms_Pos_F, 1);
-	Move_Stop ();
-	delay (500);
-	return;*/
 }
 
 void MainTask_EasyMaze () {
 
 	//从出发点前往迷宫入口
-//	EasyMaze_GoEntrance ();
-//	PL_CrossRoad (5);
 
-	car.Position = { 0, 5 };
-	Pos exit = { 5, 0 };
-	car.Orientation = 3;
+	Move_GoStraightTime (150, 400);
+	GridHelper_Init ();
+	car.Position = { 6, 5 };
+	Pos exit = { 2, 1 };
+	car.Orientation = 1;
+	PL_GoStop ();
+
 	GridHelper_Go (car.Position, exit);
+	gh_exit ({ 2,0 });
+
 	EasyMaze_ReturnHome ();
 }
 
 
 
 void SavePeople_GotoEntrance() {
-
+/*
 	//拐左上大弯
 	//!!!!!
 	while (!Manager_Time_TakeTime(12, 500))
@@ -195,7 +101,7 @@ void SavePeople_GotoEntrance() {
 	}
 	
 	Outer_GoStraightPointByX( Ms_Pos_H);
-	return;
+	return;*/
 }
 
 void SavePeople_BackHome() {
@@ -219,6 +125,9 @@ void MainTask_SavePeople() {
 	SavePeople_GotoEntrance ();
 	PL_CrossRoad (1);
 
+	PreContest_SavePeople ();
+
+/*
 	int i = 1;
 	car.Position = { 7, 2 };
 	Pos exit = { 2, 7 };
@@ -237,6 +146,6 @@ void MainTask_SavePeople() {
 		i++;
 	}
 
-	GridHelper_Go(car.Position, exit);
+	GridHelper_Go(car.Position, exit);*/
 	SavePeople_BackHome ();
 }

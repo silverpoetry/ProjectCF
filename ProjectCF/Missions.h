@@ -38,7 +38,7 @@
 #define Ms_Pos_J 10
 #define Ms_Pos_K 240
 #define Ms_Pos_L 57
-#define AAA 40
+#define AAA 36
 
 void CollectGoods_GotoGoods ();
 void CollectGoods_CatchBall ();
