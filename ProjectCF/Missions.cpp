@@ -12,9 +12,9 @@ void CollectGoods_GotoGoods () {
 //	Move_Stop ();
 
 	//以左轮为轴旋转至碰边
-	Mpu_GoRelativeAngle (-120);
-	Move_GoStraightTime (150, 300);
-	Mpu_GoRelativeAngle (15);
+	Mpu_GoRelativeAngle (-125);
+	Move_GoStraightTime (150, 800);
+	Mpu_GoRelativeAngle (25);
 	/*
 
 /*	while (!MicroMove_IsPushed (1))
@@ -42,17 +42,21 @@ void CollectGoods_GotoGoods () {
 	Move_Stop();*/
 }
 void CollectGoods_CatchBall () {
+	Mpu_GoRelativeAngleAAA (145);
+	Move_GoStraightTime (-150, 550);
+	delay (300);
 	//!!!!!
-	Arm_PickBall ();
+//	Arm_PickBall ();
 }
 void CollectGoods_GetballBack () {
-	Mpu_GoRelativeAngle (179);
-	Outer_GoPointByY (Ms_Pos_B, 3);
+	Mpu_GoRelativeAngle (40);
+	Outer_GoPointByY (Ms_Pos_B, 2);
+	MainTask_EasyMaze ();
 
 	//拐左下大弯
-	Mpu_GoRelativeAngle (-15);
-	Move_GoStraightTime (150,300);
-	Mpu_GoRelativeAngle (-40);
+//	Mpu_GoRelativeAngle (-15);
+	//Move_GoStraightTime (150,300);
+	//Mpu_GoRelativeAngle (-40);
 	
 /*
 
@@ -65,19 +69,19 @@ void CollectGoods_GetballBack () {
 	Move_Stop ();
 */
 	//躲右下迷宫入口
-	Outer_GoPointByX (Ms_Pos_C, 1);
-	Outer_GoStraightPointByX (Ms_Pos_D);
+//	Outer_GoPointByX (Ms_Pos_C, 1);
+	//Outer_GoStraightPointByX (Ms_Pos_D);
 	
-	Outer_GoPointByX (Ms_Pos_E, 1);
+	//Outer_GoPointByX (Ms_Pos_E, 1);
 
 	//!!!!!
-	Mpu_GoRelativeAngleSetSpeed (179, 150, 0);
+	//Mpu_GoRelativeAngleSetSpeed (179, 150, 0);
 /*	while (!Manager_Time_TakeTime (51, 1000)) {
 		Motor_GoSpeed (0, -150);
 	}*/
-	Outer_GoPointByX (Ms_Pos_F, 1);
-	Move_Stop ();
-	delay (500);
+	//Outer_GoPointByX (Ms_Pos_F, 1);
+//	Move_Stop ();
+	//delay (500);
 	return;
 }
 void CollectGoods_DropBall () {
@@ -91,12 +95,12 @@ void MainTask_CollectGoods()
 	Move_Stop();
 	CollectGoods_CatchBall();
 	CollectGoods_GetballBack();
-	CollectGoods_DropBall ();
+//	CollectGoods_DropBall ();
 }
 
 
 //0 front, 1 right, 2 back, 3 left
-void EasyMaze_GoEntrance () {
+/*void EasyMaze_GoEntrance () {
 	//从出发点前往迷宫入口
 
 	//拐左下大弯
@@ -116,10 +120,10 @@ void EasyMaze_GoEntrance () {
 
 
 
-}
+}*/
 void EasyMaze_ReturnHome () {
 	//!!!!!
-	Mpu_GoRelativeAngle (-90);
+	Mpu_GoRelativeAngle (-80);
 /*	while (!MicroMove_IsPushed (1)) {
 		Motor_GoSpeed (0, 100);
 	}
@@ -127,8 +131,9 @@ void EasyMaze_ReturnHome () {
 	Outer_GoPointByX (Ms_Pos_E, 1);
 
 
-	//!!!!!
-	Mpu_GoRelativeAngleSetSpeed (179, 150, 0);
+	//!!!!
+	Mpu_GoRelativeAngleAAA (170);
+	//(179, 150, 0);
 	/*	while (!Manager_Time_TakeTime (51, 1000)) {
 			Motor_GoSpeed (0, -150);
 		}*/
@@ -150,7 +155,7 @@ void EasyMaze_ReturnHome () {
 void MainTask_EasyMaze () {
 
 	//从出发点前往迷宫入口
-	EasyMaze_GoEntrance ();
+//	EasyMaze_GoEntrance ();
 //	PL_CrossRoad (5);
 
 	car.Position = { 0, 5 };
