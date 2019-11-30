@@ -107,15 +107,16 @@ void loop()
 		//GridHelper_Go({ 2,1 }, { 7,5 });
 		
 		Debugger_DebugManagement();
+		Debugger_SetWatch("aaa", "saa");
 		Zigbee_MessageRecord();
 		zigbee_show();
 		mpu_show();
-		/*distance_show();
-		micromove_show();*/
+		distance_show();
+		micromove_show();
 	/*	Serial.print("2323");
 		Huidu_ShowValues();*/
-
-		//distance_show();
+		Huidu_ShowValues();
+		distance_show();
 		//Debugger_SetWatch("12312", 123123);
 		//Serial.println("123");
 		//zigbee_show();
