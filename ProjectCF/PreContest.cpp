@@ -71,9 +71,14 @@ void PreContest_SavePeople () {
 	Pos exit = { 1, 2 };
 	car.Orientation = 2;
 
-	while (i <= 3) {
+	while (1) {
 		while (Manager_Time_TakeTime(35,500))Zigbee_MessageRecord();
 		
+		if (Game.GameState == GameOver) {
+			Move_Stop ();
+			return;
+		}
+
 		Pos person1 = GridHelper_PositionConverter ({ Passenger[0].pos.X ,Passenger[0].pos.Y }), person2 = GridHelper_PositionConverter ({ Passenger[1].pos.X ,Passenger[1].pos.Y });
 		if (isposeq(person1, car.Position))person1 = person2;
 		if (isposeq(person2, car.Position))person2 = person1;
@@ -85,10 +90,10 @@ void PreContest_SavePeople () {
 		}
 		i++;
 	}
-
+/*
 	GridHelper_Go (car.Position, exit);
 	gh_exit({ 0,2 });
-	Move_Stop ();
+	Move_Stop ();*/
 }
 void Precontest_GoPlace()
 {
