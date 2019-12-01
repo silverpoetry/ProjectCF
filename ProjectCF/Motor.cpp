@@ -38,7 +38,7 @@ void Motor_Stop(int id)
 	
 	if (id==1)
 	{
-		analogWrite(Motor_EN1, 150);
+		analogWrite(Motor_EN1, 0);
 	digitalWrite(Motor_Pin1, HIGH);
 	digitalWrite(Motor_Pin2, HIGH);
 
@@ -46,7 +46,7 @@ void Motor_Stop(int id)
 	else if(id==2)
 	{
 
-		analogWrite(Motor_EN2, 150);
+		analogWrite(Motor_EN2, 0);
 	digitalWrite(Motor_Pin3, HIGH);
 	digitalWrite(Motor_Pin4, HIGH);
 	}

@@ -63,7 +63,7 @@ void Debugger_DebugManagement()
 		else if (s1 == "glrt")GridHelper_Go ({ 2,1 }, { 7,5 });
 		else if (s1 == "bmpspeed")Move_GoSpeed (atoi (s2.c_str ()), atoi (s3.c_str ()));
 		//		else if (s1 == "getball")MainTask_CollectGoods ();
-		else if (s1 == "getball2")PL_GoBlind (1);
+		else if (s1 == "getball2")shadiao_shabi ();
 		else if (s1 == "exmaze")MainTask_CollectGoods ();
 		else if (s1 == "gstm")	Move_GoStraightTime (Debug_lspeed, atoi (s3.c_str ()));
 		else if (s1 == "setpoint")Debug_ptx = atoi (s2.c_str ()), Debug_ptY = atoi (s3.c_str ());
