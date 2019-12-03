@@ -26,8 +26,8 @@ const int Huidu_LineValues[] = { 100,100, 100, 100,100,100,100 };
 const int Arm_Pins[] = { 4,5,2,46 };
 
 //微动开关
-#define MicroMove_Pin 11 //left_front
-#define MicroMove_Pin2 10 //right_front
+#define MicroMove_Pin A14 //left_front
+#define MicroMove_Pin2 A15 //right_front
 #define MicroMove_Pin3 49 //left_back
 #define MicroMove_Pin4 49 //right_back
 
@@ -35,7 +35,8 @@ const int Arm_Pins[] = { 4,5,2,46 };
 extern int Motor_SpeedBalance; //B轮增加的补偿速度
 #define Motor_NomorSpeed 150
 #define Motor_EncodePin1 7
-#define Motor_EncodePin2 9
+#define Motor_EncodePin2 9//ourcar
+
 const int  Motor_Pin3 = 31;
 const int  Motor_Pin4 = 30;
 const int  Motor_Pin2 = 33;

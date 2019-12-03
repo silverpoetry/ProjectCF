@@ -197,7 +197,7 @@ void Mpu_AdjustStraight(int speed)
 	float angle = Mpu_Angles[2];
 	
 	int level =-Manager_Signal(getreladis(angle, _tmpangle))*(abs( getreladis(angle , _tmpangle))+5) / 5;
-
+	level *= Manager_Signal (speed);
 	Debugger_SetWatch("level", level);
 	if (level == 0)Move_GoSpeed(speed, speed);
 	else if (level == -1)Move_GoSpeed(speed*1.1, speed*0.9);

@@ -46,14 +46,14 @@ void PL_PIDCorrection (int opt)
 		//else if (isthree)Motor_GoSpeed (SPEED * 0.9, SPEED2 * 1.1);
 		//else if (isfour)Motor_GoSpeed(SPEED * 1.1, SPEED2 * 0.9);
 		
-
-		if (issix)Motor_GoSpeed (SPEED * 1.3, SPEED2 * 0.3);
+	 if (isthree && isfour) {
+		Motor_GoSpeed (SPEED, SPEED2); return;
+	}
+	 else	if (issix)Motor_GoSpeed (SPEED * 1.3, SPEED2 * 0.3);
 		else  if (isone)Motor_GoSpeed (SPEED * 0.3, SPEED2 * 1.3);
 		else  if (istwo)Motor_GoSpeed (SPEED * 0.5, SPEED2 * 1.2);
 		else if (isfive)Motor_GoSpeed (SPEED * 1.2, SPEED2 * 0.5);
-		else if (isthree && isfour) {
-			Motor_GoSpeed (SPEED, SPEED2); return;
-		}
+	
 		else if (isthree)Motor_GoSpeed (SPEED * 0.8, SPEED2 * 1.1);
 		else if (isfour)Motor_GoSpeed (SPEED * 1.1, SPEED2 * 0.8);
 		
@@ -174,7 +174,7 @@ void PL_GoBlind (int opt)
 	}
 	else if (opt == 2) {
 		if (MicroMove_IsPushed (2))Motor_GoSpeed (140, 160);
-		else Motor_GoSpeed (170, 150);
+		else Motor_GoSpeed (180, 140);
 	}
 	else if (opt == 3) {
 		if (MicroMove_IsPushed(3)) {

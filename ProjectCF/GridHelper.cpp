@@ -408,12 +408,12 @@ void gh_exit(Pos p)
 				//		Debugger_SetWatch("Action", "Forward");
 			}
 			else if (j == 2) {
-				Move_Gotime(150, 150, 140);
-				Move_GoSpeed(150, -150);
+				Move_Gotime (150, 150, 140);
+				Move_GoSpeed (150, -150);
 
-				delay(400);
-				PL_CrossRoad(5);
-				Move_GoStraightTime(150, 500);
+				delay (260);
+				PL_CrossRoad (5);
+				Move_GoStraightTime(150, 400);
 				//	Debugger_SetWatch("Action", "Back");
 			}
 			else if (j == 1) {
@@ -427,9 +427,11 @@ void gh_exit(Pos p)
 			}
 			else if (j == 3) {
 				//	Move_GotimeWithoutStop(150, 50);
-				PL_GoLineTime(200);
-				//Move_Stop();
-				Mpu_GoRelativeAngle(-79);
+				Move_Gotime (150, 150, 140);
+				Move_GoSpeed (-150, 150);
+
+				delay (260);
+				PL_CrossRoad (5);
 				//Move_Stop();
 				Move_GoStraightTime(150, 500);
 			}
@@ -438,6 +440,8 @@ void gh_exit(Pos p)
 			break;
 		}
 	}
+	Move_Stop ();
+	
 }
 void GridHelper_Go(Pos from, Pos to)
 {
