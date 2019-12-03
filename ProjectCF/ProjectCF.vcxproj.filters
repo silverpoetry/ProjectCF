@@ -99,6 +99,9 @@
     <ClInclude Include="Definition.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="CFSPI.h">
+      <Filter>Header Files\Moudules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Huidu.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="PreContest.cpp">
       <Filter>Source Files\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="CFSPI.cpp">
+      <Filter>Source Files\Moudules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

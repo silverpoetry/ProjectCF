@@ -5,60 +5,14 @@
 */
 
 
+
 #include <Servo.h>
 #include <Esplora.h>
 #include "IncludeList.h"
 #include <Wire.h>
 #include <Arduino.h>
 #include <stdlib.h>
-void micromove_show()
-{
-	Debugger_SetWatch("switch1", MicroMove_IsPushed(1));
-	Debugger_SetWatch("switch2", MicroMove_IsPushed(2));
-}
-void distance_show()
-{
-	Debugger_SetWatch("dis1", Distance_Get(1));
-	Debugger_SetWatch("dis2", Distance_Get(2));
-	Debugger_SetWatch("dis3", Distance_Get(3));
-}
-String makepoint(int a,int b)
-{
-	String s="";
-	s = s + a;
-	s = s + "|";
-	s = s + b;
-	return s;
-}
 
-String makepoint(Pos p)
-{
-	String s = "";
-	s = s + p.X;
-	s = s + "|";
-	s = s + p.Y;
-	return s;
-}
-void mpu_show()
-{
-	
-		Mpu_ReadData();
-		
-	
-	Debugger_SetWatch("mpu", Mpu_Angles[2]);
-}
-void zigbee_show()
-
-{   Zigbee_MessageRecord();
-	Debugger_SetWatch("car",makepoint( OurCar.pos.X,OurCar.pos.Y));
-	Debugger_SetWatch("psg1",makepoint(Passenger[0].pos.X ,Passenger[0].pos.Y) );
-	Debugger_SetWatch("psg2", makepoint(Passenger[1].pos.X,Passenger[1].pos.Y));
-	Debugger_SetWatch("psg1nd", makepoint(GridHelper_PositionConverter(Passenger[0].pos)));
-	Debugger_SetWatch("psg2nd", makepoint(GridHelper_PositionConverter(Passenger[1].pos)));
-	Debugger_SetWatch("GAME", Game.GameState);
-	Debugger_SetWatch("BALL",makepoint( Game.BallPos.X, Game.BallPos.Y));
-
-}
 
 void gopointY(int x)
 {
@@ -109,14 +63,14 @@ void loop()
 		Debugger_DebugManagement();
 		Debugger_SetWatch("aaa", "saa");
 		Zigbee_MessageRecord();
-		zigbee_show();
-		mpu_show();
-		distance_show();
-		micromove_show();
+		Debugger_ShowZigbee();
+		Debugger_ShowMpu();
+		Debugger_ShowDistance();
+		Debugger_ShowMicroMove();
 	/*	Serial.print("2323");
 		Huidu_ShowValues();*/
 		Huidu_ShowValues();
-		distance_show();
+		Debugger_ShowDistance();
 		//Debugger_SetWatch("12312", 123123);
 		//Serial.println("123");
 		//zigbee_show();
