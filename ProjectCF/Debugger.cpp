@@ -83,6 +83,8 @@ void Debugger_DebugManagement()
 		else if (s1 == "yxx")Outer_GoPointByX(atoi(s2.c_str()), 2);
 		else if (s1 == "zxy")Outer_GoPointByY(atoi(s2.c_str()), 1);
 		else if (s1 == "yxy")Outer_GoPointByY(atoi(s2.c_str()), 2);
+		else if (s1 == "myxx")Outer_GoStraightPointByX(atoi(s2.c_str()));
+		else if (s1 == "mzxy")Outer_GoStraightPointByY(atoi(s2.c_str()));
 #pragma endregion
 
 #pragma region хннЯ
