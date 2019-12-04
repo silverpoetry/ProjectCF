@@ -1,7 +1,7 @@
 #include "IncludeList.h"
 #include "Debugger.h"
 #include "Arduino.h"
-#define serialPort Serial3
+#define serialPort Serial1
 
 void left()
 {
@@ -52,7 +52,8 @@ void Debugger_DebugManagement()
 		/*	Debugger_SetWatch("s1", s1);
 			Debugger_SetWatch("s2", s2);
 			Debugger_SetWatch("s3", s3);*/
-		if (s1 == "fuck")Debugger_SetWatch ("fuck", s2 + " fucks " + s3);
+		
+		if (s1 == "aaa")Debugger_SetWatch ("fuck", s2 + " fucks " + s3);
 		else if (s1 == "fwd")Move_Refresh (), Motor_GoSpeed (atoi (s2.c_str ()), atoi (s3.c_str ()));
 		else if (s1 == "amg1")Arm_Go (1, atoi (s2.c_str ()));
 		else if (s1 == "amg2")Arm_Go (2, atoi (s2.c_str ()));
@@ -63,7 +64,7 @@ void Debugger_DebugManagement()
 		else if (s1 == "glrt")GridHelper_Go ({ 2,1 }, { 7,5 });
 		else if (s1 == "bmpspeed")Move_GoSpeed (atoi (s2.c_str ()), atoi (s3.c_str ()));
 		//		else if (s1 == "getball")MainTask_CollectGoods ();
-		else if (s1 == "getball2")shadiao_shabi ();
+		else if (s1 == "getball2") SavePeople_GotoEntrance ();
 		else if (s1 == "exmaze")MainTask_CollectGoods ();
 		else if (s1 == "gstm")	Move_GoStraightTime (Debug_lspeed, atoi (s3.c_str ()));
 		else if (s1 == "setpoint")Debug_ptx = atoi (s2.c_str ()), Debug_ptY = atoi (s3.c_str ());
@@ -72,9 +73,9 @@ void Debugger_DebugManagement()
 		else if (s1 == "grclear")GridHelper_Init (), Debugger_SetWatch ("init1", "true");
 		else if (s1 == "fuction0")PL_GoBlind (1);
 		else if (s1 == "fuction1")PreContest_EasyMaze ();
-		else if (s1 == "fuction2")PL_GoBlind (2);
+		else if (s1 == "fuction2")shadiao_shabi ();
 		else if (s1 == "fuction3")MainTask_CollectGoods ();
-		else if (s1 == "fuction4")Move_GoStraightTime(150, 3000);
+		else if (s1 == "fuction4")CollectGoods_GotoGoods ();
 		else if (s1 == "relat")Mpu_GoRelativeAngle(atoi(s2.c_str()));
 		else if (s1 == "relata")Mpu_GoRelativeAngleAAA(atoi(s2.c_str()));
 		else if (s1 == "abt")Mpu_GoAngle(atoi(s2.c_str()),Mpu_dir::Left);

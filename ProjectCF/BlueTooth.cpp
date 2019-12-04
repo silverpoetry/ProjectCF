@@ -1,9 +1,9 @@
 #include "IncludeList.h"
 #include "BlueTooth.h"
- HardwareSerial blSerial = Serial3;
+ HardwareSerial blSerial = Serial1;
 void BlueTooth_Init()
 {
-	blSerial.begin(115200);//占用Serial 1 
+	blSerial.begin(9600);//占用Serial 1 
 }
 String  BlueTooth_ReceiveData()
 {

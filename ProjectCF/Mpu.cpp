@@ -15,7 +15,7 @@ because arduino download and mpu6050 are using the same serial port, you need to
  http://item.taobao.com/item.htm?id=19785706431
  */
 #include "IncludeList.h"
-#define SerialPort Serial1
+#define SerialPort Serial2
 unsigned char Re_buf[11], counter = 0;
 unsigned char sign = 0;
 float a[3], w[3], Mpu_Angles[3], T;
@@ -27,7 +27,7 @@ void Mpu_Init() {
 
 void Mpu_ReadData2() {
 	bool flag = false; 
-
+	delay (1);
 	while (!SerialPort.available());
 
 	while (!flag)
@@ -35,11 +35,13 @@ void Mpu_ReadData2() {
 
 		//a:
 		//Serial.print("233");
+	
 		while((Re_buf[0] = SerialPort.read())!=0x55);
 	//	delayMicroseconds(600);
+		delay (2);
 		for (int i = 1; i < 10; i++)
 		{
-			while (!SerialPort.available());
+		//	while (!SerialPort.available());
 			Re_buf[i] = SerialPort.read();
 			//if (i == 1 && !(Re_buf[i] == 0x51 || Re_buf[i] == 0x52 || Re_buf[i] == 0x53)) {goto a; }
 			//delayMicroseconds(300);
@@ -128,7 +130,12 @@ void Mpu_GoRelativeAngle(int angel)
 
 void Mpu_GoRelativeAngleAAA (int angel)
 {
+	delay (150);
+
 	Mpu_ReadData ();
+	delay (150);
+	Mpu_ReadData ();
+	delay (150);
 	Debugger_SetWatch("ang", Mpu_Angles[2]);
 	float nowangle = Mpu_Angles[2];
 	while (getdis (nowangle) < abs (angel))
@@ -145,7 +152,7 @@ void Mpu_GoRelativeAngleAAA (int angel)
 		}
 
 
-	
+		delay (1);
 		Mpu_ReadData ();
 	}
 	//Debugger_SetWatch ("err", getdis (nowangle));

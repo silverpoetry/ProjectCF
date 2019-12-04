@@ -64,15 +64,21 @@ void PreContest_EasyMaze () {
 	
 }
 void PreContest_SavePeople () {
+	SavePeople_GotoEntrance ();
+	PL_GoStop ();
 	int i = 1;
 	//直接全图视野
-	GridHelper_Init();
+	GridHelper_Init2();
 	car.Position = { 1, 2 };
 	Pos exit = { 5, 2 };
 	car.Orientation = 3;
 
+	while (Manager_Time_TakeTime (35, 500))Zigbee_MessageRecord ();
+
+
 	while (true) {
 		while (Manager_Time_TakeTime(35,500))Zigbee_MessageRecord();
+
 		
 		if (Game.GameState == GameOver) {
 			Move_Stop ();
@@ -104,6 +110,17 @@ void Precontest_GoPlace()
 
 void shadiao_shabi (void) {
 	int i = 0;
+	while (i++ < 3) {
+		Move_GoStraightTime (150, 2000);
+		Mpu_GoRelativeAngleAAA (-80);
+		Mpu_GoRelativeAngleAAA (-125);
+		Mpu_GoRelativeAngleAAA (125);
+
+	}
+
+
+
+/*	int i = 0;
 //	while (i < 3) {
 	//	Move_Gotime (160, 140, 400);
 		PL_GoBlind (2);
@@ -137,7 +154,7 @@ void shadiao_shabi (void) {
 
 
 		//MatinTask_EasyMaze();
-
+*/
 		
 //	}
 

@@ -6,6 +6,7 @@ void CollectGoods_GotoGoods () {
 
 	//贴墙走出出发点
 	Outer_GoPointByX (AAA, 2);
+	delay (300);
 
 	//以左轮为轴旋转至碰边
 	Mpu_GoRelativeAngleAAA (-125);
@@ -13,36 +14,41 @@ void CollectGoods_GotoGoods () {
 	Mpu_GoRelativeAngleAAA (25);
 
 	//至此来到下面的路上
-	
-	
+
+
 }
 void CollectGoods_CatchBall () {
-	Mpu_GoRelativeAngleAAA (130);
-	Move_GoStraightTime (-150, 550);
+	//delay (300);
+
+	Mpu_GoRelativeAngleAAA (134);
+	Move_GoStraightTime (-150, 520);
 	delay (300);
 }
 void CollectGoods_GetballBack () {
-	Mpu_GoRelativeAngleAAA (40);
+	Mpu_GoRelativeAngleAAA (39);
 	Outer_GoPointByY (Ms_Pos_B, 2);
 	MainTask_EasyMaze ();
 
 	return;
 }
-void MainTask_CollectGoods()
-{
+void MainTask_CollectGoods ()
+{/*
 	while (1) {
 		while (!Zigbee_MessageRecord ());
 		if (Game.GameState == GameGoing) {
-			CollectGoods_GotoGoods ();
-			Outer_GoPointByY (Ms_Pos_A, 1);
-			Move_Stop ();
-			CollectGoods_CatchBall ();
-			CollectGoods_GetballBack ();
-			Mpu_GoRelativeAngleAAA (-80);
-			MainTask_EasyMaze ();
+			break;
 		}
-	}
+	}*/
+	CollectGoods_GotoGoods ();
+	Outer_GoPointByY (Ms_Pos_A, 1);
+	Move_Stop ();
+	CollectGoods_CatchBall ();
+	CollectGoods_GetballBack ();
+	Mpu_GoRelativeAngleAAA (-90);
+	MainTask_EasyMaze ();
 }
+//}
+//}
 
 void EasyMaze_ReturnHome () {
 	//!!!!!
@@ -61,7 +67,7 @@ void EasyMaze_ReturnHome () {
 void MainTask_EasyMaze () {
 
 	//从出发点前往迷宫入口
-	Mpu_GoRelativeAngleAAA (-80);
+	Mpu_GoRelativeAngleAAA (-85);
 	Move_GoStraightTime (150, 500);
 	GridHelper_Init ();
 	car.Position = { 6, 5 };
@@ -77,19 +83,36 @@ void MainTask_EasyMaze () {
 
 
 
-void SavePeople_GotoEntrance() {
-	Outer_GoPointByY (150, 1);
+void SavePeople_GotoEntrance () {
+	/*	while (1) {
+			while (!Zigbee_MessageRecord);
+			if (Game.GameState == GameGoing) {
+				break;
+			}
+		}
+	*/
+
+	/*	while (!Manager_Time_TakeTime(45,500))
+		{
+			PL_GoBlind (2);
+		}
+		Move_Gotime (150, -150, 300);
+		Move_Gotime (150, 150, 300);
+		Move_Gotime (-150, 150, 300);
+	*/
+	Outer_GoPointByY (150, 2);
 	Move_GoStraightTime (150, 300);
 	Mpu_GoRelativeAngleAAA (80);
 }
 
-void MainTask_SavePeople() {
+void MainTask_SavePeople () {
 
+	SavePeople_GotoEntrance ();
 	while (1) {
-		while (!Zigbee_MessageRecord ());
-		if (Game.GameState == GameGoing) {
-			SavePeople_GotoEntrance ();
-			PreContest_SavePeople ();
-		}
+		//	while (!Zigbee_MessageRecord ());
+			//if (Game.GameState == GameGoing) {
+				//SavePeople_GotoEntrance ();
+			//	PreContest_SavePeople ();
+			//}
 	}
 }

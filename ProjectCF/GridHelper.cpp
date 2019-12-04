@@ -143,8 +143,19 @@ void GridHelper_Init2()
 			Graph[i][j][0] = Graph[i][j][1] = Graph[i][j][2] = Graph[i][j][3] = 1;
 		}
 	}
+
 	GridHelper_InitGraph();
-	
+
+	Graph[1][4][0] = -1;
+	Graph[1][5][2] = -1;
+	Graph[1][5][3] = -1;
+	Graph[2][4][3] = -1;
+	Graph[2][5][1] = -1;
+	Graph[3][3][0] = -1;
+	Graph[3][4][0] = -1;
+	Graph[3][4][1] = -1;
+	Graph[3][4][2] = -1;
+	Graph[3][5][2] = -1;
 
 }
 
@@ -341,6 +352,8 @@ void GridHelper_GoPath()
 	for (int i = 1; i <= pathlength; i++) {
 		for (int j = 0; j <= 3; j++) {
 
+	Debugger_SetWatch ("posx", car.Position.X);
+	Debugger_SetWatch ("posy", car.Position.Y);
 			int dir = getPosition(j);
 			if (isposeq(MovePos(dir), path[i])) {
 	//		Serial.print(path[i].X), Serial.print(","), Serial.print(path[i].Y), Serial.print("\n");
@@ -350,7 +363,7 @@ void GridHelper_GoPath()
 				UpdateCarPos(path[i]);
 				if (j == 0) {
 					PL_GoLineTime(100);
-					PL_GoWithoutStop();
+					PL_GoStop();
 					
 			//		Debugger_SetWatch("Action", "Forward");
 				}
@@ -360,16 +373,16 @@ void GridHelper_GoPath()
 					
 					delay(260);
 					PL_CrossRoad(5);
-					PL_GoWithoutStop();
+					PL_GoStop ();
 					UpdateCarOrient(4);
 				//	Debugger_SetWatch("Action", "Back");
 				}
 				else if (j == 1) {
 
-					PL_GoLineTime(200);
+					PL_GoLineTime(170);
 					Move_Stop();
 					PL_CrossRoad(5);
-					PL_GoWithoutStop();
+					PL_GoStop ();
 					UpdateCarOrient(1);
 				//	Debugger_SetWatch("Action", "RT");
 				}
@@ -379,7 +392,7 @@ void GridHelper_GoPath()
 					PL_GoLineTime(170);
 					Move_Stop();
 					PL_CrossRoad(1);
-					PL_GoWithoutStop();
+					PL_GoStop ();
 					UpdateCarOrient(3);
 				}
 
@@ -446,6 +459,7 @@ void gh_exit(Pos p)
 void GridHelper_Go(Pos from, Pos to)
 {
 	GridHelper_Detect();
+
 	if (GridHelper_SearchRoad(from, to))
 	{
 		

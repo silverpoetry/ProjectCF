@@ -1,5 +1,5 @@
 #include "Zigbee.h"
-#define serialPort Serial2
+#define serialPort Serial3
 
 #define CRC_POLY 0xa001 //CRC-16，多项式0x8005；0xa001为它的倒序
 
