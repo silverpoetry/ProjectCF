@@ -26,8 +26,8 @@
 */
 
 
-#define Ms_Pos_A  45
-#define Ms_Pos_B 72
+#define Ms_Pos_A  50
+#define Ms_Pos_B 78
 #define Ms_Pos_C 150
 #define Ms_Pos_D 185
 #define Ms_Pos_E 220
@@ -44,6 +44,8 @@ void CollectGoods_GotoGoods ();
 void CollectGoods_CatchBall ();
 void CollectGoods_GetballBack ();
 void CollectGoods_DropBall ();
+
+void SavePeople_GotoEntrance ();
 
 void MainTask_CollectGoods ();
 void MainTask_EasyMaze (); 
