@@ -15,74 +15,28 @@ because arduino download and mpu6050 are using the same serial port, you need to
  http://item.taobao.com/item.htm?id=19785706431
  */
 #include "IncludeList.h"
-#define SerialPort Serial2
-unsigned char Re_buf[11], counter = 0;
-unsigned char sign = 0;
-float a[3], w[3], Mpu_Angles[3], T;
+#include "CFSPI.h"
+#define SerialPort Serial1
+
+float  Mpu_Angles[3];
 void Mpu_Init() {
 	// initialize serial:
-	SerialPort.begin(115200);
+	//SerialPort.begin(115200);
+	SPI_Init(MASTER);
 }
 
 
-void Mpu_ReadData2() {
-	bool flag = false; 
-	delay (1);
-	while (!SerialPort.available());
 
-	while (!flag)
-	{
 
-		//a:
-		//Serial.print("233");
-	
-		while((Re_buf[0] = SerialPort.read())!=0x55);
-	//	delayMicroseconds(600);
-		delay (2);
-		for (int i = 1; i < 10; i++)
-		{
-		//	while (!SerialPort.available());
-			Re_buf[i] = SerialPort.read();
-			//if (i == 1 && !(Re_buf[i] == 0x51 || Re_buf[i] == 0x52 || Re_buf[i] == 0x53)) {goto a; }
-			//delayMicroseconds(300);
-		}
-		switch (Re_buf[1])
-		{
-		case 0x51:
-			a[0] = (short(Re_buf[3] << 8 | Re_buf[2])) / 32768.0 * 16;
-			a[1] = (short(Re_buf[5] << 8 | Re_buf[4])) / 32768.0 * 16;
-			a[2] = (short(Re_buf[7] << 8 | Re_buf[6])) / 32768.0 * 16;
-			T = (short(Re_buf[9] << 8 | Re_buf[8])) / 340.0 + 36.25;
-			break;
-		case 0x52:
-			w[0] = (short(Re_buf[3] << 8 | Re_buf[2])) / 32768.0 * 2000;
-			w[1] = (short(Re_buf[5] << 8 | Re_buf[4])) / 32768.0 * 2000;
-			w[2] = (short(Re_buf[7] << 8 | Re_buf[6])) / 32768.0 * 2000;
-			T = (short(Re_buf[9] << 8 | Re_buf[8])) / 340.0 + 36.25;
-			break;
-		case 0x53:
-			Mpu_Angles[0] = (short(Re_buf[3] << 8 | Re_buf[2])) / 32768.0 * 180;
-			Mpu_Angles[1] = (short(Re_buf[5] << 8 | Re_buf[4])) / 32768.0 * 180;
-			Mpu_Angles[2] = (short(Re_buf[7] << 8 | Re_buf[6])) / 32768.0 * 180;
-			T = (short(Re_buf[9] << 8 | Re_buf[8])) / 340.0 + 36.25;
-			flag = true;
-			
-			break;
-		}
-	}
-}
-int cmpfunc(const void * a, const void * b)
-{
-	return (*(float*)a - *(float*)b);
-}
 
 void Mpu_ReadData()
 {
-	for (int i = 0; i < 3; i++)
-	{
-		Mpu_ReadData2();
-		//values[i] = Mpu_Angles[2];
-	}
+	//for (int i = 0; i < 3; i++)
+	//{
+	//	Mpu_ReadData2();
+	//	//values[i] = Mpu_Angles[2];
+	//}
+	Mpu_Angles[2] = SPI_ReadAngle();
 	Mpu_Angles[2] *= -1;
 	/*qsort(values, 5, sizeof(float), cmpfunc);
 	
@@ -130,12 +84,7 @@ void Mpu_GoRelativeAngle(int angel)
 
 void Mpu_GoRelativeAngleAAA (int angel)
 {
-	delay (150);
-
 	Mpu_ReadData ();
-	delay (150);
-	Mpu_ReadData ();
-	delay (150);
 	Debugger_SetWatch("ang", Mpu_Angles[2]);
 	float nowangle = Mpu_Angles[2];
 	while (getdis (nowangle) < abs (angel))
@@ -152,7 +101,7 @@ void Mpu_GoRelativeAngleAAA (int angel)
 		}
 
 
-		delay (1);
+	
 		Mpu_ReadData ();
 	}
 	//Debugger_SetWatch ("err", getdis (nowangle));

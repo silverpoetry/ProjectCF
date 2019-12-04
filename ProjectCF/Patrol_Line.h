@@ -11,6 +11,7 @@ void PL_GoBlind (int opt);
 void PL_GoBackBlind (int opt);
 void PL_GoBackStop ();
 void PL_GoCrossTurnRight ();
+void PL_GoBlind(int opt, int speed);
 extern double PID_KP , PID_KI , PID_KD ;
 void PL_GoBackStop ();
 enum CorssRoad

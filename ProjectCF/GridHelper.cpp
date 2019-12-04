@@ -456,6 +456,7 @@ void gh_exit(Pos p)
 	Move_Stop ();
 	
 }
+
 void GridHelper_Go(Pos from, Pos to)
 {
 	GridHelper_Detect();

@@ -196,6 +196,20 @@ void PL_GoBlind (int opt)
 		}
 	}
 }
+void PL_GoBlind(int opt,int speed)
+{
+
+	if (opt == 1) {
+		if (MicroMove_IsPushed(1))Motor_GoSpeed(speed*1.2, speed*0.8);
+		else Motor_GoSpeed(speed*0.8, speed*1.2);
+	}
+	else if (opt == 2) {
+		if (MicroMove_IsPushed(2)) Motor_GoSpeed(speed*0.8, speed*1.2);
+		else Motor_GoSpeed(speed*1.2, speed*0.8);
+	}
+	
+	
+}
 void PL_GoBackBlind (int opt) {
 	if (opt == 3) {
 		if (MicroMove_IsPushed (3)) {

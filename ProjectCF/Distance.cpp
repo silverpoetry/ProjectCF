@@ -21,9 +21,8 @@ void Distance_Init()
 //获取距离
 //单位 毫米
 long Distance_Get(int opt)
-
 {
-
+	
 	long  sum = 0;
 	//循环20次取平均值
 
@@ -41,7 +40,8 @@ long Distance_Get(int opt)
 			distance = pulseIn(Distance_InputPin0, HIGH, 20000); // 读出脉冲时间
 
 		}
-		else if (opt == 2) {
+		else if (opt == 2) 
+		{
 			digitalWrite(Distance_OutPutPin, LOW); // 使发出发出超声波信号接口低电平2μs
 			delayMicroseconds(2);
 			digitalWrite(Distance_OutPutPin, HIGH); // 使发出发出超声波信号接口高电平10μs，这里是至少10μs
@@ -50,7 +50,8 @@ long Distance_Get(int opt)
 				//attachInterrupt(2,,)
 			distance = pulseIn(Distance_InputPin, HIGH, 20000); // 读出脉冲时间
 		}
-		else if (opt == 3) {
+		else if (opt == 3)
+		{
 			digitalWrite(Distance_OutPutPin2, LOW); // 使发出发出超声波信号接口低电平2μs
 			delayMicroseconds(2);
 			digitalWrite(Distance_OutPutPin2, HIGH); // 使发出发出超声波信号接口高电平10μs，这里是至少10μs
@@ -62,10 +63,10 @@ long Distance_Get(int opt)
 		if (distance == 0)return 0;
 		distance = distance * 10 / 58; // 将脉冲时间转化为距离（单位：厘米）
 	//	Serial.println(distance); //输出距离值 
-		
-			sum += distance;
-		
-		
+
+		sum += distance;
+
+
 		delay(5);
 
 	}
