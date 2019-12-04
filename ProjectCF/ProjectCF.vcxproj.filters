@@ -155,6 +155,9 @@
     <ClCompile Include="CFSPI.cpp">
       <Filter>Source Files\Moudules</Filter>
     </ClCompile>
+    <ClCompile Include="shadiao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="578b654769b3399c40e113sddefff31a1.jpg">

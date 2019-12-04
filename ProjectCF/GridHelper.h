@@ -55,9 +55,7 @@ Pos GridHelper_PositionConverter(Pos p);
 
 void gh_exit(Pos p);
 
-bool SavePeopleReadyforEntrance();
-bool SavePeopleBackReadytoGoBlind();
-bool SavePeopleReturnHome();
+bool GridHelper_SearchRoadAdventure(Pos from, Pos to);
 
 
 const int map_sensor[4] = { 1,3,0,2 };
@@ -72,6 +70,7 @@ const int obstacle_range[4][2][2] = {
 };
 extern myCar car;
 void GridHelper_Go(Pos from, Pos to);
+void GridHelper_GoAdventure(Pos from, Pos to);
 int GridHelper_CntManhattonDist(Pos from, Pos to);
 /* 
 1-left 2-right 3-left_front 4-front

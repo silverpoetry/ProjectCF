@@ -83,10 +83,10 @@ void PreContest_SavePeople () {
 		if (isposeq(person1, car.Position))person1 = person2;
 		if (isposeq(person2, car.Position))person2 = person1;
 		if (GridHelper_CntManhattonDist (car.Position, person1) < GridHelper_CntManhattonDist (car.Position, person2)) {
-			GridHelper_Go (car.Position, person1);
+			 GridHelper_GoAdventure (car.Position, person1);
 		}
 		else {
-			GridHelper_Go (car.Position, person2);
+			 GridHelper_GoAdventure (car.Position, person2);
 		}
 		i++;
 	}

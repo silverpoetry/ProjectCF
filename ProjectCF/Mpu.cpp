@@ -37,7 +37,8 @@ void Mpu_ReadData()
 	//	//values[i] = Mpu_Angles[2];
 	//}
 	Mpu_Angles[2] = SPI_ReadAngle();
-	Mpu_Angles[2] *= -1;
+	delay(4);
+	//Mpu_Angles[2] *= -1;
 	/*qsort(values, 5, sizeof(float), cmpfunc);
 	
 	Mpu_Angles[2]= values[2];*/
@@ -57,8 +58,9 @@ void Mpu_GoAngle(float angle,Mpu_dir dir)
 		Mpu_ReadData();
 		while (getdis(angle)>5)
 		{
-			
-			Move_GoSpeed(dir * 100, -dir * 100);
+			int dis = abs(getdis(angle));
+			float rate = min(dis / 40, 1);
+			Move_GoSpeed(dir * 100*rate, -dir * 100*rate);
 			Mpu_ReadData();
 		}
 		Move_Stop();
@@ -72,9 +74,10 @@ void Mpu_GoRelativeAngle(int angel)
 	Debugger_SetWatch("ang", Mpu_Angles[2]);
 	while (getdis(nowangle) < abs(angel))
 	{
-		
+		int dis = abs(angel) - getdis(nowangle);
+		float rate = min(dis / 40, 1);
 		Debugger_SetWatch("err", getdis(nowangle));
-		Move_GoSpeed(Manager_Signal(angel) * 100, -Manager_Signal(angel) * 100);
+		Move_GoSpeed(Manager_Signal(angel) * 100*rate, -Manager_Signal(angel) * 100*rate);
 		Mpu_ReadData();
 	}
 	
@@ -90,14 +93,16 @@ void Mpu_GoRelativeAngleAAA (int angel)
 	while (getdis (nowangle) < abs (angel))
 	{
 
+		int dis = abs(angel) - getdis(nowangle);
+		float rate = min(dis / 40, 1);
 		Debugger_SetWatch("err", getdis(nowangle));
 		if (Manager_Signal (angel)>0)
 		{
-			Move_GoSpeed (120, 0);
+			Move_GoSpeed (120*rate, 0);
 		}
 		else
 		{
-			Move_GoSpeed (0, 120);
+			Move_GoSpeed (0, 120*rate);
 		}
 
 
@@ -114,7 +119,7 @@ void Mpu_GoRelativeAngleSetSpeed (int angel,int speed1 ,int speed2)
 	float nowangle = Mpu_Angles[2];
 	while (getdis (nowangle) < abs (angel))
 	{
-
+	\
 
 		Move_GoSpeed (speed1,speed2 );
 		Mpu_ReadData ();
@@ -152,7 +157,7 @@ void Mpu_AdjustStraight(int speed)
 	Mpu_ReadData();
 	float angle = Mpu_Angles[2];
 	
-	int level =-Manager_Signal(getreladis(angle, _tmpangle))*(abs( getreladis(angle , _tmpangle))+5) / 5;
+	int level =Manager_Signal(getreladis(angle, _tmpangle))*(abs( getreladis(angle , _tmpangle))+5) / 5;
 	level *= Manager_Signal (speed);
 	Debugger_SetWatch("level", level);
 	if (level == 0)Move_GoSpeed(speed, speed);
