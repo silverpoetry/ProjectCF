@@ -54,18 +54,39 @@ float getdis(float angle)
 void Mpu_GoAngle(float angle,Mpu_dir dir)
 {
 	//×ó±ßÊÇÕý
-	
+	if (dir== Right)
+	{
 		Mpu_ReadData();
-		while (getdis(angle)>5)
+		while (getdis(angle) > 5)
 		{
 			int dis = abs(getdis(angle));
 			float rate = min(dis / 40, 1);
-			Move_GoSpeed(dir * 100*rate, -dir * 100*rate);
+			Move_GoSpeed(dir * 50 * rate + 50, -dir * 50 * rate - 50);
 			Mpu_ReadData();
 		}
 		Move_Stop();
+
+
+	}
+	else
+	{
+		Mpu_ReadData();
+		while (getdis(angle) > 5)
+		{
+			int dis = abs(getdis(angle));
+			float rate = min(dis / 40, 1);
+			Move_GoSpeed(-dir * 50 * rate - 50, dir * 50 * rate + 50);
+			Mpu_ReadData();
+		}
+		Move_Stop();
+	}
 		
-	
+}
+int os(float speed)
+{
+	int abssp = abs(speed);
+	int sig = Manager_Signal(speed);
+	return sig * max(abssp, 50);
 }
 void Mpu_GoRelativeAngle(int angel)
 {
@@ -77,7 +98,7 @@ void Mpu_GoRelativeAngle(int angel)
 		int dis = abs(angel) - getdis(nowangle);
 		float rate = min(dis / 40, 1);
 		Debugger_SetWatch("err", getdis(nowangle));
-		Move_GoSpeed(Manager_Signal(angel) * 100*rate, -Manager_Signal(angel) * 100*rate);
+		Move_GoSpeed(os(Manager_Signal(angel) * 100*rate),os( -Manager_Signal(angel) * 100*rate));
 		Mpu_ReadData();
 	}
 	
@@ -98,11 +119,11 @@ void Mpu_GoRelativeAngleAAA (int angel)
 		Debugger_SetWatch("err", getdis(nowangle));
 		if (Manager_Signal (angel)>0)
 		{
-			Move_GoSpeed (120*rate, 0);
+			Move_GoSpeed (os(120*rate), 0);
 		}
 		else
 		{
-			Move_GoSpeed (0, 120*rate);
+			Move_GoSpeed (0, os(120*rate));
 		}
 
 
@@ -119,7 +140,7 @@ void Mpu_GoRelativeAngleSetSpeed (int angel,int speed1 ,int speed2)
 	float nowangle = Mpu_Angles[2];
 	while (getdis (nowangle) < abs (angel))
 	{
-	\
+	
 
 		Move_GoSpeed (speed1,speed2 );
 		Mpu_ReadData ();

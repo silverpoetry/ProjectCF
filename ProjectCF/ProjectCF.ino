@@ -12,7 +12,8 @@
 #include <Wire.h>
 #include <Arduino.h>
 #include <stdlib.h>
-
+#include <avr/interrupt.h>
+#include <avr/io.h>
 
 void gopointY(int x)
 {
@@ -23,7 +24,7 @@ void setup()
 {
 
 
-
+	
 	Serial.begin(9600);
 	Serial.println("123");
 	Manager_Hardware_Init();

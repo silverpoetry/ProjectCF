@@ -24,3 +24,5 @@
 
 #define OurCar Car[0]
 #define OurCarIndex 0
+#define Manager_Signal(x) ((x)>=0?(1):(-1))
+int os(float);
