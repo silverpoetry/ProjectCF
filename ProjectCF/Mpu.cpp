@@ -60,7 +60,7 @@ void Mpu_GoAngle(float angle,Mpu_dir dir)
 		while (getdis(angle) > 5)
 		{
 			int dis = abs(getdis(angle));
-			float rate = min(dis / 40, 1);
+			float rate = min(dis / 40.0, 1);
 			Move_GoSpeed(dir * 50 * rate + 50, -dir * 50 * rate - 50);
 			Mpu_ReadData();
 		}
@@ -74,7 +74,7 @@ void Mpu_GoAngle(float angle,Mpu_dir dir)
 		while (getdis(angle) > 5)
 		{
 			int dis = abs(getdis(angle));
-			float rate = min(dis / 40, 1);
+			float rate = min(dis / 40.0, 1);
 			Move_GoSpeed(-dir * 50 * rate - 50, dir * 50 * rate + 50);
 			Mpu_ReadData();
 		}
@@ -86,7 +86,13 @@ int os(float speed)
 {
 	int abssp = abs(speed);
 	int sig = Manager_Signal(speed);
-	return sig * max(abssp, 50);
+	return sig * max(abssp, 70);
+}
+int os2(float speed)
+{
+	int abssp = abs(speed);
+	int sig = Manager_Signal(speed);
+	return sig * max(abssp, 70);
 }
 void Mpu_GoRelativeAngle(int angel)
 {
@@ -96,9 +102,9 @@ void Mpu_GoRelativeAngle(int angel)
 	while (getdis(nowangle) < abs(angel))
 	{
 		int dis = abs(angel) - getdis(nowangle);
-		float rate = min(dis / 40, 1);
+		float rate = min(dis / 40.0, 1);
 		Debugger_SetWatch("err", getdis(nowangle));
-		Move_GoSpeed(os(Manager_Signal(angel) * 100*rate),os( -Manager_Signal(angel) * 100*rate));
+		Move_GoSpeed(os(Manager_Signal(angel) * 100*rate),-os(Manager_Signal(angel) * 100*rate));
 		Mpu_ReadData();
 	}
 	
@@ -115,7 +121,7 @@ void Mpu_GoRelativeAngleAAA (int angel)
 	{
 
 		int dis = abs(angel) - getdis(nowangle);
-		float rate = min(dis / 40, 1);
+		float rate = min(dis / 40.0, 1);
 		Debugger_SetWatch("err", getdis(nowangle));
 		if (Manager_Signal (angel)>0)
 		{
@@ -178,7 +184,7 @@ void Mpu_AdjustStraight(int speed)
 	Mpu_ReadData();
 	float angle = Mpu_Angles[2];
 	
-	int level =Manager_Signal(getreladis(angle, _tmpangle))*(abs( getreladis(angle , _tmpangle))+5) / 5;
+	int level =Manager_Signal(getreladis(angle, _tmpangle))*(abs( getreladis(angle , _tmpangle))+2.5) / 5;
 	level *= Manager_Signal (speed);
 	Debugger_SetWatch("level", level);
 	if (level == 0)Move_GoSpeed(speed, speed);
