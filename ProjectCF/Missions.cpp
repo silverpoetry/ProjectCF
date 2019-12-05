@@ -5,11 +5,11 @@
 void CollectGoods_GotoGoods () {
 
 	//贴墙走出出发点
-	Outer_GoPointByX (AAA, 2);
+	Outer_GoPointByX (37, 2);
 	delay (300);
 
 	//以左轮为轴旋转至碰边
-	Mpu_GoRelativeAngleAAA (-125);
+	Mpu_GoRelativeAngleAAA (-127);
 	Move_GoStraightTime (150, 800);
 	Mpu_GoRelativeAngleAAA (25);
 
@@ -20,13 +20,13 @@ void CollectGoods_GotoGoods () {
 void CollectGoods_CatchBall () {
 	//delay (300);
 
-	Mpu_GoRelativeAngleAAA (134);
-	Move_GoStraightTime (-150, 520);
+	Mpu_GoRelativeAngleAAA (133);
+	Move_GoStraightTime (-100, 400);
 	delay (300);
 }
 void CollectGoods_GetballBack () {
 	Mpu_GoRelativeAngleAAA (39);
-	Outer_GoPointByY (Ms_Pos_B, 2);
+	Outer_GoPointByY (73, 2);
 	MainTask_EasyMaze ();
 
 	return;
@@ -40,7 +40,7 @@ void MainTask_CollectGoods ()
 		}
 	}*/
 	CollectGoods_GotoGoods ();
-	Outer_GoPointByY (Ms_Pos_A, 1);
+	Outer_GoPointByY (40, 1);
 	Move_Stop ();
 	CollectGoods_CatchBall ();
 	CollectGoods_GetballBack ();
@@ -67,8 +67,8 @@ void EasyMaze_ReturnHome () {
 void MainTask_EasyMaze () {
 
 	//从出发点前往迷宫入口
-	Mpu_GoRelativeAngleAAA (-85);
-	Move_GoStraightTime (150, 500);
+	Mpu_GoRelativeAngleAAA (-75);
+	Move_GoStraightTime (150, 400);
 	GridHelper_Init ();
 	car.Position = { 6, 5 };
 	Pos exit = { 2, 1 };

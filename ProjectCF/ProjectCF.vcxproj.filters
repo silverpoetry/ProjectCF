@@ -1,161 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Misc Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>xml;json;txt;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Task">
-      <UniqueIdentifier>{a8f44634-0cc7-49ab-a44b-e25148439a2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Moudules">
-      <UniqueIdentifier>{3c4b86ec-54a4-4b1a-803e-f61f4158d42d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Framework">
-      <UniqueIdentifier>{f47e5aee-0d36-45fb-9d86-180dfec34937}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Framework">
-      <UniqueIdentifier>{16823de1-1a51-4795-8e92-72867cc4d60c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Task">
-      <UniqueIdentifier>{1faf988c-81d9-4b1c-9d01-fb3c79fc826c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Moudules">
-      <UniqueIdentifier>{67eb01e2-4d1f-4b3c-a6f1-ef7de5b879ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Picture">
-      <UniqueIdentifier>{d25f7776-cb6b-491a-ac9a-bb0758281eb1}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Arm.cpp" />
+    <ClCompile Include="BlueTooth.cpp" />
+    <ClCompile Include="CFSPI.cpp" />
+    <ClCompile Include="Debugger.cpp" />
+    <ClCompile Include="Distance.cpp" />
+    <ClCompile Include="Huidu.cpp" />
+    <ClCompile Include="GridHelper.cpp" />
+    <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="MicroMove.cpp" />
+    <ClCompile Include="Missions.cpp" />
+    <ClCompile Include="Motor.cpp" />
+    <ClCompile Include="Move.cpp" />
+    <ClCompile Include="Mpu.cpp" />
+    <ClCompile Include="Outer.cpp" />
+    <ClCompile Include="Patrol_Line.cpp" />
+    <ClCompile Include="PreContest.cpp" />
+    <ClCompile Include="shadiao.cpp" />
+    <ClCompile Include="Zigbee.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Arm.h" />
+    <ClInclude Include="BlueTooth.h" />
+    <ClInclude Include="CFSPI.h" />
+    <ClInclude Include="Debugger.h" />
+    <ClInclude Include="Distance.h" />
+    <ClInclude Include="Huidu.h" />
+    <ClInclude Include="IncludeList.h" />
+    <ClInclude Include="GridHelper.h" />
+    <ClInclude Include="Manager.h" />
+    <ClInclude Include="MicroMove.h" />
+    <ClInclude Include="Missions.h" />
+    <ClInclude Include="Motor.h" />
+    <ClInclude Include="Move.h" />
+    <ClInclude Include="Mpu.h" />
+    <ClInclude Include="Outer.h" />
+    <ClInclude Include="Patrol_Line.h" />
+    <ClInclude Include="PreContest.h" />
+    <ClInclude Include="Types.h" />
+    <ClInclude Include="Zigbee.h" />
+    <ClInclude Include="__vm\.ProjectCF.vsarduino.h" />
+    <ClInclude Include="Definition.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="578b654769b3399c40e113sddefff31a1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ProjectCF.ino" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="__vm\.ProjectCF.vsarduino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IncludeList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Arm.h">
-      <Filter>Header Files\Moudules</Filter>
-    </ClInclude>
-    <ClInclude Include="Mpu.h">
-      <Filter>Header Files\Moudules</Filter>
-    </ClInclude>
-    <ClInclude Include="Distance.h">
-      <Filter>Header Files\Moudules</Filter>
-    </ClInclude>
-    <ClInclude Include="Huidu.h">
-      <Filter>Header Files\Moudules</Filter>
-    </ClInclude>
-    <ClInclude Include="Motor.h">
-      <Filter>Header Files\Moudules</Filter>
-    </ClInclude>
-    <ClInclude Include="BlueTooth.h">
-      <Filter>Header Files\Moudules</Filter>
-    </ClInclude>
-    <ClInclude Include="Manager.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Debugger.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Move.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Zigbee.h">
-      <Filter>Header Files\Moudules</Filter>
-    </ClInclude>
-    <ClInclude Include="MicroMove.h">
-      <Filter>Header Files\Moudules</Filter>
-    </ClInclude>
-    <ClInclude Include="Types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GridHelper.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Patrol_Line.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Outer.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Missions.h">
-      <Filter>Header Files\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="PreContest.h">
-      <Filter>Header Files\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="Definition.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Huidu.cpp">
-      <Filter>Source Files\Moudules</Filter>
-    </ClCompile>
-    <ClCompile Include="Arm.cpp">
-      <Filter>Source Files\Moudules</Filter>
-    </ClCompile>
-    <ClCompile Include="Mpu.cpp">
-      <Filter>Source Files\Moudules</Filter>
-    </ClCompile>
-    <ClCompile Include="Motor.cpp">
-      <Filter>Source Files\Moudules</Filter>
-    </ClCompile>
-    <ClCompile Include="Distance.cpp">
-      <Filter>Source Files\Moudules</Filter>
-    </ClCompile>
-    <ClCompile Include="BlueTooth.cpp">
-      <Filter>Source Files\Moudules</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Move.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Zigbee.cpp">
-      <Filter>Source Files\Moudules</Filter>
-    </ClCompile>
-    <ClCompile Include="Debugger.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="MicroMove.cpp">
-      <Filter>Source Files\Moudules</Filter>
-    </ClCompile>
-    <ClCompile Include="GridHelper.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Patrol_Line.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Outer.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Missions.cpp">
-      <Filter>Source Files\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="PreContest.cpp">
-      <Filter>Source Files\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="shadiao.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="578b654769b3399c40e113sddefff31a1.jpg">
-      <Filter>Picture</Filter>
-    </Image>
   </ItemGroup>
 </Project>
