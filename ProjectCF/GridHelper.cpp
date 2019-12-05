@@ -325,7 +325,107 @@ bool GridHelper_SearchRoad(Pos from, Pos to) {
 
 
 }
+//如果已经发现的路一定是最短则走，否则进行探险（走到最优的未探索点）
+bool GridHelper_SearchRoadAdventure(Pos from, Pos to) {
 
+	for (int i = 0; i <= 7; i++)
+		for (int j = 0; j <= 7; j++)
+			checked_list[i][j] = 0, link_last[i][j] = { i,j }, maplength[i][j] = 0;
+	pathlength = 0;
+
+	min_dist_pos = { 1,1 };
+	min_dist = 1000;
+	/*Serial.println(from.X);
+	Serial.println(from.Y);	*/
+	Queue<queueitem> q;
+	q.push({ from,from });
+
+
+	while (!q.empty()) {
+
+		Pos now = q.front().to;
+		Pos last = q.front().from;
+		/*Serial.println(now.X);
+		Serial.println(now.Y);*/
+
+		if (checked_list[now.X][now.Y]) { q.pop();  continue; }
+
+
+		checked_list[now.X][now.Y] = 1;
+
+		//记录来路
+		link_last[now.X][now.Y].X = last.X;
+		link_last[now.X][now.Y].Y = last.Y;
+		maplength[now.X][now.Y] = maplength[last.X][last.Y] + 1;
+
+		q.pop();
+
+
+		//如果存在未探索点，将其加入搜索
+		bool b = false;
+		for (int i = 0; i <= 3; i++)b = (b || (Graph[now.X][now.Y][i] == 0));
+		if (b)UpdateMinDistPos(now, to);
+		//找到
+		if (now.X == to.X && now.Y == to.Y)
+		{
+			int length = GridHelper_CntManhattonDist(now, to) + maplength[now.X][now.Y];
+			if (length <= min_dist)
+			{
+				min_dist_pos = now;
+				min_dist = length;
+			}
+			break;
+		}
+
+		Pos tmp; int dist = 0;
+		// 0, 1, 2, 3 for front, right, back, left
+		if ((now.Y < 7) && (!checked_list[now.X][now.Y + 1]) && (Graph[now.X][now.Y][0] == 1)) {
+
+			tmp.X = now.X;
+			tmp.Y = now.Y + 1;
+			q.push({ tmp,now });
+
+		}
+		if ((now.Y > 0) && (!checked_list[now.X][now.Y - 1]) && (Graph[now.X][now.Y][2] == 1)) {
+
+			tmp.X = now.X;
+			tmp.Y = now.Y - 1;
+			q.push({ tmp,now });
+
+		}
+		if ((now.X < 7) && (!checked_list[now.X + 1][now.Y]) && (Graph[now.X][now.Y][3] == 1)) {
+
+			tmp.X = now.X + 1;
+			tmp.Y = now.Y;
+			q.push({ tmp,now });
+
+		}
+		if ((now.X > 0) && (!checked_list[now.X - 1][now.Y]) && (Graph[now.X][now.Y][1] == 1)) {
+
+			tmp.X = now.X - 1;
+			tmp.Y = now.Y;
+			q.push({ tmp,now });
+
+		}
+	}
+	if (isposeq(min_dist_pos,to))
+	{
+		//可以到达终点且最优
+		GridHelper_MakePath(min_dist_pos);
+		return true;
+
+	}
+	else
+	{
+		GridHelper_MakePath(min_dist_pos);
+		return false;
+	}
+
+	
+
+
+
+}
 
 
 void UpdateCarOrient(int o) {
@@ -404,6 +504,7 @@ void GridHelper_GoPath()
 	}
 	Move_Stop();
 }
+
 void gh_exit(Pos p)
 {
 	for (int j = 0; j <= 3; j++) {
@@ -475,4 +576,20 @@ void GridHelper_Go(Pos from, Pos to)
 		GridHelper_Go(min_dist_pos, to);
 	}
 }
+void GridHelper_GoAdventure(Pos from, Pos to)
+{
+	GridHelper_Detect();
+	if (GridHelper_SearchRoadAdventure(from, to))
+	{
 
+		//找到路
+		GridHelper_GoPath();
+		return;
+	}
+	else
+	{
+		GridHelper_GoPath();
+		GridHelper_Detect();
+		GridHelper_Go(min_dist_pos, to);
+	}
+}

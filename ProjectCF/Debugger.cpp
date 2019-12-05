@@ -63,7 +63,8 @@ void Debugger_DebugManagement()
 		else if (s1 == "gstm")	Move_GoStraightTime(Debug_lspeed, atoi(s3.c_str()));
 		else if (s1 == "relat")Mpu_GoRelativeAngle(atoi(s2.c_str()));
 		else if (s1 == "relata")Mpu_GoRelativeAngleAAA(atoi(s2.c_str()));
-		else if (s1 == "abt")Mpu_GoAngle(atoi(s2.c_str()), Mpu_dir::Left);
+		else if (s1 == "abtl")Mpu_GoAngle(atoi(s2.c_str()), Mpu_dir::Left);
+		else if (s1 == "abtr")Mpu_GoAngle(atoi(s2.c_str()), Mpu_dir::Right);
 		else if (s1 == "setz")Mpu_ResetZ();
 #pragma endregion
 

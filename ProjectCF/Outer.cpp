@@ -14,16 +14,11 @@ void Outer_GoPointByX(int finalposition, int switchid)
 
 		Zigbee_MessageRecord();
 		distance = abs(OurCar.pos.X - finalposition);
-		if (flag&&distance<30)
-		{
-			PL_GoBlind(switchid,70);
-		}
-		else
-		{
-			PL_GoBlind(switchid);
-		}
+		float rate = min(distance / 40, 1);
+		PL_GoBlind(switchid,150*rate);
 		
-		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
+		
+		Debugger_SetWatch("err", sig*(OurCar.pos.X - finalposition));
 		if ((sig*(OurCar.pos.X - finalposition) < (Outer_eps)) )break;
 	}
 	Move_Stop();
@@ -43,15 +38,9 @@ void Outer_GoPointByY(int finalposition, int switchid)
 	{
 
 		Zigbee_MessageRecord();
-		distance = abs(OurCar.pos.X - finalposition);
-		if (flag&&distance < 30)
-		{
-			PL_GoBlind(switchid, 70);
-		}
-		else
-		{
-			PL_GoBlind(switchid);
-		}
+		distance = abs(OurCar.pos.Y - finalposition);
+		float rate = min(distance / 40, 1);
+		PL_GoBlind(switchid, 150 * rate);
 		
 		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
 		if ((sig*(OurCar.pos.Y - finalposition) < (Outer_eps)) )break;
@@ -62,11 +51,17 @@ void Outer_GoPointByY(int finalposition, int switchid)
 void Outer_GoStraightPointByY (int finalposition) {
 	int sig = Manager_Signal (OurCar.pos.Y - finalposition);
 	Mpu_RecordAngle();
+	bool flag = false;
+	int distance = abs(OurCar.pos.Y - finalposition);
+	if (distance > 50)flag = true;
 	while (1)
 	{
 		Zigbee_MessageRecord ();
 		
-		Mpu_AdjustStraight(150);
+		//Mpu_AdjustStraight(150);
+		distance = abs(OurCar.pos.Y - finalposition);
+		float rate = min(distance / 40, 1);
+		PL_GoBlind( 150 * rate);
 		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
 		if ((sig*(OurCar.pos.Y - finalposition) < (Outer_eps)))break;
 	}
@@ -75,14 +70,20 @@ void Outer_GoStraightPointByY (int finalposition) {
 
 
 void Outer_GoStraightPointByX (int finalposition) {
-	int sig = Manager_Signal (OurCar.pos.Y - finalposition);
+	int sig = Manager_Signal (OurCar.pos.X - finalposition);
 	Mpu_RecordAngle();
+	bool flag = false;
+	int distance = abs(OurCar.pos.X - finalposition);
+	if (distance > 50)flag = true;
 	while (1)
 	{
 		Zigbee_MessageRecord ();
 		
-		Mpu_AdjustStraight(150);
-		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
+		//Mpu_AdjustStraight(150);
+		distance = abs(OurCar.pos.X - finalposition);
+		float rate = min(distance / 40, 1);
+		PL_GoBlind( 150 * rate);
+		Debugger_SetWatch("err", sig*(OurCar.pos.X - finalposition));
 		if ((sig*(OurCar.pos.X - finalposition) < (Outer_eps)))break;
 	}
 	Move_Stop();
