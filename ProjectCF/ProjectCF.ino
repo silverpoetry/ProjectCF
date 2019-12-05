@@ -52,7 +52,12 @@ void loop()
 	}*/
 	
 	Serial.print("2323");
-
+	//while (true)
+	//{
+	//	Mpu_ReadData();
+	//	//Serial.println(Mpu_Angles[2]);
+	//	//Debugger_SetWatch("asd", Mpu_Angles[2]);
+	//}
 	long long lastcnt11 = Motor_M1Cnt;
 	long long lastcnt12 = Motor_M2Cnt;
 	while (1)

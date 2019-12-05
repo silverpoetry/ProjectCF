@@ -14,8 +14,8 @@ void Outer_GoPointByX(int finalposition, int switchid)
 
 		Zigbee_MessageRecord();
 		distance = abs(OurCar.pos.X - finalposition);
-		float rate = min(distance / 40, 1);
-		PL_GoBlind(switchid,os(150*rate));
+		float rate = min(distance / 40.0, 1);
+		PL_GoBlind(switchid,os2(150*rate));
 		
 		
 		Debugger_SetWatch("err", sig*(OurCar.pos.X - finalposition));
@@ -39,8 +39,8 @@ void Outer_GoPointByY(int finalposition, int switchid)
 
 		Zigbee_MessageRecord();
 		distance = abs(OurCar.pos.Y - finalposition);
-		float rate = min(distance / 40, 1);
-		PL_GoBlind(switchid, os(150 * rate));
+		float rate = min(distance / 40.0, 1);
+		PL_GoBlind(switchid, os2(150 * rate));
 		
 		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
 		if ((sig*(OurCar.pos.Y - finalposition) < (Outer_eps)) )break;
@@ -60,8 +60,8 @@ void Outer_GoStraightPointByY (int finalposition) {
 		
 		//Mpu_AdjustStraight(150);
 		distance = abs(OurCar.pos.Y - finalposition);
-		float rate = min(distance / 40, 1);
-		PL_GoBlind( os(150 * rate));
+		float rate = min(distance / 40.0, 1);
+		PL_GoBlind( os2(150 * rate));
 		Debugger_SetWatch("err", sig*(OurCar.pos.Y - finalposition));
 		if ((sig*(OurCar.pos.Y - finalposition) < (Outer_eps)))break;
 	}
@@ -81,8 +81,8 @@ void Outer_GoStraightPointByX (int finalposition) {
 		
 		//Mpu_AdjustStraight(150);
 		distance = abs(OurCar.pos.X - finalposition);
-		float rate = min(distance / 40, 1);
-		PL_GoBlind( os(150 * rate));
+		float rate = min(distance / 40.0, 1);
+		PL_GoBlind( os2(150 * rate));
 		Debugger_SetWatch("err", sig*(OurCar.pos.X - finalposition));
 		if ((sig*(OurCar.pos.X - finalposition) < (Outer_eps)))break;
 	}
