@@ -65,7 +65,18 @@ void PreContest_EasyMaze () {
 }
 void PreContest_SavePeople () {
 	SavePeople_GotoEntrance ();
-	PL_GoStop ();
+
+	while (!Huidu_IsCrossRoad ()) {
+		Mpu_RecordAngle ();
+	//	if (!Manager_Time_TakeTime (70, 100))
+		//{
+			//Mpu_ReadData();
+			Mpu_AdjustStraight (SPEED);
+
+		//}
+	}
+
+	//PL_GoStop ();
 	int i = 1;
 	//直接全图视野
 	GridHelper_Init2();
@@ -109,14 +120,11 @@ void Precontest_GoPlace()
 }
 
 void shadiao_shabi (void) {
-	int i = 0;
-	while (i++ < 3) {
-		Move_GoStraightTime (150, 2000);
-		Mpu_GoRelativeAngleAAA (-80);
-		Mpu_GoRelativeAngleAAA (-125);
-		Mpu_GoRelativeAngleAAA (125);
-
-	}
+	PL_GoWithoutStop();
+	Move_GoStraightTime (SPEED, 200);
+	PL_GoStop ();
+//	PL_GoCrossTurnLeft ();
+}
 
 
 
@@ -158,4 +166,3 @@ void shadiao_shabi (void) {
 		
 //	}
 
-}
