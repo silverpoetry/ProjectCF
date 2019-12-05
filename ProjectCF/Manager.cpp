@@ -36,12 +36,12 @@ bool Manager_Time_TakeTime(long index,long num)
 
 }
 
-int Manager_Signal(long x)
-{
-	if (x == 0)return 1;
-	return x / abs(x);
-	
-}
+//int Manager_Signal(long x)
+//{
+//	if (x == 0)return 1;
+//	return x / abs(x);
+//	
+//}
 
 bool isposeq(Pos p1, Pos p2)
 {

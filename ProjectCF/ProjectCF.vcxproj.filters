@@ -99,6 +99,9 @@
     <ClInclude Include="Definition.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="CFSPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Huidu.cpp">
@@ -153,6 +156,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="shadiao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CFSPI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
