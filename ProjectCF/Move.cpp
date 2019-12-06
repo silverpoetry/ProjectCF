@@ -103,3 +103,14 @@ void Move_TurnLeft (int speed) {
 		
 	Motor_GoSpeed (1, speed);
 }
+
+void Move_GoStraightTimeWithoutStop (int speed, int time)
+{
+	Mpu_RecordAngle ();
+	while (!Manager_Time_TakeTime (64, time))
+	{
+		//Mpu_ReadData();
+		Mpu_AdjustStraight (speed);
+
+	}
+}

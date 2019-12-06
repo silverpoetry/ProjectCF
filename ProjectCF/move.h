@@ -21,3 +21,4 @@ void Move_GoStraightTime(int speed, int time);
 void Move_Fucker();
 
 void Move_TurnLeft (int speed);
+void Move_GoStraightTimeWithoutStop (int speed, int time);

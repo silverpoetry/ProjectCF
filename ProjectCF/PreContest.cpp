@@ -122,12 +122,26 @@ void Precontest_GoPlace()
 }
 
 void shadiao_shabi (void) {
-	PL_GoWithoutStop();
-	Move_GoStraightTime (SPEED, 200);
-	PL_GoStop ();
+	while (!Huidu_IsCrossRoad ()) {
+
+		//	if (!Manager_Time_TakeTime (69, 100))
+			//{
+				//Mpu_ReadData();
+		Mpu_AdjustStraight (SPEED);
+
+		//}
+	}
+	//Move_GoStraightTime (150, 170);
+	MainTask_EasyMaze ();
+
 //	PL_GoCrossTurnLeft ();
 }
 
+void lianxun (void) {
+	PL_GoWithoutStop ();
+	Move_GoStraightTimeWithoutStop (SPEED, 170);
+	PL_GoStop ();
+}
 
 
 /*	int i = 0;

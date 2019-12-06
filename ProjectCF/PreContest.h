@@ -8,3 +8,4 @@ void PreContest_EasyMaze ();
 void PreContest_SavePeople ();
 void Precontest_GoPlace();
 void shadiao_shabi (void);
+void lianxun (void);

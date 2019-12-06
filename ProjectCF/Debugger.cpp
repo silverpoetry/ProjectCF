@@ -111,9 +111,9 @@ void Debugger_DebugManagement()
 #pragma endregion
 
 #pragma region хннЯ
-		else if (s1 == "getball2")PL_GoBlind (1);
+		else if (s1 == "getball2")  MainTask_EasyMaze();
 		else if (s1 == "exmaze")left ();
-		else if (s1 == "fuction0")PL_GoBlind (1);
+		else if (s1 == "fuction0")lianxun ();
 		else if (s1 == "fuction1")PreContest_EasyMaze ();
 		else if (s1 == "fuction2")PL_GoBlind (2);
 		else if (s1 == "fuction3")MainTask_CollectGoods ();

@@ -44,7 +44,7 @@ void MainTask_CollectGoods ()
 	Move_Stop ();
 	CollectGoods_CatchBall ();
 	CollectGoods_GetballBack ();
-	Mpu_GoRelativeAngleAAA (-90);
+	Mpu_GoRelativeAngleAAA (-85);
 	MainTask_EasyMaze ();
 }
 //}
@@ -68,8 +68,7 @@ void EasyMaze_ReturnHome () {
 void MainTask_EasyMaze () {
 
 	//从出发点前往迷宫入口
-	Mpu_GoRelativeAngleAAA (-75);
-	Move_GoStraightTime (150, 500);
+//	Move_GoStraightTime (150, 500);
 	GridHelper_Init ();
 	car.Position = { 6, 5 };
 	Pos exit = { 2, 1 };
@@ -84,7 +83,7 @@ void MainTask_EasyMaze () {
 
 		//}
 	}
-	Move_GoStraightTime (150, 170);
+	Move_GoStraightTime (150, 50);
 //	Move_Stop ();
 
 	//PL_GoStop ();
@@ -116,7 +115,7 @@ void SavePeople_GotoEntrance () {
 	*/
 	Outer_GoPointByY (150, 2);
 	Move_GoStraightTime (150, 300);
-	Mpu_GoRelativeAngleAAA (80);
+	Mpu_GoRelativeAngleAAA (85);
 }
 
 void MainTask_SavePeople () {
