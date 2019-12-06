@@ -507,7 +507,7 @@ void GridHelper_GoPath()
 					PL_GoWithoutStop ();
 					UpdateCarOrient(3);
 				}
-				Move_Gotime(150, 150, 50);
+				Move_Gotime(150, 150, 100);
 
 				break;
 			}
@@ -529,7 +529,7 @@ void gh_exit(Pos p)
 			//delay(300);
 			
 			if (j == 0) {
-				Move_GoStraightTime(150, 500);
+				Move_GoStraightTime(150, 400);
 
 				//		Debugger_SetWatch("Action", "Forward");
 			}
@@ -544,19 +544,19 @@ void gh_exit(Pos p)
 			}
 			else if (j == 1) {
 
-				PL_GoLineTime(200);
+				//PL_GoLineTime(200);
 				//Move_Stop();
-				Mpu_GoRelativeAngle(79);
+				PL_CrossRoad(1);
 				//Move_Stop();
 				Move_GoStraightTime(150, 500);
 				//	Debugger_SetWatch("Action", "RT");
 			}
 			else if (j == 3) {
 				//	Move_GotimeWithoutStop(150, 50);
-				Move_Gotime (150, 150, 140);
-				Move_GoSpeed (-150, 150);
+			//	Move_Gotime (150, 150, 140);
+			//	Move_GoSpeed (-150, 150);
 
-				delay (260);
+			//	delay (260);
 				PL_CrossRoad (5);
 				//Move_Stop();
 				Move_GoStraightTime(150, 500);
