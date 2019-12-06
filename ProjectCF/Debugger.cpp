@@ -6,10 +6,21 @@
 void left()
 {
 	//Move_GotimeWithoutStop(150, 50);
-	
-	PL_GoLineTime(300);
-	Move_Stop();
-	PL_CrossRoad(5);
+	Mpu_RecordAngle ();
+	while (!Huidu_IsCrossRoad ()) {
+
+		//	if (!Manager_Time_TakeTime (70, 100))
+			//{
+				//Mpu_ReadData();
+		Mpu_AdjustStraight (SPEED);
+
+		//}
+	}
+	Move_Stop ();
+	Move_Gotime (150, 150, 170);
+	Move_Stop ();
+	PL_CrossRoad (1);
+
 }
 void rt()
 {
@@ -90,7 +101,7 @@ void Debugger_DebugManagement()
 
 #pragma region ÈÎÎñ
 		else if (s1 == "getball2")PL_GoBlind (1);
-		else if (s1 == "exmaze")MainTask_CollectGoods ();
+		else if (s1 == "exmaze")left ();
 		else if (s1 == "fuction0")PL_GoBlind (1);
 		else if (s1 == "fuction1")PreContest_EasyMaze ();
 		else if (s1 == "fuction2")PL_GoBlind (2);

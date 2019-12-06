@@ -65,9 +65,9 @@ void PreContest_EasyMaze () {
 }
 void PreContest_SavePeople () {
 	SavePeople_GotoEntrance ();
-
+	Mpu_RecordAngle ();
 	while (!Huidu_IsCrossRoad ()) {
-		Mpu_RecordAngle ();
+	
 	//	if (!Manager_Time_TakeTime (70, 100))
 		//{
 			//Mpu_ReadData();
@@ -75,6 +75,8 @@ void PreContest_SavePeople () {
 
 		//}
 	}
+	Move_Stop ();
+	
 
 	//PL_GoStop ();
 	int i = 1;
