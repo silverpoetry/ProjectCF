@@ -71,27 +71,30 @@ void loop()
 		//GridHelper_Go({ 2,1 }, { 7,5 });
 		
 		Debugger_DebugManagement();
-		Debugger_SetWatch("aaa", "saa");
-		Zigbee_MessageRecord();
-		Debugger_ShowZigbee();
-		Debugger_ShowMpu();
-		Debugger_ShowDistance();
-		Debugger_ShowMicroMove();
-	/*	Serial.print("2323");
-		Huidu_ShowValues();*/
+	//	Debugger_SetWatch("aaa", "saa");
+	//	Zigbee_MessageRecord();
+	//	Debugger_ShowZigbee();
+	//	Debugger_ShowMpu();
+	//	Debugger_ShowDistance();
+	//	Debugger_ShowMicroMove();
+	///*	Serial.print("2323");
+	//	Huidu_ShowValues();*/
 		Huidu_ShowValues();
-		Debugger_ShowDistance();
+		//Debugger_ShowDistance();
 		//Debugger_SetWatch("12312", 123123);
 		//Serial.println("123");
 		//zigbee_show();
-
-		if (Manager_Time_TakeTime(6, 100))
+		Mpu_ReadData();
+		//Serial.println("sad");
+		delay(100);
+		//Debugger_ShowMpu();
+		/*if (Manager_Time_TakeTime(6, 100))
 		{
 			Debugger_SetWatch("ActualSpeed1", Motor_M1Cnt - lastcnt11);
 			Debugger_SetWatch("ActualSpeed2", Motor_M2Cnt - lastcnt12);
 			lastcnt11 = Motor_M1Cnt;
 			lastcnt12 = Motor_M2Cnt;
-		}
+		}*/
 	}
 
 	//	Move_GoSpeed (100, 100);

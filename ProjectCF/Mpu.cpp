@@ -98,9 +98,10 @@ void Mpu_GoRelativeAngle(int angel)
 {
 	Mpu_ReadData();
 	float nowangle = Mpu_Angles[2];
-	Debugger_SetWatch("ang", Mpu_Angles[2]);
+
 	while (getdis(nowangle) < abs(angel))
 	{
+		Debugger_SetWatch("ang", Mpu_Angles[2]);
 		int dis = abs(angel) - getdis(nowangle);
 		float rate = min(dis / 40.0, 1);
 		Debugger_SetWatch("err", getdis(nowangle));
@@ -115,11 +116,11 @@ void Mpu_GoRelativeAngle(int angel)
 void Mpu_GoRelativeAngleAAA (int angel)
 {
 	Mpu_ReadData ();
-	Debugger_SetWatch("ang", Mpu_Angles[2]);
+	
 	float nowangle = Mpu_Angles[2];
 	while (getdis (nowangle) < abs (angel))
 	{
-
+		Debugger_SetWatch("ang", Mpu_Angles[2]);
 		int dis = abs(angel) - getdis(nowangle);
 		float rate = min(dis / 40.0, 1);
 		Debugger_SetWatch("err", getdis(nowangle));

@@ -9,6 +9,7 @@
 #include "Distance.h"
 #include "Motor.h"
 #include "Arm.h"
+#include "CFSPI.h"
 #include "Manager.h"
 #include "Debugger.h"
 #include "Move.h"

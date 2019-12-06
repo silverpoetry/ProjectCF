@@ -37,10 +37,11 @@ extern int Motor_SpeedBalance; //B轮增加的补偿速度
 #define Motor_EncodePin1 7
 #define Motor_EncodePin2 9//ourcar
 
-const int  Motor_Pin1 = 31;
-const int  Motor_Pin2 = 30;
-const int  Motor_Pin4 = 33;
+const int  Motor_Pin4 = 31;
+const int  Motor_Pin3 = 30;
+const int  Motor_Pin1 = 32;
+const int  Motor_Pin2 = 33;
 
-const int  Motor_Pin3 = 32;
-const int  Motor_EN2 =7;
-const int Motor_EN1 =9;
+
+const int  Motor_EN1 =7;
+const int Motor_EN2 =9;

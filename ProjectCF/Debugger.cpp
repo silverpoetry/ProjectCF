@@ -115,8 +115,8 @@ void Debugger_DebugManagement()
 		else if (s1 == "exmaze")left ();
 		else if (s1 == "fuction0")lianxun ();
 		else if (s1 == "fuction1")PreContest_EasyMaze ();
-		else if (s1 == "fuction2")PL_GoBlind (2);
-		else if (s1 == "fuction3")MainTask_CollectGoods ();
+		else if (s1 == "fuction2")while (Manager_Time_TakeTime(32,3000))PL_GoBlind(2);
+		else if (s1 == "fuction3")while (Manager_Time_TakeTime(32, 3000))PL_GoBlind(1);
 		else if (s1 == "fuction4")shadiao_shabi ();
 		else if (s1 == "fuction5")PreContest_SavePeople();
 #pragma endregion

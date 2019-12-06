@@ -90,14 +90,15 @@ void Move_GotimeWithoutStop(int speed, int time)
 }
 void Move_GoStraightTime(int speed, int time)
 {
-	Mpu_RecordAngle();
-	while (!Manager_Time_TakeTime(64,time))
-	{
-		//Mpu_ReadData();
-		Mpu_AdjustStraight(speed);
-	
-	}
-	Move_Stop();
+	//Mpu_RecordAngle();
+	//while (!Manager_Time_TakeTime(64,time))
+	//{
+	//	//Mpu_ReadData();
+	//	Mpu_AdjustStraight(speed);
+	//
+	//}
+	//Move_Stop();
+	Move_Gotime(speed, speed, time);
 }
 void Move_TurnLeft (int speed) {
 		
