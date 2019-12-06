@@ -75,8 +75,8 @@ void PreContest_SavePeople () {
 
 		//}
 	}
-	Move_Stop ();
-	
+	Move_GoStraightTime (150, 170);
+
 
 	//PL_GoStop ();
 	int i = 1;
