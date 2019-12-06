@@ -475,7 +475,7 @@ void GridHelper_GoPath()
 				UpdateCarPos(path[i]);
 				if (j == 0) {
 					
-					PL_GoStop();
+					PL_GoWithoutStop();
 					
 			//		Debugger_SetWatch("Action", "Forward");
 				}
@@ -485,7 +485,7 @@ void GridHelper_GoPath()
 					
 					delay(260);
 					PL_CrossRoad(5);
-					PL_GoStop ();
+					PL_GoWithoutStop ();
 					UpdateCarOrient(4);
 				//	Debugger_SetWatch("Action", "Back");
 				}
@@ -494,7 +494,7 @@ void GridHelper_GoPath()
 					
 					Move_Stop();
 					PL_CrossRoad(5);
-					PL_GoStop ();
+					PL_GoWithoutStop ();
 					UpdateCarOrient(1);
 				//	Debugger_SetWatch("Action", "RT");
 				}
@@ -504,10 +504,10 @@ void GridHelper_GoPath()
 					
 					Move_Stop();
 					PL_CrossRoad(1);
-					PL_GoStop ();
+					PL_GoWithoutStop ();
 					UpdateCarOrient(3);
 				}
-				Move_Gotime(150, 150, 170);
+				Move_Gotime(150, 150, 50);
 
 				break;
 			}
