@@ -6,10 +6,21 @@
 void left()
 {
 	//Move_GotimeWithoutStop(150, 50);
-	
-	PL_GoLineTime(300);
-	Move_Stop();
-	PL_CrossRoad(5);
+	Mpu_RecordAngle ();
+	while (!Huidu_IsCrossRoad ()) {
+
+		//	if (!Manager_Time_TakeTime (70, 100))
+			//{
+				//Mpu_ReadData();
+		Mpu_AdjustStraight (SPEED);
+
+		//}
+	}
+	Move_Stop ();
+	Move_Gotime (150, 150, 170);
+	Move_Stop ();
+	PL_CrossRoad (1);
+
 }
 void rt()
 {
@@ -65,48 +76,48 @@ void Debugger_DebugManagement()
 			Debugger_SetWatch("s3", s3);*/
 		if (s1 == "fuck")Debugger_SetWatch ("fuck", s2 + " fucks " + s3);
 #pragma region 电机
-		else if (s1 == "fwd")Motor_GoSpeed(atoi(s2.c_str()), atoi(s3.c_str()));
-		else if (s1 == "sspeed")Debug_lspeed = atoi(s2.c_str()), Debug_rspeed = atoi(s3.c_str());
-		else if (s1 == "gtm")Move_Gotime(Debug_lspeed, Debug_rspeed, atoi(s3.c_str()));
-		
+		else if (s1 == "fwd")Motor_GoSpeed (atoi (s2.c_str ()), atoi (s3.c_str ()));
+		else if (s1 == "sspeed")Debug_lspeed = atoi (s2.c_str ()), Debug_rspeed = atoi (s3.c_str ());
+		else if (s1 == "gtm")Move_Gotime (Debug_lspeed, Debug_rspeed, atoi (s3.c_str ()));
+
 #pragma endregion
 #pragma region MPU
-		else if (s1 == "gstm")	Move_GoStraightTime(Debug_lspeed, atoi(s3.c_str()));
-		else if (s1 == "relat")Mpu_GoRelativeAngle(atoi(s2.c_str()));
-		else if (s1 == "relata")Mpu_GoRelativeAngleAAA(atoi(s2.c_str()));
-		else if (s1 == "abtl")Mpu_GoAngle(atoi(s2.c_str()), Mpu_dir::Left);
-		else if (s1 == "abtr")Mpu_GoAngle(atoi(s2.c_str()), Mpu_dir::Right);
-		else if (s1 == "setz")Mpu_ResetZ();
+		else if (s1 == "gstm")	Move_GoStraightTime (Debug_lspeed, atoi (s3.c_str ()));
+		else if (s1 == "relat")Mpu_GoRelativeAngle (atoi (s2.c_str ()));
+		else if (s1 == "relata")Mpu_GoRelativeAngleAAA (atoi (s2.c_str ()));
+		else if (s1 == "abtl")Mpu_GoAngle (atoi (s2.c_str ()), Mpu_dir::Left);
+		else if (s1 == "abtr")Mpu_GoAngle (atoi (s2.c_str ()), Mpu_dir::Right);
+		else if (s1 == "setz")Mpu_ResetZ ();
 #pragma endregion
 
 #pragma region 机械臂
-		else if (s1 == "amg1")Arm_Go(1, atoi(s2.c_str()));
-		else if (s1 == "amg2")Arm_Go(2, atoi(s2.c_str()));
+		else if (s1 == "amg1")Arm_Go (1, atoi (s2.c_str ()));
+		else if (s1 == "amg2")Arm_Go (2, atoi (s2.c_str ()));
 #pragma endregion
 
 #pragma region 寻线
 
-		else if (s1 == "glfwd")PL_GoStop();
-		else if (s1 == "gllft")PL_GoCrossTurnLeft();
-		else if (s1 == "glrt")PL_GoCrossTurnRight();
+		else if (s1 == "glfwd")PL_GoStop ();
+		else if (s1 == "gllft")PL_GoCrossTurnLeft ();
+		else if (s1 == "glrt")PL_GoCrossTurnRight ();
 #pragma endregion
 #pragma region 走位
-		else if (s1 == "zxx")Outer_GoPointByX(atoi(s2.c_str()), 1);
-		else if (s1 == "yxx")Outer_GoPointByX(atoi(s2.c_str()), 2);
-		else if (s1 == "zxy")Outer_GoPointByY(atoi(s2.c_str()), 1);
-		else if (s1 == "yxy")Outer_GoPointByY(atoi(s2.c_str()), 2);
-		else if (s1 == "myxx")Outer_GoStraightPointByX(atoi(s2.c_str()));
-		else if (s1 == "mzxy")Outer_GoStraightPointByY(atoi(s2.c_str()));
+		else if (s1 == "zxx")Outer_GoPointByX (atoi (s2.c_str ()), 1);
+		else if (s1 == "yxx")Outer_GoPointByX (atoi (s2.c_str ()), 2);
+		else if (s1 == "zxy")Outer_GoPointByY (atoi (s2.c_str ()), 1);
+		else if (s1 == "yxy")Outer_GoPointByY (atoi (s2.c_str ()), 2);
+		else if (s1 == "myxx")Outer_GoStraightPointByX (atoi (s2.c_str ()));
+		else if (s1 == "mzxy")Outer_GoStraightPointByY (atoi (s2.c_str ()));
 #pragma endregion
 
 #pragma region 任务
-		else if (s1 == "getball2")PL_GoBlind(1);
-		else if (s1 == "exmaze")MainTask_CollectGoods();
-		else if (s1 == "fuction0")PL_GoBlind(1);
-		else if (s1 == "fuction1")PreContest_EasyMaze();
-		else if (s1 == "fuction2")PL_GoBlind(2);
-		else if (s1 == "fuction3")MainTask_CollectGoods();
-		else if (s1 == "fuction4")Move_GoStraightTime(150, 3000);
+		else if (s1 == "getball2")PL_GoBlind (1);
+		else if (s1 == "exmaze")left ();
+		else if (s1 == "fuction0")PL_GoBlind (1);
+		else if (s1 == "fuction1")PreContest_EasyMaze ();
+		else if (s1 == "fuction2")PL_GoBlind (2);
+		else if (s1 == "fuction3")MainTask_CollectGoods ();
+		else if (s1 == "fuction4")shadiao_shabi ();
 		else if (s1 == "fuction5")PreContest_SavePeople();
 #pragma endregion
 

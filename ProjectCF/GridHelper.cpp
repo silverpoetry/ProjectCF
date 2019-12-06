@@ -489,7 +489,7 @@ void GridHelper_GoPath()
 				}
 				else if (j == 1) {
 
-					PL_GoLineTime(170);
+					Move_Gotime(150,150,170);
 					Move_Stop();
 					PL_CrossRoad(5);
 					PL_GoStop ();
@@ -499,7 +499,7 @@ void GridHelper_GoPath()
 				else if (j == 3) {
 					//	Move_GotimeWithoutStop(150, 50);
 					Debugger_SetWatch("Action", "LT");
-					PL_GoLineTime(170);
+					Move_Gotime (150, 150, 170);
 					Move_Stop();
 					PL_CrossRoad(1);
 					PL_GoStop ();
