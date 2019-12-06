@@ -84,7 +84,8 @@ void MainTask_EasyMaze () {
 
 		//}
 	}
-	Move_Stop ();
+	Move_GoStraightTime (150, 170);
+//	Move_Stop ();
 
 	//PL_GoStop ();
 
