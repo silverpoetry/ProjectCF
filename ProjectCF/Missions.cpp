@@ -27,7 +27,7 @@ void CollectGoods_CatchBall () {
 void CollectGoods_GetballBack () {
 	Mpu_GoRelativeAngleAAA (39);
 	Outer_GoPointByY (78, 2);
-//	MainTask_EasyMaze ();
+	MainTask_EasyMaze ();
 
 	return;
 }
@@ -45,7 +45,6 @@ void MainTask_CollectGoods ()
 	CollectGoods_CatchBall ();
 	CollectGoods_GetballBack ();
 	Mpu_GoRelativeAngleAAA (-85);
-
 	MainTask_EasyMaze ();
 }
 //}
@@ -84,7 +83,7 @@ void MainTask_EasyMaze () {
 
 		//}
 	}
-	Move_GoStraightTime (150, 70);
+	Move_GoStraightTime (150, 80);
 //	Move_Stop ();
 
 	//PL_GoStop ();
