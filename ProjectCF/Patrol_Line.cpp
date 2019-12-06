@@ -54,7 +54,7 @@ void PL_PIDCorrection (int opt)
 		else  if (istwo)Motor_GoSpeed (SPEED * 0.5, SPEED2 * 1.2);
 		else if (isfive)Motor_GoSpeed (SPEED * 1.2, SPEED2 * 0.5);
 	
-		else if (isthree)Motor_GoSpeed (SPEED * 0.92, SPEED2 * 1.05);
+		else if (isthree)Motor_GoSpeed (SPEED * 0.8, SPEED2 * 1.05);
 		else if (isfour)Motor_GoSpeed (SPEED * 1.05, SPEED2 * 0.92);
 		
 
