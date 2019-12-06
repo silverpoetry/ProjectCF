@@ -32,6 +32,17 @@ void Debugger_SetWatch(String name, long  value)
 	serialPort.print(")\n");
 	
 }
+void Debugger_Print(String pa, int p1, int p2, int p3)
+{
+	serialPort.print(pa+"(");
+	serialPort.print(p1);
+	serialPort.print(",");
+	serialPort.print(p2);
+	serialPort.print(",");
+	serialPort.print(p3);
+	serialPort.print(")\n");
+
+}
 void Debugger_SetWatch(String name, String value)
 {
 	serialPort.print("SetWatch(" + name + ","+value+")\n");

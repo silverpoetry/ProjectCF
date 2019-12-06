@@ -18,6 +18,14 @@ void SetVal(int dir, int step, int val)
 	if (pos == 2)Graph[car.Position.X][car.Position.Y - step - 1][backpos] = Graph[car.Position.X][car.Position.Y - step][pos] = val;
 	if (pos == 3)Graph[car.Position.X + step + 1][car.Position.Y][backpos] = Graph[car.Position.X + step][car.Position.Y][pos] = val;
 
+	if (val==-1)
+	{
+
+		if (pos == 0) Debugger_Print("stob", car.Position.X, car.Position.Y + step, pos);
+		if (pos == 1)Debugger_Print("stob", car.Position.X - step,car.Position.Y,pos);
+		if (pos == 2)Debugger_Print("stob", car.Position.X, car.Position.Y - step, pos);
+		if (pos == 3) Debugger_Print("stob", car.Position.X + step, car.Position.Y, pos);
+	}
 }
 int GetVal(int dir, int step)
 {
@@ -27,6 +35,8 @@ int GetVal(int dir, int step)
 	if (pos == 1)return  Graph[car.Position.X - step][car.Position.Y][pos];
 	if (pos == 2)return Graph[car.Position.X][car.Position.Y - step][pos];
 	if (pos == 3)return Graph[car.Position.X + step][car.Position.Y][pos];
+
+
 
 }
 void SetDisabled(int dir, int step)
