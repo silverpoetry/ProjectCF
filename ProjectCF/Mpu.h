@@ -1,13 +1,17 @@
 
 #pragma once
-
-extern float Mpu_Roll ; //上一次滤波得到的Roll角
-extern float Mpu_Pitch ; //上一次滤波得到的Pitch角
-extern float Mpu_RollRate ;
-extern float Mpu_PitchRate ;
-extern float Mpu_Yaw ;
-extern float Mpu_YawRate;
+enum Mpu_dir
+{
+	Left = -1, Right = 1
+};
+extern float Mpu_Angles[3];
 void Mpu_Init();
-void Mpu_GetValues();
-
-
+void Mpu_ReadData();
+void Mpu_ReadData2();
+void Mpu_GoAngle(float angle, Mpu_dir dir);
+void Mpu_GoRelativeAngle(int angel);
+void Mpu_ResetZ();
+void Mpu_RecordAngle();
+void Mpu_AdjustStraight(int speed);
+void Mpu_GoRelativeAngleSetSpeed (int angel, int speed1, int speed2);
+void Mpu_GoRelativeAngleAAA (int angel);

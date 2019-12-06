@@ -4,161 +4,184 @@
  Author:	The CFer
 */
 
+
+
 #include <Servo.h>
 #include <Esplora.h>
 #include "IncludeList.h"
 #include <Wire.h>
 #include <Arduino.h>
 #include <stdlib.h>
+#include <avr/interrupt.h>
+#include <avr/io.h>
 
-
+void gopointY(int x)
+{
+	Outer_GoPointByY(x, 1);
+}
 
 void setup()
 {
 
 
-	Motor_Init();
- 	Huidu_Init();
-	Debugger_Init();
-	Serial.begin(9600);
-	Distance_Init();
-	//Serial1.begin(115200);
 	
+	Serial.begin(9600);
+	Serial.println("123");
+	Manager_Hardware_Init();
+	Debugger_Init();
+	Serial.println("1243");
+	
+	//Debugger_SetWatch("123", 123);
+	GridHelper_Init();
+
+	Serial.println("124343");
+	
+
+	//Serial1.begin(115200);
+
 }
+
+
 void loop()
 {
-
-
 	
-		//Motor_GoSpeed(120, 120);
+	/*while (true)
+	{
+		Mpu_GoRelativeAngle(-68);
+		delay(500);
+	}*/
+	
+	Serial.print("2323");
+	//while (true)
+	//{
+	//	Mpu_ReadData();
+	//	//Serial.println(Mpu_Angles[2]);
+	//	//Debugger_SetWatch("asd", Mpu_Angles[2]);
+	//}
 	long long lastcnt11 = Motor_M1Cnt;
 	long long lastcnt12 = Motor_M2Cnt;
-	long long lastcnt21 = Motor_M1Cnt;
-	long long lastcnt22 = Motor_M2Cnt;
-	Move_GoSpeed(SPEED, SPEED);
-	Move_Refresh();
-	while (true)
+	while (1)
 	{
-		Debugger_DebugManagement();
-		Patrol ();
-		Move_Stop ();
-		delay (10000000);
-		/*if (Manager_Time_TakeTime(1,300))
-		{
-			//Debugger_SetWatch("Huidu1" ,Huidu_Read(1)); 
-			//Debugger_SetWatch("Time", millis());
-		}*/
-		if (Manager_Time_TakeTime(2, 50))
-		{
-			//PL_PIDCorrection ();
-			//Move_KeepRate();
-			//Move_Refresh ();
-		}
+		//PL_GoBlind(2);
 		
-	}
-	
-	//Move_GoSpeed(120, 120);
-	Move_Refresh();
-	/*while (1)
-	{
-		if (Manager_Time_TakeTime(3, 40))
-		{
+		
+		
+		
+	//	delay(3000);
+		//GridHelper_Go({ 2,1 }, { 7,5 });
+		
+		Debugger_DebugManagement();
+		Debugger_SetWatch("aaa", "saa");
+		Zigbee_MessageRecord();
+		Debugger_ShowZigbee();
+		Debugger_ShowMpu();
+		Debugger_ShowDistance();
+		Debugger_ShowMicroMove();
+	/*	Serial.print("2323");
+		Huidu_ShowValues();*/
+		Huidu_ShowValues();
+		Debugger_ShowDistance();
+		//Debugger_SetWatch("12312", 123123);
+		//Serial.println("123");
+		//zigbee_show();
 
-			while (Serial1.available() > 0)
-				Serial1.print((char)Serial1.read());
-		}
-
-		if (Manager_Time_TakeTime(1, 1000))
+		if (Manager_Time_TakeTime(6, 100))
 		{
-			sh(The Motor 1 goes), pu((unsigned long)(Motor_M1Cnt - lastcnt11)), sh(steps\n);
-			sh(The Motor 2 goes), pu((unsigned long)(Motor_M2Cnt - lastcnt12)), sh(steps\n);
+			Debugger_SetWatch("ActualSpeed1", Motor_M1Cnt - lastcnt11);
+			Debugger_SetWatch("ActualSpeed2", Motor_M2Cnt - lastcnt12);
 			lastcnt11 = Motor_M1Cnt;
 			lastcnt12 = Motor_M2Cnt;
 		}
-	
-		if (Manager_Time_TakeTime(2, 30))
-		{
-			//Move_KeepRate();
-		}
 	}
-	*/
-	/*while (1)
+
+	//	Move_GoSpeed (100, 100);
+	//	Move_Refresh ();
+	//	Motor_GoSpeed (180, 180);
+	//	Move_Refresh ();
+	//	Debugger_Init
+	while (true)
 	{
-		if (Serial1.available() > 0)
-			Serial.print(Serial1.read());
-	}*/
+		//	PL_GoBackBlind ();
+			//Arm_PickBall();
+			//delay(3000);
+		//	Motor_GoSpeed (150, 255);
+		//	Serial.println ("123");
+		Debugger_DebugManagement();
+		//Huidu_ShowValues();
+		//Zigbee_MessageRecord();
+		Debugger_SetWatch("BallX", Game.BallPos.X);
+		Debugger_SetWatch("BallY", Game.BallPos.Y);
+		Debugger_SetWatch("Car1X", Car[0].pos.X);
+		Debugger_SetWatch("car1Y", Car[0].pos.Y);
+		Debugger_SetWatch("Car2X", Car[1].pos.X);
+		Debugger_SetWatch("CAR2Y", Car[1].pos.Y);
+		//Debugger_SetWatch("dis1", Distance_Get(1));
+		//Debugger_SetWatch("dis2", Distance_Get(2));
+		//Debugger_SetWatch("dis3", Distance_Get(3));
+		////PL_GoBlind ();
+	//	Move_KeepRate ();
+		/*if (MicroMove_IsPushed (1)) {
+			Serial.println (1);
+		}
+
+		if (MicroMove_IsPushed (2)) {
+			Serial.println (2);
+
+		}
+
+		if (MicroMove_IsPushed (3)) {
+			Serial.println (3);
+
+		}
+
+		if (MicroMove_IsPushed (4)) {
+			Serial.println (4);
+
+		}
+		if (Manager_Time_TakeTime (14, 50)) {
+			Move_KeepRate ();
+		}*/
+		//Debugger_SetWatch ("asd", "as");
+		if (Manager_Time_TakeTime(23, 10))
+		{
+			//	if()
+				/*
+			//	Move_KeepRate ();
+				Debugger_SetWatch ("h1", Huidu_Read (1));
+				Debugger_SetWatch ("h2", Huidu_Read (2));
+				Debugger_SetWatch ("h3", Huidu_Read (3));
+				Debugger_SetWatch ("h4", Huidu_Read (4));
+				Debugger_SetWatch ("h5", Huidu_Read (5));
+				Debugger_SetWatch ("h6", Huidu_Read (6));
+
+				Debugger_SetWatch ("us1", Distance_Get (1));
+				Debugger_SetWatch ("us2", Distance_Get (2));
+	*/
+
+		}
+		//MT_Main ();
+		//ExploreMaze ();
+	//	long long i = 0;
+	//	Mpu_ShowValueInTestMode ();
+	//	Debugger_SetWatch
+	//	delay (1000);
 
 
+	/*	if (Manager_Time_TakeTime (5, 100)) {
+			Move_KeepRate ();
+		}*/
+		
+		
+	}
 
 
-	//if (Serial.available() > 0)
-	//{
-	//	String s ;
-	//	s =Serial.readString();
-	//	sh(Motor),pu(s),sh(-   listening\n);
+	//Motor_GoSpeed(120, 120);	//Move_GoSpeed (SPEED, SPEED);
+	while (1) {
+		Debugger_DebugManagement();
+		//PL_GoStop ();
+		//PL_GoStop
+	}
 
-	//	if (atoi(s.c_str()) == 1)
-	//	{
-	//		while (Serial.available() == 0);
-	//		s = Serial.readString();
-	//		Serial.println(atoi(s.c_str()));
-	//		sh(Motor1  go as), pu(atoi(s.c_str())), sh(- speed\n);
-	//		Motor_SetSpeed(1, atoi(s.c_str()));
-	//	}
-	//	else if (atoi(s.c_str()) == 2)
-	//	{
-	//		while (Serial.available() == 0);
-	//		s = Serial.readString();
-	//		sh(Motor2  go as),pu(atoi(s.c_str())),sh(- speed\n);
-	//		Motor_SetSpeed(2, atoi(s.c_str()));
-	//	}
-	//	else if (atoi(s.c_str()) == 3)
-	//	{
-	//		int a, b;
-	//		while (Serial.available() == 0);
-	//		s = Serial.readString();
-	//		a = atoi(s.c_str());
-	//		while (Serial.available() == 0);
-	//		s = Serial.readString();
-	//		b = atoi(s.c_str());
-	//		sh(Motor1  go as), pu(a), sh(- speed\n);
-	//		sh(Motor2  go as), pu(b), sh(- speed\n);
-	//		Motor_GoSpeed(a, b);
-	//	}
-	//}
-	//
-	//long long ind = 0;
-	//while (1)
-	//{
-	//	Mpu_GetValues();
-	//	pu(Mpu_Roll), sh(\n);
-	//		//sh(_ Roll),pu(Mpu_Roll),sh(_ Pitch: ),pu(Mpu_Pitch), sh(\n);
-	//	delay(100);
-	//}
+
 }
-//#include "Wire.h"
-//void setup() {
-//	Serial.begin(115200); // Leonardo: wait for serial port to connect
-//	while (!Serial) {}
-//	Serial.println();
-//	Serial.println("I2C scanner. Scanning ...");
-//	byte count = 0;
-//	Wire.begin();
-//	for (byte i = 8; i < 120; i++) {
-//		Wire.beginTransmission(i);
-//		if (Wire.endTransmission() == 0) {
-//			Serial.print("Found address: ");
-//			Serial.print(i, DEC);
-//			Serial.print(" (0x");
-//			Serial.print(i, HEX);
-//			Serial.println(")");
-//			count++;
-//			delay(1); // maybe unneeded?
-//		} // end of good response
-//	} // end of for loop
-//	Serial.println("Done.");
-//	Serial.print("Found ");
-//	Serial.print(count, DEC);
-//	Serial.println(" device(s).");
-//} // end of setup
-//void loop() {}
+

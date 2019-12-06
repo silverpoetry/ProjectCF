@@ -14,5 +14,16 @@
 #include "Move.h"
 #include "Zigbee.h"
 #include "Patrol_Line.h"
+#include "PreContest.h"
+#include "MicroMove.h"
+#include "GridHelper.h"
+#include "Outer.h"
+#include "Missions.h"
+#include "Definition.h"
 
-#define SPEED 130
+
+#define OurCar Car[1]
+#define OurCarIndex 1
+#define Manager_Signal(x) ((x)>=0?(1):(-1))
+int os(float);
+int os2(float speed);

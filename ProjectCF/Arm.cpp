@@ -1,7 +1,7 @@
 #include "Arm.h"
-
+#include "IncludeList.h"
 Servo servos[4];
-int angels[4] = {0,180,170,108 };
+int angels[4] = {0,55,115};
 
 //初始化机械臂的舵机，并归位到初始角度
 void Arm_Init()
@@ -10,15 +10,16 @@ void Arm_Init()
 	servos[1].attach(Arm_Pins[1], 500, 2500);
 	
 	
-	Arm_Reset();
+	Arm_Reset(1);
+	Arm_Reset (2);
 	delay(500);
 }
 //复位机械臂到默认位置
-void Arm_Reset()
+void Arm_Reset(int opt)
 {
-	Arm_Go(1, angels[1]);
+	Arm_Go(opt, angels[opt]);
 	delay(300);
-	Arm_Go(2, angels[2]);
+	//Arm_Go(2, angels[2]);
 }
 
 //控制指定舵机旋转到指定角度
@@ -26,7 +27,9 @@ void Arm_Reset()
 //angel：旋转到的角度
 void Arm_Go(int n, int angel)
 {
+	Debugger_SetWatch("asd", "Fuck3");
 	int delaytime = 13;
+	Debugger_SetWatch("asd", "Fuck2");
 	switch (n)
 	{
 	case 1:
@@ -86,5 +89,26 @@ void Arm_Go(int n, int angel, int deltime)
 		}
 
 	angels[n - 1] = angel;
+
+}
+void Arm_PickBall()
+{
+	
+	Arm_Go(2, 155);
+	delay(500);
+
+
+
+
+
+
+}
+void Arm_DropBall () {
+
+	Arm_Go (2, 50);
+	delay (500);
+	Arm_Go (1, 100);
+	delay (500);
+	Arm_Go (2, 120);
 
 }

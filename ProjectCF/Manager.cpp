@@ -1,18 +1,25 @@
 #include "IncludeList.h"
+#include "Manager.h"
+#include "MainTask.h"
+
+
 void Manager_Hardware_Init()
 {
-	Distance_Init();
-	Mpu_Init();
-	Arm_Init();
-	Huidu_Init();
-	Motor_Init();
+	Motor_Init ();
+	Huidu_Init ();
+	Distance_Init ();
+	Arm_Init ();
+	Zigbee_Init (); 
+	MicroMove_Init ();
+	Mpu_Init ();
 
 }
-long long StartTime[200] ;
-bool isstarted[200] ;
+long long StartTime[100] ;
+bool isstarted[100] ;
 
 bool Manager_Time_TakeTime(long index,long num)
 {
+	
 	if (!isstarted[index])
 	{
 		isstarted[index] = true;
@@ -29,4 +36,14 @@ bool Manager_Time_TakeTime(long index,long num)
 
 }
 
+//int Manager_Signal(long x)
+//{
+//	if (x == 0)return 1;
+//	return x / abs(x);
+//	
+//}
 
+bool isposeq(Pos p1, Pos p2)
+{
+	return p1.X == p2.X&&p1.Y == p2.Y;
+}
