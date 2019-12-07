@@ -546,7 +546,7 @@ void gh_exit(Pos p)
 
 				//PL_GoLineTime(200);
 				//Move_Stop();
-				PL_CrossRoad(1);
+				PL_CrossRoad(5);
 				//Move_Stop();
 				Move_GoStraightTime(150, 500);
 				//	Debugger_SetWatch("Action", "RT");
@@ -557,7 +557,7 @@ void gh_exit(Pos p)
 			//	Move_GoSpeed (-150, 150);
 
 			//	delay (260);
-				PL_CrossRoad (5);
+				PL_CrossRoad (1);
 				//Move_Stop();
 				Move_GoStraightTime(150, 500);
 			}

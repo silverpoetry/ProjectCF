@@ -75,7 +75,7 @@ void PreContest_SavePeople () {
 
 		//}
 	}
-	Move_GoStraightTime (150, 170);
+	Move_GoStraightTime (150, 80);
 
 
 	//PL_GoStop ();
@@ -138,10 +138,11 @@ void shadiao_shabi (void) {
 }
 
 void lianxun (void) {
-	PL_GoWithoutStop ();
-	Move_GoStraightTimeWithoutStop (SPEED, 170);
-	PL_GoStop ();
-}
+	int i = 0;
+	while (i++ < 30) {
+		Mpu_GoRelativeAngleAAA (-83);
+	}
+	}
 
 
 /*	int i = 0;

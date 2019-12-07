@@ -1,7 +1,7 @@
 #include "IncludeList.h"
 #include "Debugger.h"
 #include "Arduino.h"
-#define serialPort Serial1
+#define serialPort Serial
 
 void left()
 {
