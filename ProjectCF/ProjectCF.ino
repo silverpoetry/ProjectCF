@@ -76,7 +76,7 @@ void loop()
 	//	Debugger_ShowZigbee();
 	//	Debugger_ShowMpu();
 	//	Debugger_ShowDistance();
-	//	Debugger_ShowMicroMove();
+		Debugger_ShowMicroMove();
 	///*	Serial.print("2323");
 	//	Huidu_ShowValues();*/
 		Huidu_ShowValues();

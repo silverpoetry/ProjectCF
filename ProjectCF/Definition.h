@@ -43,5 +43,5 @@ const int  Motor_Pin1 = 32;
 const int  Motor_Pin2 = 33;
 
 
-const int  Motor_EN1 =7;
-const int Motor_EN2 =9;
+const int  Motor_EN2 =7;
+const int Motor_EN1 =9;
