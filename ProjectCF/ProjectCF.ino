@@ -80,10 +80,10 @@ void loop()
 	///*	Serial.print("2323");
 	//	Huidu_ShowValues();*/
 		Huidu_ShowValues();
-		//Debugger_ShowDistance();
+		Debugger_ShowDistance();
 		//Debugger_SetWatch("12312", 123123);
 		//Serial.println("123");
-		//zigbee_show();
+		
 		Mpu_ReadData();
 		//Serial.println("sad");
 		delay(100);
