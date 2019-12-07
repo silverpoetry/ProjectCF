@@ -31,9 +31,10 @@ float SPI_ReadAngle()
 	data[0] = SPI.transfer(16) ;
 	delayMicroseconds(10);
 	data[1] = SPI.transfer(0);
-	/*Serial.println(data[0]);
+	Serial.println(data[0]);
 	Serial.println(data[1]);
-*/
+	Serial.println(short(data[0] << 8 | data[1]) / 32768.0 * 180);
+	Serial.println("");
 	return short(data[0] << 8 | data[1]) / 32768.0 * 180;
 	
 }
