@@ -170,11 +170,11 @@ void PL_GoBlind (int opt)
 
 	if (opt == 1) {
 		if (MicroMove_IsPushed (1))Motor_GoSpeed (160, 140);
-		else Motor_GoSpeed (150, 170);
+		else Motor_GoSpeed (140, 160);
 	}
 	else if (opt == 2) {
 		if (MicroMove_IsPushed (2))Motor_GoSpeed (140, 160);
-		else Motor_GoSpeed (180, 140);
+		else Motor_GoSpeed (160, 140);
 	}
 	else if (opt == 3) {
 		if (MicroMove_IsPushed(3)) {
@@ -200,12 +200,12 @@ void PL_GoBlind(int opt,int speed)
 {
 
 	if (opt == 1) {
-		if (MicroMove_IsPushed(1))Motor_GoSpeed(speed*1.2, speed*0.8);
-		else Motor_GoSpeed(speed*0.8, speed*1.2);
+		if (MicroMove_IsPushed(1))Motor_GoSpeed(speed*1.1, speed*0.9);
+		else Motor_GoSpeed(speed*0.9, speed*1.1);
 	}
 	else if (opt == 2) {
-		if (MicroMove_IsPushed(2)) Motor_GoSpeed(speed*0.8, speed*1.2);
-		else Motor_GoSpeed(speed*1.2, speed*0.8);
+		if (MicroMove_IsPushed(2)) Motor_GoSpeed(speed*0.9, speed*1.1);
+		else Motor_GoSpeed(speed*1.1, speed*0.9);
 	}
 	
 	
