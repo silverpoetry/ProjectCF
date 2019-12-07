@@ -72,15 +72,15 @@ void loop()
 		
 		Debugger_DebugManagement();
 	//	Debugger_SetWatch("aaa", "saa");
-	//	Zigbee_MessageRecord();
-	//	Debugger_ShowZigbee();
+		Zigbee_MessageRecord();
+		Debugger_ShowZigbee();
 	//	Debugger_ShowMpu();
 	//	Debugger_ShowDistance();
-		Debugger_ShowMicroMove();
+		//Debugger_ShowMicroMove();
 	///*	Serial.print("2323");
-	//	Huidu_ShowValues();*/
-		Huidu_ShowValues();
-		Debugger_ShowDistance();
+		//Huidu_ShowValues();
+	//	Huidu_ShowValues();
+	//	Debugger_ShowDistance();
 		//Debugger_SetWatch("12312", 123123);
 		//Serial.println("123");
 		

@@ -73,13 +73,13 @@ void PreContest_SavePeople () {
 	}
 
 	SavePeople_GotoEntrance ();
-	Mpu_RecordAngle ();
+	//Mpu_RecordAngle ();
 	while (!Huidu_IsCrossRoad ()) {
-	
+		Move_GoSpeed(130, 130);
 	//	if (!Manager_Time_TakeTime (70, 100))
 		//{
 			//Mpu_ReadData();
-			Mpu_AdjustStraight (SPEED);
+			//Mpu_AdjustStraight (SPEED);
 
 		//}
 	}
@@ -89,7 +89,7 @@ void PreContest_SavePeople () {
 	//PL_GoStop ();
 	int i = 1;
 	//直接全图视野
-	GridHelper_Init2();
+	GridHelper_Init();
 	car.Position = { 1, 2 };
 	Pos exit = { 5, 2 };
 	car.Orientation = 3;
@@ -98,7 +98,7 @@ void PreContest_SavePeople () {
 
 
 	while (true) {
-		while (Manager_Time_TakeTime(35,500))Zigbee_MessageRecord();
+		while (Manager_Time_TakeTime(35,1000))Zigbee_MessageRecord();
 
 		
 		if (Game.GameState == GameOver) {
@@ -110,10 +110,10 @@ void PreContest_SavePeople () {
 		if (isposeq(person1, car.Position))person1 = person2;
 		if (isposeq(person2, car.Position))person2 = person1;
 		if (GridHelper_CntManhattonDist (car.Position, person1) < GridHelper_CntManhattonDist (car.Position, person2)) {
-			 GridHelper_GoAdventure (car.Position, person1);
+			 GridHelper_Go (car.Position, person1);
 		}
 		else {
-			 GridHelper_GoAdventure (car.Position, person2);
+			 GridHelper_Go (car.Position, person2);
 		}
 		i++;
 	}

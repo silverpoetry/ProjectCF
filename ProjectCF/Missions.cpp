@@ -9,10 +9,13 @@ void CollectGoods_GotoGoods () {
 	delay (300);
 
 	//以左轮为轴旋转至碰边
-	Move_Gotime (0, 120, 900);
+	Move_Gotime (0, 120, 1150);
+	delay(300);
 	//Mpu_GoRelativeAngleAAA (-127);
 	Move_Gotime (150,150, 800);
+	delay(300);
 	Move_Gotime (120, 0, 400);
+	delay(300);
 	//Mpu_GoRelativeAngleAAA (25);
 
 	//至此来到下面的路上
@@ -21,15 +24,22 @@ void CollectGoods_GotoGoods () {
 }
 void CollectGoods_CatchBall () {
 	//delay (300);
-	Move_Gotime (120, 0, 1150);
+	Move_Gotime (120, 0, 900);
+	delay(300);
 //	Mpu_GoRelativeAngleAAA (133);
 	Move_Gotime (-120,-120, 500);
 	delay (300);
 }
 void CollectGoods_GetballBack () {
 	Move_Gotime (120, 0, 400);
+	delay(300);
 	//Mpu_GoRelativeAngleAAA (39);
 	Outer_GoPointByY (75, 2);
+	delay(300);
+
+	Move_Gotime(0, 120, 700);
+	delay(300);
+
 	MainTask_EasyMaze ();
 
 	return;
@@ -45,9 +55,11 @@ void MainTask_CollectGoods ()
 	CollectGoods_GotoGoods ();
 	Outer_GoPointByY (40, 1);
 	Move_Stop ();
+	delay(500);
 	CollectGoods_CatchBall ();
 	CollectGoods_GetballBack ();
 	Move_Gotime (0, 120, 700);
+	delay(300);
 //	Mpu_GoRelativeAngleAAA (-85);
 	MainTask_EasyMaze ();
 }
@@ -58,14 +70,17 @@ void EasyMaze_ReturnHome () {
 	//!!!!!
 	//Mpu_GoRelativeAngleAAA (-85);
 	Move_Gotime(0, 120, 700);
+	delay(300);
 	Outer_GoPointByX (Ms_Pos_E, 1);
-
+	delay(300);
 
 	//!!!!
 	//Mpu_GoRelativeAngleAAA (170);
-	Move_Gotime(120,0, 1100);
+	Move_Gotime(120,0, 1200);
+	delay(300);
 	Outer_GoPointByX (Ms_Pos_F, 1);
-	Move_Stop ();
+	//delay(300);
+	//Move_Stop ();
 	delay (500);
 	return;
 }
@@ -120,8 +135,11 @@ void SavePeople_GotoEntrance () {
 		Move_Gotime (-150, 150, 300);
 	*/
 	Outer_GoPointByY (150, 2);
-	Move_GoStraightTime (150, 300);
-	Mpu_GoRelativeAngleAAA (85);
+	delay(300);
+	Move_Gotime (150,150, 300);
+	delay(300);
+	Move_Gotime(120, 0, 700);
+	//Mpu_GoRelativeAngleAAA (85);
 }
 
 void MainTask_SavePeople () {
