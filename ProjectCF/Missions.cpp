@@ -9,9 +9,11 @@ void CollectGoods_GotoGoods () {
 	delay (300);
 
 	//以左轮为轴旋转至碰边
-	Mpu_GoRelativeAngleAAA (-127);
-	Move_GoStraightTime (150, 800);
-	Mpu_GoRelativeAngleAAA (25);
+	Move_Gotime (0, 120, 900);
+	//Mpu_GoRelativeAngleAAA (-127);
+	Move_Gotime (150,150, 800);
+	Move_Gotime (120, 0, 300);
+	//Mpu_GoRelativeAngleAAA (25);
 
 	//至此来到下面的路上
 
@@ -19,13 +21,14 @@ void CollectGoods_GotoGoods () {
 }
 void CollectGoods_CatchBall () {
 	//delay (300);
-
-	Mpu_GoRelativeAngleAAA (133);
-	Move_GoStraightTime (-150, 550);
+	Move_Gotime (120, 0, 1100);
+//	Mpu_GoRelativeAngleAAA (133);
+	Move_Gotime (-120,-120, 550);
 	delay (300);
 }
 void CollectGoods_GetballBack () {
-	Mpu_GoRelativeAngleAAA (39);
+	Move_Gotime (120, 0, 350);
+	//Mpu_GoRelativeAngleAAA (39);
 	Outer_GoPointByY (78, 2);
 	MainTask_EasyMaze ();
 
@@ -44,7 +47,8 @@ void MainTask_CollectGoods ()
 	Move_Stop ();
 	CollectGoods_CatchBall ();
 	CollectGoods_GetballBack ();
-	Mpu_GoRelativeAngleAAA (-85);
+	Move_Gotime (0, 120, 700);
+//	Mpu_GoRelativeAngleAAA (-85);
 	MainTask_EasyMaze ();
 }
 //}
@@ -75,7 +79,8 @@ void MainTask_EasyMaze () {
 	Pos exit = { 2, 1 };
 	car.Orientation = 1;
 //	Mpu_RecordAngle ();
-//	while (!Huidu_IsCrossRoad ()) {
+	while (!Huidu_IsCrossRoad ()) {
+		Move_GoSpeed (150, 150);
 	
 	//	if (!Manager_Time_TakeTime (69, 100))
 		//{
@@ -83,9 +88,9 @@ void MainTask_EasyMaze () {
 		//	Mpu_AdjustStraight (SPEED);
 
 		//}
-	//}
-//	Move_GoStraightTime (150, 80);
-//	Move_Stop ();
+	}
+	Move_Gotime (150,150,  80);
+	Move_Stop ();
 
 	//PL_GoStop ();
 
