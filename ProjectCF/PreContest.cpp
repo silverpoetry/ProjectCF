@@ -122,18 +122,10 @@ void Precontest_GoPlace()
 }
 
 void shadiao_shabi (void) {
-	while (!Huidu_IsCrossRoad ()) {
-
-		//	if (!Manager_Time_TakeTime (69, 100))
-			//{
-				//Mpu_ReadData();
-		Mpu_AdjustStraight (SPEED);
-
-		//}
+	int i = 0;
+	while (i++ <= 30) {
+		Mpu_GoRelativeAngleAAA (-83);
 	}
-	//Move_GoStraightTime (150, 170);
-	MainTask_EasyMaze ();
-
 //	PL_GoCrossTurnLeft ();
 }
 

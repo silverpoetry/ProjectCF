@@ -73,17 +73,17 @@ void MainTask_EasyMaze () {
 	car.Position = { 6, 5 };
 	Pos exit = { 2, 1 };
 	car.Orientation = 1;
-	Mpu_RecordAngle ();
-	while (!Huidu_IsCrossRoad ()) {
+//	Mpu_RecordAngle ();
+//	while (!Huidu_IsCrossRoad ()) {
 	
 	//	if (!Manager_Time_TakeTime (69, 100))
 		//{
 			//Mpu_ReadData();
-			Mpu_AdjustStraight (SPEED);
+		//	Mpu_AdjustStraight (SPEED);
 
 		//}
-	}
-	Move_GoStraightTime (150, 80);
+	//}
+//	Move_GoStraightTime (150, 80);
 //	Move_Stop ();
 
 	//PL_GoStop ();
