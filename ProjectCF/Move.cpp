@@ -64,7 +64,7 @@ int Move_RotateRight (void) {
 }
 int i = 0;
 void Move_Stop (void) {
-	Motor_GoSpeed(-Motor_M1Speed, -Motor_M2Speed);
+	Motor_GoSpeed(-Motor_M1Speed*0.5, -Motor_M2Speed*0.5);
 	delay(50);
 	Motor_Stop (1);
 	Motor_Stop (2);

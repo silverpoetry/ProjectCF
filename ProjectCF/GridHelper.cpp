@@ -530,7 +530,7 @@ void gh_exit(Pos p)
 			//delay(300);
 			
 			if (j == 0) {
-				Move_GoStraightTime(150, 400);
+				Move_GoStraightTime(150, 450);
 
 				//		Debugger_SetWatch("Action", "Forward");
 			}
@@ -540,7 +540,7 @@ void gh_exit(Pos p)
 
 				delay (260);
 				PL_CrossRoad (5);
-				Move_GoStraightTime(150, 400);
+				Move_GoStraightTime(150, 450);
 				//	Debugger_SetWatch("Action", "Back");
 			}
 			else if (j == 1) {
@@ -549,7 +549,7 @@ void gh_exit(Pos p)
 				//Move_Stop();
 				PL_CrossRoad(5);
 				//Move_Stop();
-				Move_GoStraightTime(150, 500);
+				Move_GoStraightTime(150, 570);
 				//	Debugger_SetWatch("Action", "RT");
 			}
 			else if (j == 3) {
@@ -560,7 +560,7 @@ void gh_exit(Pos p)
 			//	delay (260);
 				PL_CrossRoad (1);
 				//Move_Stop();
-				Move_GoStraightTime(150, 500);
+				Move_GoStraightTime(150, 570);
 			}
 
 
