@@ -10,12 +10,12 @@
 //---------------------------模块-----------------------------------------
 //超声波
 
-#define Distance_InputPin0  20 // 定义超声波信号接收接口
-#define Distance_OutPutPin0  21// 定义超声波信号发出接口
+#define Distance_InputPin0  41 // 定义超声波信号接收接口
+#define Distance_OutPutPin0  40// 定义超声波信号发出接口
 #define Distance_InputPin2  39 // 定义超声波信号接收接口
 #define Distance_OutPutPin2  38// 定义超声波信号发出接口
-#define Distance_InputPin  4// 定义超声波信号接收接口
-#define Distance_OutPutPin  5// 定义超声波信号发出接口
+#define Distance_InputPin  44// 定义超声波信号接收接口
+#define Distance_OutPutPin  45// 定义超声波信号发出接口
 
 //灰度
 const int Huidu_Pins[] = { A0,A1,A3,A7,A10,A14 };

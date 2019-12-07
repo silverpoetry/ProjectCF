@@ -84,7 +84,7 @@ void loop()
 		//Debugger_SetWatch("12312", 123123);
 		//Serial.println("123");
 		
-		Mpu_ReadData();
+		//Mpu_ReadData();
 		//Serial.println("sad");
 		delay(100);
 		//Debugger_ShowMpu();
