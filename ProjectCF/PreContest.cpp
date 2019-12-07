@@ -64,6 +64,14 @@ void PreContest_EasyMaze () {
 	
 }
 void PreContest_SavePeople () {
+
+	while (1) {
+		while(!Zigbee_MessageRecord ());
+		if (Game.GameState == GameGoing) {
+			break;
+		}
+	}
+
 	SavePeople_GotoEntrance ();
 	Mpu_RecordAngle ();
 	while (!Huidu_IsCrossRoad ()) {

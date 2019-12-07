@@ -35,13 +35,13 @@ void CollectGoods_GetballBack () {
 	return;
 }
 void MainTask_CollectGoods ()
-{/*
+{
 	while (1) {
 		while (!Zigbee_MessageRecord ());
 		if (Game.GameState == GameGoing) {
 			break;
 		}
-	}*/
+	}
 	CollectGoods_GotoGoods ();
 	Outer_GoPointByY (40, 1);
 	Move_Stop ();
@@ -125,6 +125,8 @@ void SavePeople_GotoEntrance () {
 }
 
 void MainTask_SavePeople () {
+	
+	//while
 
 	SavePeople_GotoEntrance ();
 	while (1) {

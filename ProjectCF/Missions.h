@@ -31,7 +31,7 @@
 #define Ms_Pos_C 150
 #define Ms_Pos_D 185
 #define Ms_Pos_E 220
-#define Ms_Pos_F 15
+#define Ms_Pos_F 20
 #define Ms_Pos_G 88
 #define Ms_Pos_H 90
 #define Ms_Pos_I 240        
