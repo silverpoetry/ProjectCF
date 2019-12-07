@@ -52,7 +52,7 @@ void MainTask_CollectGoods ()
 
 void EasyMaze_ReturnHome () {
 	//!!!!!
-	Mpu_GoRelativeAngleAAA (-80);
+	Mpu_GoRelativeAngleAAA (-85);
 	Outer_GoPointByX (Ms_Pos_E, 1);
 
 
