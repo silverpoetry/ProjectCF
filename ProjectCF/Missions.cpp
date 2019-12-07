@@ -5,14 +5,14 @@
 void CollectGoods_GotoGoods () {
 
 	//贴墙走出出发点
-	Outer_GoPointByX (37, 2);
+	Outer_GoPointByX (40, 2);
 	delay (300);
 
 	//以左轮为轴旋转至碰边
 	Move_Gotime (0, 120, 900);
 	//Mpu_GoRelativeAngleAAA (-127);
 	Move_Gotime (150,150, 800);
-	Move_Gotime (120, 0, 300);
+	Move_Gotime (120, 0, 400);
 	//Mpu_GoRelativeAngleAAA (25);
 
 	//至此来到下面的路上
@@ -21,15 +21,15 @@ void CollectGoods_GotoGoods () {
 }
 void CollectGoods_CatchBall () {
 	//delay (300);
-	Move_Gotime (120, 0, 1100);
+	Move_Gotime (120, 0, 1150);
 //	Mpu_GoRelativeAngleAAA (133);
-	Move_Gotime (-120,-120, 550);
+	Move_Gotime (-120,-120, 500);
 	delay (300);
 }
 void CollectGoods_GetballBack () {
-	Move_Gotime (120, 0, 350);
+	Move_Gotime (120, 0, 400);
 	//Mpu_GoRelativeAngleAAA (39);
-	Outer_GoPointByY (78, 2);
+	Outer_GoPointByY (75, 2);
 	MainTask_EasyMaze ();
 
 	return;
