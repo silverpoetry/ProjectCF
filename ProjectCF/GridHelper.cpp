@@ -483,7 +483,7 @@ void GridHelper_GoPath()
 					
 					Move_GoSpeed(150, -150);
 					
-					delay(260);
+					delay(400);
 					PL_CrossRoad(5);
 					PL_GoWithoutStop ();
 					UpdateCarOrient(4);
