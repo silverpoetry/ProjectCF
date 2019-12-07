@@ -129,15 +129,23 @@ void SavePeople_GotoEntrance () {
 		}
 	*/
 
-	/*	while (!Manager_Time_TakeTime(45,500))
+		while (!Manager_Time_TakeTime(45,1000))
 		{
-			PL_GoBlind (2);
+			
+				if (MicroMove_IsPushed(2))Motor_GoSpeed(140, 160);
+				else Motor_GoSpeed(170, 130);
 		}
-		Move_Gotime (150, -150, 300);
+		while (!Manager_Time_TakeTime(45, 200))
+		{
+
+			Move_GoSpeed(60, 120);
+		}
+		
+		/*Move_Gotime (150, -150, 300);
 		Move_Gotime (150, 150, 300);
-		Move_Gotime (-150, 150, 300);
-	*/
-	Outer_GoPointByY (150, 2);
+		Move_Gotime (-150, 150, 300);*/
+	
+	Outer_GoPointByY (152, 2);
 	delay(300);
 	Move_Gotime (150,150, 300);
 	delay(300);
